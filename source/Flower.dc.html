@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ten Systems flower</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<svg class="{{cls}}" viewBox="{{vb}}" role="{{role}}" aria-label="{{label}}" aria-hidden="{{hidden}}" focusable="false" style="{{svgStyle}}">
+<sc-if value="{{isIcon}}" hint-placeholder-val="{{ false }}"><path d="{{tile}}" style="fill: #16132A"></path></sc-if>
+<sc-for list="{{petals}}" as="p" hint-placeholder-count="10"><path d="{{p.d}}" style="{{p.st}}" onClick="{{p.pick}}"></path></sc-for>
+<circle cx="60" cy="60" r="{{haloR}}" style="fill: #FFFFFF; opacity: .16"></circle>
+<circle cx="60" cy="60" r="{{coreR}}" style="fill: #FFFFFF"></circle>
+</svg>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":"emblem","$preview":{"width":200,"height":200}}'>
+/* Canonical Ten Systems flower (selected direction: the Concept C line flower).
+   Ten elongated, overlapping outlined petals; radiance at 12 o'clock, then clockwise in the documented order.
+   One geometry, four variants that only change stroke weight, fill tint and framing:
+   mark (16-32px nav) · emblem (40-120px) · large (Ten Systems illustration) · icon (navy app-icon tile).
+   Props: variant, highlight (index or array of indexes; others dim), label (meaningful -> role=img; empty -> decorative), onPick(i), glow (bool). */
+var FLOWER_SYS = ['#FFF1CF', '#FF8EBE', '#A586FF', '#5E9BFF', '#43D58F', '#FFCF3D', '#FF9440', '#FF5F55', '#B98256', '#6E6E84'];
+var FLOWER_VARIANT = {mark:{sw:5.4, fill:.12, core:4.6, halo:8}, emblem:{sw:2.5, fill:0, core:3.4, halo:7}, large:{sw:1.6, fill:0, core:3, halo:8}, icon:{sw:4.2, fill:.08, core:4.2, halo:8, scale:.74}};
+function flowerR(n){ return Math.round(n * 100) / 100; }
+function flowerPetal(i, k){ /* petal i of 10 in a 120 box, scale k about the centre */
+  var cx = 60, cy = 60, r0 = 1.6 * k, len = 50 * k, w = 9 * k; var a = i * 36 * Math.PI / 180; var ux = Math.sin(a), uy = -Math.cos(a), vx = -uy, vy = ux;
+  var P = function(u, v){ return flowerR(cx + ux * u + vx * v) + ' ' + flowerR(cy + uy * u + vy * v); };
+  return 'M' + P(r0, 0) + 'C' + P(r0 + len * .18, w * 1.15) + ' ' + P(r0 + len * .78, w * 1.05) + ' ' + P(r0 + len, 0) + 'C' + P(r0 + len * .78, -w * 1.05) + ' ' + P(r0 + len * .18, -w * 1.15) + ' ' + P(r0, 0) + 'Z';
+}
+class Component extends DCLogic {
+  renderVals(){
+    var p = this.props || {}; var v = FLOWER_VARIANT[p.variant] || FLOWER_VARIANT.emblem; var k = v.scale || 1;
+    var hi = p.highlight; var his = hi == null ? null : (Array.isArray(hi) ? hi : [hi]);
+    var pick = typeof p.onPick === 'function' ? p.onPick : null;
+    var petals = FLOWER_SYS.map(function(c, i){ var dim = his && his.length && his.indexOf(i) < 0;
+      return {d:flowerPetal(i, k), pick:pick ? function(){ pick(i); } : undefined,
+        st:'fill: ' + c + '; fill-opacity: ' + (dim ? v.fill * .3 : v.fill) + '; stroke: ' + c + '; stroke-width: ' + v.sw * k + '; stroke-opacity: ' + (dim ? .32 : 1) + '; stroke-linejoin: round' + (pick ? '; cursor: pointer' : '')}; });
+    var label = p.label || '';
+    return {vb:'0 0 120 120', petals:petals, isIcon:p.variant === 'icon', tile:'M27 0H93A27 27 0 0 1 120 27V93A27 27 0 0 1 93 120H27A27 27 0 0 1 0 93V27A27 27 0 0 1 27 0Z',
+      coreR:v.core * k, haloR:v.halo * k, role:label ? 'img' : undefined, label:label || undefined, hidden:label ? undefined : 'true',
+      cls:'lf-flower' + (p.glow ? ' lf-flower-glow' : ''),
+      svgStyle:'display: block; width: 100%; height: auto; overflow: visible' + (p.glow ? '; filter: drop-shadow(0 0 8px rgba(165,134,255,.28))' : '')};
+  }
+}
+</script>
+</body>
+</html>

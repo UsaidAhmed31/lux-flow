@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lux Flow brand exploration</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="bx">
+<style>
+.bx{--bg:#0A0912;--surface:#14121E;--surface-2:#1C1A2A;--surface-3:#24213A;--line:#29263D;--line-2:#3A3655;--ink:#F4F2FB;--ink-2:#C7C3DA;--ink-3:#9C97B5;--accent:#7A68FF;--accent-ink:#B9AEFF;--accent-line:rgba(138,122,255,.45);--glow:rgba(122,104,255,.55);--sun-hi:#FFC56B;--sun-lo:#FF7A45;--ok:#4FE0A0;--warn:#FFC76E;--paper:#F7F5FB;--navy:#14112E;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:40px;--space-8:48px;--space-9:64px;--page-x:16px;--section-gap:48px;--r:12px;--r-lg:18px;
+  --sans:'Helvetica Now Display','Helvetica Now Text','Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif;
+  min-height:100vh;background:var(--bg);background-image:radial-gradient(1000px 520px at 80% -8%,rgba(122,104,255,.12),transparent 60%),radial-gradient(800px 480px at -10% 30%,rgba(255,122,69,.05),transparent 60%);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+@media (min-width:700px){ .bx{--page-x:32px;--section-gap:64px} .hero-art{min-height:340px} }
+@media (min-width:1100px){ .bx{--page-x:56px;--section-gap:88px} }
+.bx *{box-sizing:border-box}
+.wrap{max-width:1328px;margin:0 auto;padding:var(--space-8) var(--page-x) var(--space-9);display:flex;flex-direction:column}
+.wrap > * + *{margin-top:var(--section-gap)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.h1{font-weight:700;font-size:36px;line-height:1.05;letter-spacing:-.025em;margin:0}
+.h2{font-weight:700;font-size:26px;line-height:1.12;letter-spacing:-.015em;margin:0}
+.h3{font-weight:700;font-size:15px;line-height:1.35;margin:0}
+@media (min-width:1100px){ .h1{font-size:52px} .h2{font-size:32px} }
+.lead{font-size:16.5px;color:var(--ink-2);margin:0;max-width:760px}
+.p{margin:0}
+.meta{font-size:13px;color:var(--ink-3);line-height:1.45}
+.small{font-size:13.5px;color:var(--ink-2)}
+.stack{display:flex;flex-direction:column;gap:var(--space-3)}
+.stack-sm{display:flex;flex-direction:column;gap:var(--space-2)}
+.stack-xs{display:flex;flex-direction:column;gap:var(--space-1)}
+.row{display:flex;align-items:center;gap:var(--space-2)}
+.row-wrap{display:flex;flex-wrap:wrap;gap:var(--space-2);align-items:center}
+.tag{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;white-space:nowrap;background:var(--surface-3);color:var(--ink-2)}
+.tag-rec{background:linear-gradient(180deg,#8A79FF,#5A43EE);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 4px 14px -4px var(--glow)}
+.tag-warn{background:rgba(255,199,110,.12);color:var(--warn)}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;display:inline-block}
+.head{display:flex;flex-direction:column;gap:var(--space-4)}
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:var(--space-2) var(--space-3)}
+@media (min-width:900px){ .palette{grid-template-columns:repeat(10,minmax(0,1fr))} }
+.swatch{display:flex;flex-direction:column;gap:6px}
+.swatch span.sw{height:36px;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.swatch b{font-size:12.5px}
+.swatch i{font-style:normal;font-size:11.5px;color:var(--ink-3);line-height:1.3}
+.overview{display:grid;gap:var(--space-4);grid-template-columns:minmax(0,1fr)}
+@media (min-width:980px){ .overview{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.ov{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);border-radius:var(--r-lg);background:var(--surface);text-align:left;color:inherit;font:inherit;border:0;cursor:pointer}
+.ov.rec{box-shadow:inset 0 0 0 1.5px var(--accent-line),0 0 50px -22px var(--glow)}
+.ov:focus-visible,.sys-btn:focus-visible{outline:2px solid #9C8DFF;outline-offset:2px}
+.ov-art{height:150px;display:flex;align-items:center;justify-content:center}
+.ov-art .slot{width:min(100%,330px)}
+.slot{display:block}
+.sec{display:flex;flex-direction:column;gap:var(--space-6)}
+.sec-head{display:flex;flex-direction:column;gap:var(--space-2);padding-bottom:var(--space-4);border-bottom:1px solid var(--line)}
+.hero-art{position:relative;border-radius:24px;overflow:hidden;min-height:220px;display:flex;align-items:center;justify-content:center;padding:var(--space-8) var(--space-5);background:radial-gradient(70% 90% at 50% 40%,#1E1840 0%,#0E0B1F 60%,#0A0912 100%)}
+.hero-art .slot{width:min(100%,640px);position:relative;z-index:1}
+.hero-art.light{background:var(--paper)}
+.hero-glow{position:absolute;inset:auto 10% -40% 10%;height:70%;background:radial-gradient(closest-side,rgba(122,104,255,.32),transparent);pointer-events:none}
+.grid-spec{display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.spec{display:flex;flex-direction:column;gap:var(--space-3)}
+.spec-art{height:176px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:var(--space-5)}
+.spec-art.dark{background:var(--surface)}
+.spec-art.light{background:var(--paper)}
+.spec-art.space{background:radial-gradient(80% 100% at 50% 30%,#221B4A,#0C0A1A)}
+.spec-art .slot{max-height:100%}
+.icons{display:flex;align-items:flex-end;gap:var(--space-4)}
+.sizes{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-5) var(--space-6);padding:var(--space-5);border-radius:var(--r-lg);background:var(--surface)}
+.sizes.light{background:var(--paper);color:var(--navy)}
+.sizes .lbl{font-size:11.5px;color:var(--ink-3);margin-top:6px;display:block}
+.sizes.light .lbl{color:#5C587A}
+.notes{display:grid;gap:var(--space-5);grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){ .notes{grid-template-columns:1.2fr 1fr 1fr 1fr} }
+.notes ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--ink-2);font-size:14px}
+.split{display:grid;gap:var(--space-5);grid-template-columns:minmax(0,1fr)}
+@media (min-width:980px){ .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center} }
+/* applications */
+.apps{display:grid;gap:var(--space-6) var(--space-5);grid-template-columns:repeat(auto-fit,minmax(300px,1fr));justify-items:center}
+.phone{width:320px;border-radius:40px;padding:10px;background:#1B1828;box-shadow:inset 0 0 0 1px #34304A,0 30px 70px -30px rgba(0,0,0,.9)}
+.screen{position:relative;height:640px;border-radius:31px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+.ph-status{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:12px;font-weight:700;color:var(--ink-2);flex-shrink:0}
+.ph-top{height:52px;display:flex;align-items:center;gap:10px;padding:0 12px 0 14px;border-bottom:1px solid var(--line);flex-shrink:0}
+.ph-top .slot{width:104px}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ph-flow{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink);background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.ph-body{flex:1;overflow:hidden;padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4)}
+.ph-dock{height:62px;display:flex;align-items:center;justify-content:space-around;border-top:1px solid var(--line);background:#0E0C17;font-size:10.5px;font-weight:600;color:var(--ink-3);flex-shrink:0;padding:0 4px}
+.ph-dock span{display:flex;flex-direction:column;align-items:center;gap:3px}
+.ph-dock .create{width:44px;height:44px;margin-top:-18px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#FFE2A8,var(--sun-hi) 30%,var(--sun-lo));box-shadow:0 0 22px -4px rgba(255,150,80,.8)}
+.ph-row{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:1px solid var(--line)}
+.ph-row:last-child{border-bottom:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font-weight:700;font-size:14.5px;border:0;font-family:inherit;white-space:nowrap}
+.btn-primary{color:#fff;background:linear-gradient(180deg,#8E7EFF,#4E36E6);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 22px -8px var(--glow)}
+.btn-sun{color:#2A1204;background:linear-gradient(180deg,var(--sun-hi),var(--sun-lo));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 22px -8px rgba(255,140,70,.8)}
+.btn-ghost{color:var(--ink);background:transparent}
+.btn-sm{min-height:36px;padding:0 14px;font-size:13px}
+.disc-flower{display:flex;justify-content:center;padding:var(--space-2) 0}
+.disc-flower .slot{width:168px}
+.sys-list{display:flex;flex-direction:column}
+.sys-btn{display:flex;align-items:center;gap:var(--space-3);width:100%;min-height:44px;padding:6px 8px;border:0;background:none;color:var(--ink);font:inherit;text-align:left;border-radius:10px;cursor:pointer}
+.sys-btn.on{background:rgba(122,104,255,.14);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.sys-btn b{font-size:14px}
+.sys-btn i{font-style:normal;font-size:12px;color:var(--ink-3);margin-left:auto}
+.welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-5);padding:var(--space-6) var(--space-5);text-align:center;background:radial-gradient(90% 60% at 50% 35%,#1C1640,#0A0912 70%)}
+.welcome .slot{width:210px}
+.motto{font-size:21px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:0}
+.motto em{font-style:normal;background:linear-gradient(90deg,var(--sun-hi),var(--sun-lo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.web{width:100%;max-width:1180px;grid-column:1 / -1;border-radius:20px;overflow:hidden;background:#0B0A15;box-shadow:inset 0 0 0 1px var(--line),0 30px 80px -40px rgba(0,0,0,.9)}
+.web-bar{height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;background:#151322;border-bottom:1px solid var(--line)}
+.web-bar span{width:10px;height:10px;border-radius:50%;background:#2C2840}
+.web-nav{display:flex;align-items:center;gap:var(--space-6);padding:var(--space-5) var(--space-7)}
+.web-nav .slot{width:150px}
+.web-nav a{font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none}
+.web-hero{position:relative;display:grid;gap:var(--space-6);grid-template-columns:minmax(0,1fr);padding:var(--space-6) var(--space-7) var(--space-8);overflow:hidden}
+.web-nav .links{display:none;gap:var(--space-5);margin-left:auto}
+@media (min-width:900px){ .web-hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center} .web-nav .links{display:flex} }
+.web-nav > .btn{margin-left:auto}
+@media (min-width:900px){ .web-nav > .btn{margin-left:0} }
+.web-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:320px}
+.web-art .slot{width:min(100%,280px);position:relative;z-index:1}
+.web-art::before{content:'';position:absolute;inset:6%;background:radial-gradient(closest-side,rgba(122,104,255,.34),transparent);pointer-events:none}
+.web-brand{display:inline-flex;align-items:center;gap:10px}
+.web-mark{display:block;width:30px;flex-shrink:0}
+.web-word{font-weight:700;font-size:21px;letter-spacing:-.02em;line-height:1}
+.web-h{font-size:36px}
+@media (min-width:900px){ .web-h{font-size:48px} }
+.web-art .slot{width:min(100%,320px)}
+.web-ten{display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-8) var(--space-5);border-top:1px solid var(--line)}
+@media (min-width:900px){ .web-ten{padding:var(--space-8) var(--space-7)} }
+.web-ten-grid{display:grid;gap:var(--space-5);grid-template-columns:minmax(0,1fr);align-items:center}
+@media (min-width:900px){ .web-ten-grid{grid-template-columns:minmax(0,1fr) minmax(0,300px) minmax(0,1fr)} }
+.web-ten-flower{width:min(100%,300px);margin:0 auto;order:-1}
+@media (min-width:900px){ .web-ten-flower{order:0} }
+.web-ten-col{display:flex;flex-direction:column}
+.ws{display:flex;align-items:center;gap:var(--space-3);min-height:56px;padding:var(--space-2) var(--space-3);border:0;border-radius:12px;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.ws:hover{background:rgba(255,255,255,.04)}
+.ws.on{background:rgba(122,104,255,.14);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.ws:focus-visible{outline:2px solid #9C8DFF;outline-offset:2px}
+.ws b{font-size:14.5px}
+.ws i{font-style:normal;font-size:12.5px;color:var(--ink-3)}
+.web-foot{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4) var(--space-6);padding:var(--space-5) var(--space-7);border-top:1px solid var(--line)}
+.links-foot{display:flex;flex-wrap:wrap;gap:var(--space-4);font-size:13.5px;color:var(--ink-2)}
+.web-foot .meta{margin-left:auto}
+.cmp{width:100%;border-collapse:collapse;font-size:14px}
+.cmp th,.cmp td{text-align:left;padding:var(--space-3) var(--space-3);border-bottom:1px solid var(--line);vertical-align:top}
+.cmp th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.cmp td:first-child{color:var(--ink-2);font-weight:600;width:28%}
+.cmp-wrap{overflow-x:auto}
+.rating{display:inline-flex;gap:3px;vertical-align:middle;margin-right:8px}
+.rating span{width:8px;height:8px;border-radius:2px;background:var(--surface-3)}
+.rating span.on{background:var(--accent-ink)}
+.rec-box{display:grid;gap:var(--space-5);grid-template-columns:minmax(0,1fr);padding:var(--space-6);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(122,104,255,.12),rgba(122,104,255,.02))}
+@media (min-width:980px){ .rec-box{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)} }
+.rec-box ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;color:var(--ink-2)}
+.sr{font-size:12px;color:var(--ink-3)}
+.note{font-size:12.5px;color:var(--ink-3);line-height:1.45}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="row-wrap"><span class="eyebrow">Lux Flow · Brand identity iteration</span><span class="tag tag-warn">Proposals for review — nothing here is approved</span></div>
+    <h1 class="h1">Ten Systems flower + infinity</h1>
+    <p class="lead">Three original directions responding to Quinn’s feedback: keep the Ten Systems flower and its ten colours, and bring in the infinity symbol — possibly flowing from the bottom of the “L” beneath “Lux”, weaving in front of and behind the letters. Every mark below is live vector geometry, so it scales cleanly and can be reused in the product.</p>
+  </header>
+
+  <section class="stack" aria-label="The Ten Systems palette">
+    <div class="row-wrap" style="justify-content: space-between"><h2 class="h3">The Ten Systems — order and colours used in every concept</h2><span class="meta">Source: Foundations v0.4 · clockwise from 12 o’clock in each flower</span></div>
+    <div class="palette">
+      <sc-for list="{{systems}}" as="s" hint-placeholder-count="10"><div class="swatch"><span class="sw" style="{{s.bg}}"></span><b>{{s.name}}</b><i>{{s.meaning}}</i></div></sc-for>
+    </div>
+  </section>
+
+  <section class="stack" aria-label="Overview">
+    <h2 class="h2">Three directions</h2>
+    <div class="overview">
+      <sc-for list="{{concepts}}" as="c" hint-placeholder-count="3">
+        <button class="{{c.ovCls}}" onClick="{{c.jump}}" aria-label="{{c.jumpAria}}">
+          <span class="row-wrap"><span class="eyebrow">{{c.tag}}</span><sc-if value="{{c.rec}}" hint-placeholder-val="{{ false }}"><span class="tag tag-rec">Recommended starting direction</span></sc-if></span>
+          <span class="ov-art"><span class="slot"><dc-import name="Logo" dc-props="{{c.ovLogo}}"></dc-import></span></span>
+          <span class="stack-xs"><span class="h2" style="font-size: 22px">{{c.name}}</span><span class="small">{{c.idea}}</span></span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-for list="{{concepts}}" as="c" hint-placeholder-count="3">
+  <section class="sec" id="{{c.anchor}}" aria-label="{{c.name}}">
+    <div class="sec-head">
+      <div class="row-wrap"><span class="eyebrow">{{c.tag}}</span><sc-if value="{{c.rec}}" hint-placeholder-val="{{ false }}"><span class="tag tag-rec">Recommended</span></sc-if></div>
+      <h2 class="h2">{{c.name}}</h2>
+      <p class="lead">{{c.idea}}</p>
+    </div>
+
+    <div class="hero-art"><span class="hero-glow"></span><span class="slot"><dc-import name="Logo" dc-props="{{c.heroLogo}}"></dc-import></span></div>
+
+    <div class="stack">
+      <h3 class="h3">Logo system</h3>
+      <div class="grid-spec">
+        <sc-for list="{{c.specs}}" as="s" hint-placeholder-count="8">
+          <figure class="spec" style="margin: 0">
+            <div class="{{s.cls}}"><span class="slot" style="{{s.w}}"><dc-import name="Logo" dc-props="{{s.props}}"></dc-import></span></div>
+            <figcaption class="stack-xs"><span class="h3">{{s.title}}</span><span class="meta">{{s.note}}</span></figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="stack">
+      <h3 class="h3">Real sizes</h3>
+      <div class="sizes">
+        <sc-for list="{{c.sizes}}" as="z" hint-placeholder-count="6"><div><span class="slot" style="{{z.w}}"><dc-import name="Logo" dc-props="{{z.props}}"></dc-import></span><span class="lbl">{{z.label}}</span></div></sc-for>
+      </div>
+      <div class="sizes light">
+        <sc-for list="{{c.sizesLight}}" as="z" hint-placeholder-count="4"><div><span class="slot" style="{{z.w}}"><dc-import name="Logo" dc-props="{{z.props}}"></dc-import></span><span class="lbl">{{z.label}}</span></div></sc-for>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="stack-sm"><h3 class="h3">Rationale</h3><p class="p small">{{c.rationale}}</p></div>
+      <div class="stack-sm"><h3 class="h3">Strengths</h3><ul><sc-for list="{{c.strengths}}" as="t" hint-placeholder-count="3"><li>{{t.t}}</li></sc-for></ul></div>
+      <div class="stack-sm"><h3 class="h3">Trade-offs</h3><ul><sc-for list="{{c.tradeoffs}}" as="t" hint-placeholder-count="3"><li>{{t.t}}</li></sc-for></ul></div>
+      <div class="stack-sm"><h3 class="h3">Works best for</h3><ul><sc-for list="{{c.best}}" as="t" hint-placeholder-count="3"><li>{{t.t}}</li></sc-for></ul></div>
+    </div>
+
+    <sc-if value="{{c.isC}}" hint-placeholder-val="{{ false }}">
+      <div class="split">
+        <div class="hero-art" style="min-height: 300px"><span class="hero-glow"></span><span class="slot" style="width: min(100%, 560px); opacity: .9"><dc-import name="Logo" dc-props="{{cRibbonArt}}"></dc-import></span><span class="slot" style="position: absolute; width: 150px; z-index: 2"><dc-import name="Logo" dc-props="{{cFlowerArt}}"></dc-import></span></div>
+        <div class="stack"><h3 class="h3">How the ribbon extends</h3><p class="p small">The ten strands can run behind a landing headline, sweep across onboarding steps, and gather into the line flower when someone opens Ten Systems discovery — one strand lighting up per selected System. Motion should be slow and stop with Reduce motion.</p><p class="note">Practical limit: the ribbon needs space and a dark ground. In small UI it falls back to the symbol, and in print to the monochrome version.</p></div>
+      </div>
+    </sc-if>
+  </section>
+  </sc-for>
+
+  <section class="sec" id="applications" aria-label="In the product">
+    <div class="sec-head">
+      <span class="eyebrow">Concept A in context</span>
+      <h2 class="h2">How the recommended direction works in the product</h2>
+      <p class="lead">The wordmark carries the infinity; the flower carries the Ten Systems. Each appears where it does the most work, so neither crowds the reduced-box UI.</p>
+    </div>
+    <div class="apps">
+      <figure class="stack" style="margin: 0; align-items: center">
+        <div class="phone"><div class="screen">
+          <div class="ph-status"><span>9:41</span><span>●●●</span></div>
+          <div class="ph-top"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span class="slot" aria-label="Lux Flow"><dc-import name="Logo" dc-props="{{appHeaderLogo}}"></dc-import></span><span class="ph-flow"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px"><path d="M3 9.5c2.2-2.7 4.8-2.7 7 0s4.8 2.7 7 0c1-1.2 2-1.9 4-2M3 15.5c2.2-2.7 4.8-2.7 7 0s4.8 2.7 7 0c1-1.2 2-1.9 4-2"></path></svg>Flow</span></div>
+          <div class="ph-body">
+            <div class="stack-xs"><span class="eyebrow" style="font-size: 11px">Wednesday, October 21</span><span class="h2" style="font-size: 24px">Welcome back, Rae.</span></div>
+            <div class="row" style="gap: 12px"><span style="width: 36px; flex-shrink: 0"><dc-import name="Logo" dc-props="{{miniFlower}}"></dc-import></span><span class="stack-xs" style="flex: 1"><b style="font-size: 14px">Today’s Flow</b><span class="meta">9 posts · read at your own pace</span></span><span class="btn btn-primary btn-sm">Open</span></div>
+            <div class="stack-sm"><span class="eyebrow" style="font-size: 11px">Pick up where you left off</span>
+              <div class="ph-row"><span class="dot" style="background: #43D58F"></span><span class="stack-xs" style="flex: 1"><b style="font-size: 14px">Call Mum</b><span class="meta">Reminder · Fri 6:00 PM</span></span></div>
+              <div class="ph-row"><span class="dot" style="background: #FFCF3D"></span><span class="stack-xs" style="flex: 1"><b style="font-size: 14px">Alder Street Growers</b><span class="meta">Your community</span></span></div>
+            </div>
+          </div>
+          <div class="ph-dock"><span>Chat</span><span>People</span><span><i class="create"></i>Create</span><span>Communities</span><span>Archive</span></div>
+        </div></div>
+        <figcaption class="stack-xs" style="text-align: center; max-width: 300px"><span class="h3">Mobile app header</span><span class="meta">Primary lockup at 104px wide stays legible; the loop reads as a quiet brand flourish, not a second icon.</span></figcaption>
+      </figure>
+
+      <figure class="stack" style="margin: 0; align-items: center">
+        <div class="phone"><div class="screen">
+          <div class="ph-status"><span>9:41</span><span>●●●</span></div>
+          <div class="ph-top"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg><b style="font-size: 15px">Ten Systems</b></div>
+          <div class="ph-body" style="gap: 8px; padding-top: 12px">
+            <div class="disc-flower"><span class="slot"><dc-import name="Logo" dc-props="{{discFlower}}"></dc-import></span></div>
+            <div class="stack-xs" style="text-align: center"><b style="font-size: 17px">{{discName}}</b><span class="meta">{{discMeaning}}</span></div>
+            <div class="sys-list" role="listbox" aria-label="Ten Systems">
+              <sc-for list="{{discList}}" as="s" hint-placeholder-count="10"><button class="{{s.cls}}" role="option" aria-selected="{{s.sel}}" onClick="{{s.pick}}"><span class="dot" style="{{s.bg}}"></span><b>{{s.name}}</b><i>{{s.short}}</i></button></sc-for>
+            </div>
+          </div>
+        </div></div>
+        <figcaption class="stack-xs" style="text-align: center; max-width: 300px"><span class="h3">Ten Systems discovery</span><span class="meta">The flower is the map: the selected System’s petal stays bright while the others dim. Try it — tap a System.</span></figcaption>
+      </figure>
+
+      <figure class="stack" style="margin: 0; align-items: center">
+        <div class="phone"><div class="screen">
+          <div class="ph-status"><span>9:41</span><span>●●●</span></div>
+          <div class="welcome">
+            <span class="slot"><dc-import name="Logo" dc-props="{{welcomeLogo}}"></dc-import></span>
+            <p class="motto">Flow as One — <em>Become the Sun.</em></p>
+            <p class="small" style="margin: 0; max-width: 240px">A calmer place to learn, connect and take part — across the Ten Systems of life.</p>
+            <span style="width: 72px"><dc-import name="Logo" dc-props="{{miniFlower}}"></dc-import></span>
+            <div class="stack-sm" style="width: 100%"><span class="btn btn-sun">Get started</span><span class="btn btn-ghost">I already have an account</span></div>
+          </div>
+        </div></div>
+        <figcaption class="stack-xs" style="text-align: center; max-width: 300px"><span class="h3">Welcome / onboarding</span><span class="meta">Stacked lockup with the flower as a supporting emblem. Sun gradient stays reserved for the single primary action.</span></figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+
+  <section class="sec" id="website" aria-label="Website">
+    <div class="sec-head">
+      <span class="eyebrow">Website · selected direction</span>
+      <h2 class="h2">The Ten Systems flower on the website</h2>
+      <p class="lead">The selected line flower — the same component the app uses — in the header, hero, Ten Systems section and footer. The wordmark stays as set text; no infinity graphics.</p>
+    </div>
+    <figure class="web" style="margin: 0">
+      <div class="web-bar"><span></span><span></span><span></span></div>
+      <nav class="web-nav" aria-label="Website (mock)"><span class="web-brand"><span class="web-mark"><dc-import name="Flower" variant="mark"></dc-import></span><span class="web-word">Lux Flow</span></span><span class="links"><a>Ten Systems</a><a>Communities</a><a>Safety</a></span><span class="btn btn-primary btn-sm">Join Lux Flow</span></nav>
+      <div class="web-hero">
+        <div class="stack" style="gap: 20px">
+          <span class="eyebrow">A mindful social platform</span>
+          <h3 class="h1 web-h">Flow as One — <span class="motto" style="font-size: inherit"><em>Become the Sun.</em></span></h3>
+          <p class="lead">Discover ideas, understand them, meet people and take part — guided by the Ten Systems of life, without endless scrolling.</p>
+          <div class="row-wrap"><span class="btn btn-sun">Get started</span><span class="btn btn-ghost">Explore the Ten Systems</span></div>
+        </div>
+        <div class="web-art"><span class="slot"><dc-import name="Flower" variant="large" glow="{{yes}}" label="Ten Systems flower: ten petals, one for each System"></dc-import></span></div>
+      </div>
+      <div class="web-ten">
+        <div class="stack-sm" style="align-items: center; text-align: center"><span class="eyebrow">The Ten Systems</span><h3 class="h2">Ten areas of life. One flow.</h3><p class="small" style="margin: 0; max-width: 520px">Every post, person and community belongs to a System. Choose one to see what it’s about.</p></div>
+        <div class="web-ten-grid">
+          <div class="web-ten-col"><sc-for list="{{webLeft}}" as="x" hint-placeholder-count="5"><button class="{{x.cls}}" aria-pressed="{{x.pressed}}" onClick="{{x.pick}}"><span class="dot" style="{{x.bg}}"></span><span class="stack-xs"><b>{{x.name}}</b><i>{{x.meaning}}</i></span></button></sc-for></div>
+          <div class="web-ten-flower"><dc-import name="Flower" variant="large" highlight="{{webHi}}" on-pick="{{webPick}}" label="{{webLabel}}"></dc-import><p class="meta" style="text-align: center; margin: 12px 0 0">{{webBlurb}}</p></div>
+          <div class="web-ten-col"><sc-for list="{{webRight}}" as="x" hint-placeholder-count="5"><button class="{{x.cls}}" aria-pressed="{{x.pressed}}" onClick="{{x.pick}}"><span class="dot" style="{{x.bg}}"></span><span class="stack-xs"><b>{{x.name}}</b><i>{{x.meaning}}</i></span></button></sc-for></div>
+        </div>
+      </div>
+      <footer class="web-foot"><span class="web-brand"><span class="web-mark" style="width: 22px"><dc-import name="Flower" variant="mark"></dc-import></span><span class="web-word" style="font-size: 17px">Lux Flow</span></span><span class="links-foot"><a>About</a><a>Community standards</a><a>Privacy</a><a>Support</a></span><span class="meta">Mock website · content illustrative</span></footer>
+    </figure>
+  </section>
+
+  <section class="sec" id="compare" aria-label="Comparison">
+    <div class="sec-head"><span class="eyebrow">Comparison</span><h2 class="h2">Benefits and trade-offs</h2></div>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th scope="col">Criterion</th><th scope="col">A · Integrated wordmark</th><th scope="col">B · Flower, infinity core</th><th scope="col">C · Flowing light</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="7"><tr><td>{{r.label}}</td><sc-for list="{{r.cells}}" as="x" hint-placeholder-count="3"><td><span class="rating" aria-hidden="true"><sc-for list="{{x.dots}}" as="d" hint-placeholder-count="5"><span class="{{d.cls}}"></span></sc-for></span><span class="sr">{{x.text}}</span></td></sc-for></tr></sc-for>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rec-box" aria-label="Recommendation">
+    <div class="stack">
+      <span class="eyebrow">Recommendation</span>
+      <h2 class="h2">Start from Concept A, keep B’s flower discipline</h2>
+      <p class="p small">A answers Quinn’s suggestion most directly — the infinity is part of the “L”, it runs beneath “Lux”, and the woven version shows the in-front/behind idea — while the flower stays whole as a separate emblem. Splitting the two symbols keeps each one legible: the wordmark stays legible at app-header size (about 104px wide) and in one colour, and the flower keeps all ten Systems without being shrunk inside the letters.</p>
+      <p class="p small">From B we’d keep the fuller petal shape for app icons and the discovery screen if testing shows the slimmer A petals are too fine. C’s ribbon is best treated as illustration and motion language rather than the logo.</p>
+    </div>
+    <div class="stack">
+      <h3 class="h3">Suggested next steps</h3>
+      <ol>
+        <li>Review the three directions with Quinn; agree which elements to carry forward.</li>
+        <li>Confirm the final Ten Systems artwork and colour values against the founder’s source files.</li>
+        <li>Redraw the chosen wordmark with a type designer (licensed Helvetica Now Display or a custom cut) and test the loop weight at 16–24px.</li>
+        <li>Prepare production assets: SVG master, app icons (iOS/Android/web), favicon and a print-safe monochrome.</li>
+      </ol>
+      <p class="note">The lettering here is hand-built monoline vector drawing for exploration — not Helvetica Now outlines. Nothing in this board changes the live prototype.</p>
+    </div>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":9800}}'>
+var SYS = [
+  ['radiance','Radiance','Joy · Play · Wonder','#FFF1CF','Joy'], ['purpose','Purpose','Work · Teams · Impact','#FF8EBE','Work'], ['presence','Presence','Awareness · Intuition · Peace','#A586FF','Awareness'],
+  ['wisdom','Wisdom','Learning · Knowledge · Understanding','#5E9BFF','Learning'], ['connection','Connection','Love · Trust · Belonging','#43D58F','Belonging'], ['unity','Unity','Action · Participation · Confidence','#FFCF3D','Action'],
+  ['vitality','Vitality','Energy · Rhythm · Health','#FF9440','Energy'], ['foundation','Foundation','Stability · Resources · Security','#FF5F55','Stability'], ['journey','Journey','Movement · Path · Destination','#B98256','Path'],
+  ['remembrance','Remembrance','Memory · History · Shadow','#6E6E84','Memory']
+];
+function P(concept, kind, mode, extra){ return Object.assign({concept:concept, kind:kind, mode:mode}, extra || {}); }
+function spec(title, note, props, bg, w){ return {title:title, note:note, props:props, cls:'spec-art ' + bg, w:'width: ' + w}; }
+function size(label, props, w){ return {label:label, props:props, w:'width: ' + w + 'px'}; }
+var CONCEPTS = [
+  {id:'a', tag:'Concept A', name:'Integrated Infinity Wordmark', rec:true,
+   idea:'The foot of the “L” flows straight into an infinity loop that runs beneath “Lux”. The Ten Systems flower sits beside it as a companion emblem rather than being squeezed into the letters.',
+   hero:P('a', 'horizontal', 'dark'), ov:P('a', 'horizontal', 'dark'),
+   specs:function(){ return [
+     spec('Primary horizontal', 'The L’s foot drops just below the baseline and becomes the loop. Letters stay clear of the loop.', P('a', 'horizontal', 'dark'), 'dark', '92%'),
+     spec('Woven variant', 'Loop rises into “ux” — in front of the u, behind the x. Best at display sizes.', P('a', 'woven', 'dark'), 'dark', '92%'),
+     spec('Stacked', 'Monogram over the wordmark for square spaces and splash screens.', P('a', 'stacked', 'dark'), 'dark', '62%'),
+     spec('Symbol: L∞ monogram', 'The smallest unit that still carries the idea.', P('a', 'monogram', 'dark'), 'dark', '62%'),
+     spec('Companion: Ten Systems flower', 'Ten slender petals in documented order, radiance at 12 o’clock.', P('a', 'flower', 'dark'), 'space', '120px'),
+     spec('App icon', 'Monogram on the deep-navy tile; loop carries the colours.', P('a', 'icon', 'dark'), 'dark', '120px'),
+     spec('Light background', 'Navy ink; a hairline keyline keeps the pale Radiance end of the loop visible.', P('a', 'horizontal', 'light'), 'light', '92%'),
+     spec('Monochrome', 'One colour, no gradient — for print, embossing and single-colour UI.', P('a', 'horizontal', 'mono-light'), 'light', '92%')
+   ]; },
+   sizes:[size('Wordmark · 160px', P('a', 'horizontal', 'dark'), 160), size('Header · 104px', P('a', 'horizontal', 'dark'), 104), size('Monogram · 48px', P('a', 'monogram', 'dark'), 48), size('Icon · 60', P('a', 'icon', 'dark'), 60), size('Icon · 40', P('a', 'icon', 'dark'), 40), size('Icon · 24', P('a', 'icon', 'dark'), 24), size('Favicon · 16', P('a', 'icon', 'dark'), 16), size('Flower · 32', P('a', 'flower', 'dark'), 32)],
+   sizesLight:[size('Light · 160px', P('a', 'horizontal', 'light'), 160), size('Mono · 120px', P('a', 'horizontal', 'mono-light'), 120), size('Icon · 40', P('a', 'icon', 'light'), 40), size('Mono flower · 32', P('a', 'flower', 'mono-light'), 32)],
+   rationale:'Quinn asked to see the infinity at the bottom of the “L”, running beneath “Lux”. Making the L’s foot literally become the loop turns the symbol into part of the name — you can’t remove it without breaking the letter — which is what makes a wordmark memorable. Keeping the flower separate means the Ten Systems keep all ten colours at a readable size.',
+   strengths:['Most direct response to the client’s suggestion','Readable at small sizes and in one colour','Clear roles: infinity = Lux Flow, flower = Ten Systems'],
+   tradeoffs:['Two marks to manage (wordmark + flower)','The loop adds depth below the baseline — needs clear space underneath','Woven version is fiddly below ~120px wide'],
+   best:['App header, website nav, documents','Splash and onboarding with the flower','Merch and print in monochrome']},
+  {id:'b', tag:'Concept B', name:'The Ten Systems Flower, Infinity at Its Core', rec:false,
+   idea:'The flower becomes the primary emblem: ten fuller petals in the System colours around a small infinity at the centre. The wordmark is set clean beside it.',
+   hero:P('b', 'horizontal', 'dark'), ov:P('b', 'horizontal', 'dark'),
+   specs:function(){ return [
+     spec('Primary horizontal', 'Emblem leads; wordmark stays plain so the colour lives in one place.', P('b', 'horizontal', 'dark'), 'dark', '92%'),
+     spec('Stacked', 'For splash screens, social avatars and print covers.', P('b', 'stacked', 'dark'), 'dark', '58%'),
+     spec('Symbol: flower with infinity core', 'Rounder petals so the silhouette survives at icon size.', P('b', 'symbol', 'dark'), 'space', '128px'),
+     spec('App icon', 'Flower centred on the navy tile.', P('b', 'icon', 'dark'), 'dark', '120px'),
+     spec('Light background', 'Petals keep their colours with a hairline keyline.', P('b', 'horizontal', 'light'), 'light', '92%'),
+     spec('Light symbol', 'The centre disc switches to paper so the infinity reads.', P('b', 'symbol', 'light'), 'light', '120px'),
+     spec('Monochrome', 'Solid petals separated by knock-out gaps.', P('b', 'horizontal', 'mono-light'), 'light', '92%'),
+     spec('Monochrome on dark', 'For embossing, single-colour print and watermarks.', P('b', 'symbol', 'mono-dark'), 'dark', '110px')
+   ]; },
+   sizes:[size('Logo · 180px', P('b', 'horizontal', 'dark'), 180), size('Header · 120px', P('b', 'horizontal', 'dark'), 120), size('Symbol · 48', P('b', 'symbol', 'dark'), 48), size('Icon · 60', P('b', 'icon', 'dark'), 60), size('Icon · 40', P('b', 'icon', 'dark'), 40), size('Icon · 24', P('b', 'icon', 'dark'), 24), size('Favicon · 16', P('b', 'icon', 'dark'), 16)],
+   sizesLight:[size('Light · 180px', P('b', 'horizontal', 'light'), 180), size('Mono · 120px', P('b', 'horizontal', 'mono-light'), 120), size('Icon · 40', P('b', 'icon', 'light'), 40), size('Mono · 32', P('b', 'symbol', 'mono-light'), 32)],
+   rationale:'If the Ten Systems are the heart of Lux Flow, the logo can lead with them. The infinity sits where all ten petals meet — the Systems flowing into one another — so it complements the flower instead of competing with it.',
+   strengths:['Ten Systems are unmistakable and always present','Strong, colourful app icon','Simple wordmark is easy to set anywhere'],
+   tradeoffs:['Infinity is small; it reads as texture below ~32px','Ten colours at favicon size become a colour wheel','Doesn’t use Quinn’s “L” idea'],
+   best:['App icon and social avatars','Ten Systems discovery and onboarding','Merchandise and badges']},
+  {id:'c', tag:'Concept C', name:'Flowing Light and Connection', rec:false,
+   idea:'Ten fine strands — one per System — move together as a single infinity ribbon. A line-drawn flower stays as the secondary Ten Systems symbol.',
+   hero:P('c', 'horizontal', 'dark'), ov:P('c', 'horizontal', 'dark'),
+   specs:function(){ return [
+     spec('Primary horizontal', 'Lighter, wider-spaced wordmark lets the ribbon breathe.', P('c', 'horizontal', 'dark'), 'dark', '92%'),
+     spec('Stacked', 'Ribbon above the wordmark for posters and splash.', P('c', 'stacked', 'dark'), 'dark', '60%'),
+     spec('Symbol: infinity ribbon', 'Ten strands, ten Systems, one continuous path.', P('c', 'symbol', 'dark'), 'space', '84%'),
+     spec('Secondary: line flower', 'Ten outlined petals — recognisable as the Ten Systems.', P('c', 'flower', 'dark'), 'space', '120px'),
+     spec('App icon', 'Ribbon on the navy tile.', P('c', 'icon', 'dark'), 'dark', '120px'),
+     spec('Light background', 'Soft shadow line keeps the pale strands visible.', P('c', 'horizontal', 'light'), 'light', '92%'),
+     spec('Monochrome', 'Strands shift in tone instead of colour.', P('c', 'horizontal', 'mono-light'), 'light', '92%'),
+     spec('Monochrome flower', 'Outlined petals in one colour.', P('c', 'flower', 'mono-dark'), 'dark', '110px')
+   ]; },
+   sizes:[size('Logo · 200px', P('c', 'horizontal', 'dark'), 200), size('Header · 130px', P('c', 'horizontal', 'dark'), 130), size('Symbol · 64', P('c', 'symbol', 'dark'), 64), size('Icon · 60', P('c', 'icon', 'dark'), 60), size('Icon · 40', P('c', 'icon', 'dark'), 40), size('Icon · 24', P('c', 'icon', 'dark'), 24), size('Favicon · 16', P('c', 'icon', 'dark'), 16)],
+   sizesLight:[size('Light · 200px', P('c', 'horizontal', 'light'), 200), size('Mono · 130px', P('c', 'horizontal', 'mono-light'), 130), size('Icon · 40', P('c', 'icon', 'light'), 40), size('Flower · 40', P('c', 'flower', 'light'), 40)],
+   rationale:'Lux Flow is about movement and people finding each other. Ten strands travelling one path says “ten Systems, one flow” without words, and gives the product a motion language for landing pages, onboarding and transitions.',
+   strengths:['Most expressive; strong landing and motion potential','Infinity and all ten colours in one gesture','Line flower feels light and modern'],
+   tradeoffs:['Fine strands blur together below ~40px','Needs a dark ground to look its best','Lighter wordmark is less robust in small UI'],
+   best:['Landing pages, campaigns and video','Onboarding and transitions','Large-format and event graphics']}
+];
+var RATE = [
+  ['Recognisable at 16–24px', [5, 3, 2]], ['Keeps all ten Systems clear', [4, 5, 4]], ['Expresses infinity / flow', [4, 3, 5]], ['Wordmark legibility', [4, 5, 4]],
+  ['Works in one colour and print', [5, 4, 3]], ['Fits Quinn’s “L” suggestion', [5, 1, 2]], ['Expressive range for marketing', [3, 3, 5]]
+];
+class Component extends DCLogic {
+  constructor(a, b){ super(a, b); this.state = {sel:'presence', web:'radiance'}; }
+  renderVals(){
+    var self = this; var s = this.state;
+    var selI = SYS.map(function(x){ return x[0]; }).indexOf(s.sel);
+    var wi = SYS.map(function(x){ return x[0]; }).indexOf(s.web || 'radiance');
+    var webSys = function(x){ var on = x[0] === (s.web || 'radiance'); return {name:x[1], meaning:x[2], bg:'background: ' + x[3], cls:'ws' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ self.setState({web:x[0]}); }}; };
+    var concepts = CONCEPTS.map(function(c){ return {tag:c.tag, name:c.name, rec:c.rec, idea:c.idea, isC:c.id === 'c', anchor:'concept-' + c.id, ovCls:'ov' + (c.rec ? ' rec' : ''), jumpAria:'Go to ' + c.tag + ': ' + c.name,
+      jump:function(){ var el = document.getElementById('concept-' + c.id); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); },
+      ovLogo:c.ov, heroLogo:c.hero, specs:c.specs(), sizes:c.sizes, sizesLight:c.sizesLight, rationale:c.rationale,
+      strengths:c.strengths.map(function(t){ return {t:t}; }), tradeoffs:c.tradeoffs.map(function(t){ return {t:t}; }), best:c.best.map(function(t){ return {t:t}; })}; });
+    return {
+      systems:SYS.map(function(x){ return {name:x[1], meaning:x[2], bg:'background: ' + x[3] + (x[0] === 'remembrance' ? '; box-shadow: inset 0 0 0 1.5px #A8A8BE' : '')}; }),
+      concepts:concepts,
+      cRibbonArt:P('c', 'symbol', 'dark'), cFlowerArt:P('c', 'flower', 'dark'),
+      appHeaderLogo:P('a', 'horizontal', 'dark', {label:'Lux Flow'}), miniFlower:P('a', 'flower', 'dark'), welcomeLogo:P('a', 'stacked', 'dark'),
+      webLeft:SYS.slice(0, 5).map(webSys), webRight:SYS.slice(5).map(webSys), webHi:wi, webPick:function(i){ self.setState({web:SYS[i][0]}); }, yes:true,
+      webLabel:'Ten Systems flower, ' + SYS[wi][1] + ' highlighted', webBlurb:SYS[wi][1] + ' — ' + SYS[wi][2],
+      discFlower:P('a', 'flower', 'dark', {highlight:selI, label:'Ten Systems flower, ' + SYS[selI][1] + ' selected'}), discName:SYS[selI][1], discMeaning:SYS[selI][2],
+      discList:SYS.map(function(x){ var on = x[0] === s.sel; return {name:x[1], short:x[4], bg:'background: ' + x[3], cls:'sys-btn' + (on ? ' on' : ''), sel:on ? 'true' : 'false', pick:function(){ self.setState({sel:x[0]}); }}; }),
+      rows:RATE.map(function(r){ return {label:r[0], cells:r[1].map(function(n){ var d = []; for (var i = 0; i < 5; i++) d.push({cls:i < n ? 'on' : ''}); return {dots:d, text:n + ' of 5'}; })}; })
+    };
+  }
+}
+</script>
+</body>
+</html>
