@@ -1,0 +1,472 @@
+<div class="{{appCls}}" onKeyDown="{{onKey}}">
+<style>__CSS__</style>
+<button class="skip" onClick="{{skipToMain}}">Skip to main content</button>
+
+<!-- ============ SIGN IN ============ -->
+<sc-if value="{{signedOut}}" hint-placeholder-val="{{ false }}">
+<main class="signin" id="ad-main">
+  <div class="signin-card">
+    <div class="row" style="gap: 12px"><span class="brand-mark" style="width: 40px"><dc-import name="Flower" variant="mark" label="Lux Flow"></dc-import></span><div><div class="brand-name" style="font-size: 22px">Lux Flow</div><div class="brand-sub">Integrity · Admin</div></div></div>
+    <div class="stack-xs"><h1 class="h1">Staff sign-in</h1><p class="p muted">For Trust &amp; Safety reviewers and operators. Members can’t see this area.</p></div>
+    <sc-if value="{{si.pick}}" hint-placeholder-val="{{ true }}">
+      <div class="stack-sm" role="radiogroup" aria-label="Choose a staff account">
+        <sc-for list="{{si.accounts}}" as="a" hint-placeholder-count="3">
+          <button class="{{a.cls}}" role="radio" aria-checked="{{a.checked}}" onClick="{{a.pick}}"><span class="{{a.av}}">{{a.ini}}</span><span class="grow"><span class="opt-t">{{a.name}}</span><span class="opt-d">{{a.role}}</span></span><span class="radio" aria-hidden="true"></span></button>
+        </sc-for>
+      </div>
+      <button class="btn btn-primary" onClick="{{si.next}}">Continue</button>
+    </sc-if>
+    <sc-if value="{{si.codeStep}}" hint-placeholder-val="{{ false }}">
+      <div class="card stack-sm">
+        <div class="row"><span class="{{si.av}}">{{si.ini}}</span><div class="grow"><div class="h3">{{si.name}}</div><div class="meta">{{si.role}}</div></div><button class="link" onClick="{{si.back}}">Change</button></div>
+        <label class="field"><span class="label">Two-step verification code</span><input class="input" value="{{si.code}}" onChange="{{si.onCode}}" onKeyDown="{{si.onCodeKey}}" placeholder="6-digit code" aria-describedby="code-help" aria-invalid="{{si.invalid}}"></label>
+        <sc-if value="{{si.hasErr}}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">{{si.err}}</p></sc-if>
+        <p class="help" id="code-help">Prototype: type any 6 digits. The real console uses your staff account with two-step verification.</p>
+      </div>
+      <button class="btn btn-primary" onClick="{{si.submit}}">Sign in</button>
+    </sc-if>
+    <div class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Every action in this console is recorded in the audit log with your name, the reason and the time.</span></div>
+  </div>
+</main>
+</sc-if>
+
+<!-- ============ CONSOLE ============ -->
+<sc-if value="{{signedIn}}" hint-placeholder-val="{{ true }}">
+<div class="scrim" onClick="{{closeNav}}"></div>
+<aside class="side" aria-label="Admin navigation">
+  <div class="brand"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span><div><div class="brand-name">Lux Flow</div><div class="brand-sub">Integrity</div></div></div>
+  <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><div class="side-role"><span class="role-chip">Admin console</span></div></sc-if>
+  <div class="env"><strong>Prototype data.</strong> Decisions here change only this browser.</div>
+  <nav class="nav" aria-label="Sections">
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+      <sc-if value="{{n.isLabel}}" hint-placeholder-val="{{ false }}"><div class="nav-label">{{n.label}}</div></sc-if>
+      <sc-if value="{{n.isItem}}" hint-placeholder-val="{{ true }}"><button class="{{n.cls}}" aria-current="{{n.cur}}" onClick="{{n.go}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg><span>{{n.label}}</span><sc-if value="{{n.hasCount}}" hint-placeholder-val="{{ false }}"><span class="{{n.countCls}}" aria-label="{{n.countAria}}">{{n.count}}</span></sc-if></button></sc-if>
+    </sc-for>
+  </nav>
+  <div class="side-foot"><div class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg><span>Journals and unreported chats are never visible here.</span></div></div>
+</aside>
+<div class="main">
+  <header class="top">
+    <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><div class="top-brand"><span class="brand-mark" style="width: 26px"><dc-import name="Flower" variant="mark"></dc-import></span><span class="brand-name" style="font-size: 16px">Lux Flow</span><span class="role-chip">Admin console</span></div></sc-if>
+    <button class="icon-btn menu-btn" aria-label="Open navigation" onClick="{{openNav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.menu}}"></path></svg></button>
+    <div class="pop-wrap grow" style="max-width: 440px">
+      <label class="search"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search cases and members</span><input value="{{gSearch}}" onChange="{{onGSearch}}" placeholder="Search cases, members or IDs"></label>
+      <sc-if value="{{gs.open}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" style="left: 0; right: auto; width: 100%" role="listbox" aria-label="Search results">
+          <sc-for list="{{gs.items}}" as="r" hint-placeholder-count="4"><button class="pop-item" role="option" aria-selected="false" onClick="{{r.go}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{r.icon}}"></path></svg><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{r.title}}</span><span class="meta">{{r.sub}}</span></span></button></sc-for>
+          <sc-if value="{{gs.none}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 10px">No cases or members match “{{gSearch}}”.</p></sc-if>
+        </div>
+      </sc-if>
+    </div>
+    <span class="grow"></span>
+    <button class="icon-btn" aria-label="{{themeAria}}" onClick="{{toggleTheme}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{themeIcon}}"></path></svg></button>
+    <div class="pop-wrap">
+      <button class="icon-btn" aria-label="{{alertsAria}}" aria-expanded="{{alertsExp}}" onClick="{{toggleAlerts}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg><sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}"><span class="icon-dot" aria-hidden="true"></span></sc-if></button>
+      <sc-if value="{{popAlerts}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" role="dialog" aria-label="Urgent alerts">
+          <div class="row" style="padding: 6px 10px 8px"><span class="h3 grow">Urgent alerts</span><span class="meta">Sent to both reviewers</span></div>
+          <sc-for list="{{urgentList}}" as="u" hint-placeholder-count="2"><button class="pop-item" onClick="{{u.go}}"><span class="pulse" style="margin-top: 5px" aria-hidden="true"></span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{u.type}} · {{u.id}}</span><span class="meta">{{u.title}} · waiting {{u.age}}</span></span></button></sc-for>
+          <sc-if value="{{noUrgent}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 10px">No urgent alerts. Threats, child-safety concerns and exposed private details will appear here and notify both reviewers.</p></sc-if>
+        </div>
+      </sc-if>
+    </div>
+    <div class="pop-wrap">
+      <button class="row" style="gap: 8px; padding: 4px 6px; border-radius: 12px" aria-label="{{meAria}}" aria-expanded="{{meExp}}" onClick="{{toggleMe}}"><span class="{{meAv}}">{{me.ini}}</span><span class="hide-sm" style="text-align: left"><span class="h3" style="display: block; font-size: 13.5px">{{me.name}}</span><span class="meta">{{me.role}}</span></span></button>
+      <sc-if value="{{popMe}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" style="width: 290px" role="dialog" aria-label="Account">
+          <div style="padding: 8px 10px" class="meta">Switch account (prototype)</div>
+          <sc-for list="{{switchList}}" as="w" hint-placeholder-count="2"><button class="pop-item" onClick="{{w.go}}"><span class="{{w.av}}">{{w.ini}}</span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{w.name}}</span><span class="meta">{{w.role}}</span></span></button></sc-for>
+          <button class="pop-item" onClick="{{signOut}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.signout}}"></path></svg><span class="h3" style="font-size: 13.5px">Sign out</span></button>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+  <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}">
+  <nav class="topnav" aria-label="Sections">
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8"><sc-if value="{{n.isItem}}" hint-placeholder-val="{{ true }}"><button class="{{n.tnCls}}" aria-current="{{n.cur}}" onClick="{{n.go}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg>{{n.label}}<sc-if value="{{n.hasCount}}" hint-placeholder-val="{{ false }}"><span class="{{n.countCls}}" aria-label="{{n.countAria}}">{{n.count}}</span></sc-if></button></sc-if></sc-for>
+    <span class="grow"></span><span class="env-chip" title="Decisions here change only this browser">Prototype data</span>
+  </nav>
+  </sc-if>
+
+  <main class="scroll" id="ad-main" ref="{{setScroll}}">
+  <div class="page">
+
+  <sc-if value="{{viewOnly}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><p class="p small"><strong>View-only role.</strong> You can look at queues and records, but decisions need a reviewer. (Prototype: permissions are simulated in this browser and aren’t production security.)</p></div></sc-if>
+
+  <!-- ============ OVERVIEW · ADMIN ============ -->
+  <sc-if value="{{ovAdmin}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">Admin console · {{todayLabel}}</div><h1 class="h1">Platform overview</h1><p class="p muted">{{ov.summary}}</p></div><div class="row-wrap"><button class="btn btn-secondary" onClick="{{goTeam}}">Manage team</button><button class="btn btn-primary" onClick="{{goQueue}}">Open the queue</button></div></div>
+    <sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}">
+      <section class="attn" aria-label="Needs attention"><span class="attn-dot" aria-hidden="true"></span><div class="grow stack-xs"><div class="h3">{{ov.urgentTitle}}</div><div class="meta">{{ov.urgentSub}}</div></div>
+        <div class="attn-list"><sc-for list="{{urgentList}}" as="u" hint-placeholder-count="3"><button class="attn-chip" onClick="{{u.go}}"><span class="attn-type">{{u.type}}</span><span class="meta mono">{{u.age}}</span></button></sc-for></div></section>
+    </sc-if>
+    <section class="stats" aria-label="Health at a glance">
+      <sc-for list="{{ov.stats}}" as="k" hint-placeholder-count="4"><button class="stat" onClick="{{k.go}}"><span class="stat-l">{{k.label}}</span><span class="stat-n mono">{{k.n}}</span><span class="{{k.subCls}}">{{k.sub}}</span></button></sc-for>
+    </section>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card" aria-label="Queue this week"><div class="card-head"><div class="grow"><h2 class="h2">Queue this week</h2><p class="meta">Reports and edits received vs. decided</p></div><span class="legend"><span class="lg lg-r"></span>Received<span class="lg lg-x"></span>Decided</span></div>
+          <div class="chart" role="img" aria-label="{{ov.chartAria}}"><sc-for list="{{ov.week}}" as="w" hint-placeholder-count="7"><div class="col"><div class="bars"><span class="bar bar-r" style="{{w.rh}}"><span class="bar-v">{{w.r}}</span></span><span class="bar bar-x" style="{{w.xh}}"><span class="bar-v">{{w.x}}</span></span></div><span class="col-l">{{w.d}}</span></div></sc-for></div>
+          <p class="meta" style="margin-top: 10px">Earlier days are sample data. Today counts live from this prototype.</p>
+        </section>
+        <section class="card" aria-label="Reviewer workload"><div class="card-head"><h2 class="h2 grow">Reviewer workload</h2><button class="link" onClick="{{goTeam}}">Team &amp; roles</button></div>
+          <div class="stack-sm"><sc-for list="{{ov.load}}" as="l" hint-placeholder-count="2"><div class="load"><span class="{{l.av}}">{{l.ini}}</span><div class="grow stack-xs"><div class="row"><span class="h3 grow">{{l.name}}</span><span class="meta">{{l.line}}</span></div><div class="track"><span class="fill" style="{{l.w}}"></span></div></div></div></sc-for></div>
+          <p class="meta" style="margin-top: 12px">Urgent cases alert both reviewers. Appeals always go to the reviewer who didn’t make the original decision.</p>
+        </section>
+      </div>
+      <div class="stack">
+        <section class="card" aria-label="Waiting for a decision"><div class="card-head"><h2 class="h2 grow">Waiting for a decision</h2></div>
+          <div class="list"><sc-for list="{{ov.waiting}}" as="w" hint-placeholder-count="4"><button class="list-row" onClick="{{w.go}}"><span class="wait-ic"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{w.icon}}"></path></svg></span><span class="grow"><span class="h3" style="display: block; font-size: 14px">{{w.label}}</span><span class="meta">{{w.sub}}</span></span><span class="wait-n mono">{{w.n}}</span></button></sc-for></div>
+        </section>
+        <section class="card" aria-label="Open items by reason"><div class="card-head"><h2 class="h2 grow">Open items by reason</h2></div>
+          <div class="stack-sm"><sc-for list="{{ov.reasons}}" as="r" hint-placeholder-count="4"><div class="reason"><div class="row"><span class="small grow">{{r.label}}</span><span class="small mono">{{r.n}}</span></div><div class="track"><span class="fill fill-soft" style="{{r.w}}"></span></div></div></sc-for></div>
+        </section>
+        <section class="card" aria-label="Recent activity"><div class="card-head"><h2 class="h2 grow">Recent activity</h2><button class="link" onClick="{{goAudit}}">Audit log</button></div>
+          <div class="timeline"><sc-for list="{{ov.recent}}" as="r" hint-placeholder-count="4"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small"><strong>{{r.who}}</strong> {{r.action}}</div><div class="meta">{{r.target}} · {{r.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ OVERVIEW · REVIEWER DESK ============ -->
+  <sc-if value="{{ovDesk}}" hint-placeholder-val="{{ true }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">{{todayLabel}}</div><h1 class="h1">Good to see you, {{me.first}}.</h1><p class="p muted">{{ov.summary}}</p></div></div>
+    <div class="desk">
+      <section class="next" aria-label="Next up">
+        <sc-if value="{{nx.has}}" hint-placeholder-val="{{ true }}">
+          <div class="eyebrow" style="color: var(--accent-ink)">{{nx.eyebrow}}</div>
+          <div class="row-wrap"><span class="{{nx.priCls}}">{{nx.pri}}</span><span class="badge b-neutral">{{nx.category}}</span><span class="meta mono">{{nx.id}} · waiting {{nx.age}}</span></div>
+          <h2 class="next-title">{{nx.title}}</h2><p class="meta">{{nx.where}}</p>
+          <div class="row-wrap" style="margin-top: 6px"><button class="btn btn-primary" onClick="{{nx.go}}">{{nx.cta}}</button><button class="btn btn-ghost" onClick="{{goQueue}}">See the full queue</button></div>
+          <p class="meta">Picked by priority, then by how long it’s been waiting.</p>
+        </sc-if>
+        <sc-if value="{{nx.none}}" hint-placeholder-val="{{ false }}"><div class="eyebrow">Next up</div><h2 class="next-title">You’re all caught up.</h2><p class="meta">New reports and flagged edits will appear in the queue.</p></sc-if>
+      </section>
+      <section class="desk-stats" aria-label="At a glance"><sc-for list="{{ov.deskStats}}" as="k" hint-placeholder-count="3"><button class="ds" onClick="{{k.go}}"><span class="stat-n mono">{{k.n}}</span><span class="stat-l">{{k.label}}</span></button></sc-for></section>
+    </div>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card" aria-label="Your work"><div class="card-head"><h2 class="h2 grow">Your work</h2><span class="meta">{{ov.mineCount}}</span></div>
+          <div class="list">
+            <sc-for list="{{ov.mine}}" as="m" hint-placeholder-count="3"><button class="list-row" onClick="{{m.go}}"><span class="{{m.badge}}">{{m.tag}}</span><span class="grow"><span class="h3" style="display: block">{{m.title}}</span><span class="meta">{{m.sub}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for>
+            <sc-if value="{{ov.mineEmpty}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 8px 4px">Nothing is assigned to you right now. Pick up an unassigned case from the queue.</p></sc-if>
+          </div>
+        </section>
+        <sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}">
+          <section class="card" aria-label="Urgent cases"><div class="card-head"><span class="attn-dot" aria-hidden="true"></span><h2 class="h2 grow">Urgent · same day</h2><span class="meta">Both reviewers alerted</span></div>
+            <div class="list"><sc-for list="{{urgentList}}" as="u" hint-placeholder-count="3"><button class="list-row" onClick="{{u.go}}"><span class="badge b-urgent">{{u.type}}</span><span class="grow"><span class="h3" style="display: block">{{u.title}}</span><span class="meta">{{u.id}} · waiting {{u.age}} · {{u.assigned}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+          </section>
+        </sc-if>
+      </div>
+      <div class="stack">
+        <section class="card ai-box" aria-label="AI assistance"><div class="row"><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>AI assistance</span></div>
+          <p class="p small muted">AI helps sort and flag. People make every decision.</p>
+          <div class="ai-cols">
+            <div class="stack-xs"><div class="eyebrow">AI may</div><sc-for list="{{aiMay}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-yes"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg>{{x}}</span></sc-for></div>
+            <div class="stack-xs"><div class="eyebrow">AI must not</div><sc-for list="{{aiNot}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-no"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.block}}"></path></svg>{{x}}</span></sc-for></div>
+          </div>
+        </section>
+        <section class="card" aria-label="Recent activity"><div class="card-head"><h2 class="h2 grow">Recent activity</h2><button class="link" onClick="{{goAudit}}">Audit log</button></div>
+          <div class="timeline"><sc-for list="{{ov.recent}}" as="r" hint-placeholder-count="4"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small"><strong>{{r.who}}</strong> {{r.action}}</div><div class="meta">{{r.target}} · {{r.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ QUEUE ============ -->
+  <sc-if value="{{pg.queue}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Queue</h1><p class="p muted">Reports and flagged edits in one place, sorted by priority, then by waiting time.</p></div><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>Priority suggested by AI · people decide</span></div>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Type"><sc-for list="{{qf.types}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <div class="seg" role="group" aria-label="Status"><sc-for list="{{qf.statuses}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 280px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Filter the queue</span><input value="{{qSearch}}" onChange="{{onQSearch}}" placeholder="Filter by ID, member or reason"></label>
+    </div>
+    <div class="row-wrap" role="group" aria-label="Priority"><span class="meta">Priority:</span><sc-for list="{{qf.pris}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap">
+      <table class="tbl"><caption class="sr-only">Queue, {{qf.count}} items</caption>
+        <thead><tr><th scope="col">Priority</th><th scope="col">Item</th><th scope="col" class="opt">Type</th><th scope="col">Waiting</th><th scope="col">Status</th><th scope="col" class="opt">Assigned</th></tr></thead>
+        <tbody>
+          <sc-for list="{{qf.rows}}" as="r" hint-placeholder-count="6">
+            <tr class="{{r.trCls}}"><td><span class="{{r.priCls}}">{{r.pri}}</span></td><td><button class="row-open" onClick="{{r.open}}"><span class="row-title">{{r.title}}</span><span class="row-sub">{{r.id}} · {{r.sub}}</span></button></td><td class="opt">{{r.type}}</td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td><td class="opt"><span class="who"><sc-if value="{{r.hasWho}}" hint-placeholder-val="{{ false }}"><span class="{{r.whoAv}}">{{r.whoIni}}</span></sc-if>{{r.whoName}}</span></td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <sc-if value="{{qf.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty stack-sm" style="align-items: center"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ok)"><path d="{{ic.check}}"></path></svg><div class="h3">{{qf.emptyTitle}}</div><p class="meta">{{qf.emptyText}}</p></div></sc-if>
+    </div>
+    <p class="meta">{{qf.count}} shown. A report is a signal, not a verdict — the number of reports is never proof on its own.</p>
+  </sc-if>
+
+  <!-- ============ CASE DETAIL ============ -->
+  <sc-if value="{{pg.case}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goQueue}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Queue</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{cs.priCls}}">{{cs.pri}}</span><span class="{{cs.stCls}}">{{cs.st}}</span><span class="badge b-neutral">{{cs.category}}</span><span class="meta mono">{{cs.id}} · waiting {{cs.age}}</span></div><h1 class="h1">{{cs.title}}</h1><p class="meta">{{cs.where}}</p></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg><p class="p small">{{cs.ai}}</p></div>
+    <sc-if value="{{cs.isChild}}" hint-placeholder-val="{{ false }}"><div class="banner banner-hot"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.alert}}"></path></svg><div class="stack-xs"><p class="p small"><strong>Child-safety escalation.</strong> Take protective action first, then decide. Both reviewers have been alerted.</p><p class="p small">Where the law requires it, report to the authorities using the agreed process. (Placeholder — the legal escalation process still needs Quinn’s approval.)</p></div></div></sc-if>
+    <sc-if value="{{cs.isConfirm}}" hint-placeholder-val="{{ false }}"><div class="banner banner-warn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.scale}}"></path></svg><div class="grow stack-sm"><p class="p small"><strong>{{cs.confirmTitle}}</strong> {{cs.confirmText}}</p><sc-if value="{{cs.canConfirm}}" hint-placeholder-val="{{ false }}"><div class="row-wrap"><button class="btn btn-danger btn-sm" onClick="{{cs.confirmSusp}}">Confirm suspension</button><button class="btn btn-secondary btn-sm" onClick="{{cs.sendBack}}">Send back</button></div></sc-if></div></div></sc-if>
+    <div class="case-grid">
+      <div class="stack">
+        <sc-if value="{{cs.isReport}}" hint-placeholder-val="{{ true }}">
+          <section class="card stack-sm" aria-label="Reported item"><h2 class="h2">Reported item</h2>
+            <sc-if value="{{cs.image}}" hint-placeholder-val="{{ false }}"><div class="{{cs.blurCls}}"><div class="blur-msg"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="{{cs.blurIcon}}"></path></svg><p class="p small">{{cs.blurText}}</p><button class="btn btn-secondary btn-sm" onClick="{{cs.toggleReveal}}">{{cs.revealLabel}}</button></div></div></sc-if>
+            <div class="evidence"><div class="evidence-label"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.file}}"></path></svg>{{cs.objType}} · content as reported</div>{{cs.excerpt}}</div>
+            <div class="evidence"><div class="evidence-label"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.flag}}"></path></svg>Reporter’s note · {{cs.reporter}}</div>{{cs.reporterNote}}</div>
+            <p class="meta">{{cs.reportsLine}} The reporter’s identity is never shown to the reported member.</p>
+          </section>
+        </sc-if>
+        <sc-if value="{{cs.isEdit}}" hint-placeholder-val="{{ false }}">
+          <section class="card stack-sm" aria-label="Edit comparison"><h2 class="h2">Original and proposed edit</h2>
+            <p class="meta">The original post stays live while this edit is reviewed. The author sees “Edit under review”.</p>
+            <div class="diff"><div class="evidence"><div class="evidence-label">Original</div><sc-for list="{{cs.orig}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></sc-for></div><div class="evidence"><div class="evidence-label">Proposed edit</div><sc-for list="{{cs.next}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></sc-for></div></div>
+          </section>
+          <section class="card stack-sm" aria-label="Six-area check"><div class="row"><h2 class="h2 grow">Six-area check</h2><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>AI check</span></div>
+            <div class="areas"><sc-for list="{{cs.areas}}" as="a" hint-placeholder-count="6"><div class="{{a.cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{a.icon}}"></path></svg><div><div class="h3" style="font-size: 13px">{{a.n}}</div><div class="meta">{{a.note}}</div></div></div></sc-for></div>
+            <p class="meta">AI may approve or escalate edits. It can only reject for a clear policy violation — anything else comes to a person.</p>
+          </section>
+        </sc-if>
+        <section class="card stack-sm" aria-label="Member involved"><div class="card-head" style="margin: 0"><h2 class="h2 grow">Member involved</h2><button class="link" onClick="{{cs.openMember}}">Open member</button></div>
+          <div class="row"><span class="av">{{cs.m.ini}}</span><div class="grow"><div class="h3">{{cs.m.name}}</div><div class="meta">@{{cs.m.handle}} · joined {{cs.m.joined}}</div></div></div>
+          <dl class="kv"><dt>Verification</dt><dd>{{cs.m.ver}}</dd><dt>Trust</dt><dd>{{cs.m.trust}}</dd><dt>Standing</dt><dd class="{{cs.m.stdCls}}">{{cs.m.standing}}</dd><dt>Other open reports</dt><dd>{{cs.m.openOther}}</dd><dt>Past decisions</dt><dd>{{cs.m.past}}</dd></dl>
+          <p class="meta">Open reports are allegations, not findings. Only decided cases count as findings.</p>
+        </section>
+        <section class="card stack-sm" aria-label="Not available to reviewers"><h2 class="h3">Not available to reviewers</h2>
+          <div class="hidden-list"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Chat history beyond the reported messages</span><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Journal entries — private to the member, always</span><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Legal name and ID images — held by the verification provider</span></div>
+        </section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm" aria-label="Actions"><h2 class="h2">Actions</h2>
+          <div class="row"><span class="meta grow">Assigned to</span><span class="who"><sc-if value="{{cs.hasWho}}" hint-placeholder-val="{{ false }}"><span class="{{cs.whoAv}}">{{cs.whoIni}}</span></sc-if><strong style="font-size: 13.5px">{{cs.whoName}}</strong></span></div>
+          <sc-if value="{{cs.open}}" hint-placeholder-val="{{ true }}">
+            <div class="row-wrap"><sc-if value="{{cs.canTake}}" hint-placeholder-val="{{ true }}"><button class="btn btn-secondary btn-sm" disabled="{{cs.locked}}" onClick="{{cs.take}}">Assign to me</button></sc-if><sc-if value="{{cs.canHand}}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost btn-sm" disabled="{{cs.locked}}" onClick="{{cs.hand}}">{{cs.handLabel}}</button></sc-if></div>
+            <sc-if value="{{cs.isReport}}" hint-placeholder-val="{{ true }}">
+              <button class="opt-row" disabled="{{cs.locked}}" onClick="{{cs.toggleProtect}}" aria-pressed="{{cs.protectPressed}}"><span class="box" aria-hidden="true"><sc-if value="{{cs.protected}}" hint-placeholder-val="{{ false }}"><svg class="ic ic-xs" viewBox="0 0 24 24"><path d="{{ic.check}}"></path></svg></sc-if></span><span class="grow"><span class="opt-t">Protective action</span><span class="opt-d">Hide the item while you review. Temporary — not a finding.</span></span></button>
+              <button class="btn btn-primary" disabled="{{cs.locked}}" onClick="{{cs.decide}}">Make a decision</button>
+            </sc-if>
+            <sc-if value="{{cs.isEdit}}" hint-placeholder-val="{{ false }}">
+              <div class="row-wrap"><button class="btn btn-ok" disabled="{{cs.locked}}" onClick="{{cs.approveEdit}}">Approve edit</button><button class="btn btn-secondary" disabled="{{cs.locked}}" onClick="{{cs.rejectEdit}}">Reject edit</button></div>
+            </sc-if>
+            <sc-if value="{{cs.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>{{cs.lockText}}</span></p></sc-if>
+          </sc-if>
+          <sc-if value="{{cs.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{cs.outcome}}</strong><br>{{cs.outcomeBy}}</p></div><p class="meta">The member was notified and can ask for a review. Appeals go to a different reviewer.</p></sc-if>
+        </section>
+        <sc-if value="{{cs.hasMemberNote}}" hint-placeholder-val="{{ false }}"><section class="card stack-sm" aria-label="Message sent to member"><h2 class="h3">Message sent to the member</h2><div class="preview">{{cs.memberNote}}</div></section></sc-if>
+        <section class="card stack-sm" aria-label="Case history"><h2 class="h3">Case history</h2>
+          <div class="timeline"><sc-for list="{{cs.history}}" as="h" hint-placeholder-count="3"><div class="tl-item"><span class="{{h.dot}}" aria-hidden="true"></span><div class="grow"><div class="small">{{h.what}}</div><div class="meta">{{h.who}} · {{h.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ APPEALS ============ -->
+  <sc-if value="{{pg.appeals}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Appeals</h1><p class="p muted">Each appeal goes to a different reviewer from the person who made the original decision.</p></div></div>
+    <div class="seg" role="group" aria-label="Show"><sc-for list="{{ap.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Appeals</caption>
+      <thead><tr><th scope="col">Appeal</th><th scope="col" class="opt">Original decision</th><th scope="col">Assigned to</th><th scope="col">Waiting</th><th scope="col">Status</th></tr></thead>
+      <tbody><sc-for list="{{ap.rows}}" as="r" hint-placeholder-count="2"><tr><td><button class="row-open" onClick="{{r.open}}"><span class="row-title">{{r.title}}</span><span class="row-sub">{{r.id}} · {{r.member}}</span></button></td><td class="opt"><span class="small">{{r.decision}}</span><br><span class="meta">by {{r.by}}</span></td><td><span class="who"><span class="{{r.toAv}}">{{r.toIni}}</span>{{r.to}}</span></td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td></tr></sc-for></tbody>
+    </table><sc-if value="{{ap.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">{{ap.emptyTitle}}</div><p class="meta">{{ap.emptyText}}</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.appeal}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goAppeals}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Appeals</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{al.stCls}}">{{al.st}}</span><span class="meta mono">{{al.id}} · about {{al.caseRef}} · waiting {{al.age}}</span></div><h1 class="h1">{{al.title}}</h1></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.swap}}"></path></svg><p class="p small">{{al.assignText}}</p></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Original decision</h2><dl class="kv"><dt>Decision</dt><dd>{{al.decision}}</dd><dt>Decided by</dt><dd>{{al.by}}</dd><dt>Member</dt><dd>{{al.member}}</dd></dl></section>
+        <section class="card stack-sm"><h2 class="h2">What the member said</h2><div class="evidence">{{al.statement}}</div><p class="meta">Review the evidence fresh. Correct the record if the original decision was wrong.</p></section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Decision</h2>
+          <sc-if value="{{al.open}}" hint-placeholder-val="{{ true }}"><button class="btn btn-primary" disabled="{{al.locked}}" onClick="{{al.decide}}">Decide this appeal</button><sc-if value="{{al.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>{{al.lockText}}</span></p></sc-if></sc-if>
+          <sc-if value="{{al.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{al.outcome}}</strong><br>{{al.outcomeBy}}</p></div></sc-if>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ TRUSTED ============ -->
+  <sc-if value="{{pg.trusted}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Trusted applications</h1><p class="p muted">A person reviews every application. Verification alone never makes someone Trusted.</p></div></div>
+    <div class="seg" role="group" aria-label="Show"><sc-for list="{{tr.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Trusted applications</caption>
+      <thead><tr><th scope="col">Applicant</th><th scope="col">Responsibility</th><th scope="col">Waiting</th><th scope="col">Status</th></tr></thead>
+      <tbody><sc-for list="{{tr.rows}}" as="r" hint-placeholder-count="2"><tr><td><button class="row-open who" onClick="{{r.open}}"><span class="av av-sm">{{r.ini}}</span><span><span class="row-title">{{r.name}}</span><span class="row-sub">{{r.id}}</span></span></button></td><td>{{r.path}}</td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td></tr></sc-for></tbody>
+    </table><sc-if value="{{tr.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No applications here</div><p class="meta">New applications appear in Pending.</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.app}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goTrusted}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Trusted applications</button>
+    <div class="page-head"><div class="prof-head grow"><span class="av av-lg">{{ta.ini}}</span><div class="stack-xs"><div class="row-wrap"><span class="{{ta.stCls}}">{{ta.st}}</span><span class="meta mono">{{ta.id}} · submitted {{ta.age}} ago</span></div><h1 class="h1">{{ta.name}}</h1><p class="meta">Applying for: <strong style="color: var(--ink)">{{ta.path}}</strong></p></div></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg><p class="p small">AI doesn’t approve or decline Trusted applications, and doesn’t judge character, health or qualifications. You decide.</p></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Application</h2><sc-for list="{{ta.answers}}" as="a" hint-placeholder-count="2"><div class="stack-xs"><div class="label">{{a.q}}</div><div class="evidence">{{a.a}}</div></div></sc-for></section>
+        <section class="card stack-sm"><h2 class="h2">Participation record</h2>
+          <div class="list"><sc-for list="{{ta.record}}" as="r" hint-placeholder-count="4"><div class="list-row"><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{r.l}}</span><span class="small">{{r.v}}</span></span><span class="{{r.badge}}">{{r.kind}}</span></div></sc-for></div>
+          <p class="meta">“Recorded” comes from Lux Flow activity. “Self-reported” is the member’s own description and hasn’t been checked.</p>
+        </section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Decision</h2>
+          <sc-if value="{{ta.isPending}}" hint-placeholder-val="{{ true }}"><button class="btn btn-ok" disabled="{{ta.locked}}" onClick="{{ta.approve}}">Approve</button><button class="btn btn-secondary" disabled="{{ta.locked}}" onClick="{{ta.info}}">Ask for more information</button><button class="btn btn-ghost" disabled="{{ta.locked}}" onClick="{{ta.decline}}">Decline</button></sc-if>
+          <sc-if value="{{ta.isApproved}}" hint-placeholder-val="{{ false }}"><p class="p small muted">Trusted status is reviewed over time and can be removed.</p><button class="btn btn-secondary" disabled="{{ta.locked}}" onClick="{{ta.revoke}}">Remove Trusted status</button></sc-if>
+          <sc-if value="{{ta.hasNote}}" hint-placeholder-val="{{ false }}"><div class="preview"><strong>{{ta.noteTitle}}</strong><br>{{ta.note}}</div></sc-if>
+          <sc-if value="{{ta.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Your role can view applications but can’t decide them.</span></p></sc-if>
+        </section>
+        <section class="card stack-sm"><h2 class="h3">Decision history</h2><div class="timeline"><sc-for list="{{ta.history}}" as="h" hint-placeholder-count="2"><div class="tl-item"><span class="{{h.dot}}" aria-hidden="true"></span><div class="grow"><div class="small">{{h.what}}</div><div class="meta">{{h.who}} · {{h.at}}</div></div></div></sc-for></div></section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ VERIFICATION ============ -->
+  <sc-if value="{{pg.verify}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Verification flags</h1><p class="p muted">Identity checks run with the verification provider. Flags come here for a person — never an automatic ban.</p></div></div>
+    <div class="stack-sm"><sc-for list="{{vf.rows}}" as="r" hint-placeholder-count="3"><button class="card card-tight list-row" style="border-bottom: 0" onClick="{{r.open}}"><span class="av"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.idcard}}"></path></svg></span><span class="grow"><span class="row-wrap" style="margin-bottom: 2px"><span class="h3">{{r.title}}</span><span class="{{r.stCls}}">{{r.st}}</span></span><span class="meta">{{r.id}} · {{r.who}} · waiting {{r.age}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+  </sc-if>
+
+  <sc-if value="{{pg.vflag}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goVerify}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Verification flags</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{vd.stCls}}">{{vd.st}}</span><span class="meta mono">{{vd.id}} · waiting {{vd.age}}</span></div><h1 class="h1">{{vd.title}}</h1></div></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">What happened</h2><p class="p">{{vd.detail}}</p></section>
+        <section class="card stack-sm"><h2 class="h2">Accounts</h2><div class="list"><sc-for list="{{vd.accounts}}" as="a" hint-placeholder-count="2"><button class="list-row" onClick="{{a.open}}"><span class="av">{{a.ini}}</span><span class="grow"><span class="h3" style="display: block">{{a.name}}</span><span class="meta">@{{a.handle}} · joined {{a.joined}} · {{a.ver}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+          <p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>You see the provider’s match reference only. Legal names and ID images stay with the verification provider.</span></p></section>
+      </div>
+      <div class="rail"><section class="card stack-sm"><h2 class="h2">Resolve</h2>
+        <sc-if value="{{vd.open}}" hint-placeholder-val="{{ true }}"><button class="btn btn-primary" disabled="{{vd.locked}}" onClick="{{vd.resolve}}">Choose an outcome</button><sc-if value="{{vd.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Your role can view flags but can’t resolve them.</span></p></sc-if></sc-if>
+        <sc-if value="{{vd.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{vd.outcome}}</strong><br>{{vd.outcomeBy}}</p></div></sc-if>
+      </section></div>
+    </div>
+  </sc-if>
+
+  <!-- ============ MEMBERS ============ -->
+  <sc-if value="{{pg.members}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Members</h1><p class="p muted">Display names, verification and standing. Legal identity is never shown here.</p></div></div>
+    <div class="toolbar"><div class="seg" role="group" aria-label="Show"><sc-for list="{{mb.tabs}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 300px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search members</span><input value="{{mSearch}}" onChange="{{onMSearch}}" placeholder="Search by name or handle"></label></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Members</caption>
+      <thead><tr><th scope="col">Member</th><th scope="col">Verification</th><th scope="col" class="opt">Trust</th><th scope="col">Standing</th><th scope="col" class="opt">Open reports</th><th scope="col" class="opt">Joined</th></tr></thead>
+      <tbody><sc-for list="{{mb.rows}}" as="r" hint-placeholder-count="6"><tr><td><button class="row-open who" onClick="{{r.open}}"><span class="av av-sm">{{r.ini}}</span><span><span class="row-title">{{r.name}}</span><span class="row-sub">@{{r.handle}}</span></span></button></td><td><span class="{{r.verCls}}">{{r.ver}}</span></td><td class="opt small">{{r.trust}}</td><td class="{{r.stdCls}}"><strong style="font-size: 13px">{{r.standing}}</strong></td><td class="opt mono">{{r.openCnt}}</td><td class="opt meta">{{r.joined}}</td></tr></sc-for></tbody>
+    </table><sc-if value="{{mb.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No members match</div><p class="meta">Try another name, or clear the filter.</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.member}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goMembers}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Members</button>
+    <div class="page-head"><div class="prof-head grow"><span class="av av-lg">{{md.ini}}</span><div class="stack-xs"><h1 class="h1">{{md.name}}</h1><p class="meta">@{{md.handle}} · joined {{md.joined}}</p></div></div></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Account</h2><dl class="kv"><dt>Verification</dt><dd>{{md.ver}}</dd><dt>Trust</dt><dd>{{md.trust}}</dd><dt>Standing</dt><dd class="{{md.stdCls}}"><strong>{{md.standing}}</strong></dd><dt>Approximate area</dt><dd>{{md.area}}</dd><dt>Open reports</dt><dd>{{md.openReports}}</dd><dt>Findings</dt><dd>{{md.findings}}</dd></dl>
+          <p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Not shown: legal name, ID images, exact location, Journal entries and unreported chats.</span></p></section>
+        <section class="card stack-sm"><h2 class="h2">Cases involving this member</h2><div class="list"><sc-for list="{{md.cases}}" as="c" hint-placeholder-count="2"><button class="list-row" onClick="{{c.open}}"><span class="{{c.stCls}}">{{c.st}}</span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{c.title}}</span><span class="meta">{{c.id}} · {{c.category}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for><sc-if value="{{md.noCases}}" hint-placeholder-val="{{ false }}"><p class="meta">No cases.</p></sc-if></div></section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Account actions</h2>
+          <sc-for list="{{md.actions}}" as="a" hint-placeholder-count="4"><button class="{{a.cls}}" disabled="{{a.disabled}}" onClick="{{a.go}}">{{a.label}}</button></sc-for>
+          <sc-if value="{{md.pendingSusp}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.clock}}"></path></svg><span>A suspension is waiting for a second reviewer.</span></p></sc-if>
+          <sc-if value="{{viewOnly}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>View-only role — actions need a reviewer.</span></p></sc-if>
+        </section>
+        <section class="card stack-sm"><h2 class="h3">Standing history</h2><div class="timeline"><sc-for list="{{md.history}}" as="h" hint-placeholder-count="2"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small">{{h.action}}</div><div class="meta">{{h.who}} · {{h.at}} · {{h.reason}}</div></div></div></sc-for><sc-if value="{{md.noHistory}}" hint-placeholder-val="{{ false }}"><p class="meta">No actions recorded.</p></sc-if></div></section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ AUDIT ============ -->
+  <sc-if value="{{pg.audit}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Audit log</h1><p class="p muted">Every reviewer action, with who, what, why and when. Entries can’t be edited or deleted.</p></div><button class="btn btn-secondary" disabled="{{cantExport}}" onClick="{{exportCsv}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.download}}"></path></svg>Export CSV</button></div>
+    <div class="toolbar"><div class="seg" role="group" aria-label="Reviewer"><sc-for list="{{lg.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 300px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search the audit log</span><input value="{{lSearch}}" onChange="{{onLSearch}}" placeholder="Search actions, cases or reasons"></label></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Audit log</caption>
+      <thead><tr><th scope="col">When</th><th scope="col">Reviewer</th><th scope="col">Action</th><th scope="col" class="opt">Item</th><th scope="col" class="opt">Reason</th></tr></thead>
+      <tbody><sc-for list="{{lg.rows}}" as="r" hint-placeholder-count="6"><tr><td class="meta mono" style="white-space: nowrap">{{r.at}}</td><td><span class="who"><span class="{{r.av}}">{{r.ini}}</span>{{r.who}}</span></td><td><strong style="font-size: 13.5px">{{r.action}}</strong></td><td class="opt small">{{r.target}}</td><td class="opt meta">{{r.reason}}</td></tr></sc-for></tbody>
+    </table><sc-if value="{{lg.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No entries match</div><p class="meta">Try another search or reviewer.</p></div></sc-if></div>
+  </sc-if>
+
+  <!-- ============ TEAM (admin) ============ -->
+  <sc-if value="{{pg.team}}" hint-placeholder-val="{{ false }}">
+    <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ true }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">Admin</div><h1 class="h1">Team &amp; roles</h1><p class="p muted">Who reviews, who can only view, and what each role is allowed to do.</p></div><button class="btn btn-primary" onClick="{{tm.invite}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg>Invite a team member</button></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.info}}"></path></svg><p class="p small">{{tm.rule}}</p></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Team members</caption>
+      <thead><tr><th scope="col">Person</th><th scope="col">Role</th><th scope="col">Status</th><th scope="col" class="opt">Last active</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+      <tbody><sc-for list="{{tm.rows}}" as="r" hint-placeholder-count="3"><tr>
+        <td><span class="who"><span class="{{r.av}}">{{r.ini}}</span><span><span class="h3" style="display: block">{{r.name}}</span><span class="meta">{{r.note}}</span></span></span></td>
+        <td><sc-if value="{{r.fixed}}" hint-placeholder-val="{{ false }}"><span class="small"><strong>{{r.role}}</strong></span></sc-if><sc-if value="{{r.editable}}" hint-placeholder-val="{{ true }}"><div class="seg" role="radiogroup" aria-label="{{r.roleAria}}"><button class="{{r.revCls}}" role="radio" aria-checked="{{r.revOn}}" onClick="{{r.setRev}}">Reviewer</button><button class="{{r.opCls}}" role="radio" aria-checked="{{r.opOn}}" onClick="{{r.setOp}}">Operator</button></div></sc-if></td>
+        <td><span class="{{r.stCls}}">{{r.st}}</span></td><td class="opt meta">{{r.last}}</td>
+        <td style="text-align: right"><sc-if value="{{r.hasAct}}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost btn-sm" onClick="{{r.act}}">{{r.actLabel}}</button></sc-if></td>
+      </tr></sc-for></tbody>
+    </table></div>
+    <section class="card" aria-label="Permissions"><div class="card-head"><h2 class="h2 grow">What each role can do</h2><span class="meta">Simulated in this prototype — not production security</span></div>
+      <div class="tbl-wrap" style="box-shadow: none; background: transparent"><table class="tbl perm-tbl"><caption class="sr-only">Permissions by role</caption>
+        <thead><tr><th scope="col">Permission</th><th scope="col">Admin</th><th scope="col">Reviewer</th><th scope="col">Operator</th></tr></thead>
+        <tbody><sc-for list="{{tm.perms}}" as="p" hint-placeholder-count="6"><tr><th scope="row" class="perm-l">{{p.label}}</th><td><span class="{{p.c1cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c1icon}}"></path></svg>{{p.c1text}}</span></td><td><span class="{{p.c2cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c2icon}}"></path></svg>{{p.c2text}}</span></td><td><span class="{{p.c3cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c3icon}}"></path></svg>{{p.c3text}}</span></td></tr></sc-for></tbody>
+      </table></div>
+    </section>
+    </sc-if>
+    <sc-if value="{{notAdmin}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><p class="p small">Team &amp; roles is only available to the admin.</p></div></sc-if>
+  </sc-if>
+
+  <!-- ============ SETTINGS ============ -->
+  <sc-if value="{{pg.settings}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Settings</h1><p class="p muted">How urgent alerts reach people, where AI helps, and your appearance.</p></div></div>
+    <sc-if value="{{notAdmin}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><p class="p small">AI and alert settings are managed by the admin. You can change your own appearance.</p></div></sc-if>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card stack-sm" aria-label="Team"><div class="row"><h2 class="h2 grow">Team</h2><sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><button class="link" onClick="{{goTeam}}">Manage team &amp; roles</button></sc-if></div>
+          <div class="list"><sc-for list="{{st.team}}" as="t" hint-placeholder-count="3"><div class="list-row"><span class="{{t.av}}">{{t.ini}}</span><span class="grow"><span class="h3" style="display: block">{{t.name}}</span><span class="meta">{{t.role}}</span></span><span class="small muted" style="max-width: 260px; text-align: right">{{t.can}}</span></div></sc-for></div>
+          <p class="meta">Phase 1 runs with at least two human reviewers. Quinn is the primary reviewer. The development team builds these tools but doesn’t moderate content.</p>
+        </section>
+        <section class="card stack-sm" aria-label="AI assistance"><h2 class="h2">AI assistance</h2>
+          <sc-for list="{{st.ai}}" as="a" hint-placeholder-count="3"><div class="row" style="justify-content: space-between; gap: 16px; padding: 6px 0"><div class="grow"><div class="h3">{{a.label}}</div><div class="meta">{{a.hint}}</div></div><button class="{{a.cls}}" role="switch" aria-checked="{{a.on}}" aria-label="{{a.label}}" disabled="{{a.disabled}}" onClick="{{a.toggle}}"></button></div></sc-for>
+          <div class="stack-xs" style="padding-top: 6px"><div class="eyebrow">Always off — can’t be enabled</div><sc-for list="{{aiNot}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-no"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>{{x}}</span></sc-for></div>
+        </section>
+      </div>
+      <div class="stack">
+        <section class="card stack-sm" aria-label="Urgent alerts"><h2 class="h2">Urgent alerts</h2><p class="p small muted">Threats, child-safety concerns and exposed private details alert both reviewers. Aim for same-day review.</p>
+          <sc-for list="{{st.alerts}}" as="a" hint-placeholder-count="2"><div class="row" style="justify-content: space-between; gap: 16px; padding: 6px 0"><div class="grow"><div class="h3">{{a.label}}</div><div class="meta">{{a.hint}}</div></div><button class="{{a.cls}}" role="switch" aria-checked="{{a.on}}" aria-label="{{a.label}}" disabled="{{a.disabled}}" onClick="{{a.toggle}}"></button></div></sc-for>
+          <p class="meta">Notifications are simulated in this prototype.</p>
+        </section>
+        <section class="card stack-sm" aria-label="Appearance"><h2 class="h2">Appearance</h2><div class="seg" role="radiogroup" aria-label="Theme"><button class="{{st.darkCls}}" role="radio" aria-checked="{{st.darkOn}}" onClick="{{st.setDark}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.moon}}"></path></svg>Dark</button><button class="{{st.lightCls}}" role="radio" aria-checked="{{st.lightOn}}" onClick="{{st.setLight}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.sun}}"></path></svg>Light</button></div></section>
+        <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><section class="card stack-sm" aria-label="Prototype"><h2 class="h2">Prototype</h2><p class="p small muted">Start over with the sample cases, appeals and members.</p><button class="btn btn-secondary" onClick="{{askReset}}">Reset demo data</button></section></sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  </div>
+  </main>
+</div>
+
+<!-- ============ DIALOGS ============ -->
+<sc-if value="{{dlg.any}}" hint-placeholder-val="{{ false }}">
+<div class="overlay" onClick="{{closeDlgBg}}">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title" onClick="{{stop}}" ref="{{setDlg}}">
+    <div class="dialog-head"><div class="grow stack-xs"><h2 class="h2" id="dlg-title">{{dlg.title}}</h2><sc-if value="{{dlg.hasSub}}" hint-placeholder-val="{{ false }}"><p class="meta">{{dlg.sub}}</p></sc-if></div><button class="icon-btn" aria-label="Close" onClick="{{closeDlg}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></div>
+
+    <sc-if value="{{dlg.hasName}}" hint-placeholder-val="{{ false }}"><label class="field"><span class="label">Name</span><input class="input" value="{{dlg.name}}" onChange="{{dlg.onName}}" placeholder="e.g. Sam Okoye" aria-invalid="{{dlg.nameInvalid}}"></label></sc-if>
+    <sc-if value="{{dlg.hasOptions}}" hint-placeholder-val="{{ false }}">
+      <fieldset class="stack-sm" style="border: 0; margin: 0; padding: 0"><legend class="label" style="margin-bottom: 8px">{{dlg.optLegend}}</legend>
+        <div class="stack-sm" role="radiogroup" aria-label="{{dlg.optLegend}}"><sc-for list="{{dlg.options}}" as="o" hint-placeholder-count="4"><button class="{{o.cls}}" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}"><span class="radio" aria-hidden="true"></span><span class="grow"><span class="opt-t">{{o.label}}</span><span class="opt-d">{{o.hint}}</span></span></button></sc-for></div>
+      </fieldset>
+    </sc-if>
+    <sc-if value="{{dlg.hasLimit}}" hint-placeholder-val="{{ false }}"><div class="field"><span class="label">How long?</span><div class="seg" role="radiogroup" aria-label="Limit length"><sc-for list="{{dlg.limits}}" as="l" hint-placeholder-count="3"><button class="{{l.cls}}" role="radio" aria-checked="{{l.checked}}" onClick="{{l.pick}}">{{l.label}}</button></sc-for></div></div></sc-if>
+    <sc-if value="{{dlg.hasPolicy}}" hint-placeholder-val="{{ false }}">
+      <div class="field"><span class="label">{{dlg.policyLabel}}</span><div class="row-wrap" role="radiogroup" aria-label="{{dlg.policyLabel}}"><sc-for list="{{dlg.policies}}" as="p" hint-placeholder-count="5"><button class="{{p.cls}}" role="radio" aria-checked="{{p.checked}}" onClick="{{p.pick}}">{{p.label}}</button></sc-for></div></div>
+    </sc-if>
+    <sc-if value="{{dlg.hasArchive}}" hint-placeholder-val="{{ false }}">
+      <button class="{{dlg.archiveCls}}" aria-pressed="{{dlg.archivePressed}}" disabled="{{dlg.archiveForced}}" onClick="{{dlg.toggleArchive}}"><span class="box" aria-hidden="true"><sc-if value="{{dlg.archiveOn}}" hint-placeholder-val="{{ false }}"><svg class="ic ic-xs" viewBox="0 0 24 24"><path d="{{ic.check}}"></path></svg></sc-if></span><span class="grow"><span class="opt-t">Also clear saved Archive copies</span><span class="opt-d">{{dlg.archiveHint}}</span></span></button>
+    </sc-if>
+    <sc-if value="{{dlg.hasNote}}" hint-placeholder-val="{{ false }}">
+      <label class="field"><span class="label">{{dlg.noteLabel}}</span><textarea class="textarea" value="{{dlg.note}}" onChange="{{dlg.onNote}}" placeholder="{{dlg.notePh}}" aria-describedby="note-help" aria-invalid="{{dlg.noteInvalid}}"></textarea><span class="help" id="note-help">{{dlg.noteHelp}}</span></label>
+    </sc-if>
+    <sc-if value="{{dlg.hasInternal}}" hint-placeholder-val="{{ false }}"><label class="field"><span class="label">Internal note <span class="opt">· reviewers only, optional</span></span><textarea class="textarea" style="min-height: 64px" value="{{dlg.internal}}" onChange="{{dlg.onInternal}}" placeholder="Context for the other reviewer or a future appeal"></textarea></label></sc-if>
+    <sc-if value="{{dlg.hasPreview}}" hint-placeholder-val="{{ false }}"><div class="stack-xs"><span class="label">What the member will see</span><div class="preview">{{dlg.preview}}</div></div></sc-if>
+    <sc-if value="{{dlg.hasText}}" hint-placeholder-val="{{ false }}"><p class="p muted">{{dlg.text}}</p></sc-if>
+    <sc-if value="{{dlg.hasErr}}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">{{dlg.err}}</p></sc-if>
+    <div class="dialog-actions"><button class="btn btn-ghost" onClick="{{closeDlg}}">{{dlg.cancel}}</button><button class="{{dlg.okCls}}" onClick="{{dlg.ok}}">{{dlg.okLabel}}</button></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><span>{{toast}}</span><button class="icon-btn" style="width: 36px; height: 36px; color: #fff" aria-label="Dismiss" onClick="{{closeToast}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></div></sc-if>
+</sc-if>
+</div>

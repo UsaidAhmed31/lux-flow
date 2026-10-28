@@ -1,0 +1,15 @@
+const { chromium } = require('playwright');
+const ok=(c,m)=>console.log((c?'ok - ':'FAIL - ')+m);
+(async()=>{ const b=await chromium.launch(); const p=await b.newPage({viewport:{width:1440,height:900}}); const errs=[]; p.on('pageerror',e=>errs.push(e.message));
+ await p.addInitScript(()=>{ if(!sessionStorage.s){localStorage.setItem('luxflow-admin-v1',JSON.stringify({v:1,signedIn:true,who:'quinn',page:'team'}));sessionStorage.s=1} });
+ await p.goto('http://localhost:8765/Admin.html'); await p.waitForTimeout(2000);
+ const txt=()=>p.evaluate(()=>document.querySelector('.ad').innerText);
+ await p.getByRole('radio',{name:'Operator'}).first().click(); await p.waitForTimeout(300); ok((await txt()).includes('at least two active reviewers'),'blocks dropping below 2 reviewers');
+ await p.getByRole('radio',{name:'Reviewer'}).nth(1).click(); await p.waitForTimeout(300); ok((await txt()).includes('Ops support is now a reviewer'),'promote ops');
+ await p.getByRole('button',{name:'Deactivate'}).first().click(); await p.waitForTimeout(300); ok((await txt()).includes('Deactivated'),'deactivate dana');
+ await p.getByRole('button',{name:/Invite a team member/}).click(); await p.getByRole('button',{name:'Send invite'}).click(); await p.waitForTimeout(200); ok((await txt()).includes('Add the person'),'invite validation');
+ await p.fill('.dialog .input','Sam Okoye'); await p.getByRole('button',{name:'Send invite'}).click(); await p.waitForTimeout(300); ok((await txt()).includes('Invite sent'),'invite sent');
+ await p.click('.top .pop-wrap:last-child > button'); await p.waitForTimeout(200); ok(!(await p.evaluate(()=>document.querySelector('.popover').innerText)).includes('Dana'),'deactivated hidden from switch');
+ await p.getByRole('button',{name:/Ops support/}).click(); await p.waitForTimeout(300); ok((await txt()).includes('My desk') && !(await txt()).includes('View-only role'),'ops now reviewer desk');
+ await p.getByRole('button',{name:'Settings'}).first().click(); await p.waitForTimeout(300); ok(await p.$eval('[role=switch]',e=>e.disabled),'reviewer cannot change AI settings');
+ console.log(errs.length?errs:'no page errors'); await b.close(); })();

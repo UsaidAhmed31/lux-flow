@@ -1,0 +1,25 @@
+const { chromium } = require('playwright');
+const ok=(c,m)=>console.log((c?'ok - ':'FAIL - ')+m);
+(async()=>{ const b=await chromium.launch(); const ctx=await b.newContext({viewport:{width:1440,height:900}}); await ctx.route(/^https?:/,r=>r.abort()); const p=await ctx.newPage();
+ const errs=[]; p.on('pageerror',e=>errs.push(e.message));
+ await p.goto('file:///mnt/user-data/outputs/lux-flow-complete.html'); await p.waitForTimeout(3500);
+ const app=()=>p.frames().find(f=>f.url().includes('#lf-frame'));
+ ok(await app().evaluate(()=>!!document.querySelector('.side')),'web view renders');
+ await app().evaluate(async()=>{ const s=document.querySelector('.scroll'); for(let y=0;y<=s.scrollHeight;y+=400){s.scrollTop=y; await new Promise(r=>setTimeout(r,120));} });
+ ok(await app().evaluate(()=>[...document.querySelectorAll('img')].filter(i=>i.getClientRects().length).every(i=>i.complete&&i.naturalWidth>0)),'web images load');
+ await p.screenshot({path:'ashots/f-web.png'});
+ await p.click('[data-m=mobile]'); await p.waitForTimeout(1200); ok(await app().evaluate(()=>innerWidth<500),'mobile view'); await p.screenshot({path:'ashots/f-mob.png'});
+ await p.click('[data-m=admin]'); await p.waitForTimeout(3500);
+ const adm=p.frames().find(f=>f.url()==='about:srcdoc'); ok(!!adm,'admin frame');
+ ok(await adm.evaluate(()=>document.body.innerText.includes('Staff sign-in')),'admin sign-in renders');
+ await adm.click('text=Continue'); await adm.fill('.input','123456'); await adm.click('text=Sign in'); await adm.waitForTimeout(800);
+ ok(await adm.evaluate(()=>document.body.innerText.includes('Platform overview')),'admin overview'); await p.screenshot({path:'ashots/f-admin.png'});
+ await p.click('[data-m=web]'); await p.waitForTimeout(500); await p.click('[data-m=admin]'); await p.waitForTimeout(500);
+ ok(await adm.evaluate(()=>document.body.innerText.includes('Platform overview')),'admin state kept when switching');
+ // system banner + theme in app
+ await p.click('[data-m=web]'); await p.waitForTimeout(400);
+ await app().evaluate(()=>{ localStorage.setItem('luxflow-proto-v3', JSON.stringify({v:3,screen:'system',openSys:'wisdom'})); }); await app().evaluate(()=>location.reload()); await p.waitForTimeout(3000);
+ ok(await app().evaluate(()=>{ const i=document.querySelector('.sys-art img'); return !!i && i.complete && i.naturalWidth>0; }),'system banner art loads');
+ const ph=await b.newContext({viewport:{width:390,height:844}}); await ph.route(/^https?:/,r=>r.abort()); const q=await ph.newPage(); await q.goto('file:///mnt/user-data/outputs/lux-flow-complete.html'); await q.waitForTimeout(3000);
+ ok(await q.$('.lf-bar')===null && await q.$('.app')!==null,'phone opens app directly');
+ console.log(errs.length?errs:'no page errors'); await b.close(); })();

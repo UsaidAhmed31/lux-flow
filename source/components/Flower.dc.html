@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ten Systems flower</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<svg class="{{cls}}" viewBox="{{vb}}" role="{{role}}" aria-label="{{label}}" aria-hidden="{{hidden}}" focusable="false" style="{{svgStyle}}">
+<defs>
+<sc-for list="{{petals}}" as="p" hint-placeholder-count="10"><linearGradient id="{{p.gid}}" gradientUnits="userSpaceOnUse" x1="60" y1="60" x2="{{p.tx}}" y2="{{p.ty}}"><stop offset="0" style="{{p.s0}}"></stop><stop offset="0.5" style="{{p.s1}}"></stop><stop offset="1" style="{{p.s2}}"></stop></linearGradient></sc-for>
+<radialGradient id="{{coreId}}"><stop offset="0" style="stop-color: #FFFFFF"></stop><stop offset="0.55" style="stop-color: #FFF4D6"></stop><stop offset="1" style="stop-color: #FFD58A"></stop></radialGradient>
+</defs>
+<sc-if value="{{isIcon}}" hint-placeholder-val="{{ false }}"><path d="{{tile}}" style="fill: #16132A"></path></sc-if>
+<sc-for list="{{petals}}" as="p" hint-placeholder-count="10"><g style="{{p.gst}}" onClick="{{p.pick}}"><path d="{{p.d}}" style="{{p.st}}"></path><path d="{{p.hl}}" style="{{p.hst}}"></path></g></sc-for>
+<circle cx="60" cy="60" r="{{haloR}}" style="{{haloSt}}"></circle>
+<circle cx="60" cy="60" r="{{coreR}}" style="{{coreSt}}"></circle>
+</svg>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":"emblem","$preview":{"width":200,"height":200}}'>
+/* Canonical Ten Systems flower — filled, dimensional petals (client feedback: "fully coloured, a little more realistic and
+   dimensional while still approachable; glowing petal when selected").
+   Ten elongated petals; radiance at 12 o'clock, then clockwise in the documented order. Each petal is a gradient from a deeper
+   base to a luminous tip, with a soft highlight stroke for volume and a slightly darker rim.
+   Variants: mark (16-32px nav) · emblem (40-120px) · large (illustration) · icon (navy app-icon tile).
+   Props: variant, highlight (index or array of indexes; others dim, highlighted petals glow), label (meaningful -> role=img; empty -> decorative), onPick(i), glow (bool). */
+var FLOWER_SYS = ['#FFE7A3', '#FF77B4', '#9F77FF', '#4D96FF', '#2FD58B', '#FFC931', '#FF8A33', '#FF5148', '#C68A55', '#8C8FB0'];
+var FLOWER_VARIANT = {mark:{rim:.9, hl:0, core:5.2, halo:9}, emblem:{rim:1.2, hl:1, core:4.6, halo:8.5}, large:{rim:1, hl:1, core:4.2, halo:9}, icon:{rim:1.6, hl:.8, core:5, halo:9, scale:.74}};
+function flowerR(n){ return Math.round(n * 100) / 100; }
+function flowerMix(hex, to, t){ var a = parseInt(hex.slice(1), 16), b = parseInt(to.slice(1), 16); var r = Math.round(((a >> 16) & 255) * (1 - t) + ((b >> 16) & 255) * t), g = Math.round(((a >> 8) & 255) * (1 - t) + ((b >> 8) & 255) * t), bl = Math.round((a & 255) * (1 - t) + (b & 255) * t); return '#' + ((1 << 24) + (r << 16) + (g << 8) + bl).toString(16).slice(1); }
+function flowerAxis(i){ var a = i * 36 * Math.PI / 180; return {ux:Math.sin(a), uy:-Math.cos(a)}; }
+function flowerPetal(i, k, from, to, wk, shift){ /* petal i of 10 in a 120 box, scale k about the centre; from/to = fraction of length; wk = width factor; shift = sideways offset */
+  var cx = 60, cy = 60, r0 = 1.6 * k, len = 50 * k, w = 9 * k * (wk || 1), s0 = r0 + len * (from || 0), L = len * ((to || 1) - (from || 0)), sh = (shift || 0) * k; var ax = flowerAxis(i), ux = ax.ux, uy = ax.uy, vx = -uy, vy = ux;
+  var P = function(u, v){ v += sh; return flowerR(cx + ux * u + vx * v) + ' ' + flowerR(cy + uy * u + vy * v); };
+  return 'M' + P(s0, 0) + 'C' + P(s0 + L * .18, w * 1.15) + ' ' + P(s0 + L * .78, w * 1.05) + ' ' + P(s0 + L, 0) + 'C' + P(s0 + L * .78, -w * 1.05) + ' ' + P(s0 + L * .18, -w * 1.15) + ' ' + P(s0, 0) + 'Z';
+}
+class Component extends DCLogic {
+  constructor(a, b){ super(a, b); this.uid = 'fl' + Math.random().toString(36).slice(2, 9); }
+  renderVals(){
+    var self = this; var p = this.props || {}; var v = FLOWER_VARIANT[p.variant] || FLOWER_VARIANT.emblem; var k = v.scale || 1;
+    var hi = p.highlight; var his = hi == null ? null : (Array.isArray(hi) ? hi : [hi]); if (his && !his.length) his = null;
+    var pick = typeof p.onPick === 'function' ? p.onPick : null;
+    var petals = FLOWER_SYS.map(function(c, i){ var dim = his && his.indexOf(i) < 0; var on = his && his.indexOf(i) >= 0; var ax = flowerAxis(i); var gid = self.uid + 'p' + i;
+      return {d:flowerPetal(i, k), hl:flowerPetal(i, k, .3, .9, .3, 2.4), gid:gid, tx:flowerR(60 + ax.ux * 52 * k), ty:flowerR(60 + ax.uy * 52 * k),
+        s0:'stop-color: ' + flowerMix(c, '#1A1240', .38), s1:'stop-color: ' + c, s2:'stop-color: ' + flowerMix(c, '#FFFFFF', .45),
+        pick:pick ? function(){ pick(i); } : undefined,
+        gst:(dim ? 'opacity: .32; ' : '') + (on ? 'filter: drop-shadow(0 0 ' + (4 * k) + 'px ' + c + ') drop-shadow(0 0 ' + (10 * k) + 'px ' + c + ')' : '') + (pick ? '; cursor: pointer' : ''),
+        st:'fill: url(#' + gid + '); stroke: ' + flowerMix(c, '#1A1240', .45) + '; stroke-opacity: .55; stroke-width: ' + v.rim * k + '; stroke-linejoin: round',
+        hst:'fill: #FFFFFF; opacity: ' + (v.hl ? .26 * v.hl : 0) + '; pointer-events: none'}; });
+    var label = p.label || '';
+    return {vb:'0 0 120 120', petals:petals, isIcon:p.variant === 'icon', tile:'M27 0H93A27 27 0 0 1 120 27V93A27 27 0 0 1 93 120H27A27 27 0 0 1 0 93V27A27 27 0 0 1 27 0Z',
+      coreId:this.uid + 'c', coreSt:'fill: url(#' + this.uid + 'c)', haloSt:'fill: #FFF4D6; opacity: .28',
+      coreR:v.core * k, haloR:v.halo * k, role:label ? 'img' : undefined, label:label || undefined, hidden:label ? undefined : 'true',
+      cls:'lf-flower' + (p.glow ? ' lf-flower-glow' : ''),
+      svgStyle:'display: block; width: 100%; height: auto; overflow: visible' + (p.glow ? '; filter: drop-shadow(0 0 10px rgba(255,200,140,.3))' : '')};
+  }
+}
+</script>
+</body>
+</html>

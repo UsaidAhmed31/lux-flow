@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lux Flow Integrity — admin console</title>
+<script>
+/* Portable export: resolve the runtime's CDN scripts and sibling components locally (works from file://) */
+window.__resources = {"https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js", "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js", "./Flower.dc.html": "dc:Flower"};
+(function(b){ var o = {}; for (var k in b) { var s = atob(b[k]), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); o[k] = new Blob([u], {type:"text/html"}); } window.__resourceBlobs = o; })({"dc:Flower": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KPHRpdGxlPlRlbiBTeXN0ZW1zIGZsb3dlcjwvdGl0bGU+CjxzY3JpcHQgc3JjPSIuL3N1cHBvcnQuanMiPjwvc2NyaXB0Pgo8L2hlYWQ+Cjxib2R5Pgo8eC1kYz4KPGhlbG1ldD4KPHN0eWxlPgpib2R5e21hcmdpbjowfQo8L3N0eWxlPgo8L2hlbG1ldD4KPHN2ZyBjbGFzcz0ie3tjbHN9fSIgdmlld0JveD0ie3t2Yn19IiByb2xlPSJ7e3JvbGV9fSIgYXJpYS1sYWJlbD0ie3tsYWJlbH19IiBhcmlhLWhpZGRlbj0ie3toaWRkZW59fSIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9Int7c3ZnU3R5bGV9fSI+CjxkZWZzPgo8c2MtZm9yIGxpc3Q9Int7cGV0YWxzfX0iIGFzPSJwIiBoaW50LXBsYWNlaG9sZGVyLWNvdW50PSIxMCI+PGxpbmVhckdyYWRpZW50IGlkPSJ7e3AuZ2lkfX0iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iNjAiIHkxPSI2MCIgeDI9Int7cC50eH19IiB5Mj0ie3twLnR5fX0iPjxzdG9wIG9mZnNldD0iMCIgc3R5bGU9Int7cC5zMH19Ij48L3N0b3A+PHN0b3Agb2Zmc2V0PSIwLjUiIHN0eWxlPSJ7e3AuczF9fSI+PC9zdG9wPjxzdG9wIG9mZnNldD0iMSIgc3R5bGU9Int7cC5zMn19Ij48L3N0b3A+PC9saW5lYXJHcmFkaWVudD48L3NjLWZvcj4KPHJhZGlhbEdyYWRpZW50IGlkPSJ7e2NvcmVJZH19Ij48c3RvcCBvZmZzZXQ9IjAiIHN0eWxlPSJzdG9wLWNvbG9yOiAjRkZGRkZGIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdHlsZT0ic3RvcC1jb2xvcjogI0ZGRjRENiI+PC9zdG9wPjxzdG9wIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6ICNGRkQ1OEEiPjwvc3RvcD48L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+CjxzYy1pZiB2YWx1ZT0ie3tpc0ljb259fSIgaGludC1wbGFjZWhvbGRlci12YWw9Int7IGZhbHNlIH19Ij48cGF0aCBkPSJ7e3RpbGV9fSIgc3R5bGU9ImZpbGw6ICMxNjEzMkEiPjwvcGF0aD48L3NjLWlmPgo8c2MtZm9yIGxpc3Q9Int7cGV0YWxzfX0iIGFzPSJwIiBoaW50LXBsYWNlaG9sZGVyLWNvdW50PSIxMCI+PGcgc3R5bGU9Int7cC5nc3R9fSIgb25DbGljaz0ie3twLnBpY2t9fSI+PHBhdGggZD0ie3twLmR9fSIgc3R5bGU9Int7cC5zdH19Ij48L3BhdGg+PHBhdGggZD0ie3twLmhsfX0iIHN0eWxlPSJ7e3AuaHN0fX0iPjwvcGF0aD48L2c+PC9zYy1mb3I+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9Int7aGFsb1J9fSIgc3R5bGU9Int7aGFsb1N0fX0iPjwvY2lyY2xlPgo8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSJ7e2NvcmVSfX0iIHN0eWxlPSJ7e2NvcmVTdH19Ij48L2NpcmNsZT4KPC9zdmc+CjwveC1kYz4KPHNjcmlwdCB0eXBlPSJ0ZXh0L3gtZGMiIGRhdGEtZGMtc2NyaXB0IGRhdGEtcHJvcHM9J3sidmFyaWFudCI6ImVtYmxlbSIsIiRwcmV2aWV3Ijp7IndpZHRoIjoyMDAsImhlaWdodCI6MjAwfX0nPgovKiBDYW5vbmljYWwgVGVuIFN5c3RlbXMgZmxvd2VyIOKAlCBmaWxsZWQsIGRpbWVuc2lvbmFsIHBldGFscyAoY2xpZW50IGZlZWRiYWNrOiAiZnVsbHkgY29sb3VyZWQsIGEgbGl0dGxlIG1vcmUgcmVhbGlzdGljIGFuZAogICBkaW1lbnNpb25hbCB3aGlsZSBzdGlsbCBhcHByb2FjaGFibGU7IGdsb3dpbmcgcGV0YWwgd2hlbiBzZWxlY3RlZCIpLgogICBUZW4gZWxvbmdhdGVkIHBldGFsczsgcmFkaWFuY2UgYXQgMTIgbydjbG9jaywgdGhlbiBjbG9ja3dpc2UgaW4gdGhlIGRvY3VtZW50ZWQgb3JkZXIuIEVhY2ggcGV0YWwgaXMgYSBncmFkaWVudCBmcm9tIGEgZGVlcGVyCiAgIGJhc2UgdG8gYSBsdW1pbm91cyB0aXAsIHdpdGggYSBzb2Z0IGhpZ2hsaWdodCBzdHJva2UgZm9yIHZvbHVtZSBhbmQgYSBzbGlnaHRseSBkYXJrZXIgcmltLgogICBWYXJpYW50czogbWFyayAoMTYtMzJweCBuYXYpIMK3IGVtYmxlbSAoNDAtMTIwcHgpIMK3IGxhcmdlIChpbGx1c3RyYXRpb24pIMK3IGljb24gKG5hdnkgYXBwLWljb24gdGlsZSkuCiAgIFByb3BzOiB2YXJpYW50LCBoaWdobGlnaHQgKGluZGV4IG9yIGFycmF5IG9mIGluZGV4ZXM7IG90aGVycyBkaW0sIGhpZ2hsaWdodGVkIHBldGFscyBnbG93KSwgbGFiZWwgKG1lYW5pbmdmdWwgLT4gcm9sZT1pbWc7IGVtcHR5IC0+IGRlY29yYXRpdmUpLCBvblBpY2soaSksIGdsb3cgKGJvb2wpLiAqLwp2YXIgRkxPV0VSX1NZUyA9IFsnI0ZGRTdBMycsICcjRkY3N0I0JywgJyM5Rjc3RkYnLCAnIzREOTZGRicsICcjMkZENThCJywgJyNGRkM5MzEnLCAnI0ZGOEEzMycsICcjRkY1MTQ4JywgJyNDNjhBNTUnLCAnIzhDOEZCMCddOwp2YXIgRkxPV0VSX1ZBUklBTlQgPSB7bWFyazp7cmltOi45LCBobDowLCBjb3JlOjUuMiwgaGFsbzo5fSwgZW1ibGVtOntyaW06MS4yLCBobDoxLCBjb3JlOjQuNiwgaGFsbzo4LjV9LCBsYXJnZTp7cmltOjEsIGhsOjEsIGNvcmU6NC4yLCBoYWxvOjl9LCBpY29uOntyaW06MS42LCBobDouOCwgY29yZTo1LCBoYWxvOjksIHNjYWxlOi43NH19OwpmdW5jdGlvbiBmbG93ZXJSKG4peyByZXR1cm4gTWF0aC5yb3VuZChuICogMTAwKSAvIDEwMDsgfQpmdW5jdGlvbiBmbG93ZXJNaXgoaGV4LCB0bywgdCl7IHZhciBhID0gcGFyc2VJbnQoaGV4LnNsaWNlKDEpLCAxNiksIGIgPSBwYXJzZUludCh0by5zbGljZSgxKSwgMTYpOyB2YXIgciA9IE1hdGgucm91bmQoKChhID4+IDE2KSAmIDI1NSkgKiAoMSAtIHQpICsgKChiID4+IDE2KSAmIDI1NSkgKiB0KSwgZyA9IE1hdGgucm91bmQoKChhID4+IDgpICYgMjU1KSAqICgxIC0gdCkgKyAoKGIgPj4gOCkgJiAyNTUpICogdCksIGJsID0gTWF0aC5yb3VuZCgoYSAmIDI1NSkgKiAoMSAtIHQpICsgKGIgJiAyNTUpICogdCk7IHJldHVybiAnIycgKyAoKDEgPDwgMjQpICsgKHIgPDwgMTYpICsgKGcgPDwgOCkgKyBibCkudG9TdHJpbmcoMTYpLnNsaWNlKDEpOyB9CmZ1bmN0aW9uIGZsb3dlckF4aXMoaSl7IHZhciBhID0gaSAqIDM2ICogTWF0aC5QSSAvIDE4MDsgcmV0dXJuIHt1eDpNYXRoLnNpbihhKSwgdXk6LU1hdGguY29zKGEpfTsgfQpmdW5jdGlvbiBmbG93ZXJQZXRhbChpLCBrLCBmcm9tLCB0bywgd2ssIHNoaWZ0KXsgLyogcGV0YWwgaSBvZiAxMCBpbiBhIDEyMCBib3gsIHNjYWxlIGsgYWJvdXQgdGhlIGNlbnRyZTsgZnJvbS90byA9IGZyYWN0aW9uIG9mIGxlbmd0aDsgd2sgPSB3aWR0aCBmYWN0b3I7IHNoaWZ0ID0gc2lkZXdheXMgb2Zmc2V0ICovCiAgdmFyIGN4ID0gNjAsIGN5ID0gNjAsIHIwID0gMS42ICogaywgbGVuID0gNTAgKiBrLCB3ID0gOSAqIGsgKiAod2sgfHwgMSksIHMwID0gcjAgKyBsZW4gKiAoZnJvbSB8fCAwKSwgTCA9IGxlbiAqICgodG8gfHwgMSkgLSAoZnJvbSB8fCAwKSksIHNoID0gKHNoaWZ0IHx8IDApICogazsgdmFyIGF4ID0gZmxvd2VyQXhpcyhpKSwgdXggPSBheC51eCwgdXkgPSBheC51eSwgdnggPSAtdXksIHZ5ID0gdXg7CiAgdmFyIFAgPSBmdW5jdGlvbih1LCB2KXsgdiArPSBzaDsgcmV0dXJuIGZsb3dlclIoY3ggKyB1eCAqIHUgKyB2eCAqIHYpICsgJyAnICsgZmxvd2VyUihjeSArIHV5ICogdSArIHZ5ICogdik7IH07CiAgcmV0dXJuICdNJyArIFAoczAsIDApICsgJ0MnICsgUChzMCArIEwgKiAuMTgsIHcgKiAxLjE1KSArICcgJyArIFAoczAgKyBMICogLjc4LCB3ICogMS4wNSkgKyAnICcgKyBQKHMwICsgTCwgMCkgKyAnQycgKyBQKHMwICsgTCAqIC43OCwgLXcgKiAxLjA1KSArICcgJyArIFAoczAgKyBMICogLjE4LCAtdyAqIDEuMTUpICsgJyAnICsgUChzMCwgMCkgKyAnWic7Cn0KY2xhc3MgQ29tcG9uZW50IGV4dGVuZHMgRENMb2dpYyB7CiAgY29uc3RydWN0b3IoYSwgYil7IHN1cGVyKGEsIGIpOyB0aGlzLnVpZCA9ICdmbCcgKyBNYXRoLnJhbmRvbSgpLnRvU3RyaW5nKDM2KS5zbGljZSgyLCA5KTsgfQogIHJlbmRlclZhbHMoKXsKICAgIHZhciBzZWxmID0gdGhpczsgdmFyIHAgPSB0aGlzLnByb3BzIHx8IHt9OyB2YXIgdiA9IEZMT1dFUl9WQVJJQU5UW3AudmFyaWFudF0gfHwgRkxPV0VSX1ZBUklBTlQuZW1ibGVtOyB2YXIgayA9IHYuc2NhbGUgfHwgMTsKICAgIHZhciBoaSA9IHAuaGlnaGxpZ2h0OyB2YXIgaGlzID0gaGkgPT0gbnVsbCA/IG51bGwgOiAoQXJyYXkuaXNBcnJheShoaSkgPyBoaSA6IFtoaV0pOyBpZiAoaGlzICYmICFoaXMubGVuZ3RoKSBoaXMgPSBudWxsOwogICAgdmFyIHBpY2sgPSB0eXBlb2YgcC5vblBpY2sgPT09ICdmdW5jdGlvbicgPyBwLm9uUGljayA6IG51bGw7CiAgICB2YXIgcGV0YWxzID0gRkxPV0VSX1NZUy5tYXAoZnVuY3Rpb24oYywgaSl7IHZhciBkaW0gPSBoaXMgJiYgaGlzLmluZGV4T2YoaSkgPCAwOyB2YXIgb24gPSBoaXMgJiYgaGlzLmluZGV4T2YoaSkgPj0gMDsgdmFyIGF4ID0gZmxvd2VyQXhpcyhpKTsgdmFyIGdpZCA9IHNlbGYudWlkICsgJ3AnICsgaTsKICAgICAgcmV0dXJuIHtkOmZsb3dlclBldGFsKGksIGspLCBobDpmbG93ZXJQZXRhbChpLCBrLCAuMywgLjksIC4zLCAyLjQpLCBnaWQ6Z2lkLCB0eDpmbG93ZXJSKDYwICsgYXgudXggKiA1MiAqIGspLCB0eTpmbG93ZXJSKDYwICsgYXgudXkgKiA1MiAqIGspLAogICAgICAgIHMwOidzdG9wLWNvbG9yOiAnICsgZmxvd2VyTWl4KGMsICcjMUExMjQwJywgLjM4KSwgczE6J3N0b3AtY29sb3I6ICcgKyBjLCBzMjonc3RvcC1jb2xvcjogJyArIGZsb3dlck1peChjLCAnI0ZGRkZGRicsIC40NSksCiAgICAgICAgcGljazpwaWNrID8gZnVuY3Rpb24oKXsgcGljayhpKTsgfSA6IHVuZGVmaW5lZCwKICAgICAgICBnc3Q6KGRpbSA/ICdvcGFjaXR5OiAuMzI7ICcgOiAnJykgKyAob24gPyAnZmlsdGVyOiBkcm9wLXNoYWRvdygwIDAgJyArICg0ICogaykgKyAncHggJyArIGMgKyAnKSBkcm9wLXNoYWRvdygwIDAgJyArICgxMCAqIGspICsgJ3B4ICcgKyBjICsgJyknIDogJycpICsgKHBpY2sgPyAnOyBjdXJzb3I6IHBvaW50ZXInIDogJycpLAogICAgICAgIHN0OidmaWxsOiB1cmwoIycgKyBnaWQgKyAnKTsgc3Ryb2tlOiAnICsgZmxvd2VyTWl4KGMsICcjMUExMjQwJywgLjQ1KSArICc7IHN0cm9rZS1vcGFjaXR5OiAuNTU7IHN0cm9rZS13aWR0aDogJyArIHYucmltICogayArICc7IHN0cm9rZS1saW5lam9pbjogcm91bmQnLAogICAgICAgIGhzdDonZmlsbDogI0ZGRkZGRjsgb3BhY2l0eTogJyArICh2LmhsID8gLjI2ICogdi5obCA6IDApICsgJzsgcG9pbnRlci1ldmVudHM6IG5vbmUnfTsgfSk7CiAgICB2YXIgbGFiZWwgPSBwLmxhYmVsIHx8ICcnOwogICAgcmV0dXJuIHt2YjonMCAwIDEyMCAxMjAnLCBwZXRhbHM6cGV0YWxzLCBpc0ljb246cC52YXJpYW50ID09PSAnaWNvbicsIHRpbGU6J00yNyAwSDkzQTI3IDI3IDAgMCAxIDEyMCAyN1Y5M0EyNyAyNyAwIDAgMSA5MyAxMjBIMjdBMjcgMjcgMCAwIDEgMCA5M1YyN0EyNyAyNyAwIDAgMSAyNyAwWicsCiAgICAgIGNvcmVJZDp0aGlzLnVpZCArICdjJywgY29yZVN0OidmaWxsOiB1cmwoIycgKyB0aGlzLnVpZCArICdjKScsIGhhbG9TdDonZmlsbDogI0ZGRjRENjsgb3BhY2l0eTogLjI4JywKICAgICAgY29yZVI6di5jb3JlICogaywgaGFsb1I6di5oYWxvICogaywgcm9sZTpsYWJlbCA/ICdpbWcnIDogdW5kZWZpbmVkLCBsYWJlbDpsYWJlbCB8fCB1bmRlZmluZWQsIGhpZGRlbjpsYWJlbCA/IHVuZGVmaW5lZCA6ICd0cnVlJywKICAgICAgY2xzOidsZi1mbG93ZXInICsgKHAuZ2xvdyA/ICcgbGYtZmxvd2VyLWdsb3cnIDogJycpLAogICAgICBzdmdTdHlsZTonZGlzcGxheTogYmxvY2s7IHdpZHRoOiAxMDAlOyBoZWlnaHQ6IGF1dG87IG92ZXJmbG93OiB2aXNpYmxlJyArIChwLmdsb3cgPyAnOyBmaWx0ZXI6IGRyb3Atc2hhZG93KDAgMCAxMHB4IHJnYmEoMjU1LDIwMCwxNDAsLjMpKScgOiAnJyl9OwogIH0KfQo8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+Cg=="});
+</script>
+<script src="runtime/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{appCls}}" onKeyDown="{{onKey}}">
+<style>/* ===== Lux Flow Integrity — admin console. Same tokens and components as the member app; denser layouts for review work. ===== */
+:root{--bg:#0A0912;--surface:#14121E;--surface-2:#1C1A2A;--surface-3:#24213A;--well:#0F0D18;--line:#29263D;--line-2:#3A3655;--ink:#F4F2FB;--ink-2:#C7C3DA;--ink-3:#9C97B5;--accent:#7A68FF;--accent-hi:#9C8DFF;--accent-ink:#B9AEFF;--accent-soft:rgba(122,104,255,.15);--accent-line:rgba(138,122,255,.45);--glow:rgba(122,104,255,.55);--sun-hi:#FFC56B;--sun-lo:#FF7A45;--ok:#4FE0A0;--ok-soft:rgba(79,224,160,.13);--warn:#FFC76E;--warn-soft:rgba(255,199,110,.12);--danger:#FF7D70;--danger-soft:rgba(255,125,112,.13);--info:#7DB4FF;--info-soft:rgba(110,160,255,.14);--hot:#FFB37A;--hot-soft:rgba(255,170,110,.12);--r-sm:8px;--r:12px;--r-lg:18px;--sans:'Helvetica Now Text','Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif;--display:'Helvetica Now Display','Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:40px;--space-8:48px}
+*{box-sizing:border-box}
+.ad{position:relative;display:flex;height:100vh;min-height:560px;background:var(--bg);background-image:radial-gradient(900px 500px at 85% -10%,rgba(122,104,255,.09),transparent 60%);color:var(--ink);font-family:var(--sans);font-size:14.5px;line-height:1.5;overflow:hidden;-webkit-font-smoothing:antialiased;color-scheme:dark}
+.ad,.ad *{scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+:where(.ad) button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:where(.ad) button:disabled{cursor:not-allowed}
+:where(.ad) input,:where(.ad) textarea{font:inherit;color:inherit}
+.ad :focus-visible{outline:2px solid var(--accent-hi);outline-offset:2px;border-radius:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;z-index:90;background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700}
+.skip:focus{top:12px}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ic-sm{width:16px;height:16px}.ic-xs{width:14px;height:14px}.ic-lg{width:24px;height:24px}
+.grow{flex:1;min-width:0}
+.row{display:flex;align-items:center;gap:var(--space-2)}
+.row-wrap{display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap}
+.stack{display:flex;flex-direction:column;gap:var(--space-4)}
+.stack-sm{display:flex;flex-direction:column;gap:var(--space-2)}
+.stack-xs{display:flex;flex-direction:column;gap:var(--space-1)}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.h1{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.1;margin:0;letter-spacing:-.02em}
+.h2{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.2;margin:0;letter-spacing:-.01em}
+.h3{font-size:14.5px;font-weight:700;margin:0;line-height:1.35}
+.p{margin:0}
+.meta{font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.muted{color:var(--ink-2)}
+.mono{font-variant-numeric:tabular-nums}
+.small{font-size:13px;line-height:1.45}
+.d-add{background:rgba(255,199,110,.28);border-radius:3px;padding:0 2px}
+.d-del{background:rgba(255,125,112,.22);text-decoration:line-through;border-radius:3px;padding:0 2px}
+
+/* ---- shell ---- */
+.side{display:flex;flex-direction:column;width:264px;flex-shrink:0;padding:18px 12px;border-right:1px solid var(--line);background:rgba(14,12,23,.92);overflow-y:auto}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 4px}
+.brand-mark{width:30px;flex-shrink:0}
+.brand-name{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.05;letter-spacing:-.015em}
+.brand-sub{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+.env{margin:12px 6px 6px;padding:8px 10px;border-radius:10px;background:var(--warn-soft);box-shadow:inset 0 0 0 1px rgba(255,199,110,.25);font-size:11.5px;line-height:1.35;color:var(--ink-2)}
+.env strong{color:var(--warn)}
+.nav{display:flex;flex-direction:column;gap:2px;margin-top:10px}
+.nav-label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding:16px 12px 6px}
+.nav-item{display:flex;align-items:center;gap:12px;height:42px;white-space:nowrap;padding:0 12px;border-radius:12px;color:var(--ink-2);font-weight:600;font-size:14px;position:relative;transition:background .15s,color .15s;width:100%}
+.nav-item:hover{background:var(--surface-2);color:var(--ink)}
+.nav-item.on{background:linear-gradient(180deg,rgba(122,104,255,.24),rgba(122,104,255,.12));color:#fff;box-shadow:inset 0 0 0 1px rgba(138,122,255,.35)}
+.nav-item.on .ic{color:var(--accent-ink)}
+.count{margin-left:auto;min-width:22px;height:22px;padding:0 7px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;background:var(--surface-3);color:var(--ink-2)}
+.count.hot{background:var(--hot-soft);color:var(--hot);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--hot) 35%,transparent)}
+.count.acc{background:var(--accent);color:#fff}
+.side-foot{margin-top:auto;padding-top:14px}
+.me{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line);width:100%}
+.me:hover{background:var(--surface-2)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:10px;height:60px;padding:0 20px;border-bottom:1px solid var(--line);background:rgba(10,9,18,.82);backdrop-filter:blur(10px);flex-shrink:0;position:relative;z-index:5}
+.top .search{max-width:440px}
+.icon-btn.menu-btn{display:none}
+.scroll{flex:1;overflow-y:auto;min-height:0;overflow-anchor:none}
+.page{max-width:1240px;margin:0 auto;padding:24px 28px 56px;display:flex;flex-direction:column;gap:22px}
+.page-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.page-head > .grow{flex:1 1 320px}
+.crumb{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--accent-ink);min-height:32px}
+.crumb:hover{text-decoration:underline}
+
+/* ---- controls ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 18px;border-radius:999px;font-weight:700;font-size:14px;white-space:nowrap;transition:box-shadow .18s,background .18s,color .15s;position:relative}
+.btn-sm{min-height:34px;padding:0 14px;font-size:13px}
+.btn-primary{background:linear-gradient(180deg,#8E7EFF 0%,#6A55F6 48%,#4E36E6 100%);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(20,0,90,.35),0 0 0 1px rgba(150,135,255,.45),0 8px 22px -8px rgba(110,90,255,.85)}
+.btn-primary:hover{background:linear-gradient(180deg,#9B8DFF 0%,#7461FF 48%,#5840F0 100%)}
+.btn-secondary{background:linear-gradient(180deg,#2A2740 0%,#1B1929 100%);color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 0 1px var(--line-2)}
+.btn-secondary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1px rgba(150,135,255,.55)}
+.btn-ghost{color:var(--ink-2);padding:0 12px}
+.btn-ghost:hover{background:var(--surface-2);color:var(--ink)}
+.btn-danger{background:var(--danger-soft);color:var(--danger);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--danger) 45%,transparent)}
+.btn-danger:hover{background:color-mix(in srgb,var(--danger) 22%,transparent)}
+.btn-ok{background:linear-gradient(180deg,#6FF0B6 0%,#2FC985 55%,#1EA86C 100%);color:#04241A;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 0 1px rgba(110,240,180,.45)}
+.btn:disabled,.btn[aria-disabled="true"]{background:var(--surface-3);color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line);text-shadow:none}
+.icon-btn{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--ink-2);position:relative;flex-shrink:0}
+.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+.icon-dot{position:absolute;top:9px;right:9px;width:8px;height:8px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 2px var(--bg)}
+.link{color:var(--accent-ink);font-weight:700;font-size:13.5px;min-height:32px;display:inline-flex;align-items:center;gap:4px}
+.link:hover{text-decoration:underline}
+.search{display:flex;align-items:center;gap:10px;height:40px;padding:0 12px;border-radius:12px;background:var(--well);box-shadow:inset 0 1px 3px rgba(0,0,0,.5),inset 0 0 0 1px var(--line-2);color:var(--ink-3);flex:1;min-width:0}
+.search:focus-within{box-shadow:inset 0 0 0 2px var(--accent)}
+.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:14px;color:var(--ink);height:100%}
+.search input::placeholder{color:var(--ink-3)}
+.seg{display:inline-flex;background:var(--well);border-radius:999px;padding:3px;gap:2px;box-shadow:inset 0 1px 3px rgba(0,0,0,.5),inset 0 0 0 1px var(--line)}
+.seg button{white-space:nowrap;min-height:32px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--ink-3);padding:0 12px;display:inline-flex;align-items:center;gap:6px}
+.seg button:hover{color:var(--ink)}
+.seg button.on{background:linear-gradient(180deg,#8A79FF,#5A43EE);color:#fff}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2);font-size:12.5px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.chip:hover{color:var(--ink);box-shadow:inset 0 0 0 1px rgba(150,135,255,.5)}
+.chip.on{background:var(--accent-soft);color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(160,145,255,.8)}
+.toggle{width:44px;height:26px;border-radius:999px;background:var(--well);box-shadow:inset 0 0 0 1px var(--line-2);position:relative;flex-shrink:0}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#C9C4DE;transition:left .15s}
+.toggle.on{background:linear-gradient(180deg,#8A79FF,#5840EE)}
+.toggle.on::after{left:21px;background:#fff}
+.toggle:disabled{opacity:.55}
+.field{display:flex;flex-direction:column;gap:6px}
+.label{font-size:13px;font-weight:700;color:var(--ink)}
+.label .opt{font-weight:500;color:var(--ink-3)}
+.input,.textarea{width:100%;border:0;border-radius:12px;background:var(--well);box-shadow:inset 0 1px 3px rgba(0,0,0,.5),inset 0 0 0 1px var(--line-2);padding:10px 12px;font-size:14px;outline:0;color:var(--ink)}
+.input{height:44px}
+.textarea{min-height:92px;resize:vertical;line-height:1.5}
+.input:focus,.textarea:focus{box-shadow:inset 0 0 0 2px var(--accent)}
+.input::placeholder,.textarea::placeholder{color:#7E7997}
+.help{font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.err{font-size:12.5px;color:var(--danger);font-weight:600}
+.opt-row{display:flex;align-items:center;gap:12px;min-height:46px;padding:10px 12px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--line-2);text-align:left;width:100%;font-size:14px}
+.opt-row:hover{box-shadow:inset 0 0 0 1px rgba(150,135,255,.55)}
+.opt-row.on{box-shadow:inset 0 0 0 1.5px rgba(160,145,255,.9);background:rgba(122,104,255,.1)}
+.opt-row:disabled{opacity:.5}
+.radio{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--ink-3);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.opt-row.on .radio{box-shadow:inset 0 0 0 1.5px var(--accent-hi)}
+.opt-row.on .radio::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--accent-hi)}
+.box{width:18px;height:18px;border-radius:5px;box-shadow:inset 0 0 0 1.5px var(--ink-3);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;color:#fff}
+.opt-row.on .box{background:var(--accent);box-shadow:none}
+.opt-t{font-weight:700;display:block}
+.opt-d{display:block;font-size:12.5px;color:var(--ink-3);margin-top:1px;line-height:1.4}
+
+/* ---- surfaces (containment levels match the app: L1 none, L2 card, L3 strong) ---- */
+.card{background:linear-gradient(180deg,#17151F,#13111B);border-radius:var(--r-lg);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),inset 0 0 0 1px var(--line);padding:18px}
+.card-tight{padding:14px}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.banner{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--r);background:var(--accent-soft);box-shadow:inset 0 0 0 1px rgba(138,122,255,.28)}
+.banner .ic{color:var(--accent-ink);margin-top:1px}
+.banner-warn{background:var(--warn-soft);box-shadow:inset 0 0 0 1px rgba(255,199,110,.28)}.banner-warn .ic{color:var(--warn)}
+.banner-ok{background:var(--ok-soft);box-shadow:inset 0 0 0 1px rgba(79,224,160,.28)}.banner-ok .ic{color:var(--ok)}
+.banner-danger{background:var(--danger-soft);box-shadow:inset 0 0 0 1px rgba(255,125,112,.32)}.banner-danger .ic{color:var(--danger)}
+.alert-strip{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;background:linear-gradient(90deg,rgba(255,125,112,.2),rgba(255,125,112,.06));box-shadow:inset 0 0 0 1px rgba(255,125,112,.4)}
+.alert-strip .ic{color:var(--danger)}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--hot);flex-shrink:0}
+@keyframes adPulse{0%{box-shadow:0 0 0 0 rgba(255,125,112,.55)}70%{box-shadow:0 0 0 9px rgba(255,125,112,0)}100%{box-shadow:0 0 0 0 rgba(255,125,112,0)} }
+
+/* ---- badges ---- */
+.badge{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.b-urgent{background:var(--hot-soft);color:var(--hot);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--hot) 32%,transparent)}
+.b-urgent::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-high{background:var(--warn-soft);color:var(--warn);box-shadow:inset 0 0 0 1px rgba(255,199,110,.4)}
+.b-normal{background:var(--surface-3);color:var(--ink-2)}
+.b-low{background:transparent;color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.b-open{background:var(--info-soft);color:var(--info)}
+.b-review{background:var(--accent-soft);color:var(--accent-ink)}
+.b-protect{background:var(--warn-soft);color:var(--warn)}
+.b-done{background:var(--ok-soft);color:var(--ok)}
+.b-confirm{background:var(--hot-soft);color:var(--hot)}
+.b-neutral{background:var(--surface-3);color:var(--ink-2)}
+.b-ai{background:transparent;color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.b-ai .ic{color:var(--accent-ink)}
+.av{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;background:var(--surface-3);color:var(--ink-2)}
+.av-sm{width:28px;height:28px;font-size:11px}
+.av-lg{width:52px;height:52px;font-size:18px}
+.av-q{background:linear-gradient(180deg,#FFD58A,#F2742F);color:#2A1204}
+.av-d{background:linear-gradient(180deg,#8E7EFF,#4E36E6);color:#fff}
+.av-o{background:#173A2A;color:#86ECB6}
+
+/* ---- overview ---- */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.kpi{display:flex;flex-direction:column;gap:4px;padding:14px 14px 12px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-align:left;transition:box-shadow .15s}
+.kpi:hover{box-shadow:inset 0 0 0 1px rgba(150,135,255,.55)}
+.kpi-n{font-family:var(--display);font-size:28px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.kpi-l{font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.kpi-s{font-size:11.5px;color:var(--ink-3)}
+.kpi.hot .kpi-n{color:var(--danger)}
+.grid-2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.urgent-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:var(--danger-soft);box-shadow:inset 0 0 0 1px rgba(255,125,112,.3);text-align:left;width:100%}
+.urgent-card:hover{box-shadow:inset 0 0 0 1.5px rgba(255,125,112,.6)}
+.list{display:flex;flex-direction:column}
+.list-row{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);text-align:left;width:100%}
+.list-row:last-child{border-bottom:0}
+button.list-row:hover{background:rgba(255,255,255,.03)}
+.ai-box{display:flex;flex-direction:column;gap:10px}
+.ai-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ai-li{display:flex;gap:8px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.ai-li .ic{margin-top:1px}
+.ai-yes .ic{color:var(--ok)}.ai-no .ic{color:var(--danger)}
+
+/* ---- tables ---- */
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tbl-wrap{border-radius:18px;box-shadow:inset 0 0 0 1px var(--line);background:var(--surface);overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{text-align:left;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.015);white-space:nowrap}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr{transition:background .12s}
+.tbl tbody tr:hover{background:rgba(255,255,255,.025)}
+.tbl tr.is-urgent td:first-child{box-shadow:inset 2px 0 0 var(--hot)}
+.row-open{display:block;text-align:left;width:100%}
+.row-title{font-weight:700;color:var(--ink);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:420px}
+.row-open:hover .row-title{text-decoration:underline}
+.row-sub{font-size:12.5px;color:var(--ink-3);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:420px}
+.who{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tbl-empty{padding:40px 20px;text-align:center}
+
+/* ---- case detail ---- */
+.case-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+.rail{display:flex;flex-direction:column;gap:16px;position:sticky;top:0}
+.evidence{border-radius:14px;background:var(--well);box-shadow:inset 0 0 0 1px var(--line-2);padding:14px 16px;font-size:14.5px;line-height:1.55}
+.evidence-label{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.blurbox{position:relative;height:180px;border-radius:12px;overflow:hidden;background:repeating-linear-gradient(135deg,#2A2440 0 14px,#221E35 14px 28px)}
+.blurbox.shown{background:linear-gradient(135deg,#5B4A7A,#3A2F55)}
+.blur-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:16px}
+.kv{display:grid;grid-template-columns:140px minmax(0,1fr);gap:8px 14px;font-size:13.5px}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0;color:var(--ink)}
+.hidden-list{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-2)}
+.hidden-list span{display:flex;gap:8px;align-items:flex-start}
+.hidden-list .ic{color:var(--ink-3);margin-top:1px}
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.tl-item{display:flex;gap:12px;padding-bottom:14px;position:relative}
+.tl-item::before{content:'';position:absolute;left:5px;top:14px;bottom:0;width:1.5px;background:var(--line-2)}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--surface-3);box-shadow:inset 0 0 0 2px var(--ink-3);flex-shrink:0;margin-top:4px}
+.tl-dot.acc{box-shadow:inset 0 0 0 2px var(--accent-hi);background:var(--accent-soft)}
+.tl-dot.ok{box-shadow:inset 0 0 0 2px var(--ok);background:var(--ok-soft)}
+.tl-dot.bad{box-shadow:inset 0 0 0 2px var(--danger);background:var(--danger-soft)}
+.areas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.area{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--line);font-size:13px}
+.area.flag{box-shadow:inset 0 0 0 1.5px rgba(255,199,110,.55);background:var(--warn-soft)}
+.area .ic{margin-top:1px}
+.area.pass .ic{color:var(--ok)}.area.flag .ic{color:var(--warn)}
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.diff mark{background:rgba(255,199,110,.25);color:inherit;border-radius:3px;padding:0 2px}
+.diff del{background:rgba(255,125,112,.2);text-decoration:line-through;border-radius:3px;padding:0 2px}
+.lock-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.lock-note .ic{margin-top:1px}
+.preview{border-radius:14px;padding:12px 14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2);font-size:13.5px;line-height:1.5}
+
+/* ---- dialog ---- */
+.overlay{position:absolute;inset:0;background:rgba(4,3,10,.7);backdrop-filter:blur(4px);z-index:60;display:flex;align-items:center;justify-content:center;padding:24px}
+.dialog{width:100%;max-width:620px;max-height:calc(100vh - 48px);overflow-y:auto;background:linear-gradient(180deg,#1C1A29,#15131F);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 0 1px var(--line-2),0 24px 60px rgba(0,0,0,.6)}
+.dialog-head{display:flex;align-items:flex-start;gap:12px}
+.dialog-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;padding:12px 0 2px;position:sticky;bottom:-22px;margin:0 -22px -22px;padding:14px 22px 20px;background:linear-gradient(180deg,rgba(21,19,31,0),#15131F 30%);z-index:2}
+.ad.light .dialog-actions{background:linear-gradient(180deg,rgba(255,255,255,0),#fff 30%)}
+.toast{position:absolute;left:50%;transform:translateX(-50%);bottom:24px;z-index:70;background:linear-gradient(180deg,#2A2640,#1E1B2F);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;align-items:center;gap:12px;font-size:14px;max-width:calc(100% - 32px);box-shadow:inset 0 0 0 1px var(--line-2),0 16px 40px rgba(0,0,0,.6)}
+.toast .ic{color:var(--ok)}
+.popover{position:absolute;right:0;top:calc(100% + 6px);width:340px;z-index:30;border-radius:16px;padding:8px;background:linear-gradient(180deg,#1C1A29,#15131F);box-shadow:inset 0 0 0 1px var(--line-2),0 18px 44px rgba(0,0,0,.6)}
+.pop-wrap{position:relative}
+.pop-item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;text-align:left;width:100%}
+.pop-item:hover{background:var(--surface-2)}
+
+/* ---- sign in ---- */
+.signin{flex:1;display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
+.signin-card{width:100%;max-width:460px;display:flex;flex-direction:column;gap:18px}
+.code{display:flex;gap:8px}
+.code .input{text-align:center;font-size:20px;font-weight:700;letter-spacing:.3em}
+
+/* ---- members ---- */
+.prof-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.std-good{color:var(--ok)}.std-warn{color:var(--warn)}.std-bad{color:var(--danger)}
+
+/* ---- responsive ---- */
+@media (max-width:1180px){ .kpis{grid-template-columns:repeat(3,minmax(0,1fr))} .case-grid{grid-template-columns:minmax(0,1fr)} .rail{position:static} .grid-2{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:900px){ .side{position:absolute;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:transform .2s;box-shadow:20px 0 50px rgba(0,0,0,.5)} .ad.nav-open .side{transform:none} .icon-btn.menu-btn{display:inline-flex} .page{padding:18px 16px 48px} .hide-md{display:none} .row-title,.row-sub{max-width:240px} }
+@media (max-width:640px){ .toolbar .search{flex:1 1 100%;max-width:none !important} .toolbar .seg{overflow-x:auto;max-width:100%} .kpis{grid-template-columns:repeat(2,minmax(0,1fr))} .top{padding:0 10px} .top .search{display:none} .hide-sm{display:none} .areas,.diff,.ai-cols{grid-template-columns:minmax(0,1fr)} .kv{grid-template-columns:minmax(0,1fr)} .kv dt{margin-top:6px} .tbl th.opt,.tbl td.opt{display:none} .h1{font-size:24px} }
+.scrim{display:none}
+@media (max-width:900px){ .ad.nav-open .scrim{display:block;position:absolute;inset:0;background:rgba(4,3,10,.55);z-index:45} }
+@media (prefers-reduced-motion: reduce){ .pulse{animation:none} .side{transition:none} }
+
+/* ===== Light theme ===== */
+.ad.light{--bg:#F6F4FB;--surface:#FFFFFF;--surface-2:#F1EEF8;--surface-3:#E7E3F2;--well:#FFFFFF;--line:#E4E0EE;--line-2:#D0CAE1;--ink:#16132A;--ink-2:#45405F;--ink-3:#6B6687;--accent-ink:#5A43EE;--accent-soft:rgba(122,104,255,.12);--accent-line:rgba(90,67,238,.38);--ok:#12925A;--ok-soft:rgba(18,146,90,.11);--warn:#9A6200;--warn-soft:rgba(220,150,20,.13);--danger:#C83A2E;--danger-soft:rgba(220,70,55,.1);--info:#1F63C9;--info-soft:rgba(40,110,220,.1);--hot:#A64E0C;--hot-soft:rgba(220,120,30,.1);color-scheme:light;background-image:radial-gradient(900px 500px at 85% -10%,rgba(122,104,255,.08),transparent 60%)}
+.ad.light .side{background:rgba(255,255,255,.92)}
+.ad.light .top{background:rgba(246,244,251,.85)}
+.ad.light .nav-item.on{background:var(--accent-soft);color:var(--accent-ink);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.ad.light .card{background:#fff;box-shadow:inset 0 0 0 1px var(--line),0 6px 18px -14px rgba(40,30,90,.35)}
+.ad.light .btn-secondary{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2),0 2px 6px -4px rgba(40,30,90,.3)}
+.ad.light .dialog,.ad.light .popover{background:#fff;box-shadow:inset 0 0 0 1px var(--line-2),0 24px 60px rgba(40,30,90,.25)}
+.ad.light .overlay{background:rgba(22,19,42,.35)}
+.ad.light .toast{background:#16132A}
+.ad.light .search,.ad.light .input,.ad.light .textarea,.ad.light .seg{box-shadow:inset 0 0 0 1px var(--line-2)}
+.ad.light .evidence{background:#FBFAFE}
+.ad.light .toggle::after{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.ad.light .blurbox{background:repeating-linear-gradient(135deg,#E7E3F2 0 14px,#DCD6EC 14px 28px)}
+.ad.light .blurbox.shown{background:linear-gradient(135deg,#CFC6E6,#B8ADD8)}
+.ad.light .alert-strip{background:linear-gradient(90deg,rgba(220,70,55,.12),rgba(220,70,55,.03))}
+.ad.light .tbl th{background:#FAF9FD}
+.ad.light .env{background:rgba(220,150,20,.1)}
+
+/* ===== Calm priority + admin layout (v2) ===== */
+.banner-hot{background:var(--hot-soft);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--hot) 28%,transparent)}.banner-hot .ic{color:var(--hot)}
+.attn-dot{width:8px;height:8px;border-radius:50%;background:var(--hot);flex-shrink:0;box-shadow:0 0 0 4px var(--hot-soft)}
+.attn{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.attn-list{display:flex;gap:8px;flex-wrap:wrap}
+.attn-chip{display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:0 12px;border-radius:999px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2);font-size:13px}
+.attn-chip:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--hot) 55%,transparent)}
+.attn-type{font-weight:700;color:var(--ink)}
+.attn-type::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--hot);margin-right:7px;vertical-align:middle}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:18px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-align:left;transition:box-shadow .15s}
+.stat:hover{box-shadow:inset 0 0 0 1px rgba(150,135,255,.5)}
+.stat-l{font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.01em}
+.stat-n{font-family:var(--display);font-size:30px;font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.stat-s{font-size:12.5px;color:var(--ink-3)}
+.stat-s.good{color:var(--ok)}.stat-s.bad{color:var(--hot)}
+.legend{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-3)}
+.lg{width:10px;height:10px;border-radius:3px;display:inline-block;margin-left:8px}
+.lg-r{background:var(--accent)}.lg-x{background:var(--ok)}
+.chart{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;height:180px;align-items:end;padding-top:18px}
+.col{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
+.bars{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:4px}
+.bar{width:min(18px,40%);border-radius:6px 6px 2px 2px;position:relative;min-height:4px}
+.bar-r{background:linear-gradient(180deg,#9C8DFF,#5A43EE)}
+.bar-x{background:linear-gradient(180deg,#6FF0B6,#1EA86C)}
+.bar-v{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:10.5px;color:var(--ink-3);font-weight:700}
+.col-l{font-size:11.5px;color:var(--ink-3);font-weight:700}
+.col:last-child .col-l{color:var(--accent-ink)}
+.track{height:8px;border-radius:999px;background:var(--surface-3);overflow:hidden}
+.fill{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#5A43EE,#9C8DFF)}
+.fill-soft{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent),var(--accent-hi))}
+.load{display:flex;align-items:center;gap:12px}
+.reason{display:flex;flex-direction:column;gap:6px}
+.wait-ic{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-ink);flex-shrink:0}
+.wait-n{font-family:var(--display);font-size:20px;font-weight:700;min-width:28px;text-align:right}
+.desk{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.next{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:22px;background:radial-gradient(120% 140% at 0% 0%,rgba(122,104,255,.2),transparent 60%),var(--surface);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.next-title{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.2;margin:4px 0 0;letter-spacing:-.01em}
+.desk-stats{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:10px}
+.ds{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-align:left}
+.ds:hover{box-shadow:inset 0 0 0 1px rgba(150,135,255,.5)}
+.ds .stat-n{font-size:24px;min-width:32px}
+.ds .stat-l{color:var(--ink-2);font-size:13.5px}
+.perm{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.perm-yes{color:var(--ok)}.perm-no{color:var(--ink-3);font-weight:500}.perm-view{color:var(--info)}
+.tbl th.perm-l{text-transform:none;letter-spacing:0;font-size:13.5px;font-weight:600;color:var(--ink);background:transparent;white-space:normal}
+.role-chip{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#2A1204;background:linear-gradient(180deg,#FFD58A,#F2A04F)}
+.env-chip{font-size:11.5px;font-weight:700;color:var(--warn);padding:4px 10px;border-radius:999px;background:var(--warn-soft);white-space:nowrap}
+.top-brand{display:none}
+.topnav{display:none}
+/* Admin keeps the side menu, marked as the admin console with a gold accent */
+.ad.is-admin .side{box-shadow:inset 2px 0 0 0 rgba(255,190,110,.55)}
+.ad.is-admin .side .brand-sub{color:var(--sun-hi)}
+.side-role{margin:10px 6px 0;display:flex}
+.ad.is-admin .page{max-width:1320px}
+.ad.light .topnav{background:rgba(255,255,255,.75)}
+.ad.light .role-chip{color:#3A1A02}
+.ad.light .next{background:radial-gradient(120% 140% at 0% 0%,rgba(122,104,255,.12),transparent 60%),#fff}
+@media (max-width:1180px){ .stats{grid-template-columns:repeat(2,minmax(0,1fr))} .desk{grid-template-columns:minmax(0,1fr)} .desk-stats{grid-template-rows:none;grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:640px){ .desk-stats{grid-template-columns:minmax(0,1fr)} .chart{gap:4px} .attn-list{width:100%} }
+</style>
+<button class="skip" onClick="{{skipToMain}}">Skip to main content</button>
+
+<!-- ============ SIGN IN ============ -->
+<sc-if value="{{signedOut}}" hint-placeholder-val="{{ false }}">
+<main class="signin" id="ad-main">
+  <div class="signin-card">
+    <div class="row" style="gap: 12px"><span class="brand-mark" style="width: 40px"><dc-import name="Flower" variant="mark" label="Lux Flow"></dc-import></span><div><div class="brand-name" style="font-size: 22px">Lux Flow</div><div class="brand-sub">Integrity · Admin</div></div></div>
+    <div class="stack-xs"><h1 class="h1">Staff sign-in</h1><p class="p muted">For Trust &amp; Safety reviewers and operators. Members can’t see this area.</p></div>
+    <sc-if value="{{si.pick}}" hint-placeholder-val="{{ true }}">
+      <div class="stack-sm" role="radiogroup" aria-label="Choose a staff account">
+        <sc-for list="{{si.accounts}}" as="a" hint-placeholder-count="3">
+          <button class="{{a.cls}}" role="radio" aria-checked="{{a.checked}}" onClick="{{a.pick}}"><span class="{{a.av}}">{{a.ini}}</span><span class="grow"><span class="opt-t">{{a.name}}</span><span class="opt-d">{{a.role}}</span></span><span class="radio" aria-hidden="true"></span></button>
+        </sc-for>
+      </div>
+      <button class="btn btn-primary" onClick="{{si.next}}">Continue</button>
+    </sc-if>
+    <sc-if value="{{si.codeStep}}" hint-placeholder-val="{{ false }}">
+      <div class="card stack-sm">
+        <div class="row"><span class="{{si.av}}">{{si.ini}}</span><div class="grow"><div class="h3">{{si.name}}</div><div class="meta">{{si.role}}</div></div><button class="link" onClick="{{si.back}}">Change</button></div>
+        <label class="field"><span class="label">Two-step verification code</span><input class="input" value="{{si.code}}" onChange="{{si.onCode}}" onKeyDown="{{si.onCodeKey}}" placeholder="6-digit code" aria-describedby="code-help" aria-invalid="{{si.invalid}}"></label>
+        <sc-if value="{{si.hasErr}}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">{{si.err}}</p></sc-if>
+        <p class="help" id="code-help">Prototype: type any 6 digits. The real console uses your staff account with two-step verification.</p>
+      </div>
+      <button class="btn btn-primary" onClick="{{si.submit}}">Sign in</button>
+    </sc-if>
+    <div class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Every action in this console is recorded in the audit log with your name, the reason and the time.</span></div>
+  </div>
+</main>
+</sc-if>
+
+<!-- ============ CONSOLE ============ -->
+<sc-if value="{{signedIn}}" hint-placeholder-val="{{ true }}">
+<div class="scrim" onClick="{{closeNav}}"></div>
+<aside class="side" aria-label="Admin navigation">
+  <div class="brand"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span><div><div class="brand-name">Lux Flow</div><div class="brand-sub">Integrity</div></div></div>
+  <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><div class="side-role"><span class="role-chip">Admin console</span></div></sc-if>
+  <div class="env"><strong>Prototype data.</strong> Decisions here change only this browser.</div>
+  <nav class="nav" aria-label="Sections">
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+      <sc-if value="{{n.isLabel}}" hint-placeholder-val="{{ false }}"><div class="nav-label">{{n.label}}</div></sc-if>
+      <sc-if value="{{n.isItem}}" hint-placeholder-val="{{ true }}"><button class="{{n.cls}}" aria-current="{{n.cur}}" onClick="{{n.go}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg><span>{{n.label}}</span><sc-if value="{{n.hasCount}}" hint-placeholder-val="{{ false }}"><span class="{{n.countCls}}" aria-label="{{n.countAria}}">{{n.count}}</span></sc-if></button></sc-if>
+    </sc-for>
+  </nav>
+  <div class="side-foot"><div class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg><span>Journals and unreported chats are never visible here.</span></div></div>
+</aside>
+<div class="main">
+  <header class="top">
+    <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><div class="top-brand"><span class="brand-mark" style="width: 26px"><dc-import name="Flower" variant="mark"></dc-import></span><span class="brand-name" style="font-size: 16px">Lux Flow</span><span class="role-chip">Admin console</span></div></sc-if>
+    <button class="icon-btn menu-btn" aria-label="Open navigation" onClick="{{openNav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.menu}}"></path></svg></button>
+    <div class="pop-wrap grow" style="max-width: 440px">
+      <label class="search"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search cases and members</span><input value="{{gSearch}}" onChange="{{onGSearch}}" placeholder="Search cases, members or IDs"></label>
+      <sc-if value="{{gs.open}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" style="left: 0; right: auto; width: 100%" role="listbox" aria-label="Search results">
+          <sc-for list="{{gs.items}}" as="r" hint-placeholder-count="4"><button class="pop-item" role="option" aria-selected="false" onClick="{{r.go}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{r.icon}}"></path></svg><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{r.title}}</span><span class="meta">{{r.sub}}</span></span></button></sc-for>
+          <sc-if value="{{gs.none}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 10px">No cases or members match “{{gSearch}}”.</p></sc-if>
+        </div>
+      </sc-if>
+    </div>
+    <span class="grow"></span>
+    <button class="icon-btn" aria-label="{{themeAria}}" onClick="{{toggleTheme}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{themeIcon}}"></path></svg></button>
+    <div class="pop-wrap">
+      <button class="icon-btn" aria-label="{{alertsAria}}" aria-expanded="{{alertsExp}}" onClick="{{toggleAlerts}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg><sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}"><span class="icon-dot" aria-hidden="true"></span></sc-if></button>
+      <sc-if value="{{popAlerts}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" role="dialog" aria-label="Urgent alerts">
+          <div class="row" style="padding: 6px 10px 8px"><span class="h3 grow">Urgent alerts</span><span class="meta">Sent to both reviewers</span></div>
+          <sc-for list="{{urgentList}}" as="u" hint-placeholder-count="2"><button class="pop-item" onClick="{{u.go}}"><span class="pulse" style="margin-top: 5px" aria-hidden="true"></span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{u.type}} · {{u.id}}</span><span class="meta">{{u.title}} · waiting {{u.age}}</span></span></button></sc-for>
+          <sc-if value="{{noUrgent}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 10px">No urgent alerts. Threats, child-safety concerns and exposed private details will appear here and notify both reviewers.</p></sc-if>
+        </div>
+      </sc-if>
+    </div>
+    <div class="pop-wrap">
+      <button class="row" style="gap: 8px; padding: 4px 6px; border-radius: 12px" aria-label="{{meAria}}" aria-expanded="{{meExp}}" onClick="{{toggleMe}}"><span class="{{meAv}}">{{me.ini}}</span><span class="hide-sm" style="text-align: left"><span class="h3" style="display: block; font-size: 13.5px">{{me.name}}</span><span class="meta">{{me.role}}</span></span></button>
+      <sc-if value="{{popMe}}" hint-placeholder-val="{{ false }}">
+        <div class="popover" style="width: 290px" role="dialog" aria-label="Account">
+          <div style="padding: 8px 10px" class="meta">Switch account (prototype)</div>
+          <sc-for list="{{switchList}}" as="w" hint-placeholder-count="2"><button class="pop-item" onClick="{{w.go}}"><span class="{{w.av}}">{{w.ini}}</span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{w.name}}</span><span class="meta">{{w.role}}</span></span></button></sc-for>
+          <button class="pop-item" onClick="{{signOut}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.signout}}"></path></svg><span class="h3" style="font-size: 13.5px">Sign out</span></button>
+        </div>
+      </sc-if>
+    </div>
+  </header>
+  <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}">
+  <nav class="topnav" aria-label="Sections">
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="8"><sc-if value="{{n.isItem}}" hint-placeholder-val="{{ true }}"><button class="{{n.tnCls}}" aria-current="{{n.cur}}" onClick="{{n.go}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg>{{n.label}}<sc-if value="{{n.hasCount}}" hint-placeholder-val="{{ false }}"><span class="{{n.countCls}}" aria-label="{{n.countAria}}">{{n.count}}</span></sc-if></button></sc-if></sc-for>
+    <span class="grow"></span><span class="env-chip" title="Decisions here change only this browser">Prototype data</span>
+  </nav>
+  </sc-if>
+
+  <main class="scroll" id="ad-main" ref="{{setScroll}}">
+  <div class="page">
+
+  <sc-if value="{{viewOnly}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><p class="p small"><strong>View-only role.</strong> You can look at queues and records, but decisions need a reviewer. (Prototype: permissions are simulated in this browser and aren’t production security.)</p></div></sc-if>
+
+  <!-- ============ OVERVIEW · ADMIN ============ -->
+  <sc-if value="{{ovAdmin}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">Admin console · {{todayLabel}}</div><h1 class="h1">Platform overview</h1><p class="p muted">{{ov.summary}}</p></div><div class="row-wrap"><button class="btn btn-secondary" onClick="{{goTeam}}">Manage team</button><button class="btn btn-primary" onClick="{{goQueue}}">Open the queue</button></div></div>
+    <sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}">
+      <section class="attn" aria-label="Needs attention"><span class="attn-dot" aria-hidden="true"></span><div class="grow stack-xs"><div class="h3">{{ov.urgentTitle}}</div><div class="meta">{{ov.urgentSub}}</div></div>
+        <div class="attn-list"><sc-for list="{{urgentList}}" as="u" hint-placeholder-count="3"><button class="attn-chip" onClick="{{u.go}}"><span class="attn-type">{{u.type}}</span><span class="meta mono">{{u.age}}</span></button></sc-for></div></section>
+    </sc-if>
+    <section class="stats" aria-label="Health at a glance">
+      <sc-for list="{{ov.stats}}" as="k" hint-placeholder-count="4"><button class="stat" onClick="{{k.go}}"><span class="stat-l">{{k.label}}</span><span class="stat-n mono">{{k.n}}</span><span class="{{k.subCls}}">{{k.sub}}</span></button></sc-for>
+    </section>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card" aria-label="Queue this week"><div class="card-head"><div class="grow"><h2 class="h2">Queue this week</h2><p class="meta">Reports and edits received vs. decided</p></div><span class="legend"><span class="lg lg-r"></span>Received<span class="lg lg-x"></span>Decided</span></div>
+          <div class="chart" role="img" aria-label="{{ov.chartAria}}"><sc-for list="{{ov.week}}" as="w" hint-placeholder-count="7"><div class="col"><div class="bars"><span class="bar bar-r" style="{{w.rh}}"><span class="bar-v">{{w.r}}</span></span><span class="bar bar-x" style="{{w.xh}}"><span class="bar-v">{{w.x}}</span></span></div><span class="col-l">{{w.d}}</span></div></sc-for></div>
+          <p class="meta" style="margin-top: 10px">Earlier days are sample data. Today counts live from this prototype.</p>
+        </section>
+        <section class="card" aria-label="Reviewer workload"><div class="card-head"><h2 class="h2 grow">Reviewer workload</h2><button class="link" onClick="{{goTeam}}">Team &amp; roles</button></div>
+          <div class="stack-sm"><sc-for list="{{ov.load}}" as="l" hint-placeholder-count="2"><div class="load"><span class="{{l.av}}">{{l.ini}}</span><div class="grow stack-xs"><div class="row"><span class="h3 grow">{{l.name}}</span><span class="meta">{{l.line}}</span></div><div class="track"><span class="fill" style="{{l.w}}"></span></div></div></div></sc-for></div>
+          <p class="meta" style="margin-top: 12px">Urgent cases alert both reviewers. Appeals always go to the reviewer who didn’t make the original decision.</p>
+        </section>
+      </div>
+      <div class="stack">
+        <section class="card" aria-label="Waiting for a decision"><div class="card-head"><h2 class="h2 grow">Waiting for a decision</h2></div>
+          <div class="list"><sc-for list="{{ov.waiting}}" as="w" hint-placeholder-count="4"><button class="list-row" onClick="{{w.go}}"><span class="wait-ic"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{w.icon}}"></path></svg></span><span class="grow"><span class="h3" style="display: block; font-size: 14px">{{w.label}}</span><span class="meta">{{w.sub}}</span></span><span class="wait-n mono">{{w.n}}</span></button></sc-for></div>
+        </section>
+        <section class="card" aria-label="Open items by reason"><div class="card-head"><h2 class="h2 grow">Open items by reason</h2></div>
+          <div class="stack-sm"><sc-for list="{{ov.reasons}}" as="r" hint-placeholder-count="4"><div class="reason"><div class="row"><span class="small grow">{{r.label}}</span><span class="small mono">{{r.n}}</span></div><div class="track"><span class="fill fill-soft" style="{{r.w}}"></span></div></div></sc-for></div>
+        </section>
+        <section class="card" aria-label="Recent activity"><div class="card-head"><h2 class="h2 grow">Recent activity</h2><button class="link" onClick="{{goAudit}}">Audit log</button></div>
+          <div class="timeline"><sc-for list="{{ov.recent}}" as="r" hint-placeholder-count="4"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small"><strong>{{r.who}}</strong> {{r.action}}</div><div class="meta">{{r.target}} · {{r.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ OVERVIEW · REVIEWER DESK ============ -->
+  <sc-if value="{{ovDesk}}" hint-placeholder-val="{{ true }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">{{todayLabel}}</div><h1 class="h1">Good to see you, {{me.first}}.</h1><p class="p muted">{{ov.summary}}</p></div></div>
+    <div class="desk">
+      <section class="next" aria-label="Next up">
+        <sc-if value="{{nx.has}}" hint-placeholder-val="{{ true }}">
+          <div class="eyebrow" style="color: var(--accent-ink)">{{nx.eyebrow}}</div>
+          <div class="row-wrap"><span class="{{nx.priCls}}">{{nx.pri}}</span><span class="badge b-neutral">{{nx.category}}</span><span class="meta mono">{{nx.id}} · waiting {{nx.age}}</span></div>
+          <h2 class="next-title">{{nx.title}}</h2><p class="meta">{{nx.where}}</p>
+          <div class="row-wrap" style="margin-top: 6px"><button class="btn btn-primary" onClick="{{nx.go}}">{{nx.cta}}</button><button class="btn btn-ghost" onClick="{{goQueue}}">See the full queue</button></div>
+          <p class="meta">Picked by priority, then by how long it’s been waiting.</p>
+        </sc-if>
+        <sc-if value="{{nx.none}}" hint-placeholder-val="{{ false }}"><div class="eyebrow">Next up</div><h2 class="next-title">You’re all caught up.</h2><p class="meta">New reports and flagged edits will appear in the queue.</p></sc-if>
+      </section>
+      <section class="desk-stats" aria-label="At a glance"><sc-for list="{{ov.deskStats}}" as="k" hint-placeholder-count="3"><button class="ds" onClick="{{k.go}}"><span class="stat-n mono">{{k.n}}</span><span class="stat-l">{{k.label}}</span></button></sc-for></section>
+    </div>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card" aria-label="Your work"><div class="card-head"><h2 class="h2 grow">Your work</h2><span class="meta">{{ov.mineCount}}</span></div>
+          <div class="list">
+            <sc-for list="{{ov.mine}}" as="m" hint-placeholder-count="3"><button class="list-row" onClick="{{m.go}}"><span class="{{m.badge}}">{{m.tag}}</span><span class="grow"><span class="h3" style="display: block">{{m.title}}</span><span class="meta">{{m.sub}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for>
+            <sc-if value="{{ov.mineEmpty}}" hint-placeholder-val="{{ false }}"><p class="meta" style="padding: 8px 4px">Nothing is assigned to you right now. Pick up an unassigned case from the queue.</p></sc-if>
+          </div>
+        </section>
+        <sc-if value="{{hasUrgent}}" hint-placeholder-val="{{ false }}">
+          <section class="card" aria-label="Urgent cases"><div class="card-head"><span class="attn-dot" aria-hidden="true"></span><h2 class="h2 grow">Urgent · same day</h2><span class="meta">Both reviewers alerted</span></div>
+            <div class="list"><sc-for list="{{urgentList}}" as="u" hint-placeholder-count="3"><button class="list-row" onClick="{{u.go}}"><span class="badge b-urgent">{{u.type}}</span><span class="grow"><span class="h3" style="display: block">{{u.title}}</span><span class="meta">{{u.id}} · waiting {{u.age}} · {{u.assigned}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+          </section>
+        </sc-if>
+      </div>
+      <div class="stack">
+        <section class="card ai-box" aria-label="AI assistance"><div class="row"><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>AI assistance</span></div>
+          <p class="p small muted">AI helps sort and flag. People make every decision.</p>
+          <div class="ai-cols">
+            <div class="stack-xs"><div class="eyebrow">AI may</div><sc-for list="{{aiMay}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-yes"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg>{{x}}</span></sc-for></div>
+            <div class="stack-xs"><div class="eyebrow">AI must not</div><sc-for list="{{aiNot}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-no"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.block}}"></path></svg>{{x}}</span></sc-for></div>
+          </div>
+        </section>
+        <section class="card" aria-label="Recent activity"><div class="card-head"><h2 class="h2 grow">Recent activity</h2><button class="link" onClick="{{goAudit}}">Audit log</button></div>
+          <div class="timeline"><sc-for list="{{ov.recent}}" as="r" hint-placeholder-count="4"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small"><strong>{{r.who}}</strong> {{r.action}}</div><div class="meta">{{r.target}} · {{r.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ QUEUE ============ -->
+  <sc-if value="{{pg.queue}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Queue</h1><p class="p muted">Reports and flagged edits in one place, sorted by priority, then by waiting time.</p></div><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>Priority suggested by AI · people decide</span></div>
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Type"><sc-for list="{{qf.types}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <div class="seg" role="group" aria-label="Status"><sc-for list="{{qf.statuses}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 280px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Filter the queue</span><input value="{{qSearch}}" onChange="{{onQSearch}}" placeholder="Filter by ID, member or reason"></label>
+    </div>
+    <div class="row-wrap" role="group" aria-label="Priority"><span class="meta">Priority:</span><sc-for list="{{qf.pris}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap">
+      <table class="tbl"><caption class="sr-only">Queue, {{qf.count}} items</caption>
+        <thead><tr><th scope="col">Priority</th><th scope="col">Item</th><th scope="col" class="opt">Type</th><th scope="col">Waiting</th><th scope="col">Status</th><th scope="col" class="opt">Assigned</th></tr></thead>
+        <tbody>
+          <sc-for list="{{qf.rows}}" as="r" hint-placeholder-count="6">
+            <tr class="{{r.trCls}}"><td><span class="{{r.priCls}}">{{r.pri}}</span></td><td><button class="row-open" onClick="{{r.open}}"><span class="row-title">{{r.title}}</span><span class="row-sub">{{r.id}} · {{r.sub}}</span></button></td><td class="opt">{{r.type}}</td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td><td class="opt"><span class="who"><sc-if value="{{r.hasWho}}" hint-placeholder-val="{{ false }}"><span class="{{r.whoAv}}">{{r.whoIni}}</span></sc-if>{{r.whoName}}</span></td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <sc-if value="{{qf.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty stack-sm" style="align-items: center"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ok)"><path d="{{ic.check}}"></path></svg><div class="h3">{{qf.emptyTitle}}</div><p class="meta">{{qf.emptyText}}</p></div></sc-if>
+    </div>
+    <p class="meta">{{qf.count}} shown. A report is a signal, not a verdict — the number of reports is never proof on its own.</p>
+  </sc-if>
+
+  <!-- ============ CASE DETAIL ============ -->
+  <sc-if value="{{pg.case}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goQueue}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Queue</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{cs.priCls}}">{{cs.pri}}</span><span class="{{cs.stCls}}">{{cs.st}}</span><span class="badge b-neutral">{{cs.category}}</span><span class="meta mono">{{cs.id}} · waiting {{cs.age}}</span></div><h1 class="h1">{{cs.title}}</h1><p class="meta">{{cs.where}}</p></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg><p class="p small">{{cs.ai}}</p></div>
+    <sc-if value="{{cs.isChild}}" hint-placeholder-val="{{ false }}"><div class="banner banner-hot"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.alert}}"></path></svg><div class="stack-xs"><p class="p small"><strong>Child-safety escalation.</strong> Take protective action first, then decide. Both reviewers have been alerted.</p><p class="p small">Where the law requires it, report to the authorities using the agreed process. (Placeholder — the legal escalation process still needs Quinn’s approval.)</p></div></div></sc-if>
+    <sc-if value="{{cs.isConfirm}}" hint-placeholder-val="{{ false }}"><div class="banner banner-warn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.scale}}"></path></svg><div class="grow stack-sm"><p class="p small"><strong>{{cs.confirmTitle}}</strong> {{cs.confirmText}}</p><sc-if value="{{cs.canConfirm}}" hint-placeholder-val="{{ false }}"><div class="row-wrap"><button class="btn btn-danger btn-sm" onClick="{{cs.confirmSusp}}">Confirm suspension</button><button class="btn btn-secondary btn-sm" onClick="{{cs.sendBack}}">Send back</button></div></sc-if></div></div></sc-if>
+    <div class="case-grid">
+      <div class="stack">
+        <sc-if value="{{cs.isReport}}" hint-placeholder-val="{{ true }}">
+          <section class="card stack-sm" aria-label="Reported item"><h2 class="h2">Reported item</h2>
+            <sc-if value="{{cs.image}}" hint-placeholder-val="{{ false }}"><div class="{{cs.blurCls}}"><div class="blur-msg"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="{{cs.blurIcon}}"></path></svg><p class="p small">{{cs.blurText}}</p><button class="btn btn-secondary btn-sm" onClick="{{cs.toggleReveal}}">{{cs.revealLabel}}</button></div></div></sc-if>
+            <div class="evidence"><div class="evidence-label"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.file}}"></path></svg>{{cs.objType}} · content as reported</div>{{cs.excerpt}}</div>
+            <div class="evidence"><div class="evidence-label"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.flag}}"></path></svg>Reporter’s note · {{cs.reporter}}</div>{{cs.reporterNote}}</div>
+            <p class="meta">{{cs.reportsLine}} The reporter’s identity is never shown to the reported member.</p>
+          </section>
+        </sc-if>
+        <sc-if value="{{cs.isEdit}}" hint-placeholder-val="{{ false }}">
+          <section class="card stack-sm" aria-label="Edit comparison"><h2 class="h2">Original and proposed edit</h2>
+            <p class="meta">The original post stays live while this edit is reviewed. The author sees “Edit under review”.</p>
+            <div class="diff"><div class="evidence"><div class="evidence-label">Original</div><sc-for list="{{cs.orig}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></sc-for></div><div class="evidence"><div class="evidence-label">Proposed edit</div><sc-for list="{{cs.next}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></sc-for></div></div>
+          </section>
+          <section class="card stack-sm" aria-label="Six-area check"><div class="row"><h2 class="h2 grow">Six-area check</h2><span class="badge b-ai"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg>AI check</span></div>
+            <div class="areas"><sc-for list="{{cs.areas}}" as="a" hint-placeholder-count="6"><div class="{{a.cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{a.icon}}"></path></svg><div><div class="h3" style="font-size: 13px">{{a.n}}</div><div class="meta">{{a.note}}</div></div></div></sc-for></div>
+            <p class="meta">AI may approve or escalate edits. It can only reject for a clear policy violation — anything else comes to a person.</p>
+          </section>
+        </sc-if>
+        <section class="card stack-sm" aria-label="Member involved"><div class="card-head" style="margin: 0"><h2 class="h2 grow">Member involved</h2><button class="link" onClick="{{cs.openMember}}">Open member</button></div>
+          <div class="row"><span class="av">{{cs.m.ini}}</span><div class="grow"><div class="h3">{{cs.m.name}}</div><div class="meta">@{{cs.m.handle}} · joined {{cs.m.joined}}</div></div></div>
+          <dl class="kv"><dt>Verification</dt><dd>{{cs.m.ver}}</dd><dt>Trust</dt><dd>{{cs.m.trust}}</dd><dt>Standing</dt><dd class="{{cs.m.stdCls}}">{{cs.m.standing}}</dd><dt>Other open reports</dt><dd>{{cs.m.openOther}}</dd><dt>Past decisions</dt><dd>{{cs.m.past}}</dd></dl>
+          <p class="meta">Open reports are allegations, not findings. Only decided cases count as findings.</p>
+        </section>
+        <section class="card stack-sm" aria-label="Not available to reviewers"><h2 class="h3">Not available to reviewers</h2>
+          <div class="hidden-list"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Chat history beyond the reported messages</span><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Journal entries — private to the member, always</span><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eyeoff}}"></path></svg>Legal name and ID images — held by the verification provider</span></div>
+        </section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm" aria-label="Actions"><h2 class="h2">Actions</h2>
+          <div class="row"><span class="meta grow">Assigned to</span><span class="who"><sc-if value="{{cs.hasWho}}" hint-placeholder-val="{{ false }}"><span class="{{cs.whoAv}}">{{cs.whoIni}}</span></sc-if><strong style="font-size: 13.5px">{{cs.whoName}}</strong></span></div>
+          <sc-if value="{{cs.open}}" hint-placeholder-val="{{ true }}">
+            <div class="row-wrap"><sc-if value="{{cs.canTake}}" hint-placeholder-val="{{ true }}"><button class="btn btn-secondary btn-sm" disabled="{{cs.locked}}" onClick="{{cs.take}}">Assign to me</button></sc-if><sc-if value="{{cs.canHand}}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost btn-sm" disabled="{{cs.locked}}" onClick="{{cs.hand}}">{{cs.handLabel}}</button></sc-if></div>
+            <sc-if value="{{cs.isReport}}" hint-placeholder-val="{{ true }}">
+              <button class="opt-row" disabled="{{cs.locked}}" onClick="{{cs.toggleProtect}}" aria-pressed="{{cs.protectPressed}}"><span class="box" aria-hidden="true"><sc-if value="{{cs.protected}}" hint-placeholder-val="{{ false }}"><svg class="ic ic-xs" viewBox="0 0 24 24"><path d="{{ic.check}}"></path></svg></sc-if></span><span class="grow"><span class="opt-t">Protective action</span><span class="opt-d">Hide the item while you review. Temporary — not a finding.</span></span></button>
+              <button class="btn btn-primary" disabled="{{cs.locked}}" onClick="{{cs.decide}}">Make a decision</button>
+            </sc-if>
+            <sc-if value="{{cs.isEdit}}" hint-placeholder-val="{{ false }}">
+              <div class="row-wrap"><button class="btn btn-ok" disabled="{{cs.locked}}" onClick="{{cs.approveEdit}}">Approve edit</button><button class="btn btn-secondary" disabled="{{cs.locked}}" onClick="{{cs.rejectEdit}}">Reject edit</button></div>
+            </sc-if>
+            <sc-if value="{{cs.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>{{cs.lockText}}</span></p></sc-if>
+          </sc-if>
+          <sc-if value="{{cs.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{cs.outcome}}</strong><br>{{cs.outcomeBy}}</p></div><p class="meta">The member was notified and can ask for a review. Appeals go to a different reviewer.</p></sc-if>
+        </section>
+        <sc-if value="{{cs.hasMemberNote}}" hint-placeholder-val="{{ false }}"><section class="card stack-sm" aria-label="Message sent to member"><h2 class="h3">Message sent to the member</h2><div class="preview">{{cs.memberNote}}</div></section></sc-if>
+        <section class="card stack-sm" aria-label="Case history"><h2 class="h3">Case history</h2>
+          <div class="timeline"><sc-for list="{{cs.history}}" as="h" hint-placeholder-count="3"><div class="tl-item"><span class="{{h.dot}}" aria-hidden="true"></span><div class="grow"><div class="small">{{h.what}}</div><div class="meta">{{h.who}} · {{h.at}}</div></div></div></sc-for></div>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ APPEALS ============ -->
+  <sc-if value="{{pg.appeals}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Appeals</h1><p class="p muted">Each appeal goes to a different reviewer from the person who made the original decision.</p></div></div>
+    <div class="seg" role="group" aria-label="Show"><sc-for list="{{ap.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Appeals</caption>
+      <thead><tr><th scope="col">Appeal</th><th scope="col" class="opt">Original decision</th><th scope="col">Assigned to</th><th scope="col">Waiting</th><th scope="col">Status</th></tr></thead>
+      <tbody><sc-for list="{{ap.rows}}" as="r" hint-placeholder-count="2"><tr><td><button class="row-open" onClick="{{r.open}}"><span class="row-title">{{r.title}}</span><span class="row-sub">{{r.id}} · {{r.member}}</span></button></td><td class="opt"><span class="small">{{r.decision}}</span><br><span class="meta">by {{r.by}}</span></td><td><span class="who"><span class="{{r.toAv}}">{{r.toIni}}</span>{{r.to}}</span></td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td></tr></sc-for></tbody>
+    </table><sc-if value="{{ap.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">{{ap.emptyTitle}}</div><p class="meta">{{ap.emptyText}}</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.appeal}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goAppeals}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Appeals</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{al.stCls}}">{{al.st}}</span><span class="meta mono">{{al.id}} · about {{al.caseRef}} · waiting {{al.age}}</span></div><h1 class="h1">{{al.title}}</h1></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.swap}}"></path></svg><p class="p small">{{al.assignText}}</p></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Original decision</h2><dl class="kv"><dt>Decision</dt><dd>{{al.decision}}</dd><dt>Decided by</dt><dd>{{al.by}}</dd><dt>Member</dt><dd>{{al.member}}</dd></dl></section>
+        <section class="card stack-sm"><h2 class="h2">What the member said</h2><div class="evidence">{{al.statement}}</div><p class="meta">Review the evidence fresh. Correct the record if the original decision was wrong.</p></section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Decision</h2>
+          <sc-if value="{{al.open}}" hint-placeholder-val="{{ true }}"><button class="btn btn-primary" disabled="{{al.locked}}" onClick="{{al.decide}}">Decide this appeal</button><sc-if value="{{al.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>{{al.lockText}}</span></p></sc-if></sc-if>
+          <sc-if value="{{al.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{al.outcome}}</strong><br>{{al.outcomeBy}}</p></div></sc-if>
+        </section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ TRUSTED ============ -->
+  <sc-if value="{{pg.trusted}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Trusted applications</h1><p class="p muted">A person reviews every application. Verification alone never makes someone Trusted.</p></div></div>
+    <div class="seg" role="group" aria-label="Show"><sc-for list="{{tr.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Trusted applications</caption>
+      <thead><tr><th scope="col">Applicant</th><th scope="col">Responsibility</th><th scope="col">Waiting</th><th scope="col">Status</th></tr></thead>
+      <tbody><sc-for list="{{tr.rows}}" as="r" hint-placeholder-count="2"><tr><td><button class="row-open who" onClick="{{r.open}}"><span class="av av-sm">{{r.ini}}</span><span><span class="row-title">{{r.name}}</span><span class="row-sub">{{r.id}}</span></span></button></td><td>{{r.path}}</td><td class="mono">{{r.age}}</td><td><span class="{{r.stCls}}">{{r.st}}</span></td></tr></sc-for></tbody>
+    </table><sc-if value="{{tr.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No applications here</div><p class="meta">New applications appear in Pending.</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.app}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goTrusted}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Trusted applications</button>
+    <div class="page-head"><div class="prof-head grow"><span class="av av-lg">{{ta.ini}}</span><div class="stack-xs"><div class="row-wrap"><span class="{{ta.stCls}}">{{ta.st}}</span><span class="meta mono">{{ta.id}} · submitted {{ta.age}} ago</span></div><h1 class="h1">{{ta.name}}</h1><p class="meta">Applying for: <strong style="color: var(--ink)">{{ta.path}}</strong></p></div></div></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.ai}}"></path></svg><p class="p small">AI doesn’t approve or decline Trusted applications, and doesn’t judge character, health or qualifications. You decide.</p></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Application</h2><sc-for list="{{ta.answers}}" as="a" hint-placeholder-count="2"><div class="stack-xs"><div class="label">{{a.q}}</div><div class="evidence">{{a.a}}</div></div></sc-for></section>
+        <section class="card stack-sm"><h2 class="h2">Participation record</h2>
+          <div class="list"><sc-for list="{{ta.record}}" as="r" hint-placeholder-count="4"><div class="list-row"><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{r.l}}</span><span class="small">{{r.v}}</span></span><span class="{{r.badge}}">{{r.kind}}</span></div></sc-for></div>
+          <p class="meta">“Recorded” comes from Lux Flow activity. “Self-reported” is the member’s own description and hasn’t been checked.</p>
+        </section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Decision</h2>
+          <sc-if value="{{ta.isPending}}" hint-placeholder-val="{{ true }}"><button class="btn btn-ok" disabled="{{ta.locked}}" onClick="{{ta.approve}}">Approve</button><button class="btn btn-secondary" disabled="{{ta.locked}}" onClick="{{ta.info}}">Ask for more information</button><button class="btn btn-ghost" disabled="{{ta.locked}}" onClick="{{ta.decline}}">Decline</button></sc-if>
+          <sc-if value="{{ta.isApproved}}" hint-placeholder-val="{{ false }}"><p class="p small muted">Trusted status is reviewed over time and can be removed.</p><button class="btn btn-secondary" disabled="{{ta.locked}}" onClick="{{ta.revoke}}">Remove Trusted status</button></sc-if>
+          <sc-if value="{{ta.hasNote}}" hint-placeholder-val="{{ false }}"><div class="preview"><strong>{{ta.noteTitle}}</strong><br>{{ta.note}}</div></sc-if>
+          <sc-if value="{{ta.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Your role can view applications but can’t decide them.</span></p></sc-if>
+        </section>
+        <section class="card stack-sm"><h2 class="h3">Decision history</h2><div class="timeline"><sc-for list="{{ta.history}}" as="h" hint-placeholder-count="2"><div class="tl-item"><span class="{{h.dot}}" aria-hidden="true"></span><div class="grow"><div class="small">{{h.what}}</div><div class="meta">{{h.who}} · {{h.at}}</div></div></div></sc-for></div></section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ VERIFICATION ============ -->
+  <sc-if value="{{pg.verify}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Verification flags</h1><p class="p muted">Identity checks run with the verification provider. Flags come here for a person — never an automatic ban.</p></div></div>
+    <div class="stack-sm"><sc-for list="{{vf.rows}}" as="r" hint-placeholder-count="3"><button class="card card-tight list-row" style="border-bottom: 0" onClick="{{r.open}}"><span class="av"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.idcard}}"></path></svg></span><span class="grow"><span class="row-wrap" style="margin-bottom: 2px"><span class="h3">{{r.title}}</span><span class="{{r.stCls}}">{{r.st}}</span></span><span class="meta">{{r.id}} · {{r.who}} · waiting {{r.age}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+  </sc-if>
+
+  <sc-if value="{{pg.vflag}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goVerify}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Verification flags</button>
+    <div class="page-head"><div class="grow stack-sm"><div class="row-wrap"><span class="{{vd.stCls}}">{{vd.st}}</span><span class="meta mono">{{vd.id}} · waiting {{vd.age}}</span></div><h1 class="h1">{{vd.title}}</h1></div></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">What happened</h2><p class="p">{{vd.detail}}</p></section>
+        <section class="card stack-sm"><h2 class="h2">Accounts</h2><div class="list"><sc-for list="{{vd.accounts}}" as="a" hint-placeholder-count="2"><button class="list-row" onClick="{{a.open}}"><span class="av">{{a.ini}}</span><span class="grow"><span class="h3" style="display: block">{{a.name}}</span><span class="meta">@{{a.handle}} · joined {{a.joined}} · {{a.ver}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div>
+          <p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>You see the provider’s match reference only. Legal names and ID images stay with the verification provider.</span></p></section>
+      </div>
+      <div class="rail"><section class="card stack-sm"><h2 class="h2">Resolve</h2>
+        <sc-if value="{{vd.open}}" hint-placeholder-val="{{ true }}"><button class="btn btn-primary" disabled="{{vd.locked}}" onClick="{{vd.resolve}}">Choose an outcome</button><sc-if value="{{vd.locked}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Your role can view flags but can’t resolve them.</span></p></sc-if></sc-if>
+        <sc-if value="{{vd.done}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><p class="p small"><strong>{{vd.outcome}}</strong><br>{{vd.outcomeBy}}</p></div></sc-if>
+      </section></div>
+    </div>
+  </sc-if>
+
+  <!-- ============ MEMBERS ============ -->
+  <sc-if value="{{pg.members}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Members</h1><p class="p muted">Display names, verification and standing. Legal identity is never shown here.</p></div></div>
+    <div class="toolbar"><div class="seg" role="group" aria-label="Show"><sc-for list="{{mb.tabs}}" as="t" hint-placeholder-count="4"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 300px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search members</span><input value="{{mSearch}}" onChange="{{onMSearch}}" placeholder="Search by name or handle"></label></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Members</caption>
+      <thead><tr><th scope="col">Member</th><th scope="col">Verification</th><th scope="col" class="opt">Trust</th><th scope="col">Standing</th><th scope="col" class="opt">Open reports</th><th scope="col" class="opt">Joined</th></tr></thead>
+      <tbody><sc-for list="{{mb.rows}}" as="r" hint-placeholder-count="6"><tr><td><button class="row-open who" onClick="{{r.open}}"><span class="av av-sm">{{r.ini}}</span><span><span class="row-title">{{r.name}}</span><span class="row-sub">@{{r.handle}}</span></span></button></td><td><span class="{{r.verCls}}">{{r.ver}}</span></td><td class="opt small">{{r.trust}}</td><td class="{{r.stdCls}}"><strong style="font-size: 13px">{{r.standing}}</strong></td><td class="opt mono">{{r.openCnt}}</td><td class="opt meta">{{r.joined}}</td></tr></sc-for></tbody>
+    </table><sc-if value="{{mb.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No members match</div><p class="meta">Try another name, or clear the filter.</p></div></sc-if></div>
+  </sc-if>
+
+  <sc-if value="{{pg.member}}" hint-placeholder-val="{{ false }}">
+    <button class="crumb" onClick="{{goMembers}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Members</button>
+    <div class="page-head"><div class="prof-head grow"><span class="av av-lg">{{md.ini}}</span><div class="stack-xs"><h1 class="h1">{{md.name}}</h1><p class="meta">@{{md.handle}} · joined {{md.joined}}</p></div></div></div>
+    <div class="case-grid">
+      <div class="stack">
+        <section class="card stack-sm"><h2 class="h2">Account</h2><dl class="kv"><dt>Verification</dt><dd>{{md.ver}}</dd><dt>Trust</dt><dd>{{md.trust}}</dd><dt>Standing</dt><dd class="{{md.stdCls}}"><strong>{{md.standing}}</strong></dd><dt>Approximate area</dt><dd>{{md.area}}</dd><dt>Open reports</dt><dd>{{md.openReports}}</dd><dt>Findings</dt><dd>{{md.findings}}</dd></dl>
+          <p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>Not shown: legal name, ID images, exact location, Journal entries and unreported chats.</span></p></section>
+        <section class="card stack-sm"><h2 class="h2">Cases involving this member</h2><div class="list"><sc-for list="{{md.cases}}" as="c" hint-placeholder-count="2"><button class="list-row" onClick="{{c.open}}"><span class="{{c.stCls}}">{{c.st}}</span><span class="grow"><span class="h3" style="display: block; font-size: 13.5px">{{c.title}}</span><span class="meta">{{c.id}} · {{c.category}}</span></span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for><sc-if value="{{md.noCases}}" hint-placeholder-val="{{ false }}"><p class="meta">No cases.</p></sc-if></div></section>
+      </div>
+      <div class="rail">
+        <section class="card stack-sm"><h2 class="h2">Account actions</h2>
+          <sc-for list="{{md.actions}}" as="a" hint-placeholder-count="4"><button class="{{a.cls}}" disabled="{{a.disabled}}" onClick="{{a.go}}">{{a.label}}</button></sc-for>
+          <sc-if value="{{md.pendingSusp}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.clock}}"></path></svg><span>A suspension is waiting for a second reviewer.</span></p></sc-if>
+          <sc-if value="{{viewOnly}}" hint-placeholder-val="{{ false }}"><p class="lock-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span>View-only role — actions need a reviewer.</span></p></sc-if>
+        </section>
+        <section class="card stack-sm"><h2 class="h3">Standing history</h2><div class="timeline"><sc-for list="{{md.history}}" as="h" hint-placeholder-count="2"><div class="tl-item"><span class="tl-dot acc" aria-hidden="true"></span><div class="grow"><div class="small">{{h.action}}</div><div class="meta">{{h.who}} · {{h.at}} · {{h.reason}}</div></div></div></sc-for><sc-if value="{{md.noHistory}}" hint-placeholder-val="{{ false }}"><p class="meta">No actions recorded.</p></sc-if></div></section>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ AUDIT ============ -->
+  <sc-if value="{{pg.audit}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Audit log</h1><p class="p muted">Every reviewer action, with who, what, why and when. Entries can’t be edited or deleted.</p></div><button class="btn btn-secondary" disabled="{{cantExport}}" onClick="{{exportCsv}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.download}}"></path></svg>Export CSV</button></div>
+    <div class="toolbar"><div class="seg" role="group" aria-label="Reviewer"><sc-for list="{{lg.tabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+      <label class="search" style="max-width: 300px"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search the audit log</span><input value="{{lSearch}}" onChange="{{onLSearch}}" placeholder="Search actions, cases or reasons"></label></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Audit log</caption>
+      <thead><tr><th scope="col">When</th><th scope="col">Reviewer</th><th scope="col">Action</th><th scope="col" class="opt">Item</th><th scope="col" class="opt">Reason</th></tr></thead>
+      <tbody><sc-for list="{{lg.rows}}" as="r" hint-placeholder-count="6"><tr><td class="meta mono" style="white-space: nowrap">{{r.at}}</td><td><span class="who"><span class="{{r.av}}">{{r.ini}}</span>{{r.who}}</span></td><td><strong style="font-size: 13.5px">{{r.action}}</strong></td><td class="opt small">{{r.target}}</td><td class="opt meta">{{r.reason}}</td></tr></sc-for></tbody>
+    </table><sc-if value="{{lg.empty}}" hint-placeholder-val="{{ false }}"><div class="tbl-empty"><div class="h3">No entries match</div><p class="meta">Try another search or reviewer.</p></div></sc-if></div>
+  </sc-if>
+
+  <!-- ============ TEAM (admin) ============ -->
+  <sc-if value="{{pg.team}}" hint-placeholder-val="{{ false }}">
+    <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ true }}">
+    <div class="page-head"><div class="grow"><div class="eyebrow">Admin</div><h1 class="h1">Team &amp; roles</h1><p class="p muted">Who reviews, who can only view, and what each role is allowed to do.</p></div><button class="btn btn-primary" onClick="{{tm.invite}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg>Invite a team member</button></div>
+    <div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.info}}"></path></svg><p class="p small">{{tm.rule}}</p></div>
+    <div class="tbl-wrap"><table class="tbl"><caption class="sr-only">Team members</caption>
+      <thead><tr><th scope="col">Person</th><th scope="col">Role</th><th scope="col">Status</th><th scope="col" class="opt">Last active</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+      <tbody><sc-for list="{{tm.rows}}" as="r" hint-placeholder-count="3"><tr>
+        <td><span class="who"><span class="{{r.av}}">{{r.ini}}</span><span><span class="h3" style="display: block">{{r.name}}</span><span class="meta">{{r.note}}</span></span></span></td>
+        <td><sc-if value="{{r.fixed}}" hint-placeholder-val="{{ false }}"><span class="small"><strong>{{r.role}}</strong></span></sc-if><sc-if value="{{r.editable}}" hint-placeholder-val="{{ true }}"><div class="seg" role="radiogroup" aria-label="{{r.roleAria}}"><button class="{{r.revCls}}" role="radio" aria-checked="{{r.revOn}}" onClick="{{r.setRev}}">Reviewer</button><button class="{{r.opCls}}" role="radio" aria-checked="{{r.opOn}}" onClick="{{r.setOp}}">Operator</button></div></sc-if></td>
+        <td><span class="{{r.stCls}}">{{r.st}}</span></td><td class="opt meta">{{r.last}}</td>
+        <td style="text-align: right"><sc-if value="{{r.hasAct}}" hint-placeholder-val="{{ false }}"><button class="btn btn-ghost btn-sm" onClick="{{r.act}}">{{r.actLabel}}</button></sc-if></td>
+      </tr></sc-for></tbody>
+    </table></div>
+    <section class="card" aria-label="Permissions"><div class="card-head"><h2 class="h2 grow">What each role can do</h2><span class="meta">Simulated in this prototype — not production security</span></div>
+      <div class="tbl-wrap" style="box-shadow: none; background: transparent"><table class="tbl perm-tbl"><caption class="sr-only">Permissions by role</caption>
+        <thead><tr><th scope="col">Permission</th><th scope="col">Admin</th><th scope="col">Reviewer</th><th scope="col">Operator</th></tr></thead>
+        <tbody><sc-for list="{{tm.perms}}" as="p" hint-placeholder-count="6"><tr><th scope="row" class="perm-l">{{p.label}}</th><td><span class="{{p.c1cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c1icon}}"></path></svg>{{p.c1text}}</span></td><td><span class="{{p.c2cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c2icon}}"></path></svg>{{p.c2text}}</span></td><td><span class="{{p.c3cls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.c3icon}}"></path></svg>{{p.c3text}}</span></td></tr></sc-for></tbody>
+      </table></div>
+    </section>
+    </sc-if>
+    <sc-if value="{{notAdmin}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><p class="p small">Team &amp; roles is only available to the admin.</p></div></sc-if>
+  </sc-if>
+
+  <!-- ============ SETTINGS ============ -->
+  <sc-if value="{{pg.settings}}" hint-placeholder-val="{{ false }}">
+    <div class="page-head"><div class="grow"><h1 class="h1">Settings</h1><p class="p muted">How urgent alerts reach people, where AI helps, and your appearance.</p></div></div>
+    <sc-if value="{{notAdmin}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><p class="p small">AI and alert settings are managed by the admin. You can change your own appearance.</p></div></sc-if>
+    <div class="grid-2">
+      <div class="stack">
+        <section class="card stack-sm" aria-label="Team"><div class="row"><h2 class="h2 grow">Team</h2><sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><button class="link" onClick="{{goTeam}}">Manage team &amp; roles</button></sc-if></div>
+          <div class="list"><sc-for list="{{st.team}}" as="t" hint-placeholder-count="3"><div class="list-row"><span class="{{t.av}}">{{t.ini}}</span><span class="grow"><span class="h3" style="display: block">{{t.name}}</span><span class="meta">{{t.role}}</span></span><span class="small muted" style="max-width: 260px; text-align: right">{{t.can}}</span></div></sc-for></div>
+          <p class="meta">Phase 1 runs with at least two human reviewers. Quinn is the primary reviewer. The development team builds these tools but doesn’t moderate content.</p>
+        </section>
+        <section class="card stack-sm" aria-label="AI assistance"><h2 class="h2">AI assistance</h2>
+          <sc-for list="{{st.ai}}" as="a" hint-placeholder-count="3"><div class="row" style="justify-content: space-between; gap: 16px; padding: 6px 0"><div class="grow"><div class="h3">{{a.label}}</div><div class="meta">{{a.hint}}</div></div><button class="{{a.cls}}" role="switch" aria-checked="{{a.on}}" aria-label="{{a.label}}" disabled="{{a.disabled}}" onClick="{{a.toggle}}"></button></div></sc-for>
+          <div class="stack-xs" style="padding-top: 6px"><div class="eyebrow">Always off — can’t be enabled</div><sc-for list="{{aiNot}}" as="x" hint-placeholder-count="4"><span class="ai-li ai-no"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>{{x}}</span></sc-for></div>
+        </section>
+      </div>
+      <div class="stack">
+        <section class="card stack-sm" aria-label="Urgent alerts"><h2 class="h2">Urgent alerts</h2><p class="p small muted">Threats, child-safety concerns and exposed private details alert both reviewers. Aim for same-day review.</p>
+          <sc-for list="{{st.alerts}}" as="a" hint-placeholder-count="2"><div class="row" style="justify-content: space-between; gap: 16px; padding: 6px 0"><div class="grow"><div class="h3">{{a.label}}</div><div class="meta">{{a.hint}}</div></div><button class="{{a.cls}}" role="switch" aria-checked="{{a.on}}" aria-label="{{a.label}}" disabled="{{a.disabled}}" onClick="{{a.toggle}}"></button></div></sc-for>
+          <p class="meta">Notifications are simulated in this prototype.</p>
+        </section>
+        <section class="card stack-sm" aria-label="Appearance"><h2 class="h2">Appearance</h2><div class="seg" role="radiogroup" aria-label="Theme"><button class="{{st.darkCls}}" role="radio" aria-checked="{{st.darkOn}}" onClick="{{st.setDark}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.moon}}"></path></svg>Dark</button><button class="{{st.lightCls}}" role="radio" aria-checked="{{st.lightOn}}" onClick="{{st.setLight}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.sun}}"></path></svg>Light</button></div></section>
+        <sc-if value="{{isAdmin}}" hint-placeholder-val="{{ false }}"><section class="card stack-sm" aria-label="Prototype"><h2 class="h2">Prototype</h2><p class="p small muted">Start over with the sample cases, appeals and members.</p><button class="btn btn-secondary" onClick="{{askReset}}">Reset demo data</button></section></sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  </div>
+  </main>
+</div>
+
+<!-- ============ DIALOGS ============ -->
+<sc-if value="{{dlg.any}}" hint-placeholder-val="{{ false }}">
+<div class="overlay" onClick="{{closeDlgBg}}">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title" onClick="{{stop}}" ref="{{setDlg}}">
+    <div class="dialog-head"><div class="grow stack-xs"><h2 class="h2" id="dlg-title">{{dlg.title}}</h2><sc-if value="{{dlg.hasSub}}" hint-placeholder-val="{{ false }}"><p class="meta">{{dlg.sub}}</p></sc-if></div><button class="icon-btn" aria-label="Close" onClick="{{closeDlg}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></div>
+
+    <sc-if value="{{dlg.hasName}}" hint-placeholder-val="{{ false }}"><label class="field"><span class="label">Name</span><input class="input" value="{{dlg.name}}" onChange="{{dlg.onName}}" placeholder="e.g. Sam Okoye" aria-invalid="{{dlg.nameInvalid}}"></label></sc-if>
+    <sc-if value="{{dlg.hasOptions}}" hint-placeholder-val="{{ false }}">
+      <fieldset class="stack-sm" style="border: 0; margin: 0; padding: 0"><legend class="label" style="margin-bottom: 8px">{{dlg.optLegend}}</legend>
+        <div class="stack-sm" role="radiogroup" aria-label="{{dlg.optLegend}}"><sc-for list="{{dlg.options}}" as="o" hint-placeholder-count="4"><button class="{{o.cls}}" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}"><span class="radio" aria-hidden="true"></span><span class="grow"><span class="opt-t">{{o.label}}</span><span class="opt-d">{{o.hint}}</span></span></button></sc-for></div>
+      </fieldset>
+    </sc-if>
+    <sc-if value="{{dlg.hasLimit}}" hint-placeholder-val="{{ false }}"><div class="field"><span class="label">How long?</span><div class="seg" role="radiogroup" aria-label="Limit length"><sc-for list="{{dlg.limits}}" as="l" hint-placeholder-count="3"><button class="{{l.cls}}" role="radio" aria-checked="{{l.checked}}" onClick="{{l.pick}}">{{l.label}}</button></sc-for></div></div></sc-if>
+    <sc-if value="{{dlg.hasPolicy}}" hint-placeholder-val="{{ false }}">
+      <div class="field"><span class="label">{{dlg.policyLabel}}</span><div class="row-wrap" role="radiogroup" aria-label="{{dlg.policyLabel}}"><sc-for list="{{dlg.policies}}" as="p" hint-placeholder-count="5"><button class="{{p.cls}}" role="radio" aria-checked="{{p.checked}}" onClick="{{p.pick}}">{{p.label}}</button></sc-for></div></div>
+    </sc-if>
+    <sc-if value="{{dlg.hasArchive}}" hint-placeholder-val="{{ false }}">
+      <button class="{{dlg.archiveCls}}" aria-pressed="{{dlg.archivePressed}}" disabled="{{dlg.archiveForced}}" onClick="{{dlg.toggleArchive}}"><span class="box" aria-hidden="true"><sc-if value="{{dlg.archiveOn}}" hint-placeholder-val="{{ false }}"><svg class="ic ic-xs" viewBox="0 0 24 24"><path d="{{ic.check}}"></path></svg></sc-if></span><span class="grow"><span class="opt-t">Also clear saved Archive copies</span><span class="opt-d">{{dlg.archiveHint}}</span></span></button>
+    </sc-if>
+    <sc-if value="{{dlg.hasNote}}" hint-placeholder-val="{{ false }}">
+      <label class="field"><span class="label">{{dlg.noteLabel}}</span><textarea class="textarea" value="{{dlg.note}}" onChange="{{dlg.onNote}}" placeholder="{{dlg.notePh}}" aria-describedby="note-help" aria-invalid="{{dlg.noteInvalid}}"></textarea><span class="help" id="note-help">{{dlg.noteHelp}}</span></label>
+    </sc-if>
+    <sc-if value="{{dlg.hasInternal}}" hint-placeholder-val="{{ false }}"><label class="field"><span class="label">Internal note <span class="opt">· reviewers only, optional</span></span><textarea class="textarea" style="min-height: 64px" value="{{dlg.internal}}" onChange="{{dlg.onInternal}}" placeholder="Context for the other reviewer or a future appeal"></textarea></label></sc-if>
+    <sc-if value="{{dlg.hasPreview}}" hint-placeholder-val="{{ false }}"><div class="stack-xs"><span class="label">What the member will see</span><div class="preview">{{dlg.preview}}</div></div></sc-if>
+    <sc-if value="{{dlg.hasText}}" hint-placeholder-val="{{ false }}"><p class="p muted">{{dlg.text}}</p></sc-if>
+    <sc-if value="{{dlg.hasErr}}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">{{dlg.err}}</p></sc-if>
+    <div class="dialog-actions"><button class="btn btn-ghost" onClick="{{closeDlg}}">{{dlg.cancel}}</button><button class="{{dlg.okCls}}" onClick="{{dlg.ok}}">{{dlg.okLabel}}</button></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><span>{{toast}}</span><button class="icon-btn" style="width: 36px; height: 36px; color: #fff" aria-label="Dismiss" onClick="{{closeToast}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></div></sc-if>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+/* ===== Lux Flow Integrity — admin console prototype (simulated). Everything runs in this browser; nothing is sent anywhere.
+   Permissions are simulated to show the intended boundaries — they are not production security. ===== */
+var STORE = 'luxflow-admin-v1';
+var ICN = {
+  heart:'M12 20.5s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z',
+  menu:'M4 7h16M4 12h16M4 17h16',
+  flow:'M3 9.5c2.2-2.7 4.8-2.7 7 0s4.8 2.7 7 0c1-1.2 2-1.9 4-2M3 15.5c2.2-2.7 4.8-2.7 7 0s4.8 2.7 7 0c1-1.2 2-1.9 4-2',
+  home:'M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z',
+  chat:'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
+  people:'M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5M16 4.3a3.5 3.5 0 0 1 0 6.4M18 14.8c2 .7 3.2 2.6 3.5 5.2',
+  flower:'M12 4c2.2 2.6 2.2 6.6 0 9.6-2.2-3-2.2-7 0-9.6zM12 13.6c-1.4-3.2-4.8-4.8-8.2-4.4.2 3.8 3.4 6.4 8.2 6.4M12 13.6c1.4-3.2 4.8-4.8 8.2-4.4-.2 3.8-3.4 6.4-8.2 6.4M6 19.5h12',
+  communities:'M21.54 15H17a2 2 0 0 0-2 2v4.54M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 
+  bookmark:'M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z',
+  search:'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4',
+  back:'M15 5l-7 7 7 7',
+  chevron:'M9 5l7 7-7 7',
+  arrow:'M5 12h14M13 6l6 6-6 6',
+  close:'M6 6l12 12M18 6L6 18',
+  dots:'M5 12h.01M12 12h.01M19 12h.01',
+  check:'M5 12.5l4.5 4.5L19 7',
+  plus:'M12 5v14M5 12h14',
+  globe:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z',
+  near:'M12 12.5h.01M12 16.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zM12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z',
+  lock:'M7.5 11V8a4.5 4.5 0 0 1 9 0v3M6 11h12a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z',
+  shield:'M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6zM9 12l2 2 4-4',
+  image:'M5 5h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM4 16l5-5 4 4 3-3 4 4M15.5 9.5h.01',
+  file:'M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM14 3v5h5',
+  send:'M4 12l16-8-6 16-2.5-6.5zM11.5 13.5L20 4',
+  info:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01',
+  help:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01',
+  calendar:'M5 6h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM4 10h16M8 4v4M16 4v4',
+  journal:'M6 4h11a1 1 0 0 1 1 1v15H7a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1zM5 18a2 2 0 0 1 2-2h11M9 8h6',
+  settings:'M4 7h10M18 7h2M4 17h4M12 17h8M16 5v4M10 15v4',
+  user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c.8-4 4-6 8-6s7.2 2 8 6',
+  flag:'M5 21V4M5 4h11l-2 4 2 4H5',
+  block:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM5.6 5.6l12.8 12.8',
+  clock:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+  edit:'M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4',
+  trash:'M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3',
+  eyeoff:'M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4 9.5 6a12 12 0 0 1-2.8 3.6M6.6 6.6C4.6 8 3.2 10 2.5 12c1 2 4.5 6 9.5 6 1.7 0 3.2-.5 4.5-1.2M9.9 9.9a3 3 0 0 0 4.2 4.2',
+  eye:'M2.5 12C3.5 10 7 6 12 6s8.5 4 9.5 6c-1 2-4.5 6-9.5 6s-8.5-4-9.5-6zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+  folder:'M4 6a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z',
+  reflect:'M12 3.5l1.6 4.4 4.4 1.6-4.4 1.6L12 15.5l-1.6-4.4L6 9.5l4.4-1.6zM18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8zM5 15.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4L3 17.5l1.4-.6z',
+  pause:'M9 6v12M15 6v12',
+  star:'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z',
+  bell:'M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0',
+  pin:'M9 4h6l-1 5 3 3H7l3-3zM12 12v8',
+  sparkle:'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z',
+  question:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01',
+  book:'M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5v13',
+  target:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 12h.01',
+  hands:'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z',
+  pen:'M15 4l5 5-10 10H5v-5zM13 6l5 5'
+};
+ICN.sun = 'M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4';
+ICN.moon = 'M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z';
+ICN.queue = 'M4 6h16M4 12h16M4 18h10';
+ICN.scale = 'M12 4v16M7 20h10M5 8h14M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0zM12 4l-2 1M12 4l2 1';
+ICN.idcard = 'M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM9 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM6 16c.4-1.4 1.6-2.2 3-2.2s2.6.8 3 2.2M14 10h4M14 13h3';
+ICN.log = 'M7 4h10a1 1 0 0 1 1 1v15H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM9 9h6M9 12h6M9 15h4';
+ICN.alert = 'M12 4l9 16H3zM12 10v4M12 17h.01';
+ICN.download = 'M12 4v11M7 10l5 5 5-5M5 20h14';
+ICN.signout = 'M15 4h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3M10 16l4-4-4-4M14 12H4';
+ICN.swap = 'M7 7h12l-3-3M17 17H5l3 3';
+ICN.ai = 'M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6zM18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z';
+
+var STAFF = {
+  quinn:{id:'quinn', name:'Quinn', full:'Quinn (founder)', role:'Admin · primary reviewer', kind:'admin', ini:'Q', av:'av av-q', canDecide:true, last:'Now'},
+  dana:{id:'dana', name:'Dana Ruiz', full:'Dana Ruiz', role:'Reviewer', kind:'reviewer', ini:'DR', av:'av av-d', canDecide:true, last:'Today · 7:58 AM'},
+  ops:{id:'ops', name:'Ops support', full:'Ops support', role:'Operator · view only', kind:'operator', ini:'OS', av:'av av-o', canDecide:false, last:'Yesterday'}
+};
+var ROLE_LABEL = {admin:'Admin · primary reviewer', reviewer:'Reviewer', operator:'Operator · view only'};
+var PERMS = [['Review the queue and case records', 'yes', 'yes', 'view'], ['Decide reports and edits', 'yes', 'yes', 'no'], ['Decide appeals of someone else’s decision', 'yes', 'yes', 'no'], ['Confirm a suspension as second reviewer', 'yes', 'yes', 'no'], ['Trusted applications and verification flags', 'yes', 'yes', 'no'], ['Export the audit log', 'yes', 'yes', 'no'], ['Manage the team and roles', 'yes', 'no', 'no'], ['Change AI and alert settings', 'yes', 'no', 'no'], ['Read Journals or unreported private chats', 'no', 'no', 'no']];
+var WEEK = [{d:'Fri', r:5, x:4}, {d:'Sat', r:8, x:7}, {d:'Sun', r:6, x:6}, {d:'Mon', r:9, x:8}, {d:'Tue', r:4, x:5}, {d:'Wed', r:7, x:6}];
+var POLICIES = ['Harassment or threats', 'Child safety', 'Shares private information', 'Spam or scam', 'Impersonation', 'Nudity (not allowed in Phase 1)', 'Other — explained in the note'];
+var OUTCOMES = [
+  {id:'dismiss', label:'No violation found', hint:'Close the report. Content and account stay as they are.', needsPolicy:false},
+  {id:'guidance', label:'Send guidance', hint:'A friendly reminder of the community standards. No restriction.', needsPolicy:true},
+  {id:'remove', label:'Remove content', hint:'The item disappears from Flow, profiles, communities, search and share links.', needsPolicy:true},
+  {id:'warn', label:'Remove content and warn', hint:'Removes the item and records a warning on the account.', needsPolicy:true},
+  {id:'limit', label:'Temporary limit', hint:'Pauses posting and messaging for a set time. Removes the item.', needsPolicy:true},
+  {id:'suspend', label:'Suspend account', hint:'Needs a second reviewer to confirm before it takes effect.', needsPolicy:true}
+];
+var LIMITS = ['24 hours', '3 days', '7 days'];
+var EDIT_AREAS = ['Original Meaning', 'Factual Corrections', 'Context Integrity', 'Creative Integrity', 'Safety & Privacy', 'Platform Policy'];
+var URGENT_TYPES = {threat:'Threat', child:'Child safety', privacy:'Exposed private details'};
+
+var MEMBERS = [
+  {id:'spark44', name:'@spark_44', handle:'spark_44', ini:'S4', joined:'Sep 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Alder Street area', notes:''},
+  {id:'deals4u', name:'@deals4u', handle:'deals4u', ini:'D4', joined:'Today', ver:'Unverified', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'mira', name:'Mira Solano', handle:'mira.s', ini:'MS', joined:'Aug 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Riverside', notes:''},
+  {id:'artforteens', name:'@free_art_lessons', handle:'free_art_lessons', ini:'FA', joined:'3 days ago', ver:'Pending', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'kai', name:'@wanderlust_kai', handle:'wanderlust_kai', ini:'WK', joined:'Jul 2026', ver:'Verified', trust:'—', standing:'Warned', area:'—', notes:''},
+  {id:'luxhelp', name:'@luxflow_support_team', handle:'luxflow_support_team', ini:'LS', joined:'Yesterday', ver:'Unverified', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'theo', name:'Theo Marsh', handle:'theo.m', ini:'TM', joined:'Sep 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Eastside', notes:''},
+  {id:'amara', name:'Amara Okafor', handle:'amara', ini:'AO', joined:'Jun 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Northside', notes:''},
+  {id:'leilani', name:'Leilani Kahale', handle:'leilani', ini:'LK', joined:'Jun 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'priya', name:'Priya Raman', handle:'priya', ini:'PR', joined:'May 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Eastside', notes:''},
+  {id:'tomas', name:'Tomás Reyes', handle:'tomasr', ini:'TR', joined:'May 2026', ver:'Verified', trust:'Trusted · Event organizer', standing:'Good standing', area:'Alder Street', notes:''},
+  {id:'noor', name:'Noor Haddad', handle:'noor', ini:'NH', joined:'Jul 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'jun', name:'Jun Park', handle:'junpark', ini:'JP', joined:'May 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'Riverside', notes:''},
+  {id:'jpstudio', name:'@jpark_studio', handle:'jpark_studio', ini:'JS', joined:'Today', ver:'Needs information', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'ellie', name:'Ellie Wren', handle:'ellie.w', ini:'EW', joined:'Today', ver:'Needs information', trust:'—', standing:'Good standing', area:'—', notes:''},
+  {id:'sam', name:'Sam Whitfield', handle:'samw', ini:'SW', joined:'Jun 2026', ver:'Verified', trust:'—', standing:'Good standing', area:'—', notes:''}
+];
+
+var CASES = [
+  {id:'C-1042', kind:'report', priority:'urgent', urgent:'threat', category:'Harassment or threats', objType:'Comment', title:'Comment on “Alder Street beds need two more hands”', where:'Alder Street Growers · community post', excerpt:'You’d better not show up on Saturday. I know which bus you take.', reporter:'Tomás Reyes', reporterNote:'This is aimed at a new volunteer who said she’d come. She’s scared to go now.', subject:'spark44', ageMin:34, status:'open', assignee:null, ai:'Sorted as urgent: possible threat of harm. A person decides the outcome.', reports:2},
+  {id:'C-1041', kind:'report', priority:'urgent', urgent:'privacy', category:'Shares private information', objType:'Group message', title:'Message in the Riverside Quiet Hour group', where:'Riverside Quiet Hour · group chat (reported message only)', excerpt:'For anyone who wants to drop round: Jun lives at [house number withheld in review] Willow Lane, the blue door.', reporter:'Jun Park', reporterNote:'That’s my home address. I never shared it in the group.', subject:'mira', ageMin:72, status:'review', assignee:'quinn', ai:'Sorted as urgent: a home address may be exposed. Protective action is available while you review.', reports:1},
+  {id:'C-1040', kind:'report', priority:'urgent', urgent:'child', category:'Child safety', objType:'Post', title:'Post by @free_art_lessons', where:'Global · Radiance', excerpt:'Teens who want free drawing lessons — message me privately. No need to involve your parents.', reporter:'Leilani Kahale', reporterNote:'Asking under-18s to message privately and keep it from parents.', subject:'artforteens', ageMin:18, status:'open', assignee:null, ai:'Sorted as urgent: child-safety signals. Follow the child-safety escalation steps.', reports:3},
+  {id:'C-1039', kind:'report', priority:'high', urgent:null, category:'Spam or scam', objType:'Post', title:'Post by @deals4u — “Earn $500/day from home”', where:'Global · Foundation', excerpt:'Earn $500/day from home, no experience needed! Sign up at the link before spots run out.', reporter:'Elias Brandt', reporterNote:'Same link posted in three communities.', subject:'deals4u', ageMin:150, status:'open', assignee:null, ai:'Pattern flagged: 14 reports in 1 hour, and 6 new accounts from one device posted the same link.', reports:14},
+  {id:'C-1038', kind:'report', priority:'normal', urgent:null, category:'Harassment or threats', objType:'Direct message', title:'Direct message to Noor Haddad', where:'Direct chat (reported message only)', excerpt:'Why are you ignoring me? I’ll keep messaging until you answer.', reporter:'Noor Haddad', reporterNote:'I asked him to stop twice. I’ve blocked him now.', subject:'theo', ageMin:260, status:'open', assignee:'dana', ai:'Sorted as normal. The reporter has already blocked this account.', reports:1},
+  {id:'C-1037', kind:'report', priority:'normal', urgent:null, category:'Impersonation', objType:'Profile', title:'Profile @luxflow_support_team', where:'Profile', excerpt:'Bio: “Official Lux Flow Support. Send us your login code to verify your account.”', reporter:'Priya Raman', reporterNote:'Pretending to be staff and asking for codes.', subject:'luxhelp', ageMin:300, status:'open', assignee:null, ai:'Possible impersonation of staff. Lux Flow never asks members for login codes.', reports:4},
+  {id:'C-1036', kind:'report', priority:'normal', urgent:null, category:'Nudity (not allowed in Phase 1)', objType:'Image post', title:'Image post by @wanderlust_kai', where:'Global · Journey', excerpt:'Caption: “Sunrise swim at the lake.” Image hidden by default.', reporter:'Sam Whitfield', reporterNote:'Image shows nudity.', subject:'kai', ageMin:520, status:'protect', assignee:'dana', ai:'Image hidden while under review (protective action by Dana Ruiz).', reports:1, image:true},
+  {id:'E-221', kind:'edit', priority:'normal', urgent:null, category:'Edit review', objType:'Post edit', title:'Edit to “Re-reading feels like learning. Usually it isn’t.”', where:'Amara Okafor · Global · Wisdom', subject:'amara', ageMin:95, status:'open', assignee:null, ai:'AI checked the six areas and escalated: Context Integrity needs a person.',
+    areas:[{n:'Original Meaning', ok:true, note:'Same main point.'}, {n:'Factual Corrections', ok:true, note:'Adds a source year.'}, {n:'Context Integrity', ok:false, note:'Swaps the cited study for a different one — readers’ earlier replies refer to the original.'}, {n:'Creative Integrity', ok:true, note:'—'}, {n:'Safety & Privacy', ok:true, note:'—'}, {n:'Platform Policy', ok:true, note:'—'}],
+    orig:[{t:'When you re-read your notes, the material starts to feel familiar. '}, {t:'A 2006 study of students', c:'del'}, {t:' found that familiarity is easy to mistake for knowing it.'}],
+    next:[{t:'When you re-read your notes, the material starts to feel familiar. '}, {t:'A 2011 review of 700 learners', c:'add'}, {t:' found that familiarity is easy to mistake for knowing it.'}]},
+  {id:'E-220', kind:'edit', priority:'high', urgent:null, category:'Edit review', objType:'Post edit', title:'Edit to “Watercolor morning, Alder Street”', where:'Leilani Kahale · Local · Radiance', subject:'leilani', ageMin:40, status:'open', assignee:null, ai:'AI escalated: Safety & Privacy — the edit adds another person’s full name and street.',
+    areas:[{n:'Original Meaning', ok:true, note:'—'}, {n:'Factual Corrections', ok:true, note:'—'}, {n:'Context Integrity', ok:true, note:'—'}, {n:'Creative Integrity', ok:true, note:'—'}, {n:'Safety & Privacy', ok:false, note:'Names a neighbour and their street.'}, {n:'Platform Policy', ok:true, note:'—'}],
+    orig:[{t:'Painted the blue door on the corner this morning. '}, {t:'Light was perfect.'}],
+    next:[{t:'Painted the blue door on the corner this morning. '}, {t:'That’s Ana Petrov’s house on Willow Lane — ', c:'add'}, {t:'Light was perfect.'}]}
+];
+var APPEALS = [
+  {id:'A-310', caseRef:'C-0991', member:'kai', title:'Removal of a comment on “Night trains across Europe”', decision:'Removed content · Harassment or threats', by:'quinn', statement:'I was quoting a song lyric, not threatening anyone. The person I replied to is my friend and wasn’t upset.', ageMin:200, status:'open'},
+  {id:'A-309', caseRef:'E-198', member:'sam', title:'Rejected edit to “Taking the long way round”', decision:'Edit rejected · Context Integrity', by:'dana', statement:'I only fixed the train times — the route is the same. The old times were wrong and people were missing connections.', ageMin:410, status:'open'}
+];
+var APPS = [
+  {id:'T-58', member:'priya', path:'Community host', ageMin:1440, status:'pending',
+    answers:[{q:'Which responsibility would you like to take on?', a:'Hosting the Newcomers’ Table — monthly dinners for people who just moved to the area.'}, {q:'Why, and what have you done so far?', a:'I’ve hosted six dinners since June. I check dietary needs ahead, keep groups to eight and meet first-time guests at the door.'}],
+    record:[{l:'Identity', v:'Verified · Jun 2026', k:'rec'}, {l:'Events hosted', v:'6 events, 41 RSVPs recorded', k:'rec'}, {l:'Hosting experience', v:'“Hosted similar dinners at my old church”', k:'self'}, {l:'Reports about this member', v:'1 report — reviewed, no violation found', k:'rec'}, {l:'Supported findings', v:'None', k:'rec'}]},
+  {id:'T-57', member:'noor', path:'Mentor · Oral histories', ageMin:2880, status:'pending',
+    answers:[{q:'Which responsibility would you like to take on?', a:'Mentoring members who want to record family stories.'}, {q:'Why, and what have you done so far?', a:'I’ve recorded my grandmother’s town for two years and run a small reading circle.'}],
+    record:[{l:'Identity', v:'Verified · Jul 2026', k:'rec'}, {l:'Community roles', v:'Member of Oral Histories (no hosting yet)', k:'rec'}, {l:'Experience', v:'“Two years of interviews with elders”', k:'self'}, {l:'Reports about this member', v:'None', k:'rec'}, {l:'Supported findings', v:'None', k:'rec'}]},
+  {id:'T-55', member:'tomas', path:'Event organizer', ageMin:20160, status:'approved', decidedBy:'quinn', note:'Consistent organising record; volunteer days ran safely.',
+    answers:[{q:'Which responsibility would you like to take on?', a:'Co-hosting Alder Street work days.'}, {q:'Why, and what have you done so far?', a:'I’ve coordinated the beds for a year.'}],
+    record:[{l:'Identity', v:'Verified · May 2026', k:'rec'}, {l:'Events hosted', v:'9 events, 120 RSVPs recorded', k:'rec'}, {l:'Supported findings', v:'None', k:'rec'}]}
+];
+var VFLAGS = [
+  {id:'V-77', kind:'duplicate', title:'Possible duplicate identity', ageMin:65, status:'open', accounts:['jpstudio', 'jun'],
+    detail:'The identity provider returned a match between new account @jpark_studio and an existing verified member, Jun Park. It may be a second account by the same person, or a provider error. Nothing has been restricted automatically.'},
+  {id:'V-76', kind:'age', title:'Age check inconclusive', ageMin:130, status:'open', accounts:['ellie'],
+    detail:'The provider couldn’t confirm the date of birth from the submitted document (glare). The member can try again. An unsuccessful check is not evidence of dishonesty.'},
+  {id:'V-74', kind:'pending', title:'Verification still pending after 48 hours', ageMin:3100, status:'open', accounts:['artforteens'],
+    detail:'The provider hasn’t returned a result. This account is also the subject of an urgent child-safety report (C-1040).'}
+];
+var AUDIT = [
+  {id:'L-10', at:'Today · 8:20 AM', who:'quinn', action:'Dismissed report', target:'C-1031 · Post by Sam Whitfield', reason:'No violation found'},
+  {id:'L-11', at:'Today · 8:05 AM', who:'dana', action:'Approved edit', target:'E-219 · Edit by Priya Raman', reason:'Passes the six-area check'},
+  {id:'L-9', at:'Today · 7:58 AM', who:'dana', action:'Took protective action', target:'C-1036 · Image post by @wanderlust_kai', reason:'Image hidden while under review'},
+  {id:'L-8', at:'Today · 7:45 AM', who:'quinn', action:'Assigned to self', target:'C-1041 · Message in the Riverside Quiet Hour group', reason:'—'},
+  {id:'L-7', at:'Yesterday · 4:10 PM', who:'quinn', action:'Removed content', target:'C-0991 · Comment by @wanderlust_kai', reason:'Harassment or threats'},
+  {id:'L-6', at:'Yesterday · 2:02 PM', who:'dana', action:'Rejected edit', target:'E-198 · Edit by Sam Whitfield', reason:'Context Integrity'},
+  {id:'L-5', at:'Oct 26 · 11:20 AM', who:'quinn', action:'Approved Trusted application', target:'T-55 · Tomás Reyes · Event organizer', reason:'Consistent organising record'},
+  {id:'L-4', at:'Oct 25 · 9:05 AM', who:'dana', action:'Dismissed report', target:'C-0950 · Post by Priya Raman', reason:'No violation found'}
+];
+var NOTE_TEMPLATES = {
+  dismiss:'',
+  guidance:'Hi — a member raised a concern about something you shared. We’re not taking action, but here’s a reminder of the community standards so everyone feels welcome.',
+  remove:'We removed your {obj} because it goes against our community standards ({policy}). You can ask for a review if you think we got this wrong.',
+  warn:'We removed your {obj} and added a warning to your account because it goes against our community standards ({policy}). You can ask for a review.',
+  limit:'We removed your {obj} and paused posting and messaging for {limit} because it goes against our community standards ({policy}). You can ask for a review.',
+  suspend:'Your account has been suspended because of a serious breach of our community standards ({policy}). You can ask for a review by a different reviewer.'
+};
+function adFresh(){ var c = function(x){ return JSON.parse(JSON.stringify(x)); };
+  return {v:1, signedIn:false, signStep:'pick', who:'quinn', code:'', codeErr:'', theme:'dark', page:'overview', sel:null, navOpen:false,
+    cases:c(CASES).map(function(x){ x.history = [{at:x.ageMin + ' min ago', who:'system', what:x.kind === 'edit' ? 'Edit submitted and checked by AI' : 'Report received' + (x.reports > 1 ? ' (' + x.reports + ' reports)' : ''), tone:''}].concat(x.assignee ? [{at:'Earlier today', who:x.assignee, what:'Assigned to ' + STAFF[x.assignee].name, tone:'acc'}] : []).concat(x.status === 'protect' ? [{at:'Today · 7:58 AM', who:x.assignee, what:'Protective action: hidden while under review', tone:'bad'}] : []); return x; }),
+    appeals:c(APPEALS), apps:c(APPS), vflags:c(VFLAGS), members:c(MEMBERS), audit:c(AUDIT), pending:[],
+    qType:'all', qPri:'all', qStatus:'active', qSearch:'', mSearch:'', mFilter:'all', lWho:'all', lSearch:'', gSearch:'', aTab:'mine', tTab:'pending',
+    roles:{}, inactive:{}, invites:[], dlg:null, toast:null, popAlerts:false, popMe:false, reveal:{}, settings:{email:true, push:true, aiSort:true, aiEdits:true, aiPatterns:true}};
+}
+function adLoad(){ var f = adFresh(); try { var raw = window.localStorage.getItem(STORE); if (!raw) return f; var s = JSON.parse(raw); if (!s || s.v !== 1) return f; ['dlg', 'toast', 'popAlerts', 'popMe', 'navOpen', 'reveal'].forEach(function(k){ delete s[k]; }); return Object.assign(f, s); } catch (e) { return f; } }
+function adSave(s){ try { window.localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {} }
+function adAge(m){ if (m < 60) return m + ' min'; if (m < 1440) return Math.floor(m / 60) + 'h ' + (m % 60 ? (m % 60) + 'm' : ''); return Math.floor(m / 1440) + 'd'; }
+function adNow(){ var d = new Date(); var h = d.getHours(), mi = d.getMinutes(); return 'Today · ' + ((h % 12) || 12) + ':' + (mi < 10 ? '0' : '') + mi + (h < 12 ? ' AM' : ' PM'); }
+var PRI_ORDER = {urgent:0, high:1, normal:2, low:3};
+var STATUS_LABEL = {open:'Open', review:'In review', protect:'Protective action', confirm:'Awaiting 2nd reviewer', resolved:'Resolved'};
+var STATUS_CLS = {open:'badge b-open', review:'badge b-review', protect:'badge b-protect', confirm:'badge b-confirm', resolved:'badge b-done'};
+var PRI_LABEL = {urgent:'Urgent', high:'High', normal:'Normal', low:'Low'};
+
+class Component extends DCLogic {
+  constructor(a, b){ super(a, b); this.state = adLoad(); this.scrollEl = null; this.dlgEl = null; }
+  componentDidUpdate(pp, ps){
+    var s = this.state, self = this;
+    clearTimeout(this.pt); this.pt = setTimeout(function(){ adSave(self.state); }, 200);
+    if (ps && (ps.page !== s.page || ps.sel !== s.sel) && this.scrollEl) this.scrollEl.scrollTop = 0;
+    if (ps && ps.dlg && !s.dlg && this.lastFocus && this.lastFocus.focus) { try { this.lastFocus.focus(); } catch (e) {} }
+  }
+  componentWillUnmount(){ clearTimeout(this.pt); clearTimeout(this.tt); }
+  set(o){ this.setState(o); }
+  staff(){ var s = this.state, out = {}; Object.keys(STAFF).forEach(function(id){ var b = STAFF[id]; var kind = id === 'quinn' ? 'admin' : ((s.roles || {})[id] || b.kind); var act = !(s.inactive || {})[id]; out[id] = Object.assign({}, b, {kind:kind, role:ROLE_LABEL[kind] + (act ? '' : ' · deactivated'), canDecide:act && kind !== 'operator', active:act}); }); return out; }
+  reviewersIf(id, kind, active){ var s = this.state; var n = 0; var st = this.staff(); Object.keys(st).forEach(function(k){ var kk = k === id ? kind : st[k].kind; var a = k === id ? active : st[k].active; if (a && kk !== 'operator') n++; }); return n; }
+  setRole(id, kind){ var st = this.staff(); if (st[id].kind === kind) return; if (this.reviewersIf(id, kind, st[id].active) < 2) { this.toast('Phase 1 needs at least two active reviewers. Make someone else a reviewer first.'); return; } var r = Object.assign({}, this.state.roles); r[id] = kind; this.setState({roles:r, audit:this.log('Changed role', st[id].name, 'Now ' + ROLE_LABEL[kind])}); this.toast(st[id].name + ' is now ' + (kind === 'operator' ? 'an operator (view only).' : 'a reviewer.')); }
+  setActive(id, on){ var st = this.staff(); if (!on && this.reviewersIf(id, st[id].kind, false) < 2) { this.toast('Phase 1 needs at least two active reviewers. Make someone else a reviewer first.'); return; } var ia = Object.assign({}, this.state.inactive); if (on) delete ia[id]; else ia[id] = true; this.setState({inactive:ia, audit:this.log(on ? 'Reactivated team member' : 'Deactivated team member', st[id].name)}); this.toast(st[id].name + (on ? ' can sign in again.' : ' can no longer sign in.')); }
+  toast(msg){ var self = this; clearTimeout(this.tt); this.setState({toast:msg}); this.tt = setTimeout(function(){ self.setState({toast:null}); }, 4200); }
+  log(action, target, reason){ var e = {id:'L-' + Date.now(), at:adNow(), who:this.state.who, action:action, target:target, reason:reason || '—'}; return [e].concat(this.state.audit); }
+  go(page, sel){ this.setState({page:page, sel:sel == null ? null : sel, navOpen:false, popAlerts:false, popMe:false, gSearch:''}); }
+  member(id){ return this.state.members.filter(function(m){ return m.id === id; })[0] || {id:id, name:id, handle:id, ini:'?', joined:'—', ver:'—', trust:'—', standing:'Good standing', area:'—'}; }
+  updCase(id, patch, histItem){ return this.state.cases.map(function(c){ if (c.id !== id) return c; var n = Object.assign({}, c, patch); if (histItem) n.history = (c.history || []).concat([histItem]); return n; }); }
+  updMember(id, patch){ return this.state.members.map(function(m){ return m.id === id ? Object.assign({}, m, patch) : m; }); }
+  hist(what, tone){ return {at:adNow(), who:this.state.who, what:what, tone:tone || 'acc'}; }
+
+  openDlg(d){ var base = {outcome:null, policy:null, limit:'3 days', archive:false, note:'', internal:'', err:''}; this.lastFocus = document.activeElement; this.setState({dlg:Object.assign(base, d), popAlerts:false, popMe:false}); setTimeout(function(){ var dl = document.querySelector('.ad .dialog'); if (!dl) return; var f = dl.querySelector('.opt-row, textarea, .dialog-actions .btn:last-child'); if (f) f.focus(); }, 60); }
+  patchDlg(p){ this.setState({dlg:Object.assign({}, this.state.dlg, p)}); }
+
+  /* ---------- decisions ---------- */
+  submit(){
+    var s = this.state, d = s.dlg, self = this; if (!d) return;
+    var fail = function(msg){ self.patchDlg({err:msg}); };
+    var who = STAFF[s.who].name;
+    if (d.kind === 'decide') {
+      var c = s.cases.filter(function(x){ return x.id === d.ref; })[0]; var oc = OUTCOMES.filter(function(o){ return o.id === d.outcome; })[0];
+      if (!oc) return fail('Choose an outcome.');
+      if (oc.needsPolicy && !d.policy) return fail('Choose the standard this breaks.');
+      if (oc.id !== 'dismiss' && !d.note.trim()) return fail('Add a message for the member — they need to know why.');
+      var label = oc.label + (oc.id === 'limit' ? ' · ' + d.limit : '') + (d.policy ? ' · ' + d.policy : '');
+      var upd = {dlg:null};
+      if (oc.id === 'suspend') {
+        upd.cases = this.updCase(c.id, {status:'confirm', proposal:{label:label, note:d.note, policy:d.policy, by:s.who, archive:d.archive}}, this.hist('Proposed suspension — waiting for a second reviewer', 'bad'));
+        upd.pending = s.pending.concat([{id:'P-' + Date.now(), kind:'case', ref:c.id, member:c.subject, by:s.who, policy:d.policy}]);
+        upd.audit = this.log('Proposed suspension', c.id + ' · ' + c.title, d.policy);
+        this.setState(upd); this.toast('Suspension proposed. The other reviewer needs to confirm it.'); return;
+      }
+      var mPatch = {};
+      if (oc.id === 'warn') mPatch.standing = 'Warned';
+      if (oc.id === 'limit') mPatch.standing = 'Limited · ' + d.limit;
+      upd.cases = this.updCase(c.id, {status:'resolved', outcome:label, decidedBy:s.who, memberNote:d.note, archive:d.archive}, this.hist('Decided: ' + label + (d.archive ? ' · saved Archive copies cleared' : ''), oc.id === 'dismiss' ? 'ok' : 'bad'));
+      if (Object.keys(mPatch).length) upd.members = this.updMember(c.subject, mPatch);
+      upd.audit = this.log(oc.label, c.id + ' · ' + c.title, (d.policy || 'No violation found') + (d.internal.trim() ? ' — ' + d.internal.trim() : ''));
+      this.setState(upd); this.toast('Decision saved and the member notified. It’s in the audit log.'); return;
+    }
+    if (d.kind === 'edit') {
+      var e = s.cases.filter(function(x){ return x.id === d.ref; })[0];
+      if (d.mode === 'reject') { if (!d.policy) return fail('Choose which area the edit fails.'); if (!d.note.trim()) return fail('Explain the reason to the author.'); }
+      var lbl = d.mode === 'approve' ? 'Edit approved — post shows an Edited label' : 'Edit rejected · ' + d.policy;
+      this.setState({dlg:null, cases:this.updCase(e.id, {status:'resolved', outcome:lbl, decidedBy:s.who, memberNote:d.note}, this.hist(lbl, d.mode === 'approve' ? 'ok' : 'bad')), audit:this.log(d.mode === 'approve' ? 'Approved edit' : 'Rejected edit', e.id + ' · ' + e.title, d.mode === 'approve' ? 'Passes the six-area check' : d.policy)});
+      this.toast(d.mode === 'approve' ? 'Edit approved. The post now shows an Edited label.' : 'Edit rejected. The author sees the reason and can appeal.'); return;
+    }
+    if (d.kind === 'appeal') {
+      var ap = s.appeals.filter(function(x){ return x.id === d.ref; })[0];
+      if (!d.outcome) return fail('Choose an outcome.');
+      if (!d.note.trim()) return fail('Explain the outcome to the member.');
+      var names = {uphold:'Original decision upheld', overturn:'Overturned — content and permissions restored', modify:'Modified — lighter outcome applied'};
+      var upd2 = {dlg:null, appeals:s.appeals.map(function(x){ return x.id === ap.id ? Object.assign({}, x, {status:d.outcome, decidedBy:s.who, outcome:names[d.outcome], note:d.note}) : x; }), audit:this.log(names[d.outcome].split(' —')[0], ap.id + ' · ' + ap.title, d.note.trim())};
+      if (d.outcome === 'overturn') upd2.members = this.updMember(ap.member, {standing:'Good standing'});
+      this.setState(upd2); this.toast('Appeal decided. The member has been told the outcome.'); return;
+    }
+    if (d.kind === 'trust') {
+      var t = s.apps.filter(function(x){ return x.id === d.ref; })[0];
+      if (!d.note.trim()) return fail(d.mode === 'info' ? 'Say what information you need.' : 'Add a short reason — it’s shared with the applicant.');
+      var map = {approve:['approved', 'Approved Trusted application'], decline:['declined', 'Declined Trusted application'], info:['info', 'Asked for more information'], revoke:['revoked', 'Removed Trusted status']};
+      var m2 = map[d.mode]; var upd3 = {dlg:null, apps:s.apps.map(function(x){ return x.id === t.id ? Object.assign({}, x, {status:m2[0], decidedBy:s.who, note:d.note, hist:(x.hist || []).concat([{at:adNow(), who:s.who, what:m2[1]}])}) : x; }), audit:this.log(m2[1], t.id + ' · ' + this.member(t.member).name + ' · ' + t.path, d.note.trim())};
+      if (d.mode === 'approve') upd3.members = this.updMember(t.member, {trust:'Trusted · ' + t.path});
+      if (d.mode === 'revoke') upd3.members = this.updMember(t.member, {trust:'—'});
+      this.setState(upd3); this.toast(m2[1] + '. The applicant has been told.'); return;
+    }
+    if (d.kind === 'vflag') {
+      var v = s.vflags.filter(function(x){ return x.id === d.ref; })[0];
+      if (!d.outcome) return fail('Choose an outcome.');
+      if (!d.note.trim()) return fail('Add a reason for the record.');
+      var vo = this.vOptions(v).filter(function(o){ return o.id === d.outcome; })[0];
+      this.setState({dlg:null, vflags:s.vflags.map(function(x){ return x.id === v.id ? Object.assign({}, x, {status:'resolved', outcome:vo.label, decidedBy:s.who}) : x; }), audit:this.log('Resolved verification flag', v.id + ' · ' + v.title, vo.label + ' — ' + d.note.trim())});
+      this.toast('Flag resolved and recorded.'); return;
+    }
+    if (d.kind === 'member') {
+      var mm = this.member(d.ref);
+      if (!d.note.trim()) return fail('Add a reason — it’s recorded and shared with the member where appropriate.');
+      var acts = {warn:['Warned', 'Added a warning'], limit:['Limited · ' + d.limit, 'Applied a temporary limit'], lift:['Good standing', 'Lifted restriction'], signout:[null, 'Signed out all sessions']};
+      if (d.mode === 'suspend') { this.setState({dlg:null, pending:s.pending.concat([{id:'P-' + Date.now(), kind:'member', ref:mm.id, member:mm.id, by:s.who, policy:d.note.trim()}]), audit:this.log('Proposed suspension', mm.name, d.note.trim())}); this.toast('Suspension proposed. The other reviewer needs to confirm it.'); return; }
+      var a = acts[d.mode]; var up = {dlg:null, audit:this.log(a[1], mm.name, d.note.trim())}; if (a[0]) up.members = this.updMember(mm.id, {standing:a[0]});
+      this.setState(up); this.toast(a[1] + '. It’s in the audit log.'); return;
+    }
+    if (d.kind === 'sendback') {
+      if (!d.note.trim()) return fail('Tell the other reviewer why you’re sending it back.');
+      var pb = s.pending.filter(function(p){ return p.id === d.ref; })[0];
+      var upd4 = {dlg:null, pending:s.pending.filter(function(p){ return p.id !== d.ref; }), audit:this.log('Sent back suspension', pb.kind === 'case' ? pb.ref : this.member(pb.member).name, d.note.trim())};
+      if (pb.kind === 'case') upd4.cases = this.updCase(pb.ref, {status:'review', proposal:null}, this.hist('Suspension sent back: ' + d.note.trim(), 'acc'));
+      this.setState(upd4); this.toast('Sent back to ' + STAFF[pb.by].name + '.'); return;
+    }
+    if (d.kind === 'invite') { var nm = (d.name || '').trim(); if (nm.length < 2) return fail('Add the person’s name.'); this.setState({dlg:null, invites:(s.invites || []).concat([{name:nm, kind:d.outcome || 'reviewer', at:adNow().replace('Today · ', 'today ')}]), audit:this.log('Invited team member', nm, ROLE_LABEL[d.outcome || 'reviewer'])}); this.toast('Invite sent to ' + nm + '.'); return; }
+    if (d.kind === 'reset') { var f = adFresh(); f.signedIn = true; f.who = s.who; f.theme = s.theme; this.setState(f); this.toast('Demo data reset.'); return; }
+  }
+  confirmPending(pid){
+    var s = this.state; var p = s.pending.filter(function(x){ return x.id === pid; })[0]; if (!p) return;
+    var upd = {pending:s.pending.filter(function(x){ return x.id !== pid; }), members:this.updMember(p.member, {standing:'Suspended'})};
+    if (p.kind === 'case') { var c = s.cases.filter(function(x){ return x.id === p.ref; })[0]; upd.cases = this.updCase(p.ref, {status:'resolved', outcome:c.proposal ? c.proposal.label : 'Account suspended', decidedBy:p.by, confirmedBy:s.who, memberNote:c.proposal ? c.proposal.note : ''}, this.hist('Second reviewer confirmed the suspension', 'bad')); }
+    upd.audit = this.log('Confirmed suspension', p.kind === 'case' ? p.ref : this.member(p.member).name, 'Proposed by ' + STAFF[p.by].name);
+    this.setState(upd); this.toast('Suspension confirmed. The member was notified and can appeal.');
+  }
+  vOptions(v){
+    if (v.kind === 'duplicate') return [{id:'notdup', label:'Not a duplicate — provider error', hint:'Clear the flag. Both accounts carry on as normal.'}, {id:'ask', label:'Ask the member to confirm their accounts', hint:'Send a private message asking which account they want to keep.'}, {id:'same', label:'Same person — keep one account active', hint:'The newer account is paused after the member chooses. Nothing is deleted.'}];
+    if (v.kind === 'age') return [{id:'retry', label:'Invite the member to try again', hint:'Send tips for a clear photo. Their account stays Unverified meanwhile.'}, {id:'support', label:'Route to support', hint:'A person helps them with another way to verify.'}];
+    return [{id:'nudge', label:'Ask the provider for an update', hint:'Simulated — the request is recorded.'}, {id:'keep', label:'Keep pending and check again tomorrow', hint:'Nothing changes for the member.'}];
+  }
+
+  renderVals(){
+    var s = this.state, self = this; var STF = this.staff(); var me = STF[s.who] || STF.quinn; var canDecide = me.canDecide; var isAdmin = s.who === 'quinn';
+    var o = {ic:ICN, me:Object.assign({first:me.name.split(' ')[0]}, me), meAv:me.av, signedIn:s.signedIn, signedOut:!s.signedIn, gSearch:s.gSearch, qSearch:s.qSearch, mSearch:s.mSearch, lSearch:s.lSearch,
+      appCls:'ad' + (s.theme === 'light' ? ' light' : '') + (s.navOpen ? ' nav-open' : '') + (s.signedIn ? (isAdmin ? ' is-admin' : ' is-desk') : ''), isAdmin:s.signedIn && isAdmin, notAdmin:s.signedIn && !isAdmin, goTeam:function(){ self.go('team'); }, viewOnly:s.signedIn && !canDecide, popAlerts:s.popAlerts, popMe:s.popMe,
+      hasToast:!!s.toast, toast:s.toast || '', closeToast:function(){ self.set({toast:null}); },
+      stop:function(e){ e.stopPropagation(); }, setScroll:function(el){ self.scrollEl = el; }, setDlg:function(el){ self.dlgEl = el; },
+      skipToMain:function(){ var m = self.scrollEl; if (m) { m.setAttribute('tabindex', '-1'); m.focus(); } },
+      onKey:function(e){ if (e.key === 'Escape') { if (s.dlg) self.set({dlg:null}); else if (s.popAlerts || s.popMe || s.gSearch || s.navOpen) self.set({popAlerts:false, popMe:false, gSearch:'', navOpen:false}); }
+        if (e.key === 'Tab' && s.dlg && document.querySelector('.ad .dialog')) { var f = [].slice.call(document.querySelector('.ad .dialog').querySelectorAll('button:not([disabled]), textarea, input')); if (!f.length) return; var first = f[0], last = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } },
+      openNav:function(){ self.set({navOpen:true}); }, closeNav:function(){ self.set({navOpen:false}); },
+      toggleTheme:function(){ self.set({theme:s.theme === 'light' ? 'dark' : 'light'}); }, themeIcon:s.theme === 'light' ? ICN.moon : ICN.sun, themeAria:s.theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode',
+      toggleAlerts:function(){ self.set({popAlerts:!s.popAlerts, popMe:false}); }, alertsExp:s.popAlerts ? 'true' : 'false',
+      toggleMe:function(){ self.set({popMe:!s.popMe, popAlerts:false}); }, meExp:s.popMe ? 'true' : 'false', meAria:'Signed in as ' + me.name + ', ' + me.role + '. Account menu',
+      signOut:function(){ self.set({signedIn:false, signStep:'pick', code:'', popMe:false, page:'overview', sel:null}); },
+      onGSearch:function(e){ self.set({gSearch:e.target.value.slice(0, 60)}); }, onQSearch:function(e){ self.set({qSearch:e.target.value.slice(0, 60)}); }, onMSearch:function(e){ self.set({mSearch:e.target.value.slice(0, 60)}); }, onLSearch:function(e){ self.set({lSearch:e.target.value.slice(0, 60)}); },
+      goQueue:function(){ self.go('queue'); }, goAudit:function(){ self.go('audit'); }, goSettings:function(){ self.go('settings'); }, goAppeals:function(){ self.go('appeals'); }, goTrusted:function(){ self.go('trusted'); }, goVerify:function(){ self.go('verify'); }, goMembers:function(){ self.go('members'); },
+      todayLabel:new Date().toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'}),
+      aiMay:['Sort reports by type and priority', 'Check larger edits against six areas', 'Flag unusual patterns, like report bursts', 'Help with reviewer workflows'],
+      aiNot:['Approve or decline Trusted applications', 'Read Journals or unreported private chats', 'Judge health, character or qualifications', 'Make final bans, suspensions or appeal outcomes']
+    };
+    /* sign in */
+    o.si = {pick:s.signStep === 'pick', codeStep:s.signStep === 'code', code:s.code, hasErr:!!s.codeErr, err:s.codeErr, invalid:s.codeErr ? 'true' : 'false', name:me.full, role:me.role, av:me.av, ini:me.ini,
+      accounts:['quinn', 'dana', 'ops'].map(function(id){ var a = STF[id]; var on = s.who === id; return {name:a.full, role:a.role, av:a.av, ini:a.ini, cls:'opt-row' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ if (!a.active) { self.set({codeErr:''}); self.toast(a.name + '’s access is deactivated. The admin can reactivate it.'); return; } self.set({who:id}); }}; }),
+      next:function(){ self.set({signStep:'code', code:'', codeErr:''}); }, back:function(){ self.set({signStep:'pick'}); },
+      onCode:function(e){ self.set({code:e.target.value.replace(/\D/g, '').slice(0, 6), codeErr:''}); },
+      submit:function(){ if (!/^\d{6}$/.test(s.code)) { self.set({codeErr:'Enter the 6-digit code from your authenticator app.'}); return; } self.setState({signedIn:true, signStep:'pick', code:'', page:'overview', sel:null, audit:[{id:'L-' + Date.now(), at:adNow(), who:s.who, action:'Signed in', target:'Admin console', reason:'—'}].concat(s.audit)}); },
+      onCodeKey:function(e){ if (e.key === 'Enter') o.si.submit(); }};
+    if (!s.signedIn) { o.pg = {}; o.dlg = {any:false}; o.nav = []; return o; }
+
+    /* derived */
+    var active = s.cases.filter(function(c){ return c.status !== 'resolved'; });
+    var urgent = active.filter(function(c){ return c.priority === 'urgent'; }).sort(function(a, b){ return b.ageMin - a.ageMin; });
+    var myAppeals = s.appeals.filter(function(a){ return a.status === 'open' && canDecide && a.by !== s.who; });
+    var openAppeals = s.appeals.filter(function(a){ return a.status === 'open'; });
+    var pendApps = s.apps.filter(function(a){ return a.status === 'pending' || a.status === 'info'; });
+    var openFlags = s.vflags.filter(function(v){ return v.status === 'open'; });
+    var myConfirms = s.pending.filter(function(p){ return canDecide && p.by !== s.who; });
+    var openCase = function(id){ return function(){ self.go('case', id); }; };
+    var whoOf = function(id){ return id ? STAFF[id] : null; };
+    o.hasUrgent = urgent.length > 0; o.noUrgent = !urgent.length;
+    o.alertsAria = urgent.length ? 'Urgent alerts, ' + urgent.length + ' open' : 'Urgent alerts, none open';
+    o.urgentList = urgent.map(function(c){ var w = whoOf(c.assignee); return {id:c.id, type:URGENT_TYPES[c.urgent] || 'Urgent', title:c.title, age:adAge(c.ageMin), assigned:w ? 'Assigned to ' + w.name : 'Not assigned yet', go:openCase(c.id)}; });
+    o.switchList = ['quinn', 'dana', 'ops'].filter(function(id){ return id !== s.who && STF[id].active; }).map(function(id){ var a = STF[id]; return {name:a.full, role:a.role, av:a.av, ini:a.ini, go:function(){ self.setState({who:id, popMe:false, audit:[{id:'L-' + Date.now(), at:adNow(), who:id, action:'Signed in', target:'Admin console', reason:'Switched reviewer (prototype)'}].concat(s.audit)}); self.toast('Now signed in as ' + a.name + '.'); }}; });
+    var cnt = function(n, cls, aria){ return {count:String(n), hasCount:n > 0, countCls:'count' + (cls ? ' ' + cls : ''), countAria:n + ' ' + aria}; };
+    var item = function(id, label, icon, c, also){ var on = s.page === id || (also && also.indexOf(s.page) >= 0); return Object.assign({isItem:true, isLabel:false, label:label, icon:icon, cls:'nav-item' + (on ? ' on' : ''), cur:on ? 'page' : undefined, go:function(){ self.go(id); }, hasCount:false}, c || {}); };
+    o.nav = [item('overview', isAdmin ? 'Overview' : 'My desk', ICN.home), item('queue', 'Queue', ICN.queue, cnt(active.length, urgent.length ? 'hot' : '', 'open items' + (urgent.length ? ', ' + urgent.length + ' urgent' : '')), ['case']),
+      item('appeals', 'Appeals', ICN.scale, cnt(myAppeals.length, 'acc', 'appeals assigned to you'), ['appeal']), item('trusted', 'Trusted applications', ICN.star, cnt(pendApps.length, '', 'waiting'), ['app']), item('verify', 'Verification', ICN.idcard, cnt(openFlags.length, '', 'open flags'), ['vflag']),
+      {isLabel:true, isItem:false, label:'Records'}, item('members', 'Members', ICN.people, null, ['member'])].concat(isAdmin ? [item('team', 'Team & roles', ICN.user)] : []).concat([item('audit', 'Audit log', ICN.log), item('settings', 'Settings', ICN.settings)]);
+    o.nav.forEach(function(n){ if (n.isItem) n.tnCls = 'tn-item' + (n.cls.indexOf(' on') > 0 ? ' on' : ''); });
+    o.pg = {}; o.pg[s.page] = true; o.ovAdmin = s.page === 'overview' && isAdmin; o.ovDesk = s.page === 'overview' && !isAdmin; o.cantExport = !canDecide;
+    if (s.page === 'case' && !s.cases.some(function(c){ return c.id === s.sel; })) { o.pg = {queue:true}; }
+
+    /* global search */
+    var gq = (s.gSearch || '').trim().toLowerCase();
+    o.gs = {open:false};
+    if (gq.length >= 2) { var res = [];
+      s.cases.forEach(function(c){ var m = self.member(c.subject); if ((c.id + ' ' + c.title + ' ' + c.category + ' ' + m.name + ' ' + m.handle).toLowerCase().indexOf(gq) >= 0) res.push({icon:ICN.flag, title:c.title, sub:c.id + ' · ' + STATUS_LABEL[c.status], go:openCase(c.id)}); });
+      s.members.forEach(function(m){ if ((m.name + ' ' + m.handle).toLowerCase().indexOf(gq) >= 0) res.push({icon:ICN.user, title:m.name, sub:'@' + m.handle + ' · ' + m.standing, go:function(){ self.go('member', m.id); }}); });
+      o.gs = {open:true, items:res.slice(0, 7), none:!res.length}; }
+
+    /* overview */
+    var mine = [];
+    myConfirms.forEach(function(p){ var m = self.member(p.member); mine.push({tag:'Confirm', badge:'badge b-confirm', title:'Confirm suspension of ' + m.name, sub:'Proposed by ' + STAFF[p.by].name + (p.policy ? ' · ' + p.policy : ''), go:p.kind === 'case' ? openCase(p.ref) : function(){ self.go('member', p.member); }}); });
+    active.filter(function(c){ return c.assignee === s.who; }).forEach(function(c){ mine.push({tag:PRI_LABEL[c.priority], badge:'badge b-' + c.priority, title:c.title, sub:c.id + ' · ' + STATUS_LABEL[c.status] + ' · waiting ' + adAge(c.ageMin), go:openCase(c.id)}); });
+    myAppeals.forEach(function(a){ mine.push({tag:'Appeal', badge:'badge b-review', title:a.title, sub:a.id + ' · assigned to you · waiting ' + adAge(a.ageMin), go:function(){ self.go('appeal', a.id); }}); });
+    var oldest = active.slice().sort(function(a, b){ return b.ageMin - a.ageMin; })[0];
+    var today = function(a){ return a.at.indexOf('Today') === 0; };
+    var decisive = /Removed|Dismissed|Approved|Rejected|Declined|Confirmed|Overturned|Upheld|Modified|Send guidance|No violation|Temporary|Suspend|warn|Resolved/i;
+    var decidedToday = s.audit.filter(function(a){ return today(a) && decisive.test(a.action); }).length;
+    var rcvToday = s.cases.filter(function(c){ return c.ageMin < 1440; }).length;
+    var wk = WEEK.concat([{d:'Today', r:rcvToday, x:decidedToday}]); var wmax = Math.max.apply(null, wk.map(function(w){ return Math.max(w.r, w.x); })) || 1;
+    var load = ['quinn', 'dana'].map(function(id){ var a = STF[id]; var asg = active.filter(function(c){ return c.assignee === id; }).length; var dec = s.audit.filter(function(x){ return x.who === id && today(x) && decisive.test(x.action); }).length; return {id:id, a:a, asg:asg, dec:dec}; });
+    var lmax = Math.max.apply(null, load.map(function(l){ return l.asg + l.dec; })) || 1;
+    var reasons = {}; active.forEach(function(c){ var k = c.kind === 'edit' ? 'Edit reviews' : c.category; reasons[k] = (reasons[k] || 0) + 1; });
+    var rlist = Object.keys(reasons).map(function(k){ return {label:k, n:reasons[k]}; }).sort(function(a, b){ return b.n - a.n; }); var rmax = rlist.length ? rlist[0].n : 1;
+    var closedAp = s.appeals.filter(function(a){ return a.status !== 'open'; }); var over = closedAp.filter(function(a){ return a.status === 'overturn'; }).length;
+    var allUrgentOk = urgent.every(function(c){ return c.ageMin < 1440; });
+    var nxCase = myConfirms.length ? s.cases.filter(function(c){ return c.id === myConfirms[0].ref; })[0] : null;
+    if (!nxCase) nxCase = active.filter(function(c){ return c.assignee === s.who && c.status !== 'confirm'; }).sort(function(a, b){ return (PRI_ORDER[a.priority] - PRI_ORDER[b.priority]) || (b.ageMin - a.ageMin); })[0];
+    if (!nxCase) nxCase = active.filter(function(c){ return !c.assignee; }).sort(function(a, b){ return (PRI_ORDER[a.priority] - PRI_ORDER[b.priority]) || (b.ageMin - a.ageMin); })[0];
+    o.nx = {has:!!nxCase, none:!nxCase};
+    if (nxCase) o.nx = {has:true, none:false, eyebrow:nxCase.status === 'confirm' ? 'Next up · second review' : (nxCase.assignee === s.who ? 'Next up · assigned to you' : 'Next up · unassigned'), id:nxCase.id, title:nxCase.title, where:nxCase.where, category:nxCase.category, age:adAge(nxCase.ageMin), pri:PRI_LABEL[nxCase.priority], priCls:'badge b-' + nxCase.priority, cta:canDecide ? 'Start review' : 'Open case', go:openCase(nxCase.id)};
+    o.ov = {urgentSub:'Oldest waiting ' + (urgent.length ? adAge(urgent[0].ageMin) : '—') + ' · both reviewers were alerted · same-day target',
+      chartAria:'Bar chart of items received and decided over the last seven days. Today: ' + rcvToday + ' received, ' + decidedToday + ' decided.',
+      week:wk.map(function(w){ return {d:w.d, r:w.r, x:w.x, rh:'height: ' + Math.max(4, w.r / wmax * 100) + '%', xh:'height: ' + Math.max(4, w.x / wmax * 100) + '%'}; }),
+      load:load.map(function(l){ return {name:l.a.name + (l.id === s.who ? ' (you)' : ''), av:l.a.av + ' av-sm', ini:l.a.ini, line:l.asg + ' assigned · ' + l.dec + ' decided today', w:'width: ' + Math.max(4, (l.asg + l.dec) / lmax * 100) + '%'}; }),
+      reasons:rlist.map(function(r){ return {label:r.label, n:r.n, w:'width: ' + (r.n / rmax * 100) + '%'}; }),
+      waiting:[{icon:ICN.scale, label:'Suspensions to confirm', sub:'Need a second reviewer', n:s.pending.length, go:function(){ self.setState({page:'queue', qStatus:'active', qPri:'all', qType:'all'}); }},
+        {icon:ICN.swap, label:'Appeals', sub:'Each goes to a different reviewer', n:openAppeals.length, go:function(){ self.setState({page:'appeals', aTab:'open'}); }},
+        {icon:ICN.star, label:'Trusted applications', sub:'A person decides every one', n:pendApps.length, go:function(){ self.go('trusted'); }},
+        {icon:ICN.idcard, label:'Verification flags', sub:'Never an automatic ban', n:openFlags.length, go:function(){ self.go('verify'); }}],
+      stats:[{label:'Open items', n:active.length, sub:urgent.length + ' urgent · ' + active.filter(function(c){ return c.priority === 'high'; }).length + ' high', subCls:'stat-s', go:function(){ self.go('queue'); }},
+        {label:'Urgent, same day', n:urgent.length ? (allUrgentOk ? 'On track' : 'Overdue') : 'Clear', sub:urgent.length ? urgent.length + ' open · oldest ' + adAge(urgent[0].ageMin) : 'No urgent cases', subCls:'stat-s' + (urgent.length && !allUrgentOk ? ' bad' : ' good'), go:function(){ self.setState({page:'queue', qPri:'urgent', qStatus:'active', qType:'all'}); }},
+        {label:'Decided today', n:decidedToday, sub:'Median time to decision 3h 10m (sample)', subCls:'stat-s', go:function(){ self.go('audit'); }},
+        {label:'Appeals overturned', n:closedAp.length ? Math.round(over / closedAp.length * 100) + '%' : '—', sub:closedAp.length ? over + ' of ' + closedAp.length + ' closed appeals' : 'No closed appeals yet', subCls:'stat-s', go:function(){ self.setState({page:'appeals', aTab:'closed'}); }}],
+      deskStats:[{n:active.filter(function(c){ return c.assignee === s.who; }).length, label:'Assigned to you', go:function(){ self.setState({page:'queue', qStatus:'mine', qPri:'all', qType:'all'}); }},
+        {n:active.filter(function(c){ return !c.assignee; }).length, label:'Unassigned', go:function(){ self.setState({page:'queue', qStatus:'unassigned', qPri:'all', qType:'all'}); }},
+        {n:myAppeals.length + myConfirms.length, label:'Appeals & confirmations for you', go:function(){ self.go('appeals'); }}],
+      summary:isAdmin ? (active.length + ' open items across the team' + (urgent.length ? ', ' + urgent.length + ' urgent' : '') + '. ' + decidedToday + ' decided today.') : (active.length ? active.length + ' items in the queue' + (urgent.length ? ', ' + urgent.length + ' urgent.' : '.') : 'The queue is clear.'),
+      urgentTitle:urgent.length === 1 ? '1 urgent case is waiting' : urgent.length + ' urgent cases are waiting', openFirstUrgent:urgent.length ? openCase(urgent[0].id) : function(){},
+      hasUrgentCards:urgent.length > 0, mine:mine, mineEmpty:!mine.length, mineCount:mine.length ? mine.length + ' item' + (mine.length > 1 ? 's' : '') : '',
+      kpis:[{n:active.length, label:'Open in queue', sub:'Reports and edits', go:function(){ self.go('queue'); }},
+        {n:urgent.length, label:'Urgent', sub:'Same-day target', hot:urgent.length > 0, go:function(){ self.setState({page:'queue', qPri:'urgent', qStatus:'active', qType:'all'}); }},
+        {n:myAppeals.length, label:'Appeals for you', sub:openAppeals.length + ' open in total', go:function(){ self.go('appeals'); }},
+        {n:pendApps.length, label:'Trusted applications', sub:'Waiting for a person', go:function(){ self.go('trusted'); }},
+        {n:openFlags.length, label:'Verification flags', sub:'Never auto-banned', go:function(){ self.go('verify'); }},
+        {n:oldest ? adAge(oldest.ageMin) : '—', label:'Oldest waiting', sub:oldest ? oldest.id : 'Nothing waiting', go:oldest ? openCase(oldest.id) : function(){}}].map(function(k){ k.cls = 'kpi' + (k.hot ? ' hot' : ''); return k; }),
+      recent:s.audit.slice(0, 5).map(function(a){ return {who:STAFF[a.who] ? STAFF[a.who].name : a.who, action:a.action.charAt(0).toLowerCase() + a.action.slice(1), target:a.target, at:a.at}; })};
+
+    /* queue */
+    var qq = (s.qSearch || '').trim().toLowerCase();
+    var rows = s.cases.filter(function(c){
+      if (s.qType === 'reports' && c.kind !== 'report') return false; if (s.qType === 'edits' && c.kind !== 'edit') return false;
+      if (s.qPri !== 'all' && c.priority !== s.qPri) return false;
+      if (s.qStatus === 'active' && c.status === 'resolved') return false; if (s.qStatus === 'mine' && (c.assignee !== s.who || c.status === 'resolved')) return false;
+      if (s.qStatus === 'unassigned' && (c.assignee || c.status === 'resolved')) return false; if (s.qStatus === 'resolved' && c.status !== 'resolved') return false;
+      if (qq) { var m = self.member(c.subject); if ((c.id + ' ' + c.title + ' ' + c.category + ' ' + m.name + ' ' + m.handle).toLowerCase().indexOf(qq) < 0) return false; }
+      return true; }).sort(function(a, b){ return (PRI_ORDER[a.priority] - PRI_ORDER[b.priority]) || (b.ageMin - a.ageMin); });
+    var tab = function(key, cur, list, setKey){ return list.map(function(t){ var on = cur === t[0]; return {label:t[1], cls:on ? 'on' : '', pressed:on ? 'true' : 'false', pick:function(){ var u = {}; u[setKey] = t[0]; self.set(u); }}; }); };
+    var chipTab = function(cur, list, setKey){ return list.map(function(t){ var on = cur === t[0]; return {label:t[1], cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ var u = {}; u[setKey] = t[0]; self.set(u); }}; }); };
+    o.qf = {types:tab('t', s.qType, [['all', 'All'], ['reports', 'Reports'], ['edits', 'Edit reviews']], 'qType'),
+      statuses:tab('s', s.qStatus, [['active', 'Active'], ['mine', 'Mine'], ['unassigned', 'Unassigned'], ['resolved', 'Resolved']], 'qStatus'),
+      pris:chipTab(s.qPri, [['all', 'All'], ['urgent', 'Urgent'], ['high', 'High'], ['normal', 'Normal']], 'qPri'),
+      count:rows.length, empty:!rows.length,
+      emptyTitle:s.qStatus === 'mine' ? 'Nothing assigned to you' : (qq ? 'No items match' : 'All clear'),
+      emptyText:s.qStatus === 'mine' ? 'Assign yourself an unassigned item to start.' : (qq ? 'Try another ID, member or reason.' : 'New reports and flagged edits will appear here.'),
+      rows:rows.map(function(c){ var w = whoOf(c.assignee); var m = self.member(c.subject); return {id:c.id, title:c.title, sub:c.category + ' · ' + m.name, type:c.kind === 'edit' ? 'Edit review' : c.objType, age:adAge(c.ageMin), pri:PRI_LABEL[c.priority], priCls:'badge b-' + c.priority, st:STATUS_LABEL[c.status], stCls:STATUS_CLS[c.status], trCls:c.priority === 'urgent' && c.status !== 'resolved' ? 'is-urgent' : '', hasWho:!!w, whoAv:w ? w.av + ' av-sm' : '', whoIni:w ? w.ini : '', whoName:w ? w.name : 'Unassigned', open:openCase(c.id)}; })};
+
+    /* case detail */
+    var c = s.cases.filter(function(x){ return x.id === s.sel; })[0];
+    o.cs = {};
+    if (c) { var m = self.member(c.subject); var w = whoOf(c.assignee); var resolved = c.status === 'resolved'; var pend = s.pending.filter(function(p){ return p.kind === 'case' && p.ref === c.id; })[0];
+      var others = s.cases.filter(function(x){ return x.subject === c.subject && x.id !== c.id && x.status !== 'resolved'; }).length;
+      var past = s.cases.filter(function(x){ return x.subject === c.subject && x.id !== c.id && x.status === 'resolved' && x.outcome && x.outcome.indexOf('No violation') !== 0; });
+      var locked = !canDecide || c.status === 'confirm';
+      o.cs = {id:c.id, title:c.title, where:c.where, category:c.category, pri:PRI_LABEL[c.priority], priCls:'badge b-' + c.priority, st:STATUS_LABEL[c.status], stCls:STATUS_CLS[c.status], age:adAge(c.ageMin), ai:c.ai,
+        isReport:c.kind === 'report', isEdit:c.kind === 'edit', isChild:c.urgent === 'child' && !resolved, objType:c.objType, excerpt:c.excerpt, reporter:c.reporter, reporterNote:c.reporterNote,
+        reportsLine:(c.reports || 1) > 1 ? c.reports + ' members reported this. A report count isn’t proof on its own.' : '1 member reported this.',
+        image:!!c.image, blurCls:'blurbox' + (s.reveal[c.id] ? ' shown' : ''), blurIcon:s.reveal[c.id] ? ICN.eye : ICN.eyeoff, blurText:s.reveal[c.id] ? 'Image revealed for review (placeholder — no real image in this prototype).' : 'Image hidden by default. Reveal only if you need it to decide.', revealLabel:s.reveal[c.id] ? 'Hide image' : 'Reveal image',
+        toggleReveal:function(){ var r = Object.assign({}, s.reveal); r[c.id] = !r[c.id]; self.set({reveal:r}); },
+        orig:(c.orig || []).map(function(g){ return {t:g.t, cls:g.c === 'del' ? 'd-del' : ''}; }), next:(c.next || []).map(function(g){ return {t:g.t, cls:g.c === 'add' ? 'd-add' : ''}; }),
+        areas:(c.areas || []).map(function(a){ return {n:a.n, note:a.note, cls:'area ' + (a.ok ? 'pass' : 'flag'), icon:a.ok ? ICN.check : ICN.alert}; }),
+        m:{ini:m.ini, name:m.name, handle:m.handle, joined:m.joined, ver:m.ver, trust:m.trust, standing:m.standing, stdCls:/Suspend|Limited/.test(m.standing) ? 'std-bad' : (m.standing === 'Warned' ? 'std-warn' : 'std-good'), openOther:others ? others + ' (unresolved — not findings)' : 'None', past:past.length ? past.map(function(x){ return x.outcome; }).join('; ') : 'None'},
+        openMember:function(){ self.go('member', c.subject); },
+        hasWho:!!w, whoAv:w ? w.av + ' av-sm' : '', whoIni:w ? w.ini : '', whoName:w ? (c.assignee === s.who ? 'You' : w.name) : 'Nobody yet',
+        open:!resolved, done:resolved, locked:locked, lockText:!canDecide ? 'Your role can view cases but can’t act on them.' : 'Waiting for the second reviewer — actions are paused.',
+        canTake:c.assignee !== s.who, take:function(){ self.setState({cases:self.updCase(c.id, {assignee:s.who, status:c.status === 'open' ? 'review' : c.status}, self.hist('Assigned to ' + me.name)), audit:self.log('Assigned to self', c.id + ' · ' + c.title)}); self.toast('Assigned to you.'); },
+        canHand:true, handLabel:'Hand to ' + (s.who === 'dana' ? 'Quinn' : 'Dana Ruiz'), hand:function(){ var to = s.who === 'dana' ? 'quinn' : 'dana'; self.setState({cases:self.updCase(c.id, {assignee:to, status:c.status === 'open' ? 'review' : c.status}, self.hist('Handed to ' + STAFF[to].name)), audit:self.log('Reassigned', c.id + ' · ' + c.title, 'To ' + STAFF[to].name)}); self.toast('Handed to ' + STAFF[to].name + '.'); },
+        protected:c.status === 'protect', protectPressed:c.status === 'protect' ? 'true' : 'false',
+        toggleProtect:function(){ var on = c.status !== 'protect'; self.setState({cases:self.updCase(c.id, {status:on ? 'protect' : (c.assignee ? 'review' : 'open')}, self.hist(on ? 'Protective action: hidden while under review' : 'Protective action lifted', on ? 'bad' : 'acc')), audit:self.log(on ? 'Took protective action' : 'Lifted protective action', c.id + ' · ' + c.title, on ? 'Hidden while under review' : '—')}); self.toast(on ? 'Hidden while you review. This isn’t a finding.' : 'Item visible again.'); },
+        decide:function(){ self.openDlg({kind:'decide', ref:c.id, title:'Decide ' + c.id, sub:c.title, archive:/private|Child/.test(c.category)}); },
+        approveEdit:function(){ self.openDlg({kind:'edit', mode:'approve', ref:c.id, title:'Approve this edit?', sub:c.title, note:''}); },
+        rejectEdit:function(){ var flagged = (c.areas || []).filter(function(a){ return !a.ok; })[0]; self.openDlg({kind:'edit', mode:'reject', ref:c.id, title:'Reject this edit', sub:c.title, policy:flagged ? flagged.n : null}); },
+        outcome:c.outcome || '', outcomeBy:resolved ? 'Decided by ' + (STAFF[c.decidedBy] ? STAFF[c.decidedBy].name : '—') + (c.confirmedBy ? ', confirmed by ' + STAFF[c.confirmedBy].name : '') : '',
+        hasMemberNote:resolved && !!c.memberNote, memberNote:c.memberNote || '',
+        isConfirm:c.status === 'confirm' && !!pend, confirmTitle:pend ? (pend.by === s.who ? 'Waiting for a second reviewer.' : 'Second review needed.') : '',
+        confirmText:pend ? (pend.by === s.who ? 'You proposed a suspension. The other reviewer has been asked to confirm it.' : STAFF[pend.by].name + ' proposed: ' + (c.proposal ? c.proposal.label : 'suspension') + '. Confirm only if you agree after reading the evidence.') : '',
+        canConfirm:!!pend && pend.by !== s.who && canDecide, confirmSusp:function(){ if (pend) self.confirmPending(pend.id); }, sendBack:function(){ if (pend) self.openDlg({kind:'sendback', ref:pend.id, title:'Send the suspension back?', sub:'The case returns to ' + STAFF[pend.by].name + ' with your note.'}); },
+        history:(c.history || []).slice().reverse().map(function(h){ return {what:h.what, at:h.at, who:STAFF[h.who] ? STAFF[h.who].name : 'System', dot:'tl-dot' + (h.tone ? ' ' + h.tone : '')}; })};
+    }
+
+    /* appeals */
+    var apRows = s.appeals.filter(function(a){ if (s.aTab === 'mine') return a.status === 'open' && a.by !== s.who && canDecide; if (s.aTab === 'open') return a.status === 'open'; return a.status !== 'open'; });
+    var apSt = {open:['Open', 'badge b-open'], uphold:['Upheld', 'badge b-neutral'], overturn:['Overturned', 'badge b-done'], modify:['Modified', 'badge b-review']};
+    var assignee = function(a){ return a.by === 'quinn' ? STAFF.dana : STAFF.quinn; };
+    o.ap = {tabs:tab('a', s.aTab, [['mine', 'Assigned to me'], ['open', 'All open'], ['closed', 'Closed']], 'aTab'), empty:!apRows.length,
+      emptyTitle:s.aTab === 'mine' ? 'No appeals assigned to you' : 'No appeals here', emptyText:s.aTab === 'mine' ? (canDecide ? 'Appeals of your own decisions go to the other reviewer.' : 'Your role doesn’t decide appeals.') : 'Closed appeals stay here for the record.',
+      rows:apRows.map(function(a){ var to = assignee(a); return {id:a.id, title:a.title, member:self.member(a.member).name, decision:a.decision, by:STAFF[a.by].name, to:to.id === s.who ? 'You' : to.name, toAv:to.av + ' av-sm', toIni:to.ini, age:adAge(a.ageMin), st:apSt[a.status][0], stCls:apSt[a.status][1], open:function(){ self.go('appeal', a.id); }}; })};
+    var al = s.appeals.filter(function(a){ return a.id === s.sel; })[0]; o.al = {};
+    if (al) { var to = assignee(al); var own = al.by === s.who; o.al = {id:al.id, caseRef:al.caseRef, title:al.title, decision:al.decision, by:STAFF[al.by].name, member:self.member(al.member).name, statement:al.statement, age:adAge(al.ageMin), st:apSt[al.status][0], stCls:apSt[al.status][1],
+      assignText:'Assigned to ' + (to.id === s.who ? 'you' : to.name) + ' because ' + STAFF[al.by].name + ' made the original decision. The original reviewer can’t decide their own appeal.',
+      open:al.status === 'open', done:al.status !== 'open', locked:own || !canDecide, lockText:own ? 'You made the original decision, so this appeal is for ' + to.name + '.' : 'Your role can view appeals but can’t decide them.',
+      outcome:al.outcome || '', outcomeBy:al.decidedBy ? 'Decided by ' + STAFF[al.decidedBy].name + (al.note ? ' — ' + al.note : '') : '',
+      decide:function(){ self.openDlg({kind:'appeal', ref:al.id, title:'Decide appeal ' + al.id, sub:al.title}); }}; }
+
+    /* trusted */
+    var tRows = s.apps.filter(function(a){ if (s.tTab === 'pending') return a.status === 'pending'; if (s.tTab === 'info') return a.status === 'info'; return a.status !== 'pending' && a.status !== 'info'; });
+    var tSt = {pending:['Pending', 'badge b-open'], info:['Needs information', 'badge b-protect'], approved:['Approved', 'badge b-done'], declined:['Declined', 'badge b-neutral'], revoked:['Removed', 'badge b-neutral']};
+    o.tr = {tabs:tab('t', s.tTab, [['pending', 'Pending'], ['info', 'Needs information'], ['decided', 'Decided']], 'tTab'), empty:!tRows.length,
+      rows:tRows.map(function(a){ var m = self.member(a.member); return {id:a.id, name:m.name, ini:m.ini, path:a.path, age:adAge(a.ageMin), st:tSt[a.status][0], stCls:tSt[a.status][1], open:function(){ self.go('app', a.id); }}; })};
+    var ta = s.apps.filter(function(a){ return a.id === s.sel; })[0]; o.ta = {};
+    if (ta) { var tm = self.member(ta.member); var tdlg = function(mode, title){ return function(){ self.openDlg({kind:'trust', mode:mode, ref:ta.id, title:title, sub:tm.name + ' · ' + ta.path}); }; };
+      var th = [{at:adAge(ta.ageMin) + ' ago', who:'Applicant', what:'Application submitted', dot:'tl-dot'}].concat(ta.decidedBy && !ta.hist ? [{at:'Earlier', who:STAFF[ta.decidedBy].name, what:'Approved', dot:'tl-dot ok'}] : []).concat((ta.hist || []).map(function(h){ return {at:h.at, who:STAFF[h.who].name, what:h.what, dot:'tl-dot acc'}; }));
+      o.ta = {id:ta.id, name:tm.name, ini:tm.ini, path:ta.path, age:adAge(ta.ageMin), st:tSt[ta.status][0], stCls:tSt[ta.status][1], answers:ta.answers,
+        record:ta.record.map(function(r){ return {l:r.l, v:r.v, kind:r.k === 'self' ? 'Self-reported' : 'Recorded', badge:r.k === 'self' ? 'badge b-protect' : 'badge b-neutral'}; }),
+        isPending:ta.status === 'pending' || ta.status === 'info', isApproved:ta.status === 'approved', locked:!canDecide, hasNote:!!ta.note, noteTitle:ta.status === 'info' ? 'Asked the applicant' : 'Reason shared with the applicant', note:ta.note || '',
+        approve:tdlg('approve', 'Approve Trusted application'), info:tdlg('info', 'Ask for more information'), decline:tdlg('decline', 'Decline application'), revoke:tdlg('revoke', 'Remove Trusted status'), history:th.reverse()}; }
+
+    /* verification */
+    o.vf = {rows:s.vflags.map(function(v){ return {id:v.id, title:v.title, who:v.accounts.map(function(id){ return self.member(id).name; }).join(' & '), age:adAge(v.ageMin), st:v.status === 'open' ? 'Open' : 'Resolved', stCls:v.status === 'open' ? 'badge b-open' : 'badge b-done', open:function(){ self.go('vflag', v.id); }}; })};
+    var vd = s.vflags.filter(function(v){ return v.id === s.sel; })[0]; o.vd = {};
+    if (vd) o.vd = {id:vd.id, title:vd.title, detail:vd.detail, age:adAge(vd.ageMin), st:vd.status === 'open' ? 'Open' : 'Resolved', stCls:vd.status === 'open' ? 'badge b-open' : 'badge b-done', open:vd.status === 'open', done:vd.status !== 'open', locked:!canDecide,
+      outcome:vd.outcome || '', outcomeBy:vd.decidedBy ? 'Resolved by ' + STAFF[vd.decidedBy].name : '',
+      accounts:vd.accounts.map(function(id){ var m = self.member(id); return {ini:m.ini, name:m.name, handle:m.handle, joined:m.joined, ver:m.ver, open:function(){ self.go('member', id); }}; }),
+      resolve:function(){ self.openDlg({kind:'vflag', ref:vd.id, title:'Resolve ' + vd.id, sub:vd.title}); }};
+
+    /* members */
+    var mq = (s.mSearch || '').trim().toLowerCase();
+    var openFor = function(id){ return s.cases.filter(function(x){ return x.subject === id && x.status !== 'resolved'; }).length; };
+    var mRows = s.members.filter(function(m){ if (mq && (m.name + ' ' + m.handle).toLowerCase().indexOf(mq) < 0) return false;
+      if (s.mFilter === 'attention') return openFor(m.id) > 0 || m.ver === 'Needs information' || m.ver === 'Pending';
+      if (s.mFilter === 'restricted') return m.standing !== 'Good standing'; if (s.mFilter === 'trusted') return m.trust !== '—'; return true; });
+    var verCls = function(v){ return v === 'Verified' ? 'badge b-done' : (v === 'Unverified' ? 'badge b-neutral' : 'badge b-protect'); };
+    var stdCls = function(st){ return /Suspend|Limited/.test(st) ? 'std-bad' : (st === 'Warned' ? 'std-warn' : 'std-good'); };
+    o.mb = {tabs:tab('m', s.mFilter, [['all', 'All'], ['attention', 'Needs attention'], ['restricted', 'Restricted'], ['trusted', 'Trusted']], 'mFilter'), empty:!mRows.length,
+      rows:mRows.map(function(m){ return {name:m.name, handle:m.handle, ini:m.ini, ver:m.ver, verCls:verCls(m.ver), trust:m.trust, standing:m.standing, stdCls:stdCls(m.standing), openCnt:String(openFor(m.id)), joined:m.joined, open:function(){ self.go('member', m.id); }}; })};
+    var md = s.members.filter(function(m){ return m.id === s.sel; })[0]; o.md = {};
+    if (md) { var mcases = s.cases.filter(function(x){ return x.subject === md.id; }); var hist = s.audit.filter(function(a){ return a.target.indexOf(md.name) >= 0 || mcases.some(function(x){ return a.target.indexOf(x.id) === 0; }); });
+      var pendS = s.pending.some(function(p){ return p.member === md.id; }); var restricted = md.standing !== 'Good standing';
+      var mdlg = function(mode, title){ return function(){ self.openDlg({kind:'member', mode:mode, ref:md.id, title:title, sub:md.name}); }; };
+      var acts = [{label:'Add a warning', cls:'btn btn-secondary', go:mdlg('warn', 'Add a warning')}, {label:'Temporary limit', cls:'btn btn-secondary', go:mdlg('limit', 'Apply a temporary limit')}, {label:'Suspend account', cls:'btn btn-secondary', go:mdlg('suspend', 'Propose a suspension'), disabled:pendS || md.standing === 'Suspended'}];
+      if (restricted) acts.unshift({label:'Lift restriction', cls:'btn btn-ok', go:mdlg('lift', 'Lift restriction')});
+      if (md.trust !== '—') acts.push({label:'Remove Trusted status', cls:'btn btn-ghost', go:function(){ var ap2 = s.apps.filter(function(a){ return a.member === md.id && a.status === 'approved'; })[0]; if (ap2) self.openDlg({kind:'trust', mode:'revoke', ref:ap2.id, title:'Remove Trusted status', sub:md.name}); }});
+      acts.push({label:'Sign out all sessions', cls:'btn btn-ghost', go:mdlg('signout', 'Sign out all sessions')});
+      acts.forEach(function(a){ a.disabled = !!a.disabled || !canDecide; });
+      o.md = {name:md.name, handle:md.handle, ini:md.ini, joined:md.joined, ver:md.ver, trust:md.trust, standing:md.standing, stdCls:stdCls(md.standing), area:md.area, openReports:openFor(md.id) ? openFor(md.id) + ' (allegations, not findings)' : 'None',
+        findings:(function(){ var f = mcases.filter(function(x){ return x.status === 'resolved' && x.outcome && x.outcome.indexOf('No violation') !== 0 && x.kind === 'report'; }); return f.length ? f.length + ' decided case' + (f.length > 1 ? 's' : '') : 'None'; })(),
+        cases:mcases.map(function(x){ return {id:x.id, title:x.title, category:x.category, st:STATUS_LABEL[x.status], stCls:STATUS_CLS[x.status], open:openCase(x.id)}; }), noCases:!mcases.length,
+        actions:acts, pendingSusp:pendS, history:hist.map(function(a){ return {action:a.action, who:STAFF[a.who] ? STAFF[a.who].name : a.who, at:a.at, reason:a.reason}; }), noHistory:!hist.length}; }
+
+    /* audit */
+    var lq = (s.lSearch || '').trim().toLowerCase();
+    var lRows = s.audit.filter(function(a){ if (s.lWho !== 'all' && a.who !== s.lWho) return false; if (lq && (a.action + ' ' + a.target + ' ' + a.reason).toLowerCase().indexOf(lq) < 0) return false; return true; });
+    o.lg = {tabs:tab('l', s.lWho, [['all', 'Everyone'], ['quinn', 'Quinn'], ['dana', 'Dana Ruiz'], ['ops', 'Ops support']], 'lWho'), empty:!lRows.length,
+      rows:lRows.map(function(a){ var w = STAFF[a.who] || {name:a.who, ini:'?', av:'av'}; return {at:a.at, who:w.name, ini:w.ini, av:w.av + ' av-sm', action:a.action, target:a.target, reason:a.reason}; })};
+    o.exportCsv = function(){ var esc = function(x){ return '"' + String(x).replace(/"/g, '""') + '"'; }; var csv = ['When,Reviewer,Action,Item,Reason'].concat(lRows.map(function(a){ return [a.at, STAFF[a.who] ? STAFF[a.who].name : a.who, a.action, a.target, a.reason].map(esc).join(','); })).join('\n');
+      try { var url = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); var l = document.createElement('a'); l.href = url; l.download = 'lux-flow-audit-log.csv'; document.body.appendChild(l); l.click(); l.remove(); setTimeout(function(){ URL.revokeObjectURL(url); }, 1000); self.setState({audit:self.log('Exported audit log', lRows.length + ' entries', 'CSV')}); self.toast('Audit log exported (' + lRows.length + ' entries).'); } catch (e) { self.toast('Export isn’t available in this view.'); } };
+
+    /* settings */
+    var sw = function(key, label, hint, locked){ var on = !!s.settings[key]; return {label:label, hint:hint, on:on ? 'true' : 'false', cls:'toggle' + (on ? ' on' : ''), disabled:!isAdmin || !!locked, toggle:function(){ var st = Object.assign({}, s.settings); st[key] = !on; self.setState({settings:st, audit:self.log((on ? 'Turned off ' : 'Turned on ') + label.toLowerCase(), 'Settings')}); }}; };
+    o.st = {team:['quinn', 'dana', 'ops'].map(function(id){ var a = STF[id]; return {name:a.full + (id === s.who ? ' (you)' : ''), role:a.role, av:a.av, ini:a.ini, can:a.canDecide ? 'Decides cases, appeals of the other reviewer’s decisions, Trusted applications and flags' : 'Can view queues and records. Can’t decide.'}; }),
+      ai:[sw('aiSort', 'Sort reports by type and priority', 'Suggests a priority. A person can change it.'), sw('aiEdits', 'Check larger edits against six areas', 'May approve or escalate. Rejects only clear policy violations.'), sw('aiPatterns', 'Flag unusual patterns', 'For example, bursts of reports or many new accounts from one device.')],
+      alerts:[sw('email', 'Email both reviewers', 'For threats, child safety and exposed private details.'), sw('push', 'Push notification to both reviewers', 'Arrives on the reviewer’s phone.')],
+      darkCls:s.theme !== 'light' ? 'on' : '', lightCls:s.theme === 'light' ? 'on' : '', darkOn:s.theme !== 'light' ? 'true' : 'false', lightOn:s.theme === 'light' ? 'true' : 'false',
+      setDark:function(){ self.set({theme:'dark'}); }, setLight:function(){ self.set({theme:'light'}); }};
+    o.tm = {rule:'Phase 1 runs with at least two active reviewers. Quinn is admin and primary reviewer. The development team builds these tools but doesn’t moderate content.',
+      invite:function(){ self.openDlg({kind:'invite', title:'Invite a team member', sub:'They’ll get an email to set up their staff account with two-step verification. (Simulated.)', outcome:'reviewer', name:''}); },
+      rows:['quinn', 'dana', 'ops'].map(function(id){ var a = STF[id]; var rev = a.kind === 'reviewer'; return {name:a.full + (id === s.who ? ' (you)' : ''), note:id === 'quinn' ? 'Owner · can’t be changed here' : a.kind === 'operator' ? 'View only' : 'Decides cases', av:a.av + ' av-sm', ini:a.ini, fixed:id === 'quinn', editable:id !== 'quinn', role:a.role, roleAria:'Role for ' + a.name,
+        revCls:rev ? 'on' : '', opCls:rev ? '' : 'on', revOn:rev ? 'true' : 'false', opOn:rev ? 'false' : 'true', setRev:function(){ self.setRole(id, 'reviewer'); }, setOp:function(){ self.setRole(id, 'operator'); },
+        st:a.active ? 'Active' : 'Deactivated', stCls:a.active ? 'badge b-done' : 'badge b-neutral', last:a.active ? a.last : '—', hasAct:id !== 'quinn', actLabel:a.active ? 'Deactivate' : 'Reactivate', act:function(){ self.setActive(id, !a.active); }}; })
+        .concat((s.invites || []).map(function(v, i){ return {name:v.name, note:'Invited ' + v.at, av:'av av-sm', ini:v.name.split(' ').map(function(x){ return x[0]; }).join('').slice(0, 2).toUpperCase(), fixed:true, editable:false, role:ROLE_LABEL[v.kind], st:'Invite sent', stCls:'badge b-open', last:'—', hasAct:true, actLabel:'Cancel invite', act:function(){ self.setState({invites:s.invites.filter(function(_, j){ return j !== i; }), audit:self.log('Cancelled invite', v.name)}); self.toast('Invite cancelled.'); }}; })),
+      perms:PERMS.map(function(p){ var r = {label:p[0]}; p.slice(1).forEach(function(v, i){ var n = i + 1; r['c' + n + 'cls'] = 'perm perm-' + v; r['c' + n + 'icon'] = v === 'yes' ? ICN.check : (v === 'view' ? ICN.eye : ICN.block); r['c' + n + 'text'] = v === 'yes' ? 'Yes' : (v === 'view' ? 'View' : 'No'); }); return r; })};
+    o.askReset = function(){ self.openDlg({kind:'reset', title:'Reset demo data?', sub:'All decisions in this browser will be cleared.'}); };
+
+    /* dialog */
+    var d = s.dlg; o.dlg = {any:!!d};
+    o.closeDlg = function(){ self.set({dlg:null}); }; o.closeDlgBg = function(e){ if (e.target === e.currentTarget) self.set({dlg:null}); };
+    if (d) { var D = {any:true, title:d.title, sub:d.sub || '', hasSub:!!d.sub, err:d.err, hasErr:!!d.err, cancel:'Cancel', okCls:'btn btn-primary', okLabel:'Save', ok:function(){ self.submit(); },
+        note:d.note, internal:d.internal, onNote:function(e){ self.patchDlg({note:e.target.value.slice(0, 600), err:'', touched:true}); }, onInternal:function(e){ self.patchDlg({internal:e.target.value.slice(0, 600)}); }, noteInvalid:d.err && !d.note.trim() ? 'true' : 'false'};
+      var radio = function(list, cur, key){ return list.map(function(x){ var on = cur === x.id; return {label:x.label, hint:x.hint || '', cls:'opt-row' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ var p = {err:''}; p[key] = x.id; if (key === 'outcome' && d.kind === 'decide') { var cs2 = s.cases.filter(function(y){ return y.id === d.ref; })[0]; if (!d.policy && x.needsPolicy && POLICIES.indexOf(cs2.category) >= 0) p.policy = cs2.category; } if (key === 'outcome' && d.kind === 'decide' && !d.touched) { var cs2 = s.cases.filter(function(y){ return y.id === d.ref; })[0]; p.note = (NOTE_TEMPLATES[x.id] || '').replace('{obj}', cs2 ? cs2.objType.toLowerCase() : 'post').replace('{policy}', p.policy || d.policy || cs2.category).replace('{limit}', d.limit); } self.patchDlg(p); }}; }); };
+      if (d.kind === 'decide') { var oc = OUTCOMES.filter(function(x){ return x.id === d.outcome; })[0]; var cs3 = s.cases.filter(function(y){ return y.id === d.ref; })[0];
+        var forced = /private|Child/.test((d.policy || '') + ' ' + cs3.category) && oc && oc.id !== 'dismiss' && oc.id !== 'guidance';
+        Object.assign(D, {hasOptions:true, optLegend:'Outcome', options:radio(OUTCOMES, d.outcome, 'outcome'), hasLimit:!!oc && oc.id === 'limit',
+          limits:LIMITS.map(function(l){ var on = d.limit === l; return {label:l, cls:on ? 'on' : '', checked:on ? 'true' : 'false', pick:function(){ self.patchDlg({limit:l, note:d.touched ? d.note : (NOTE_TEMPLATES.limit).replace('{obj}', cs3.objType.toLowerCase()).replace('{policy}', d.policy || cs3.category).replace('{limit}', l)}); }}; }),
+          hasPolicy:!!oc && oc.needsPolicy, policyLabel:'Which standard does it break?', policies:POLICIES.map(function(p){ var on = d.policy === p; return {label:p, cls:'chip' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ var pp = {policy:p, err:''}; if (!d.touched && oc) pp.note = (NOTE_TEMPLATES[oc.id] || '').replace('{obj}', cs3.objType.toLowerCase()).replace('{policy}', p).replace('{limit}', d.limit); self.patchDlg(pp); }}; }),
+          hasArchive:!!oc && oc.id !== 'dismiss' && oc.id !== 'guidance', archiveOn:d.archive || forced, archiveForced:forced, archivePressed:(d.archive || forced) ? 'true' : 'false', archiveCls:'opt-row' + ((d.archive || forced) ? ' on' : ''),
+          archiveHint:forced ? 'Required for privacy, safety and legal removals — copies become a short “Removed” notice.' : 'Ordinary removals leave saved copies marked “No longer available at source”.', toggleArchive:function(){ self.patchDlg({archive:!d.archive}); },
+          hasNote:!!oc && oc.id !== 'dismiss', noteLabel:'Message to the member', notePh:'Explain what happened and why, in plain words', noteHelp:'Shared with the member. Don’t include the reporter’s identity or anyone’s private details.',
+          hasInternal:!!oc, hasPreview:!!oc && oc.id !== 'dismiss' && !!d.note.trim(), preview:d.note,
+          okLabel:oc ? (oc.id === 'suspend' ? 'Propose suspension' : 'Confirm: ' + oc.label) : 'Save decision', okCls:oc && /remove|warn|limit|suspend/.test(oc.id) ? 'btn btn-danger' : 'btn btn-primary'}); }
+      if (d.kind === 'edit') { var rej = d.mode === 'reject';
+        Object.assign(D, {hasPolicy:rej, policyLabel:'Which area does the edit fail?', policies:EDIT_AREAS.map(function(p){ var on = d.policy === p; return {label:p, cls:'chip' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ self.patchDlg({policy:p, err:''}); }}; }),
+          hasNote:true, noteLabel:rej ? 'Reason for the author' : 'Note to the author (optional)', notePh:rej ? 'e.g. The edit swaps the cited study, which changes what earlier replies were responding to.' : 'Optional', noteHelp:rej ? 'The author sees this with an Appeal button. Appeals go to a different reviewer.' : 'The post updates and shows an Edited label with today’s date.',
+          okLabel:rej ? 'Reject edit' : 'Approve edit', okCls:rej ? 'btn btn-danger' : 'btn btn-ok'}); }
+      if (d.kind === 'appeal') { Object.assign(D, {hasOptions:true, optLegend:'Outcome', options:radio([{id:'uphold', label:'Uphold the original decision', hint:'The decision stands. The member is told why.'}, {id:'overturn', label:'Overturn', hint:'Restore the content and any affected permissions or indicators.'}, {id:'modify', label:'Modify', hint:'Apply a lighter outcome — for example, guidance instead of removal.'}], d.outcome, 'outcome'),
+          hasNote:true, noteLabel:'Explanation for the member', notePh:'What you reviewed and why you reached this outcome', noteHelp:'Shared with the member and recorded in the audit log.', okLabel:'Save appeal decision'}); }
+      if (d.kind === 'trust') { var lbls = {approve:['Approve', 'btn btn-ok', 'Why this person is ready for the responsibility'], decline:['Decline', 'btn btn-danger', 'What’s missing — kind, specific and fair'], info:['Send request', 'btn btn-primary', 'What would help you decide'], revoke:['Remove Trusted status', 'btn btn-danger', 'Why the status is being removed']}[d.mode];
+        Object.assign(D, {hasText:true, text:d.mode === 'approve' ? 'Base this on the participation record and the application — not on verification alone, popularity or activity totals.' : (d.mode === 'revoke' ? 'Trusted status can be reviewed and removed. The member can ask for a review.' : 'The applicant is told the outcome. They can apply again later.'),
+          hasNote:true, noteLabel:'Reason shared with the applicant', notePh:lbls[2], noteHelp:'Recorded in the decision history and the audit log.', okLabel:lbls[0], okCls:lbls[1]}); }
+      if (d.kind === 'vflag') { var vv = s.vflags.filter(function(x){ return x.id === d.ref; })[0];
+        Object.assign(D, {hasOptions:true, optLegend:'Outcome', options:radio(self.vOptions(vv), d.outcome, 'outcome'), hasText:true, text:'An automatic ban isn’t an option here. A flag or failed check doesn’t prove dishonesty.', hasNote:true, noteLabel:'Reason for the record', notePh:'What you checked', noteHelp:'Recorded in the audit log.', okLabel:'Resolve flag'}); }
+      if (d.kind === 'member') { var mmd = {warn:['Add warning', 'btn btn-danger', 'A warning is recorded on the account. The member is told why and can appeal.'], limit:['Apply limit', 'btn btn-danger', 'Pauses posting and messaging. The member can still read, and is told when it ends.'], suspend:['Propose suspension', 'btn btn-danger', 'A suspension needs a second reviewer to confirm before it takes effect.'], lift:['Lift restriction', 'btn btn-ok', 'Restores normal participation and updates the member’s status.'], signout:['Sign out sessions', 'btn btn-primary', 'Use when an account may be compromised. The member signs in again.']}[d.mode];
+        Object.assign(D, {hasText:true, text:mmd[2], hasLimit:d.mode === 'limit', limits:LIMITS.map(function(l){ var on = d.limit === l; return {label:l, cls:on ? 'on' : '', checked:on ? 'true' : 'false', pick:function(){ self.patchDlg({limit:l}); }}; }),
+          hasNote:true, noteLabel:'Reason', notePh:'What happened and which standard applies', noteHelp:'Recorded in the audit log and shared with the member where appropriate.', okLabel:mmd[0], okCls:mmd[1]}); }
+      if (d.kind === 'sendback') Object.assign(D, {hasNote:true, noteLabel:'Note for the other reviewer', notePh:'What you’d like them to reconsider', noteHelp:'Recorded in the case history.', okLabel:'Send back'});
+      if (d.kind === 'invite') Object.assign(D, {hasName:true, name:d.name || '', onName:function(e){ self.patchDlg({name:e.target.value.slice(0, 60), err:''}); }, nameInvalid:d.err && !(d.name || '').trim() ? 'true' : 'false',
+        hasOptions:true, optLegend:'Role', options:radio([{id:'reviewer', label:'Reviewer', hint:'Decides cases, edits, appeals of others’ decisions, Trusted applications and flags.'}, {id:'operator', label:'Operator', hint:'Can view queues and records. Can’t decide anything.'}], d.outcome, 'outcome'), okLabel:'Send invite'});
+      if (d.kind === 'reset') Object.assign(D, {hasText:true, text:'Cases, appeals, applications, flags and the audit log go back to the sample data. You stay signed in.', okLabel:'Reset demo data', okCls:'btn btn-danger'});
+      o.dlg = D; }
+    return o;
+  }
+}
+
+</script>
+</body>
+</html>

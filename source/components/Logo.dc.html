@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lux Flow logo component</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<svg class="lf-logo" viewBox="{{vb}}" role="img" aria-label="{{label}}" style="{{svgStyle}}" preserveAspectRatio="xMidYMid meet">
+<defs><linearGradient id="{{gid}}" gradientUnits="userSpaceOnUse" x1="{{gx1}}" x2="{{gx2}}" y1="0" y2="0"><stop offset="0.0000" style="stop-color: #FFF1CF"></stop><stop offset="0.1111" style="stop-color: #FF8EBE"></stop><stop offset="0.2222" style="stop-color: #A586FF"></stop><stop offset="0.3333" style="stop-color: #5E9BFF"></stop><stop offset="0.4444" style="stop-color: #43D58F"></stop><stop offset="0.5556" style="stop-color: #FFCF3D"></stop><stop offset="0.6667" style="stop-color: #FF9440"></stop><stop offset="0.7778" style="stop-color: #FF5F55"></stop><stop offset="0.8889" style="stop-color: #B98256"></stop><stop offset="1.0000" style="stop-color: #6E6E84"></stop></linearGradient></defs>
+<sc-for list="{{shapes}}" as="s" hint-placeholder-count="12"><path d="{{s.d}}" style="{{s.st}}"></path></sc-for>
+</svg>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"concept":"a","kind":"horizontal","mode":"dark","$preview":{"width":560,"height":180}}'>
+/* Reusable Lux Flow logo component — every concept and variation is generated from vector geometry.
+   Props: concept a|b|c · kind horizontal|woven|stacked|monogram|symbol|icon|flower · mode dark|light|mono-dark|mono-light */
+/* Lux Flow logo engine — pure functions returning SVG shape lists (no DOM). */
+/* Lux Flow logo engine — pure functions returning SVG shape lists (no DOM). */
+/* Lux Flow logo engine — pure functions returning SVG shape lists (no DOM). */
+var LF = (function(){
+  var SYS = [['radiance','#FFF1CF'],['purpose','#FF8EBE'],['presence','#A586FF'],['wisdom','#5E9BFF'],['connection','#43D58F'],['unity','#FFCF3D'],['vitality','#FF9440'],['foundation','#FF5F55'],['journey','#B98256'],['remembrance','#6E6E84']];
+  var R = function(n){ return Math.round(n * 100) / 100; };
+  var PAL = {dark:{ink:'#F4F2FB', bg:'#0A0912', key:'none', rem:'#6E6E84', remEdge:'#A8A8BE'}, light:{ink:'#14112E', bg:'#F7F5FB', key:'rgba(20,17,46,.22)', rem:'#6E6E84', remEdge:'#6E6E84'},
+             'mono-dark':{ink:'#F4F2FB', bg:'#0A0912', mono:true}, 'mono-light':{ink:'#14112E', bg:'#F7F5FB', mono:true}};
+  /* monoline glyphs: cap 0..100, x-height 34, baseline 100 */
+  var G = {
+    L:{w:46, d:'M0 0V100H46'}, u:{w:66, d:'M0 34V67A33 33 0 0 0 66 67V34M66 34V100'}, x:{w:56, d:'M0 34L56 100M56 34L0 100'},
+    F:{w:50, d:'M0 100V0H50M0 48H42'}, l:{w:0, d:'M0 0V100'}, o:{w:66, d:'M0 67A33 33 0 1 0 66 67A33 33 0 1 0 0 67'}, w:{w:76, d:'M0 34L18 100L38 46L58 100L76 34'}
+  };
+  function shift(d, dx, dy){ return d.replace(/([MLHVA])([^MLHVAZ]*)/g, function(m, c, args){ var n = args.trim().split(/[\s,]+/).filter(Boolean).map(Number);
+    if (c === 'H') return 'H' + R(n[0] + dx); if (c === 'V') return 'V' + R(n[0] + dy);
+    if (c === 'A') { var o = []; for (var i = 0; i < n.length; i += 7) o.push(n[i], n[i+1], n[i+2], n[i+3], n[i+4], R(n[i+5] + dx), R(n[i+6] + dy)); return 'A' + o.join(' '); }
+    var o2 = []; for (var j = 0; j < n.length; j += 2) o2.push(R(n[j] + dx), R(n[j+1] + dy)); return c + o2.join(' '); }); }
+  function word(text, track, space, skip){ var x = 0, out = [];
+    for (var i = 0; i < text.length; i++){ var ch = text[i]; if (ch === ' ') { x += space - track; continue; } var g = G[ch]; if (!skip || skip.indexOf(i) < 0) out.push({d:shift(g.d, x, 0), x:x, ch:ch}); x += g.w + track; }
+    return {glyphs:out, w:x - track}; }
+  /* Bernoulli lemniscate, optional vertical scale k, from parameter t0..t1 */
+  function lem(cx, cy, a, k, t0, t1, steps){ steps = steps || 120; var p = [];
+    for (var i = 0; i <= steps; i++){ var t = t0 + (t1 - t0) * i / steps; var d = 1 + Math.sin(t) * Math.sin(t); p.push([cx + a * Math.cos(t) / d, cy + k * a * Math.sin(t) * Math.cos(t) / d]); }
+    return p; }
+  function smooth(p, close){ var s = 'M' + R(p[0][0]) + ' ' + R(p[0][1]);
+    for (var i = 0; i < p.length - 1; i++){ var p0 = p[Math.max(0, i - 1)], p1 = p[i], p2 = p[i + 1], p3 = p[Math.min(p.length - 1, i + 2)];
+      s += 'C' + R(p1[0] + (p2[0] - p0[0]) / 6) + ' ' + R(p1[1] + (p2[1] - p0[1]) / 6) + ' ' + R(p2[0] - (p3[0] - p1[0]) / 6) + ' ' + R(p2[1] - (p3[1] - p1[1]) / 6) + ' ' + R(p2[0]) + ' ' + R(p2[1]); }
+    return s + (close ? 'Z' : ''); }
+  /* petal pointing at angle ang (deg, 0 = up) */
+  function petal(cx, cy, r0, len, wid, ang, round){ var a = ang * Math.PI / 180; var ux = Math.sin(a), uy = -Math.cos(a), vx = -uy, vy = ux;
+    var P = function(u, v){ return R(cx + ux * u + vx * v) + ' ' + R(cy + uy * u + vy * v); };
+    var tip = r0 + len, w = wid / 2, sh = round ? .62 : .78;
+    return 'M' + P(r0, 0) + 'C' + P(r0 + len * .18, w * 1.15) + ' ' + P(r0 + len * sh, w * 1.05) + ' ' + P(tip, 0) + 'C' + P(r0 + len * sh, -w * 1.05) + ' ' + P(r0 + len * .18, -w * 1.15) + ' ' + P(r0, 0) + 'Z'; }
+  function sysFill(i, pal){ if (pal.mono) return pal.ink; return SYS[i][1]; }
+  return {SYS:SYS, PAL:PAL, word:word, lem:lem, smooth:smooth, petal:petal, sysFill:sysFill, R:R, G:G, shift:shift};
+})();
+/* Concept builders. build(concept, kind, mode, opt) -> {vb:'x y w h', w, h, shapes:[{d, st}], label} */
+var LFC = (function(LF){
+  var R = LF.R;
+  function st(o){ var s = []; s.push('fill:' + (o.fill || 'none')); if (o.stroke) { s.push('stroke:' + o.stroke); s.push('stroke-width:' + o.sw); s.push('stroke-linecap:' + (o.cap || 'round')); s.push('stroke-linejoin:' + (o.join || 'round')); if (o.join === 'miter') s.push('stroke-miterlimit:3'); } if (o.op != null) s.push('opacity:' + o.op); return s.join(';'); }
+  function S(d, o){ return {d:d, st:st(o)}; }
+  var GRAD = 'url(#lf-ten)'; var GX = null;
+  /* ---- shared pieces ---- */
+  function wordShapes(text, x0, y0, sc, sw, ink, track, space, skip){ var w = LF.word(text, track || 24, space || 44, skip);
+    return {w:w.w * sc, glyphs:w.glyphs, shapes:w.glyphs.map(function(g){ return S(scaleD(g.d, sc, x0, y0), {stroke:ink, sw:sw, cap:'butt', join:'miter'}); })}; }
+  function scaleD(d, s, dx, dy){ return d.replace(/([MLHVAC])([^MLHVACZ]*)/g, function(m, c, args){ var n = args.trim().split(/[\s,]+/).filter(Boolean).map(Number);
+      if (c === 'H') return 'H' + R(n[0] * s + dx); if (c === 'V') return 'V' + R(n[0] * s + dy);
+      if (c === 'A') { var o = []; for (var i = 0; i < n.length; i += 7) o.push(R(n[i] * s), R(n[i+1] * s), n[i+2], n[i+3], n[i+4], R(n[i+5] * s + dx), R(n[i+6] * s + dy)); return 'A' + o.join(' '); }
+      var o2 = []; for (var j = 0; j < n.length; j += 2) o2.push(R(n[j] * s + dx), R(n[j+1] * s + dy)); return c + o2.join(' '); }) + (/Z$/.test(d) ? 'Z' : ''); }
+  /* Concept A loop: L foot flows tangentially into the top of the left lobe; loop hangs under "ux" */
+  var A_LOOP = {a:116, k:.6, top:114, leftTopX:46}; var A_L = 'M0 0V114H46';
+  function aLoop(sc, dx, dy){ var p = A_LOOP; var cx = p.leftTopX + .6121 * p.a; var cy = p.top + .35355 * p.k * p.a;
+    var pts = LF.lem(cx, cy, p.a, p.k, 0, Math.PI * 2, 160).map(function(q){ return [q[0] * sc + dx, q[1] * sc + dy]; });
+    var xs = pts.map(function(q){ return q[0]; }); GX = [Math.min.apply(null, xs), Math.max.apply(null, xs)]; return {d:LF.smooth(pts, true), cx:cx, cy:cy, pts:pts, bottom:cy + .35355 * p.k * p.a, right:cx + p.a}; }
+  function aFront(sc, dx, dy, t0, t1){ var p = A_LOOP; var cx = p.leftTopX + .6121 * p.a; var cy = p.top + .35355 * p.k * p.a;
+    return LF.smooth(LF.lem(cx, cy, p.a, p.k, t0, t1, 40).map(function(q){ return [q[0] * sc + dx, q[1] * sc + dy]; }), false); }
+  function flowerA(cx, cy, s, pal, hi){ /* 10 slender petals, upright, radiance at 12 o'clock, clockwise in the documented order */
+    var out = []; for (var i = 0; i < 10; i++){ var f = LF.sysFill(i, pal); var d = LF.petal(cx, cy, 5 * s, 40 * s, 17 * s, i * 36, false);
+      out.push(S(d, {fill:f, stroke:pal.mono ? pal.bg : (pal.key !== 'none' ? pal.key : null), sw:pal.mono ? 2.4 * s : 1 * s, op:(hi != null && hi !== i) ? .22 : null})); if (!pal.mono && i === 9) out.push(S(d, {stroke:pal.remEdge, sw:1.2 * s})); }
+    out.push(S(circ(cx, cy, 3.2 * s), {fill:pal.ink})); return out; }
+  function circ(cx, cy, r){ return 'M' + R(cx - r) + ' ' + R(cy) + 'A' + r + ' ' + r + ' 0 1 0 ' + R(cx + r) + ' ' + R(cy) + 'A' + r + ' ' + r + ' 0 1 0 ' + R(cx - r) + ' ' + R(cy) + 'Z'; }
+  function rrect(x, y, w, h, r){ return 'M' + (x + r) + ' ' + y + 'H' + (x + w - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + w) + ' ' + (y + r) + 'V' + (y + h - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + w - r) + ' ' + (y + h) + 'H' + (x + r) + 'A' + r + ' ' + r + ' 0 0 1 ' + x + ' ' + (y + h - r) + 'V' + (y + r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + r) + ' ' + y + 'Z'; }
+  /* Concept B flower: fuller petals around an infinity core */
+  function flowerB(cx, cy, s, pal){ var out = [];
+    for (var i = 0; i < 10; i++){ var d = LF.petal(cx, cy, 14 * s, 36 * s, 23 * s, i * 36, true); out.push(S(d, {fill:LF.sysFill(i, pal), stroke:pal.mono ? pal.bg : (pal.key !== 'none' ? pal.key : (i === 9 ? pal.remEdge : null)), sw:pal.mono ? 2.6 * s : 1.2 * s})); }
+    var pts = LF.lem(cx, cy, 13.5 * s, 1, 0, Math.PI * 2, 80); out.push(S(circ(cx, cy, 13 * s), {fill:pal.mono ? pal.bg : (pal.key !== 'none' ? '#F7F5FB' : '#0A0912')})); out.push(S(LF.smooth(pts, true), {stroke:pal.ink, sw:3.8 * s}));
+    return out; }
+  /* Concept C: ten parallel strands form one infinity ribbon */
+  function ribbonC(cx, cy, a, s, pal, swMul){ var out = []; for (var i = 0; i < 10; i++){ var off = (i - 4.5);
+      var pts = LF.lem(cx, cy, a + off * 2.6 * s, .9 + off * .03, 0, Math.PI * 2, 140); if (i === 0 && pal.key && pal.key !== 'none' && !pal.mono) out.push(S(LF.smooth(LF.lem(cx, cy, a, .9, 0, Math.PI * 2, 140), true), {stroke:pal.key, sw:25 * s * (swMul || 1.6) / 1.6, op:.22})); out.push(S(LF.smooth(pts, true), {stroke:LF.sysFill(i, pal), sw:(swMul || 1.6) * s, op:pal.mono ? (.35 + .065 * i) : 1})); }
+    return out; }
+  function flowerC(cx, cy, s, pal){ var out = []; for (var i = 0; i < 10; i++){ var d = LF.petal(cx, cy, 2 * s, 44 * s, 20 * s, i * 36, false); out.push(S(d, {stroke:LF.sysFill(i, pal), sw:2.2 * s, fill:pal.mono ? 'none' : 'none'})); }
+    out.push(S(circ(cx, cy, 3 * s), {fill:pal.ink})); return out; }
+  function keyline(sh, pal, extra){ if (pal.key && pal.key !== 'none' && !pal.mono) return [S(sh.d, {stroke:pal.key, sw:extra})].concat([sh]); return [sh]; }
+  var TEN = 'Ten Systems';
+  function build(concept, kind, mode, opt){ opt = opt || {}; GX = null; var pal = LF.PAL[mode] || LF.PAL.dark; var ink = pal.ink; var shapes = [], vb, label;
+    var loopStroke = pal.mono ? ink : GRAD;
+    if (concept === 'a'){
+      if (kind === 'horizontal' || kind === 'wordmark' || kind === 'woven'){
+        var sw = 12; var wd = wordShapes('Lux Flow', 0, 0, 1, sw, ink); if (kind !== 'woven') wd.shapes[0] = S(A_L, {stroke:ink, sw:sw, cap:'butt', join:'miter'});
+        var lp = aLoop(1, 0, 0);
+        if (kind === 'woven'){ /* loop rises into "ux": in front of the u, behind the x */
+          var W = {a:69.4, k:.85, cx:145.5, cy:117.5}; var wl = LF.smooth(LF.lem(W.cx, W.cy, W.a, W.k, 0, Math.PI * 2, 160), true); GX = [W.cx - W.a, W.cx + W.a];
+          var gl = LF.word('Lux Flow', 24, 44).glyphs; var gx = gl[2].d;
+          shapes = shapes.concat(wd.shapes.filter(function(q, i){ return i !== 2; }));
+          shapes = shapes.concat(keyline(S(wl, {stroke:loopStroke, sw:9}), pal, 11.5));
+          shapes.push(S(gx, {stroke:pal.bg, sw:sw + 7, cap:'butt'})); shapes.push(S(gx, {stroke:ink, sw:sw, cap:'butt', join:'miter'}));
+          var fr = LF.smooth(LF.lem(W.cx, W.cy, W.a, W.k, 2.1, 2.95, 30), false); shapes.push(S(fr, {stroke:pal.bg, sw:16, cap:'butt'})); shapes.push(S(fr, {stroke:loopStroke, sw:9, cap:'butt'}));
+          lp = {right:W.cx + W.a, bottom:W.cy + .3536 * W.k * W.a + 8};
+        } else { shapes = shapes.concat(keyline(S(lp.d, {stroke:loopStroke, sw:9}), pal, 11.5)); shapes = shapes.concat(wd.shapes); }
+        var x0 = -8; vb = [x0, -8, Math.max(wd.w, lp.right) - x0 + 8, lp.bottom + 16]; label = 'Lux Flow wordmark — the L flows into an infinity loop';
+      } else if (kind === 'monogram' || kind === 'symbol'){
+        var lp2 = aLoop(1, 0, 0); shapes = shapes.concat(keyline(S(lp2.d, {stroke:loopStroke, sw:11}), pal, 13.5)); shapes.push(S(A_L, {stroke:ink, sw:14, cap:'butt', join:'miter'}));
+        vb = [-10, -10, lp2.right + 20, lp2.bottom + 20]; label = 'Lux Flow monogram: L with infinity';
+      } else if (kind === 'stacked'){
+        var lp3 = aLoop(1.4, 158, 0); shapes = shapes.concat(keyline(S(lp3.d, {stroke:loopStroke, sw:15}), pal, 17.5)); shapes.push(S(scaleD(A_L, 1.4, 158, 0), {stroke:ink, sw:19, cap:'butt', join:'miter'}));
+        var wd3 = wordShapes('Lux Flow', 0, 280, 1, 12, ink); shapes = shapes.concat(wd3.shapes);
+        vb = [-10, -14, 548, 404]; label = 'Lux Flow stacked logo';
+      } else if (kind === 'icon'){
+        shapes.push(S(rrect(0, 0, 240, 240, 54), {fill:pal.mono ? pal.bg : (mode === 'light' ? '#14112E' : '#16132A')}));
+        var ic = pal.mono ? pal.ink : '#F4F2FB'; var lp4 = aLoop(.72, 52, 38); shapes.push(S(lp4.d, {stroke:pal.mono ? ic : GRAD, sw:10})); shapes.push(S(scaleD(A_L, .72, 52, 38), {stroke:ic, sw:12, cap:'butt', join:'miter'}));
+        vb = [0, 0, 240, 240]; label = 'Lux Flow app icon, concept A';
+      } else if (kind === 'flower'){ shapes = flowerA(60, 60, 1.15, pal, opt.highlight); vb = [0, 0, 120, 120]; label = TEN + ' emblem: ten petals in the system colours'; }
+    }
+    if (concept === 'b'){
+      if (kind === 'symbol' || kind === 'flower'){ shapes = flowerB(60, 60, 1, pal); vb = [0, 0, 120, 120]; label = TEN + ' flower with an infinity core'; }
+      else if (kind === 'horizontal' || kind === 'wordmark'){ shapes = flowerB(66, 66, 1.22, pal).concat(wordShapes('Lux Flow', 168, 21, .9, 11, ink).shapes); vb = [0, 0, 660, 132]; label = 'Lux Flow logo with the Ten Systems flower'; }
+      else if (kind === 'stacked'){ shapes = flowerB(236, 90, 1.6, pal).concat(wordShapes('Lux Flow', -10, 220, .9, 11, ink).shapes); vb = [-20, 0, 512, 330]; label = 'Lux Flow stacked logo with flower'; }
+      else if (kind === 'icon'){ shapes.push(S(rrect(0, 0, 240, 240, 54), {fill:pal.mono ? pal.bg : (mode === 'light' ? '#14112E' : '#16132A')})); var p2 = pal.mono ? pal : LF.PAL.dark; shapes = shapes.concat(flowerB(120, 120, 1.55, p2)); vb = [0, 0, 240, 240]; label = 'Lux Flow app icon, concept B'; }
+    }
+    if (concept === 'c'){
+      if (kind === 'symbol'){ shapes = ribbonC(120, 60, 100, 1, pal); vb = [0, 0, 240, 120]; label = 'Infinity ribbon of ten system colours'; }
+      else if (kind === 'flower'){ shapes = flowerC(60, 60, 1.1, pal); vb = [0, 0, 120, 120]; label = TEN + ' line flower'; }
+      else if (kind === 'horizontal' || kind === 'wordmark'){ shapes = ribbonC(92, 60, 80, .8, pal, 1.8).concat(wordShapes('Lux Flow', 210, 22, .82, 9, ink, 30, 52).shapes); vb = [0, 0, 720, 120]; label = 'Lux Flow logo with infinity ribbon'; }
+      else if (kind === 'stacked'){ shapes = ribbonC(250, 70, 120, 1.1, pal, 1.6).concat(wordShapes('Lux Flow', 0, 190, .82, 9, ink, 30, 52).shapes); vb = [-14, 0, 530, 300]; label = 'Lux Flow stacked logo with infinity ribbon'; }
+      else if (kind === 'icon'){ shapes.push(S(rrect(0, 0, 240, 240, 54), {fill:pal.mono ? pal.bg : (mode === 'light' ? '#14112E' : '#16132A')})); shapes = shapes.concat(ribbonC(120, 120, 88, 1.15, pal.mono ? pal : LF.PAL.dark, 2.4)); vb = [0, 0, 240, 240]; label = 'Lux Flow app icon, concept C'; }
+    }
+    return {vb:vb.map(R).join(' '), w:vb[2], h:vb[3], shapes:shapes, label:label, gx1:GX ? R(GX[0]) : 0, gx2:GX ? R(GX[1]) : 1, hasGrad:!!GX};
+  }
+  return {build:build, scaleD:scaleD};
+})(typeof LF !== 'undefined' ? LF : require('./engine.js'));
+class Component extends DCLogic {
+  constructor(a, b){ super(a, b); this.gid = 'lf' + Math.random().toString(36).slice(2, 9); }
+  renderVals(){
+    var p = this.props || {}; var gid = this.gid;
+    var L = LFC.build(p.concept || 'a', p.kind || 'horizontal', p.mode || 'dark', p);
+    if (!L.vb) L = LFC.build('a', 'horizontal', 'dark');
+    return {vb:L.vb, label:p.label || L.label, gid:gid, gx1:L.gx1, gx2:L.gx2,
+      svgStyle:'display: block; width: 100%; height: ' + (p.fit === 'height' ? '100%' : 'auto') + '; overflow: visible',
+      shapes:L.shapes.map(function(s){ return {d:s.d, st:s.st.replace('url(#lf-ten)', 'url(#' + gid + ')')}; })};
+  }
+}
+</script>
+</body>
+</html>
