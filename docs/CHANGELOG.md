@@ -1,5 +1,13 @@
 # Change log
 
+## Ten Systems homepage — client round (Oct 30)
+- New System palette applied app-wide (chakras, dots, tags, flower): Radiance #F5F5F5, Purpose #D102B9, Presence #5D09BD, Wisdom #1117CF, Connection #11A800, Unity #FFBB00, Vitality #FA5C00, Foundation #D51C1C, Journey #784421, Remembrance #383838.
+- Chakras are solid circles with a thin white edge and a symbol inside (sun, target, meditating figure, books, heart, three people, apple, house, shoe, scroll); white centre, rays and big halos removed.
+- Positions follow the client reference: 1 top of head, 2 middle of head, 3 throat below chin, 4–10 evenly spaced from the upper chest to the bottom of the crossed legs.
+- Floating slowed to a subtle 14 s cycle; labels stay still; off with Reduce motion.
+- More stars and an upright crescent moon on the galaxy stage.
+- Admin console: navigation back in a side menu; admin marked with a gold "Admin console" badge.
+
 ## Admin console
 - Separate web console "Lux Flow · Integrity" with staff sign-in (two-step code, simulated).
 - Roles: Admin (Quinn, also primary reviewer), Reviewer, Operator (view only). Admin-only Team & roles page; the "at least two active reviewers" rule is enforced.

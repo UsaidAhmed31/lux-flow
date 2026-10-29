@@ -30,7 +30,7 @@ body{margin:0}
    base to a luminous tip, with a soft highlight stroke for volume and a slightly darker rim.
    Variants: mark (16-32px nav) · emblem (40-120px) · large (illustration) · icon (navy app-icon tile).
    Props: variant, highlight (index or array of indexes; others dim, highlighted petals glow), label (meaningful -> role=img; empty -> decorative), onPick(i), glow (bool). */
-var FLOWER_SYS = ['#FFE7A3', '#FF77B4', '#9F77FF', '#4D96FF', '#2FD58B', '#FFC931', '#FF8A33', '#FF5148', '#C68A55', '#8C8FB0'];
+var FLOWER_SYS = ['#F5F5F5', '#D102B9', '#5D09BD', '#1117CF', '#11A800', '#FFBB00', '#FA5C00', '#D51C1C', '#784421', '#383838'];
 var FLOWER_VARIANT = {mark:{rim:.9, hl:0, core:5.2, halo:9}, emblem:{rim:1.2, hl:1, core:4.6, halo:8.5}, large:{rim:1, hl:1, core:4.2, halo:9}, icon:{rim:1.6, hl:.8, core:5, halo:9, scale:.74}};
 function flowerR(n){ return Math.round(n * 100) / 100; }
 function flowerMix(hex, to, t){ var a = parseInt(hex.slice(1), 16), b = parseInt(to.slice(1), 16); var r = Math.round(((a >> 16) & 255) * (1 - t) + ((b >> 16) & 255) * t), g = Math.round(((a >> 8) & 255) * (1 - t) + ((b >> 8) & 255) * t), bl = Math.round((a & 255) * (1 - t) + (b & 255) * t); return '#' + ((1 << 24) + (r << 16) + (g << 8) + bl).toString(16).slice(1); }

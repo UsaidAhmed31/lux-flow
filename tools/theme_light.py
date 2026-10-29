@@ -136,9 +136,20 @@ EXTRA = '''/* hand-tuned */
 /* image overlays keep light text on their dark scrims */
 .app.theme-light .comm-hero.has-img,.app.theme-light .sys-preview{--ink:#F4F2FB;--ink-2:#E4E1F0;--ink-3:#C9C3EA;color:#F4F2FB}
 /* System tags: darker text on the tinted chips for contrast on white */
-.app.theme-light .sys-radiance{color:#8A6200}.app.theme-light .sys-purpose{color:#B4286A}.app.theme-light .sys-presence{color:#5B3FD6}.app.theme-light .sys-wisdom{color:#1F5FCC}.app.theme-light .sys-connection{color:#137A4B}
-.app.theme-light .sys-unity{color:#8A6400}.app.theme-light .sys-vitality{color:#B35512}.app.theme-light .sys-foundation{color:#B8322A}.app.theme-light .sys-journey{color:#7A4E2A}.app.theme-light .sys-remembrance{color:#55556A}
-.app.theme-light .sysc-radiance{color:#8A6200}.app.theme-light .dot-radiance{box-shadow:0 0 0 1px rgba(138,98,0,.45)}
+.app.theme-light .sys-radiance{background:rgba(245,245,245,1);color:#5E5E5E}.app.theme-light .sysc-radiance{color:#5E5E5E}
+.app.theme-light .sys-purpose{background:rgba(209,2,185,.14);color:#D102B9}.app.theme-light .sysc-purpose{color:#D102B9}
+.app.theme-light .sys-presence{background:rgba(93,9,189,.14);color:#5D09BD}.app.theme-light .sysc-presence{color:#5D09BD}
+.app.theme-light .sys-wisdom{background:rgba(17,23,207,.14);color:#1117CF}.app.theme-light .sysc-wisdom{color:#1117CF}
+.app.theme-light .sys-connection{background:rgba(17,168,0,.14);color:#11A800}.app.theme-light .sysc-connection{color:#11A800}
+.app.theme-light .sys-unity{background:rgba(255,187,0,.14);color:#8A6400}.app.theme-light .sysc-unity{color:#8A6400}
+.app.theme-light .sys-vitality{background:rgba(250,92,0,.14);color:#FA5C00}.app.theme-light .sysc-vitality{color:#FA5C00}
+.app.theme-light .sys-foundation{background:rgba(213,28,28,.14);color:#D51C1C}.app.theme-light .sysc-foundation{color:#D51C1C}
+.app.theme-light .sys-journey{background:rgba(120,68,33,.14);color:#784421}.app.theme-light .sysc-journey{color:#784421}
+.app.theme-light .sys-remembrance{background:rgba(56,56,56,.14);color:#383838}.app.theme-light .sysc-remembrance{color:#383838}
+.app.theme-light .dot-radiance{box-shadow:0 0 0 1px rgba(0,0,0,.35)}.app.theme-light .sys-radiance{box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.app.theme-light .sun{box-shadow:0 0 0 1.5px rgba(255,255,255,.9),0 0 8px 1px color-mix(in srgb,var(--sc) 40%,transparent),0 2px 6px rgba(40,30,90,.3)}
+.app.theme-light .sc-radiance .sun,.app.theme-light .sun.sc-radiance{box-shadow:0 0 0 1.5px rgba(0,0,0,.22),0 2px 6px rgba(40,30,90,.25)}
+.app.theme-light .fig-moon{fill:#D9A944;filter:drop-shadow(0 0 6px rgba(220,170,60,.35))}
 .app.theme-light .vbadge{color:var(--accent-ink)}
 .app.theme-light .vbadge-trusted{color:#B76A00}
 .app.theme-light .proto{background:#FFFFFF}

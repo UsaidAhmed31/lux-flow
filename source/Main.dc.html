@@ -973,6 +973,58 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .pt-row.focus .pt-lbl{font-size:12.5px;color:#fff;text-shadow:none;background:color-mix(in srgb,var(--sc) 30%,rgba(10,8,24,.82));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--sc) 70%,transparent),0 0 16px -2px var(--sc)}
 .fig-stage.has-sel .pt-row:not(.on) .pt-lbl{opacity:.78}
 @media (min-width:960px){ .pt-lbl{font-size:12.5px} .pt-row.focus .pt-lbl{font-size:13.5px} .side-r .pt-lbl{left:calc(50% + 34px)} .side-l .pt-lbl{right:calc(50% + 34px)} .side-r.on .pt-lbl{left:calc(50% + 46px)} .side-l.on .pt-lbl{right:calc(50% + 46px)} .pt-head .sun{width:20px;height:20px} }
+/* ===== Ten Systems palette v2 (client): solid, distinct colours; symbols inside each chakra ===== */
+.sc-radiance{--sc:#F5F5F5;--sc-ink:#6B6B6B;--si:#6A4E00}
+.dot-radiance{background:#F5F5F5;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-radiance{background:rgba(245,245,245,.24);color:#FAFAFA}.sysc-radiance{color:#FAFAFA}
+.sc-purpose{--sc:#D102B9;--sc-ink:#D102B9;--si:#FFFFFF}
+.dot-purpose{background:#D102B9;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-purpose{background:rgba(209,2,185,.24);color:#EA8DE0}.sysc-purpose{color:#EA8DE0}
+.sc-presence{--sc:#5D09BD;--sc-ink:#5D09BD;--si:#FFFFFF}
+.dot-presence{background:#5D09BD;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-presence{background:rgba(93,9,189,.24);color:#B690E1}.sysc-presence{color:#B690E1}
+.sc-wisdom{--sc:#1117CF;--sc-ink:#1117CF;--si:#FFFFFF}
+.dot-wisdom{background:#1117CF;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-wisdom{background:rgba(17,23,207,.24);color:#9497E9}.sysc-wisdom{color:#9497E9}
+.sc-connection{--sc:#11A800;--sc-ink:#11A800;--si:#FFFFFF}
+.dot-connection{background:#11A800;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-connection{background:rgba(17,168,0,.24);color:#94D88C}.sysc-connection{color:#94D88C}
+.sc-unity{--sc:#FFBB00;--sc-ink:#8A6400;--si:#3A2600}
+.dot-unity{background:#FFBB00;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-unity{background:rgba(255,187,0,.24);color:#FFE08C}.sysc-unity{color:#FFE08C}
+.sc-vitality{--sc:#FA5C00;--sc-ink:#FA5C00;--si:#FFFFFF}
+.dot-vitality{background:#FA5C00;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-vitality{background:rgba(250,92,0,.24);color:#FDB68C}.sysc-vitality{color:#FDB68C}
+.sc-foundation{--sc:#D51C1C;--sc-ink:#D51C1C;--si:#FFFFFF}
+.dot-foundation{background:#D51C1C;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-foundation{background:rgba(213,28,28,.24);color:#EC9999}.sysc-foundation{color:#EC9999}
+.sc-journey{--sc:#784421;--sc-ink:#784421;--si:#FFFFFF}
+.dot-journey{background:#784421;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-journey{background:rgba(120,68,33,.24);color:#C2AB9B}.sysc-journey{color:#C2AB9B}
+.sc-remembrance{--sc:#383838;--sc-ink:#383838;--si:#FFFFFF}
+.dot-remembrance{background:#383838;box-shadow:0 0 0 1px rgba(255,255,255,.35)}.sys-remembrance{background:rgba(56,56,56,.6);color:#C9C9CF}.sysc-remembrance{color:#C9C9CF}
+.fig-stage .figure{animation:none}
+.fig-img,.fig-stage .pt{animation:lfFloat2 14s ease-in-out infinite;will-change:translate}
+@keyframes lfFloat2{0%,100%{translate:0 3px}50%{translate:0 -5px}}
+.pt::before,.pt-head .pt::before,.pt-row.on .pt::before{display:none !important}
+.sun,.pt-head .sun{width:19px;height:19px;display:flex;align-items:center;justify-content:center;background:var(--sc);animation:none;filter:none;
+  box-shadow:0 0 0 1.5px rgba(255,255,255,.6),0 0 8px 1px color-mix(in srgb,var(--sc) 45%,transparent),0 2px 6px rgba(0,0,0,.35)}
+.sun::before{display:none !important}
+.sun-ic{width:64%;height:64%;fill:none;stroke:var(--si,#fff);stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.pt:hover .sun{transform:scale(1.12)}
+.pt-row.on .sun,.pt-row.pt-head.on .sun{transform:scale(1.4);box-shadow:0 0 0 2px #fff,0 0 12px 2px color-mix(in srgb,var(--sc) 60%,transparent),0 2px 8px rgba(0,0,0,.4)}
+.fig-stage.has-sel .pt-row:not(.on) .sun{filter:saturate(.8) brightness(.85)}
+.pt-lbl::before{box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.side-r .pt-lbl{left:calc(50% + 20px)}.side-l .pt-lbl{right:calc(50% + 20px)}
+.side-r.on .pt-lbl{left:calc(50% + 26px)}.side-l.on .pt-lbl{right:calc(50% + 26px)}
+.hf-sun{width:24px;height:24px}
+.sys-info-sun{width:34px;height:34px}
+.fig-moon{position:absolute;top:22px;right:24px;width:32px;height:32px;z-index:0;pointer-events:none;fill:#F6E3B4;filter:drop-shadow(0 0 8px rgba(255,226,160,.5))}
+.fig-stage::before{background-image:
+  radial-gradient(1.2px 1.2px at 12px 18px,#fff,transparent),radial-gradient(1px 1px at 64px 92px,rgba(255,255,255,.85),transparent),radial-gradient(1.4px 1.4px at 118px 40px,#fff,transparent),
+  radial-gradient(1px 1px at 150px 132px,rgba(255,255,255,.75),transparent),radial-gradient(1px 1px at 34px 150px,rgba(255,255,255,.8),transparent),radial-gradient(1.6px 1.6px at 92px 170px,rgba(255,224,160,.95),transparent),
+  radial-gradient(1px 1px at 40px 60px,rgba(255,255,255,.7),transparent),radial-gradient(1.1px 1.1px at 168px 76px,#fff,transparent),radial-gradient(.9px .9px at 86px 12px,rgba(255,255,255,.8),transparent),
+  radial-gradient(1px 1px at 132px 182px,rgba(220,210,255,.9),transparent),radial-gradient(.9px .9px at 8px 112px,#fff,transparent),radial-gradient(1.2px 1.2px at 104px 128px,rgba(255,240,200,.9),transparent);
+  background-size:180px 190px;opacity:.9}
+.fig-stage::after{background-image:
+  radial-gradient(1.8px 1.8px at 40px 60px,rgba(255,220,150,.95),transparent),radial-gradient(1.3px 1.3px at 200px 30px,#fff,transparent),radial-gradient(2px 2px at 150px 210px,rgba(210,190,255,.95),transparent),
+  radial-gradient(1.2px 1.2px at 250px 150px,#fff,transparent),radial-gradient(1.6px 1.6px at 90px 250px,rgba(255,214,140,.9),transparent),radial-gradient(1.4px 1.4px at 230px 260px,#fff,transparent),
+  radial-gradient(1.1px 1.1px at 20px 200px,#fff,transparent),radial-gradient(1.5px 1.5px at 120px 120px,rgba(255,235,190,.9),transparent);
+  background-size:290px 280px;animation:lfTwinkle 6s ease-in-out infinite alternate}
+@media (min-width:960px){ .sun,.pt-head .sun{width:24px;height:24px} .side-r .pt-lbl{left:calc(50% + 26px)} .side-l .pt-lbl{right:calc(50% + 26px)} .side-r.on .pt-lbl{left:calc(50% + 34px)} .side-l.on .pt-lbl{right:calc(50% + 34px)} .fig-moon{width:40px;height:40px} }
+@media (prefers-reduced-motion: reduce){ .fig-img,.fig-stage .pt{animation:none} }
+
 /* ===== Light theme (generated by theme_light.py) ===== */
 .app.theme-light{--bg:#F6F4FB;--surface:#FFFFFF;--surface-2:#F1EEF8;--surface-3:#E7E3F2;--line:#E4E0EE;--line-2:#D0CAE1;--ink:#16132A;--ink-2:#45405F;--ink-3:#6B6687;--accent-ink:#5A43EE;--accent-soft:rgba(122,104,255,.12);--accent-line:rgba(90,67,238,.38);--glow:rgba(122,104,255,.32);--ok:#12925A;--ok-soft:rgba(18,146,90,.12);--warn:#9A6200;--warn-soft:rgba(220,150,20,.14);--danger:#C83A2E;--danger-soft:rgba(220,70,55,.11);color-scheme:light;background-color:var(--bg);background-image:radial-gradient(900px 500px at 85% -10%,rgba(122,104,255,.10),transparent 60%),radial-gradient(700px 400px at -10% 110%,rgba(255,122,69,.06),transparent 60%)}
 .app.theme-light .seg{background:#FFFFFF;box-shadow:inset 0 1px 3px rgba(40,30,90,0.17),inset 0 0 0 1px var(--line)}
@@ -1045,6 +1097,16 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .app.theme-light .comm.tilt:hover{box-shadow:0 18px 40px -18px rgba(40,30,90,0.22)}
 .app.theme-light .cal-day:hover{background:rgba(20,17,46,.05)}
 .app.theme-light .cal-day:hover{background:rgba(20,17,46,.04)}
+.app.theme-light .sysc-radiance{color:var(--ink)}
+.app.theme-light .sysc-purpose{color:var(--ink-2)}
+.app.theme-light .sysc-presence{color:var(--ink-2)}
+.app.theme-light .sysc-wisdom{color:var(--ink-2)}
+.app.theme-light .sysc-connection{color:var(--ink-2)}
+.app.theme-light .sysc-unity{color:var(--ink)}
+.app.theme-light .sysc-vitality{color:var(--ink-2)}
+.app.theme-light .sysc-foundation{color:var(--ink-2)}
+.app.theme-light .sysc-journey{color:var(--ink-2)}
+.app.theme-light .sysc-remembrance{color:var(--ink-2)}
 /* hand-tuned */
 .app.theme-light .topbar{background:rgba(246,244,251,.9)}
 .app.theme-light .side{background:#FFFFFF}
@@ -1094,9 +1156,20 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 /* image overlays keep light text on their dark scrims */
 .app.theme-light .comm-hero.has-img,.app.theme-light .sys-preview{--ink:#F4F2FB;--ink-2:#E4E1F0;--ink-3:#C9C3EA;color:#F4F2FB}
 /* System tags: darker text on the tinted chips for contrast on white */
-.app.theme-light .sys-radiance{color:#8A6200}.app.theme-light .sys-purpose{color:#B4286A}.app.theme-light .sys-presence{color:#5B3FD6}.app.theme-light .sys-wisdom{color:#1F5FCC}.app.theme-light .sys-connection{color:#137A4B}
-.app.theme-light .sys-unity{color:#8A6400}.app.theme-light .sys-vitality{color:#B35512}.app.theme-light .sys-foundation{color:#B8322A}.app.theme-light .sys-journey{color:#7A4E2A}.app.theme-light .sys-remembrance{color:#55556A}
-.app.theme-light .sysc-radiance{color:#8A6200}.app.theme-light .dot-radiance{box-shadow:0 0 0 1px rgba(138,98,0,.45)}
+.app.theme-light .sys-radiance{background:rgba(245,245,245,1);color:#5E5E5E}.app.theme-light .sysc-radiance{color:#5E5E5E}
+.app.theme-light .sys-purpose{background:rgba(209,2,185,.14);color:#D102B9}.app.theme-light .sysc-purpose{color:#D102B9}
+.app.theme-light .sys-presence{background:rgba(93,9,189,.14);color:#5D09BD}.app.theme-light .sysc-presence{color:#5D09BD}
+.app.theme-light .sys-wisdom{background:rgba(17,23,207,.14);color:#1117CF}.app.theme-light .sysc-wisdom{color:#1117CF}
+.app.theme-light .sys-connection{background:rgba(17,168,0,.14);color:#11A800}.app.theme-light .sysc-connection{color:#11A800}
+.app.theme-light .sys-unity{background:rgba(255,187,0,.14);color:#8A6400}.app.theme-light .sysc-unity{color:#8A6400}
+.app.theme-light .sys-vitality{background:rgba(250,92,0,.14);color:#FA5C00}.app.theme-light .sysc-vitality{color:#FA5C00}
+.app.theme-light .sys-foundation{background:rgba(213,28,28,.14);color:#D51C1C}.app.theme-light .sysc-foundation{color:#D51C1C}
+.app.theme-light .sys-journey{background:rgba(120,68,33,.14);color:#784421}.app.theme-light .sysc-journey{color:#784421}
+.app.theme-light .sys-remembrance{background:rgba(56,56,56,.14);color:#383838}.app.theme-light .sysc-remembrance{color:#383838}
+.app.theme-light .dot-radiance{box-shadow:0 0 0 1px rgba(0,0,0,.35)}.app.theme-light .sys-radiance{box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.app.theme-light .sun{box-shadow:0 0 0 1.5px rgba(255,255,255,.9),0 0 8px 1px color-mix(in srgb,var(--sc) 40%,transparent),0 2px 6px rgba(40,30,90,.3)}
+.app.theme-light .sc-radiance .sun,.app.theme-light .sun.sc-radiance{box-shadow:0 0 0 1.5px rgba(0,0,0,.22),0 2px 6px rgba(40,30,90,.25)}
+.app.theme-light .fig-moon{fill:#D9A944;filter:drop-shadow(0 0 6px rgba(220,170,60,.35))}
 .app.theme-light .vbadge{color:var(--accent-ink)}
 .app.theme-light .vbadge-trusted{color:#B76A00}
 .app.theme-light .proto{background:#FFFFFF}
@@ -1231,12 +1304,13 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <button class="hero-help" aria-label="About the Ten Systems" onClick="{{openSysHelp}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.help}}"></path></svg></button>
       </div>
       <div class="{{stageCls}}">
+      <svg class="fig-moon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3a17 17 0 1 1 0 34 8 17 0 0 0 0-34z"></path></svg>
       <div class="figure">
         <sc-if value="{{fig.ok}}" hint-placeholder-val="{{ true }}"><img class="fig-img" src="{{fig.src}}" srcset="{{fig.srcset}}" sizes="(min-width: 960px) 430px, 340px" alt="" aria-hidden="true" loading="lazy" decoding="async" onError="{{fig.err}}"></sc-if>
         <sc-if value="{{fig.bad}}" hint-placeholder-val="{{ false }}"><span class="fig-fallback" aria-hidden="true"></span></sc-if>
         <sc-for list="{{points}}" as="p" hint-placeholder-count="10">
           <div class="{{p.rowCls}}" style="{{p.pos}}">
-            <button class="pt" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" aria-label="{{p.aria}}"><span class="sun"></span></button>
+            <button class="pt" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" aria-label="{{p.aria}}"><span class="sun"><svg class="sun-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.sym}}"></path></svg></span></button>
             <span class="pt-lbl" aria-hidden="true" onClick="{{p.pick}}">{{p.name}}</span>
           </div>
         </sc-for>
@@ -1244,7 +1318,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <div class="{{hf.cls}}">
         <button class="hf-nav" aria-label="Previous System" onClick="{{hf.prev}}"><svg class="ic hf-prev" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button>
         <div class="hf-body">
-          <div class="hf-top"><span class="sun hf-sun" aria-hidden="true"></span><span class="hf-name">{{hf.name}}</span><button class="hf-q" aria-label="{{hf.qAria}}" onClick="{{hf.info}}">?</button></div>
+          <div class="hf-top"><span class="sun hf-sun" aria-hidden="true"><svg class="sun-ic" viewBox="0 0 24 24"><path d="{{hf.sym}}"></path></svg></span><span class="hf-name">{{hf.name}}</span><button class="hf-q" aria-label="{{hf.qAria}}" onClick="{{hf.info}}">?</button></div>
           <div class="hf-words">{{hf.meaning}}</div>
           <div class="hf-foot"><button class="hf-explore" onClick="{{hf.explore}}">{{hf.exploreLabel}}<svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.arrow}}"></path></svg></button><span class="hf-count">{{hf.count}}</span></div>
         </div>
@@ -2721,7 +2795,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
 
       <sc-if value="{{dlg.sysInfo}}" hint-placeholder-val="{{ false }}">
-        <div class="sys-info-head"><span class="{{sysInfo.sunCls}}" aria-hidden="true"></span><p class="p sys-info-words">{{sysInfo.meaning}}</p></div>
+        <div class="sys-info-head"><span class="{{sysInfo.sunCls}}" aria-hidden="true"><svg class="sun-ic" viewBox="0 0 24 24"><path d="{{sysInfo.sym}}"></path></svg></span><p class="p sys-info-words">{{sysInfo.meaning}}</p></div>
         <p class="p muted">{{sysInfo.blurb}}</p>
         <p class="help p">A System is an area of life to explore — never a score or a measure of anyone’s progress.</p>
         <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Close</button><button class="btn btn-primary" onClick="{{sysInfo.explore}}">{{sysInfo.exploreLabel}}</button></div>
@@ -2852,7 +2926,8 @@ var IC = {
 /* Where each System sits on the figure, top to bottom (y in image pixels). Dark figure 1024x1260, light figure 941x1672.
    Radiance above the crown, Purpose at the crown, Presence at the brow, Wisdom at the throat, Connection at the heart,
    Unity at the solar plexus, Vitality at the sacrum, Foundation at the root, Journey at the crossed legs, Remembrance at the base. */
-var FIG_PTS = {dark:{h:1536, y:[205, 318, 402, 568, 720, 870, 990, 1100, 1250, 1400]}, light:{h:1536, y:[205, 318, 402, 568, 720, 870, 990, 1100, 1250, 1400]}}; /* meditation figure v2 (1024x1536, client-supplied): above crown, crown, brow, throat, heart, solar plexus, sacrum, root, crossed legs, base */
+var FIG_PTS = {dark:{h:1536, y:[335, 452, 588, 700, 819, 938, 1058, 1177, 1296, 1415]}, light:{h:1536, y:[335, 452, 588, 700, 819, 938, 1058, 1177, 1296, 1415]}}; /* client reference (Interactive homepage reference): 1 crown/top of head, 2 middle of head, 3 throat below chin, 4-10 evenly spaced from the upper chest to the bottom of the crossed legs */
+var SYS_SYM = {"radiance": "M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zM12 3.5v2.3M12 18.2v2.3M3.5 12h2.3M18.2 12h2.3M6 6l1.6 1.6M16.4 16.4L18 18M6 18l1.6-1.6M16.4 7.6L18 6", "purpose": "M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 12.6a.6.6 0 1 0 0-1.2.6.6 0 0 0 0 1.2z", "presence": "M12 7.6a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6zM12 10v4.5M7 12.2c1.6 1.3 3.2 1.9 5 1.9s3.4-.6 5-1.9M4.5 19c2.6-2.1 4.9-3 7.5-3s4.9.9 7.5 3M7 20.5h10", "wisdom": "M4.5 5h4v14h-4zM9.5 5h4v14h-4zM14.6 6.4l3.6-1 3.3 12.6-3.6 1z", "connection": "M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.2a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z", "unity": "M12 9.5a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8zM5.6 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18.4 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM8 18.5c.4-3 2-4.6 4-4.6s3.6 1.6 4 4.6M2.5 17.5c.3-2.3 1.4-3.6 3.1-3.6M21.5 17.5c-.3-2.3-1.4-3.6-3.1-3.6", "vitality": "M12 8.2c-1.7-1.2-5.6-1.3-6.6 2.2-.9 3.4.9 7.8 3.4 9.4 1.2.8 2.2.4 3.2 0 1 .4 2 .8 3.2 0 2.5-1.6 4.3-6 3.4-9.4-1-3.5-4.9-3.4-6.6-2.2zM12 8.2c-.2-2 .5-3.6 2.3-4.7", "foundation": "M3.5 11.5L12 4.5l8.5 7M6 9.8V19.5h12V9.8M10 19.5v-5h4v5", "journey": "M3 16.5V8.5c1.6 0 2.7.7 3.2 1.9l1.6-.9 1.9 2.4 1.6-.9 2.4 2.5c2.7.2 6 .9 7.3 2.4V18H3zM3 18h18.2", "remembrance": "M7 4.5h10.5a2 2 0 0 1 0 4H16v9a3 3 0 0 1-3 3H6.5a2.5 2.5 0 0 1 0-5H7zM7 4.5a2 2 0 0 0-2 2v9M10 9.5h3.5M10 12.5h3.5"}; /* meditation figure v2 (1024x1536, client-supplied): above crown, crown, brow, throat, heart, solar plexus, sacrum, root, crossed legs, base */
 /* Conversation starters, by System. Suggestions are picked locally from the Systems two people both explore — no AI, nothing sent. */
 var ME_SYS = ['wisdom', 'journey', 'connection'];
 var STARTERS = {
@@ -3619,7 +3694,7 @@ class Component extends DCLogic {
     /* ---------- home ---------- */
     var points = SYS.map(function(sy, i){
       var on = s.sysSel === sy.id; var fp = FIG_PTS[s.settings.theme === 'light' ? 'light' : 'dark']; var y = (fp.y[i] / fp.h * 100).toFixed(2); /* illustration is cropped to 1024x1260: crown at the top of the head, throat below the chin, base at the crossed legs */
-      return {name:sy.name, meaning:sy.meaning, icon:sy.icon, on:on, pressed:on ? 'true' : 'false', cls:'pt sc-' + sy.id + ' pd' + i + (on ? ' on' : ''), words:sy.meaning.split(' · ').map(function(t){ return {t:t}; }), rowCls:'pt-row sc-' + sy.id + ' pd' + i + (i <= 3 ? ' pt-head' : '') + (i % 2 ? ' side-l' : ' side-r') + (on ? ' on' : '') + (sy.id === (s.sysSel || SYS[0].id) ? ' focus' : ''), info:function(){ self.setState({dialog:{kind:'sysInfo', title:sy.name, sys:sy.id}}); }, qAria:'What is ' + sy.name + '?', pos:'top: ' + y + '%', dotCls:'pt-dot dot-' + sy.id, chipCls:'chip' + (on ? ' on' : ''), chipDotCls:'dot dot-' + sy.id, labelCls:'pt-label' + (i % 2 ? ' left' : ''), aria:sy.name + ': ' + sy.meaning + (on ? ' (selected)' : ''), itemCls:'sys-item' + (on ? ' on' : ''), icCls:'sys-ic sys-' + sy.id, pick:function(){ self.setState({sysSel:on ? null : sy.id}); }};
+      return {name:sy.name, meaning:sy.meaning, icon:sy.icon, on:on, pressed:on ? 'true' : 'false', cls:'pt sc-' + sy.id + ' pd' + i + (on ? ' on' : ''), sym:SYS_SYM[sy.id], words:sy.meaning.split(' · ').map(function(t){ return {t:t}; }), rowCls:'pt-row sc-' + sy.id + ' pd' + i + (i <= 3 ? ' pt-head' : '') + (i % 2 ? ' side-l' : ' side-r') + (on ? ' on' : '') + (sy.id === (s.sysSel || SYS[0].id) ? ' focus' : ''), info:function(){ self.setState({dialog:{kind:'sysInfo', title:sy.name, sys:sy.id}}); }, qAria:'What is ' + sy.name + '?', pos:'top: ' + y + '%', dotCls:'pt-dot dot-' + sy.id, chipCls:'chip' + (on ? ' on' : ''), chipDotCls:'dot dot-' + sy.id, labelCls:'pt-label' + (i % 2 ? ' left' : ''), aria:sy.name + ': ' + sy.meaning + (on ? ' (selected)' : ''), itemCls:'sys-item' + (on ? ' on' : ''), icCls:'sys-ic sys-' + sy.id, pick:function(){ self.setState({sysSel:on ? null : sy.id}); }};
     });
     var sel = null;
     if (s.sysSel) {
@@ -3902,10 +3977,10 @@ class Component extends DCLogic {
       showWelcome:s.welcome, showGreeting:!s.welcome, dismissWelcome:function(){ self.setState({welcome:false}); },
       startWithSystem:function(){ self.setState({welcome:false, sysSel:'presence'}); },
       points:points, fig:(function(){ var K = s.settings.theme === 'light' ? 'figureLight' : 'figure'; var m = self.media(K); var n = s.imgFail[K] || 0; return {ok:m.ok, bad:m.bad, src:imgSrc(K + 'Sm', n), srcset:imgSrc(K + 'Sm', n) + ' 640w, ' + imgSrc(K, n) + ' 1024w', err:m.err}; })(), hasSel:!!sel, noSel:!sel, sel:sel || {}, clearSel:function(){ self.setState({sysSel:null}); },
-      sysInfo:(function(){ var sy = s.dialog && s.dialog.kind === 'sysInfo' ? SYSMAP[s.dialog.sys] : null; if (!sy) return {}; return {meaning:sy.meaning, blurb:sy.blurb, sunCls:'sun sys-info-sun sc-' + sy.id, exploreLabel:'Explore ' + sy.name, explore:function(){ self.setState({dialog:null}); self.openSystem(sy.id); }}; })(),
+      sysInfo:(function(){ var sy = s.dialog && s.dialog.kind === 'sysInfo' ? SYSMAP[s.dialog.sys] : null; if (!sy) return {}; return {sym:SYS_SYM[sy.id], meaning:sy.meaning, blurb:sy.blurb, sunCls:'sun sys-info-sun sc-' + sy.id, exploreLabel:'Explore ' + sy.name, explore:function(){ self.setState({dialog:null}); self.openSystem(sy.id); }}; })(),
       stageCls:'fig-stage' + (s.sysSel ? ' has-sel' : ''),
       hf:(function(){ var fi = Math.max(0, SYS.findIndex(function(x){ return x.id === s.sysSel; })); var fs = SYS[fi]; var go = function(d){ self.setState({sysSel:SYS[(fi + d + SYS.length) % SYS.length].id}); };
-        return {cls:'hero-focus sc-' + fs.id + (s.sysSel ? ' is-sel' : ''), name:fs.name, meaning:fs.meaning, count:(fi + 1) + ' / ' + SYS.length, qAria:'What is ' + fs.name + '?',
+        return {sym:SYS_SYM[fs.id], cls:'hero-focus sc-' + fs.id + (s.sysSel ? ' is-sel' : ''), name:fs.name, meaning:fs.meaning, count:(fi + 1) + ' / ' + SYS.length, qAria:'What is ' + fs.name + '?',
           info:function(){ self.setState({dialog:{kind:'sysInfo', title:fs.name, sys:fs.id}}); }, explore:function(){ self.openSystem(fs.id); }, exploreLabel:'Explore ' + fs.name,
           prev:function(){ go(-1); }, next:function(){ go(1); }}; })(),
       openSigInfo:function(){ self.setState({dialog:{kind:'sigInfo', title:'Why Reflection Signals matter'}}); },
