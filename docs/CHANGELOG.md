@@ -1,5 +1,19 @@
 # Change log
 
+## Client round (Nov 2)
+- Chat: title reads “Chat | Love 🔒 (?)” with no extra row; (?) says “Love, coming soon, is locked until Phase 2.” New Chat icon (phone, keyboard and wordless bubbles).
+- Chat three-dot menu: View community / View profile, Mute notifications, Search messages, Leave chat (groups), Block (direct), Report chat.
+- Mute options: 1 hour, 4 hours, 8 hours, 1 day, 3 days, 1 week, Until I turn it back on. The chat shows how long it is muted, with Unmute.
+- Search messages highlights matches inside the open chat. Leave chat asks first, removes the group chat from the list (undo available) and keeps community membership.
+- Navigation: “Lux Flow Home” label, rainbow rounded-square frame around the logo, mobile “Home ~ Flow” switch with the active one highlighted, globe-with-people Communities icon, lotus Create icon, numbered badges (Chat unread, People requests in yellow). Dock sits in front of content.
+- Home: figure first; (?) after the subtitle; “Welcome Friend 🫡” with “Getting started ↓” for first-time visitors; “More about X” expands into what you can create in each System; Today’s Flow sits under Explore; “Pick up where you left off” removed; History button at the bottom.
+- Pages and posts opened from anywhere start at the top.
+- Typography: Lexend, titles at semi-bold (600).
+- Cards are tinted in their System colour (Flow posts, your creations).
+- Create: optional Secondary System (one extra System, excluding the primary) with a (?) guide of what to create in each System; secondary System shown on posts. Write/Preview switch removed on mobile. “Good to know” is now a confirmation before publishing with “Never show this again” (reopen it in Settings → Help). After posting: Go back home / View in Flow.
+- Post page: Reflection Signals moved under the Discussion.
+- Ten Systems: new banners from the client sheet with separate wide (desktop) and mobile crops; top chakras restored; wider gap between Connection and Unity; new symbols for Wisdom, Connection, Unity, Vitality, Foundation, Remembrance.
+
 ## Ten Systems homepage — client round (Oct 30)
 - New System palette applied app-wide (chakras, dots, tags, flower): Radiance #F5F5F5, Purpose #D102B9, Presence #5D09BD, Wisdom #1117CF, Connection #11A800, Unity #FFBB00, Vitality #FA5C00, Foundation #D51C1C, Journey #784421, Remembrance #383838.
 - Chakras are solid circles with a thin white edge and a symbol inside (sun, target, meditating figure, books, heart, three people, apple, house, shoe, scroll); white centre, rays and big halos removed.

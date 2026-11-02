@@ -8,3 +8,6 @@
 6. **Temporary limits** — proposed lengths: 24 hours, 3 days, 7 days.
 7. **"Icon on both sides of the navigation" (web)** — meaning still to be confirmed.
 8. **Meditation figure** — final artwork and point positions follow the founder's approved source files.
+9. **Secondary System** — proposed: optional, one extra System; Flow and System pages still rank by the primary. Should secondary also appear under that System’s filter?
+10. **Leave chat** — proposed: leaving a community group chat keeps community membership. Confirm.
+11. **Discovery balancing** — noted as a future improvement (not in this round).
