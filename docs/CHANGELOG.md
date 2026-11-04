@@ -1,5 +1,17 @@
 # Change log
 
+## Client round (Nov 4)
+- Home: "Today’s Flow" replaced by an optional **Tune your wave** — three short questions. The answers pick three Systems and Flow’s “For you” order leans toward them. Retune or skip anytime.
+- Home | Flow toggle without the “~”.
+- Top bar flower: larger, with a thin rainbow edge touching the petal tips and a faint sheen so it reads as a button.
+- Chakras: larger circles and symbols, thinner symbol lines, soft radiating glow instead of a white ring (grows when selected), 3-D shading so they stand out from the aura.
+- New chakra colours (client RGB): Journey #52240C, Foundation #DA3226, Vitality #E79C37, Unity #DB8F32, Connection #53B65B, Wisdom #2E6BEA, Presence #4D0BDD, Purpose #E633D7; Radiance white, Remembrance grey. Applied app-wide (tags, cards, flower).
+- Every System name sits on the left of its chakra on a card in that colour, with (?) right after the name. The three words show on the right (always on desktop, on selection on mobile). The (?) under the figure was removed.
+- Chat | Love is a toggle like Home | Flow (Love locked). “Wants to connect” banner removed from Chat. Getting started explains: Chat badges = messages, People badges = connection requests.
+- Common Ground (?) heading; System dropdown under the questions opens upward over a blurred chat. Default Similar Systems, then All Chakra Systems and each System as a coloured row (Radiance at the top).
+- Communities: optional topic row after choosing a System (starter topic set per System).
+- Flow: “Latest” renamed “Recent”.
+
 ## Client round (Nov 2)
 - Chat: title reads “Chat | Love 🔒 (?)” with no extra row; (?) says “Love, coming soon, is locked until Phase 2.” New Chat icon (phone, keyboard and wordless bubbles).
 - Chat three-dot menu: View community / View profile, Mute notifications, Search messages, Leave chat (groups), Block (direct), Report chat.

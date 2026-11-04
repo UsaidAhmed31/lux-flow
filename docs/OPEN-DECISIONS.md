@@ -11,3 +11,8 @@
 9. **Secondary System** — proposed: optional, one extra System; Flow and System pages still rank by the primary. Should secondary also appear under that System’s filter?
 10. **Leave chat** — proposed: leaving a community group chat keeps community membership. Confirm.
 11. **Discovery balancing** — noted as a future improvement (not in this round).
+12. **Unity and Vitality colours** — #DB8F32 and #E79C37 are very close; worth nudging Unity toward yellow so they read apart.
+13. **Journey colour** — #52240C is very dark on the dark theme; a lighter brown may read better.
+14. **Conversation-based Common Ground questions** — proposed for a later phase (needs consent, on-device/opt-in processing and a privacy review).
+15. **Gravity credits** — proposed for a later phase after Phase 1 usage data; needs an economy design, anti-gaming rules and a ledger.
+16. **Community topics** — starter list per System; who can add topics later (admins only vs. hosts suggesting)?
