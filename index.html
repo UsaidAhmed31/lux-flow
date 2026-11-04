@@ -1463,11 +1463,68 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .topic-chip.on{background:var(--sc);color:var(--si,#fff);box-shadow:none}
 .topic-n{font-size:11px;font-weight:800;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25)}
 .pt-words{white-space:normal;max-width:calc(50% - 36px);width:max-content;line-height:1.25;border-radius:10px}
+
+/* ===== Profile, Settings & Notifications (Nov 5) ===== */
+.fav-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fav-chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px 0 6px;border-radius:999px;font-weight:700;font-size:14px;background:var(--sc);color:var(--si,#fff);box-shadow:0 0 14px -4px var(--sc)}
+.fav-sun{width:24px !important;height:24px !important;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,.18);box-shadow:none !important;flex-shrink:0}
+.fav-sun .sun-ic{width:78%;height:78%;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fav-edit{gap:6px}
+.only-me{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ink-3);padding:3px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-2)}
+.fav-count{font-size:14px;color:var(--ink-2)}
+.fav-max{color:var(--warn,#E7B54B);font-weight:600}
+.fav-list{display:flex;flex-direction:column;gap:6px;max-height:56vh;overflow:auto;padding:2px}
+.fav-opt{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;border-radius:14px;text-align:left;background:var(--surface-2);box-shadow:inset 3px 0 0 var(--sc),inset 0 0 0 1px var(--line)}
+.fav-opt .fav-sun{background:var(--sc);color:var(--si,#fff)}
+.fav-opt.on{background:color-mix(in srgb,var(--sc) 22%,var(--surface-2));box-shadow:inset 3px 0 0 var(--sc),inset 0 0 0 1.5px var(--sc)}
+.fav-opt.off{opacity:.45;cursor:not-allowed}
+.fav-check{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px var(--line-2);color:transparent;flex-shrink:0}
+.fav-opt.on .fav-check{background:var(--sc);color:var(--si,#fff);box-shadow:none}
+.sc-radiance.fav-opt.on .fav-check,.sc-radiance .fav-sun{box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.ep-photo{display:flex;align-items:center;gap:14px}
+.ep-photo .av-xl{width:64px;height:64px}
+.loc-row{display:flex;align-items:flex-end;gap:8px;margin-top:6px}
+.loc-k{display:block;font-size:12.5px;font-weight:600;color:var(--ink-3);margin-bottom:4px}
+.vis-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:12px;font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent-line);white-space:nowrap;flex-shrink:0;max-width:52%}
+.vis-btn span{overflow:hidden;text-overflow:ellipsis}
+.ep-row{padding-left:0;padding-right:0}
+.set-ic{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent-ink);background:var(--accent-soft)}
+.set-ic.danger-ic{color:var(--danger);background:rgba(255,90,90,.1)}
+.set-link{width:100%;text-align:left}
+.set-link:hover{background:var(--surface-2)}
+.trust-steps{display:flex;gap:4px;margin:6px 0}
+.trust-step{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.trust-step.on{color:#fff;background:linear-gradient(180deg,#8A79FF,#5A43EE);box-shadow:none}
+.set-help{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:center;padding:8px 0 24px;color:var(--ink-3);font-size:13px}
+.vis-opt{min-height:60px;align-items:center}
+/* notification badge on the logo: white on dark, black on light; count never relies on colour alone */
+.brand-wrap{position:relative;display:inline-flex;flex-shrink:0}
+.notif-badge{position:absolute;top:-6px;right:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 11px/1 var(--display);background:#FFFFFF;color:#0B0A12;box-shadow:0 0 0 2px var(--bg),0 2px 6px rgba(0,0,0,.45);z-index:2;pointer-events:none}
+.app.theme-light .notif-badge{background:#0B0A12;color:#FFFFFF;box-shadow:0 0 0 2px #fff,0 2px 6px rgba(0,0,0,.25)}
+.tb-brand{min-height:44px}
+.nt-list{display:flex;flex-direction:column;gap:6px}
+.nt-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:left;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.nt-item.unread{box-shadow:inset 0 0 0 1px var(--accent-line);background:var(--accent-soft)}
+.nt-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent-ink);background:var(--surface)}
+.nt-kind{display:block;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.nt-text{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+/* favourites on the figure: a subtle star + soft ring, same size and tap target as the rest */
+.pt-fav{display:none;width:11px;height:11px;margin-right:4px;vertical-align:-1px;fill:currentColor;stroke:none}
+.fig-stage .pt-row.fav .pt-fav{display:inline-block}
+.fig-stage .pt-row.fav .pt-lbl{box-shadow:0 0 0 1.5px rgba(255,255,255,.7),0 0 14px -1px var(--sc)}
+.fig-stage .pt-row.fav .sun::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.55);pointer-events:none}
+.app.theme-light .fig-stage .pt-row.fav .pt-lbl{box-shadow:0 0 0 1.5px rgba(20,16,40,.55),0 0 12px -2px var(--sc)}
+.app.theme-light .fig-stage .pt-row.fav .sun::after{border-color:rgba(20,16,40,.45)}
+.loc-row{flex-wrap:wrap}
+.loc-row > label{flex:1 1 170px;min-width:0}
+.loc-row .vis-btn,.set-row .vis-btn{max-width:none}
+.post-ctx.fav-dots{gap:4px}
+.post-ctx.fav-dots > span:last-child{margin-left:4px;color:var(--ink-2)}
 </style>
 
 <aside class="side" aria-label="Primary">
-  <button class="side-brand" onClick="{{goHome}}" aria-label="Lux Flow Home">
-    <span class="brand-frame"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span></span>
+  <button class="side-brand" onClick="{{openNotifs}}" aria-label="{{notifAria}}">
+    <span class="brand-wrap"><span class="brand-frame"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span></span><sc-if value="{{notifHas}}" hint-placeholder-val="{{ false }}"><span class="notif-badge" aria-hidden="true">{{notifCount}}</span></sc-if></span>
     <span class="brand-name">Lux Flow</span>
   </button>
   <nav class="side-nav">
@@ -1512,8 +1569,8 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     <sc-if value="{{showMenu}}" hint-placeholder-val="{{ true }}">
       <button class="icon-btn" aria-label="Open menu" onClick="{{openDrawer}}"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.menu}}"></path></svg></button>
     </sc-if>
-    <button class="tb-brand" onClick="{{goHome}}" aria-label="Lux Flow Home">
-      <span class="brand-frame"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span></span>
+    <button class="tb-brand" onClick="{{openNotifs}}" aria-label="{{notifAria}}">
+      <span class="brand-wrap"><span class="brand-frame"><span class="brand-mark"><dc-import name="Flower" variant="mark"></dc-import></span></span><sc-if value="{{notifHas}}" hint-placeholder-val="{{ false }}"><span class="notif-badge" aria-hidden="true">{{notifCount}}</span></sc-if></span>
       <span class="brand-name">Lux Flow</span>
     </button>
     <div class="tb-spacer"></div>
@@ -1541,7 +1598,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <sc-if value="{{fig.bad}}" hint-placeholder-val="{{ false }}"><span class="fig-fallback" aria-hidden="true"></span></sc-if>
         <sc-for list="{{points}}" as="p" hint-placeholder-count="10">
           <div class="{{p.rowCls}}" style="{{p.pos}}">
-            <span class="pt-left"><span class="pt-lbl" aria-hidden="true" onClick="{{p.pick}}">{{p.name}}</span><button class="pt-q" aria-label="{{p.qAria}}" onClick="{{p.info}}">?</button></span>
+            <span class="pt-left"><span class="pt-lbl" aria-hidden="true" onClick="{{p.pick}}"><svg class="pt-fav" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.5 5.3 5.8.7-4.3 4 1.1 5.7L12 16.4l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z"></path></svg>{{p.name}}</span><button class="pt-q" aria-label="{{p.qAria}}" onClick="{{p.info}}">?</button></span>
             <button class="pt" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" aria-label="{{p.aria}}"><span class="sun"><svg class="sun-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{p.sym}}"></path></svg></span></button>
             <span class="pt-words" aria-hidden="true">{{p.meaning}}</span>
           </div>
@@ -1951,7 +2008,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <div class="stack-lg">
         <section class="section">
           <div class="section-head"><h2 class="h3">People exploring {{sysx.name}}</h2></div>
-          <sc-if value="{{sysx.hasPeople}}" hint-placeholder-val="{{ false }}"><div class="card card-tight list"><sc-for list="{{sysx.people}}" as="u" hint-placeholder-count="2"><button class="list-row" onClick="{{u.open}}" aria-label="{{u.aria}}"><span class="{{u.avCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><span class="grow"><span class="h3" style="display: block">{{u.name}}</span><span class="meta">{{u.knack}} · Mostly in {{u.sysName}}</span></span><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div></sc-if>
+          <sc-if value="{{sysx.hasPeople}}" hint-placeholder-val="{{ false }}"><div class="card card-tight list"><sc-for list="{{sysx.people}}" as="u" hint-placeholder-count="2"><button class="list-row" onClick="{{u.open}}" aria-label="{{u.aria}}"><span class="{{u.avCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><span class="grow"><span class="h3" style="display: block">{{u.name}}</span><span class="meta">{{u.knack}}</span></span><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></sc-for></div></sc-if>
           <sc-if value="{{sysx.noPeople}}" hint-placeholder-val="{{ false }}"><p class="meta p">No one you can discover lists {{sysx.name}} as an interest yet.</p></sc-if>
           <sc-if value="{{sysx.peopleLocked}}" hint-placeholder-val="{{ false }}"><div class="banner"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg><div class="small grow">Verify your identity to discover people. <button class="link" onClick="{{goVerify}}">Verify</button></div></div></sc-if>
         </section>
@@ -2034,7 +2091,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
             </div>
           </div>
           <p class="p small clamp2" style="color: var(--ink-2)">{{u.bio}}</p>
-          <div class="post-ctx"><span class="{{u.dotCls}}"></span><span class="{{u.ctxSysCls}}">Mostly in {{u.sysName}}</span></div>
+          <div class="post-ctx fav-dots" aria-label="Favorite Systems: {{u.favNames}}"><sc-for list="{{u.favDots}}" as="d" hint-placeholder-count="3"><span class="{{d}}"></span></sc-for><span>{{u.favNames}}</span></div>
           <div class="person-actions">
             <sc-if value="{{u.isNone}}" hint-placeholder-val="{{ true }}"><button class="btn btn-sm btn-primary" onClick="{{u.connect}}">Connect</button></sc-if>
             <sc-if value="{{u.isPending}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-secondary" onClick="{{u.withdraw}}" aria-label="{{u.withdrawAria}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.clock}}"></path></svg>Requested</button></sc-if>
@@ -2082,8 +2139,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     </div>
     <p class="p body-copy" style="font-size: 15.5px">{{prof.bio}}</p>
     <div class="kv">
-      <span><span class="{{prof.dotCls}}"></span><span>Mostly in {{prof.sysName}}</span></span>
-      <sc-if value="{{prof.hasArea}}" hint-placeholder-val="{{ false }}"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.near}}"></path></svg><span>{{prof.area}} (general area)</span></span></sc-if>
+      <sc-if value="{{prof.hasArea}}" hint-placeholder-val="{{ false }}"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.near}}"></path></svg><span>{{prof.area}} </span></span></sc-if>
       <span>{{prof.countsLine}}</span>
     </div>
     <sc-if value="{{prof.other}}" hint-placeholder-val="{{ false }}"><sc-if value="{{profx.hasShared}}" hint-placeholder-val="{{ false }}"><div class="note-line"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.communities}}"></path></svg><span>{{profx.shared}}</span></div></sc-if></sc-if>
@@ -2103,40 +2159,21 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     <sc-if value="{{prof.mine}}" hint-placeholder-val="{{ false }}">
       <div class="row-wrap">
         <button class="btn btn-secondary" onClick="{{openEditProfile}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.edit}}"></path></svg>Edit profile</button>
-        <button class="btn btn-secondary" onClick="{{goPrivacy}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>Privacy &amp; safety</button>
+        <button class="btn btn-ghost" onClick="{{goSettings}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.settings}}"></path></svg>Settings</button>
       </div>
     </sc-if>
   </section>
 
-  <sc-if value="{{prof.mine}}" hint-placeholder-val="{{ false }}">
-    <section class="section trust-sec" aria-label="Trust and verification">
-      <div class="section-head"><h2 class="h3">Trust &amp; verification</h2><span class="meta">Only you see this</span></div>
-      <div class="trust-row">
-        <svg class="ic trust-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg>
-        <div class="grow stack-xs">
-          <div class="row row-wrap-x"><span class="h3">{{vStatusTitle}}</span><sc-if value="{{verified}}" hint-placeholder-val="{{ true }}"><span class="tag tag-ok">Verified</span></sc-if><sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><span class="tag tag-plain">Not verified</span></sc-if></div>
-          <div class="meta">{{vStatusText}}</div>
-        </div>
-        <sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-primary" onClick="{{goVerify}}">{{vCta}}</button></sc-if>
-      </div>
-      <div class="trust-row">
-        <svg class="ic trust-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.star}}"></path></svg>
-        <div class="grow stack-xs">
-          <div class="row row-wrap-x"><span class="h3">{{trustTitle}}</span><sc-if value="{{trusted}}" hint-placeholder-val="{{ false }}"><span class="tag tag-ok">Trusted</span></sc-if><sc-if value="{{tr.isPending}}" hint-placeholder-val="{{ false }}"><span class="tag tag-warn">In review</span></sc-if></div>
-          <div class="meta">{{trustText}}</div>
-        </div>
-        <sc-if value="{{trustCta}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-tonal" onClick="{{goTrusted}}">Apply</button></sc-if>
-        <sc-if value="{{tr.isPending}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-ghost" onClick="{{goTrusted}}">View</button></sc-if>
-      </div>
-    </section>
-  </sc-if>
 
-  <section class="section">
-    <div class="row row-md"><span class="prof-flower"><dc-import name="Flower" variant="mark" highlight="{{prof.sysIdx}}" label="{{prof.flowerLabel}}"></dc-import></span><h2 class="h3">{{prof.sysTitle}}</h2></div>
-    <div class="row-wrap">
-      <sc-for list="{{prof.chips}}" as="c" hint-placeholder-count="3"><span class="{{c.cls}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{c.icon}}"></path></svg>{{c.name}}</span></sc-for>
+  <sc-if value="{{prof.showFav}}" hint-placeholder-val="{{ true }}">
+  <section class="section fav-sec" aria-label="{{prof.sysTitle}}">
+    <div class="section-head"><h2 class="h3">{{prof.sysTitle}}</h2><sc-if value="{{prof.mine}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-ghost fav-edit" onClick="{{openFavSys}}" aria-label="Select your favorite Systems"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.edit}}"></path></svg>Select</button></sc-if></div>
+    <div class="fav-row">
+      <sc-for list="{{prof.chips}}" as="c" hint-placeholder-count="3"><span class="{{c.cls}}"><span class="sun fav-sun" aria-hidden="true"><svg class="sun-ic" viewBox="0 0 24 24"><path d="{{c.sym}}"></path></svg></span>{{c.name}}</span></sc-for>
+      <sc-if value="{{prof.noFav}}" hint-placeholder-val="{{ false }}"><p class="meta p">No favorites yet. Choose up to 3 Systems — they gently shape your Home and Flow.</p></sc-if>
     </div>
   </section>
+  </sc-if>
 
   <sc-if value="{{prof.showContent}}" hint-placeholder-val="{{ true }}">
     <section class="section">
@@ -2153,8 +2190,9 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </div>
       <sc-if value="{{prof.hiddenNote}}" hint-placeholder-val="{{ false }}"><div class="privacy-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>{{prof.hiddenText}}</div></sc-if>
     </section>
+    <sc-if value="{{prof.showComms}}" hint-placeholder-val="{{ true }}">
     <section class="section">
-      <h2 class="h3">Communities</h2>
+      <div class="section-head"><h2 class="h3">{{prof.commsTitle}}</h2><sc-if value="{{prof.commsOnlyMe}}" hint-placeholder-val="{{ false }}"><span class="only-me"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>Only you can see this</span></sc-if></div>
       <div class="card card-tight list">
         <sc-for list="{{prof.comms}}" as="c" hint-placeholder-count="1">
           <button class="list-row" onClick="{{c.open}}"><span class="{{c.dotCls}}"></span><span class="grow"><span class="h3" style="display: block">{{c.name}}</span><span class="meta">{{c.roleLine}}</span></span><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button>
@@ -2162,6 +2200,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <sc-if value="{{prof.noComms}}" hint-placeholder-val="{{ false }}"><p class="meta p list-empty">No communities to show.</p></sc-if>
       </div>
     </section>
+    </sc-if>
   </sc-if>
   </sc-if>
 </div>
@@ -2697,18 +2736,32 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 <sc-if value="{{is.privacy}}" hint-placeholder-val="{{ false }}">
 <div class="page">
   <div class="row hide-sm back-row"><button class="btn btn-ghost btn-back" onClick="{{back}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Back</button></div>
-  <div class="page-head"><h1 class="h1">Safety &amp; Privacy</h1><p class="lead">Control what others can see and who can reach you.</p></div>
+  <div class="page-head"><div class="eyebrow">Settings</div><h1 class="h1">Privacy &amp; Safety</h1><p class="lead">Who can reach you, what others see, and the people you’ve blocked.</p></div>
   <section class="set-group">
-    <div class="set-row"><div class="grow"><div class="h3">Verification</div><div class="meta">{{vStatusText}}</div></div><sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-primary" onClick="{{goVerify}}">{{vCta}}</button></sc-if><sc-if value="{{verified}}" hint-placeholder-val="{{ true }}"><span class="vbadge"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg>Verified</span></sc-if></div>
-    <div class="set-row"><div class="grow"><div class="h3">Share a general area</div><div class="meta">{{areaText}}</div></div><button class="{{areaToggleCls}}" aria-pressed="{{areaPressed}}" aria-label="Share a general area" onClick="{{toggleArea}}"></button></div>
+    <h2 class="eyebrow">Who can reach you</h2>
+    <div class="set-row"><div class="grow"><div class="h3">Who can send connection requests</div><div class="meta">{{reqLabel}}</div></div><button class="btn btn-sm btn-ghost" onClick="{{openReqPick}}">Change</button></div>
+    <div class="set-row" style="flex-direction: column; align-items: stretch"><div><div class="h3">Who can start conversations</div><div class="meta">Blocked people can never message you.</div></div><div class="seg" role="group" aria-label="Who can start conversations"><button class="{{msgConnCls}}" onClick="{{msgConn}}">My connections</button><button class="{{msgVerCls}}" onClick="{{msgVer}}">Any verified member</button></div></div>
     <div class="set-row"><div class="grow"><div class="h3">Show me in People discovery</div><div class="meta">When off, people can still reach your profile from your posts.</div></div><button class="{{discToggleCls}}" aria-pressed="{{discPressed}}" aria-label="Show me in People discovery" onClick="{{toggleDisc}}"></button></div>
-    <div class="set-row" style="flex-direction: column; align-items: stretch"><div><div class="h3">Who can message me</div><div class="meta">Blocked people can never message you.</div></div><div class="seg" role="group" aria-label="Who can message me"><button class="{{msgConnCls}}" onClick="{{msgConn}}">My connections</button><button class="{{msgVerCls}}" onClick="{{msgVer}}">Any verified member</button></div></div>
+  </section>
+  <section class="set-group">
+    <h2 class="eyebrow">Profile visibility</h2>
+    <p class="help p" style="margin: 0 0 4px">Same controls as <button class="link" style="min-height: 0" onClick="{{openEditProfile}}">Edit profile</button> — change them in either place.</p>
+    <div class="set-row"><div class="grow"><div class="h3">General area</div><div class="meta">{{locArea}}</div></div><button class="vis-btn" onClick="{{visSet.area}}" aria-label="Who can see your general area: {{visLbl.area}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.area}}</span></button></div>
+    <div class="set-row"><div class="grow"><div class="h3">State</div><div class="meta">{{locState}}</div></div><button class="vis-btn" onClick="{{visSet.state}}" aria-label="Who can see your state: {{visLbl.state}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.state}}</span></button></div>
+    <div class="set-row"><div class="grow"><div class="h3">Profile photo</div><div class="meta">Others get a default avatar when it’s hidden from them.</div></div><button class="vis-btn" onClick="{{visSet.photo}}" aria-label="Who can see your photo: {{visLbl.photo}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.photo}}</span></button></div>
+    <div class="set-row"><div class="grow"><div class="h3">Show my communities on my profile</div><div class="meta">Hiding doesn’t change memberships or member lists.</div></div><button class="{{commsVisCls}}" aria-pressed="{{commsVisPressed}}" aria-label="Show my communities on my profile" onClick="{{toggleCommsVis}}"></button></div>
+    <div class="set-row"><div class="grow"><div class="h3">Use my general area for Local posts</div><div class="meta">{{areaText}}</div></div><button class="{{areaToggleCls}}" aria-pressed="{{areaPressed}}" aria-label="Use my general area for Local posts" onClick="{{toggleArea}}"></button></div>
+  </section>
+  <section class="set-group" id="lf-notifs">
+    <h2 class="eyebrow">Notifications</h2>
+    <p class="help p" style="margin: 0 0 4px">These add to the count on the Lux Flow logo. There are no community activity notifications.</p>
+    <sc-for list="{{setx.notifs}}" as="n" hint-placeholder-count="5"><div class="set-row"><div class="grow"><div class="h3">{{n.label}}</div><div class="meta">{{n.hint}}</div></div><button class="{{n.cls}}" aria-pressed="{{n.pressed}}" aria-label="{{n.label}}" onClick="{{n.toggle}}"></button></div></sc-for>
   </section>
   <section class="section">
     <h2 class="h3">Blocked people</h2>
     <div class="card card-tight list">
-      <sc-for list="{{blockedList}}" as="u" hint-placeholder-count="1"><div class="list-row"><span class="{{u.avCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><div class="grow h3">{{u.name}}</div><button class="btn btn-sm btn-secondary" onClick="{{u.unblock}}">Unblock</button></div></sc-for>
-      <sc-if value="{{noBlocked}}" hint-placeholder-val="{{ true }}"><p class="meta p list-empty">You haven’t blocked anyone.</p></sc-if>
+      <sc-for list="{{blockedList}}" as="u" hint-placeholder-count="1"><div class="list-row"><span class="{{u.avCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><div class="grow"><div class="h3">{{u.name}}</div><div class="meta">{{u.reason}}</div></div><button class="btn btn-sm btn-secondary" onClick="{{u.unblock}}">Unblock</button></div></sc-for>
+      <sc-if value="{{noBlocked}}" hint-placeholder-val="{{ true }}"><p class="meta p list-empty">You haven’t blocked anyone. You can block or report from someone’s profile or a chat’s ··· menu.</p></sc-if>
     </div>
   </section>
   <section class="section">
@@ -2719,7 +2772,6 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
   <div class="privacy-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg>Your home address is never shown to anyone. Journal entries are private and are never read by moderators or AI.</div>
 </div>
 </sc-if>
-
 
 <!-- ============ JOURNAL ============ -->
 <sc-if value="{{is2.journal}}" hint-placeholder-val="{{ false }}">
@@ -2848,35 +2900,33 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 <!-- ============ SETTINGS ============ -->
 <sc-if value="{{is2.settings}}" hint-placeholder-val="{{ false }}">
 <div class="page">
-  <div class="page-head"><h1 class="h1">Settings</h1><p class="lead">Your account and how Lux Flow behaves for you.</p></div>
-  <section class="set-group">
-    <h2 class="eyebrow">Account</h2>
-    <div class="set-row"><div class="grow"><div class="h3">Profile</div><div class="meta">Display name, bio and photo</div></div><button class="btn btn-sm btn-secondary" onClick="{{openEditProfile}}">Edit</button></div>
-    <div class="set-row"><div class="grow"><div class="h3">{{vStatusTitle}}</div><div class="meta">{{vStatusText}}</div></div><sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-primary" onClick="{{goVerify}}">{{vCta}}</button></sc-if></div>
-    <div class="set-row"><div class="grow"><div class="h3">{{trustTitle}}</div><div class="meta">{{trustText}}</div></div><button class="btn btn-sm btn-ghost" onClick="{{goTrusted}}">Open</button></div>
-    <div class="set-row"><div class="grow"><div class="h3">Safety &amp; Privacy</div><div class="meta">Area, discovery, messaging, blocked people and reports</div></div><button class="btn btn-sm btn-ghost" onClick="{{goPrivacy}}">Open</button></div>
+  <div class="page-head"><h1 class="h1">Settings</h1><p class="lead">Four areas: trust, privacy, appearance and your account.</p></div>
+  <section class="set-group" aria-labelledby="set-trust">
+    <h2 class="eyebrow" id="set-trust">Trust &amp; Verification</h2>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg></span><div class="grow"><div class="h3">{{vStatusTitle}}</div><div class="meta">{{vStatusText}}</div></div><sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-primary" onClick="{{goVerify}}">{{vCta}}</button></sc-if><sc-if value="{{verified}}" hint-placeholder-val="{{ true }}"><span class="vbadge"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg>Verified</span></sc-if></div>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.star}}"></path></svg></span><div class="grow"><div class="h3">Trust level</div><div class="trust-steps" aria-label="Trust level: {{trustLevel}}"><sc-for list="{{trustSteps}}" as="t" hint-placeholder-count="3"><span class="{{t.cls}}">{{t.label}}</span></sc-for></div><div class="meta">Verification confirms you’re a real person. Trusted is a separate, optional responsibility path — never given for verification alone.</div></div></div>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.people}}"></path></svg></span><div class="grow"><div class="h3">{{trustTitle}}</div><div class="meta">{{trustText}}</div></div><button class="btn btn-sm btn-secondary" onClick="{{goTrusted}}">{{trustBtn}}</button></div>
   </section>
-  <section class="set-group">
-    <h2 class="eyebrow">Notifications</h2>
-    <sc-for list="{{setx.notifs}}" as="n" hint-placeholder-count="4"><div class="set-row"><div class="grow"><div class="h3">{{n.label}}</div><div class="meta">{{n.hint}}</div></div><button class="{{n.cls}}" aria-pressed="{{n.pressed}}" aria-label="{{n.label}}" onClick="{{n.toggle}}"></button></div></sc-for>
-    <p class="help p" style="padding-top: 10px">Notifications are simulated — nothing is sent from this prototype.</p>
+  <section class="set-group" aria-labelledby="set-priv">
+    <h2 class="eyebrow" id="set-priv">Privacy &amp; Safety</h2>
+    <button class="set-row set-link" onClick="{{goPrivacy}}"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg></span><div class="grow"><div class="h3">Privacy &amp; Safety</div><div class="meta">{{privSummary}}</div></div><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button>
+    <button class="set-row set-link" onClick="{{goPrivacyNotifs}}"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg></span><div class="grow"><div class="h3">Notifications</div><div class="meta">{{notifSummary}}</div></div><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button>
   </section>
-  <section class="set-group">
-    <h2 class="eyebrow">Display &amp; accessibility</h2>
-    <div class="set-row"><div class="grow"><div class="h3">Reduce motion</div><div class="meta">Turns off glows, shimmer and movement</div></div><button class="{{setx.rmCls}}" aria-pressed="{{setx.rmPressed}}" aria-label="Reduce motion" onClick="{{setx.toggleRM}}"></button></div>
-    <div class="set-row"><div class="grow"><div class="h3">Larger text</div><div class="meta">Makes text and controls about 12% bigger</div></div><button class="{{setx.ltCls}}" aria-pressed="{{setx.ltPressed}}" aria-label="Larger text" onClick="{{setx.toggleLT}}"></button></div>
-    <div class="set-row" style="align-items: center"><div class="grow"><div class="h3">Theme</div><div class="meta">{{setx.themeHint}}</div></div><div class="seg seg-sm" role="radiogroup" aria-label="Theme"><button class="{{setx.darkCls}}" role="radio" aria-checked="{{setx.darkOn}}" onClick="{{setx.setDark}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>Dark</button><button class="{{setx.lightCls}}" role="radio" aria-checked="{{setx.lightOn}}" onClick="{{setx.setLight}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg>Light</button></div></div>
+  <section class="set-group" aria-labelledby="set-app">
+    <h2 class="eyebrow" id="set-app">Appearance</h2>
+    <div class="set-row" style="align-items: center"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.sun}}"></path></svg></span><div class="grow"><div class="h3">Theme</div><div class="meta">{{setx.themeHint}}</div></div><div class="seg seg-sm" role="radiogroup" aria-label="Theme"><button class="{{setx.darkCls}}" role="radio" aria-checked="{{setx.darkOn}}" onClick="{{setx.setDark}}">Dark</button><button class="{{setx.lightCls}}" role="radio" aria-checked="{{setx.lightOn}}" onClick="{{setx.setLight}}">Light</button></div></div>
+    <p class="help p" style="padding-top: 8px">Text size, motion and contrast follow your device’s accessibility settings.</p>
   </section>
-  <section class="set-group">
-    <h2 class="eyebrow">Help</h2>
-    <div class="set-row"><div class="grow"><div class="h3">Tutorials · Good to know before publishing</div><div class="meta">Editing, deleting and Systems — {{gtkState}}</div></div><button class="btn btn-sm btn-secondary" onClick="{{openGtkInfo}}">Open</button></div>
-    <div class="set-row"><div class="grow"><div class="h3">Getting started guide</div><div class="meta">Four small steps on Home</div></div><sc-if value="{{setx.guideHidden}}" hint-placeholder-val="{{ false }}"><button class="btn btn-sm btn-secondary" onClick="{{setx.showGuide}}">Show on Home</button></sc-if><sc-if value="{{obShow}}" hint-placeholder-val="{{ true }}"><span class="meta">Showing on Home</span></sc-if></div>
+  <section class="set-group" aria-labelledby="set-acc">
+    <h2 class="eyebrow" id="set-acc">Account &amp; Security</h2>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.mail}}"></path></svg></span><div class="grow"><div class="h3">Email</div><div class="meta">{{accEmail}}</div></div><button class="btn btn-sm btn-ghost" onClick="{{accChange}}">Change</button></div>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.key}}"></path></svg></span><div class="grow"><div class="h3">Password</div><div class="meta">Last changed 3 months ago</div></div><button class="btn btn-sm btn-ghost" onClick="{{accChange}}">Change</button></div>
+    <div class="set-row"><span class="set-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.exit}}"></path></svg></span><div class="grow"><div class="h3">Sign out</div><div class="meta">You can sign back in from this device</div></div><button class="btn btn-sm btn-secondary" onClick="{{setx.signOut}}">Sign out</button></div>
+    <div class="set-row"><span class="set-ic danger-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.trash}}"></path></svg></span><div class="grow"><div class="h3">Delete account</div><div class="meta">Permanently remove your account and content. To keep your journal, export it from the Journal first.</div></div><button class="btn btn-sm btn-ghost" onClick="{{deleteInfo}}" style="color: var(--danger)">Learn more</button></div>
   </section>
-  <section class="set-group">
-    <h2 class="eyebrow">Session</h2>
-    <div class="set-row"><div class="grow"><div class="h3">Sign out</div><div class="meta">You can sign back in from this device</div></div><button class="btn btn-sm btn-secondary" onClick="{{setx.signOut}}">Sign out</button></div>
-    <div class="set-row"><div class="grow"><div class="h3">Delete account</div><div class="meta">Permanently remove your account and content</div></div><button class="btn btn-sm btn-ghost" onClick="{{deleteInfo}}" style="color: var(--danger)">Learn more</button></div>
-  </section>
+  <div class="set-help">
+    <button class="link" onClick="{{openGtkInfo}}">Good to know before publishing</button><span aria-hidden="true">·</span><button class="link" onClick="{{setx.showGuide}}">Show the Getting started guide</button>
+  </div>
 </div>
 </sc-if>
 
@@ -3055,7 +3105,8 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
 
       <sc-if value="{{dlg.block}}" hint-placeholder-val="{{ false }}">
-        <p class="p muted">{{dlg.who}} won’t be able to message you, see your posts or find you in People. They won’t be notified. You can unblock anytime in Safety &amp; Privacy.</p>
+        <p class="p muted">Blocking is instant and lasts until you unblock. {{dlg.who}} won’t be able to message you, see your posts or find you in People, and won’t be notified. Unblock anytime in Settings → Privacy &amp; Safety.</p>
+        <div class="field"><span class="label">Reason <span class="opt">(optional)</span></span><div class="row-wrap" role="group" aria-label="Reason for blocking (optional)"><sc-for list="{{blockReasons}}" as="r" hint-placeholder-count="4"><button class="{{r.cls}}" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button></sc-for></div></div>
         <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Cancel</button><button class="btn btn-danger" onClick="{{confirmBlock}}">Block</button></div>
       </sc-if>
 
@@ -3089,6 +3140,28 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <p class="p">Reflection Signals help you recognize how content affects you. This can support self-awareness and personal growth while helping Lux Flow curate a more meaningful feed based on your responses.</p>
         <div class="sig-private"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span><strong>Your signals remain private to you.</strong> There are no public counts, and Confused or Heavier never lower a post’s ranking.</span></div>
         <div class="sheet-actions"><button class="btn btn-primary" onClick="{{closeDialog}}">Got it</button></div>
+      </sc-if>
+      <sc-if value="{{dlg.favSys}}" hint-placeholder-val="{{ false }}">
+        <p class="meta p">Pick up to 3. They’re shown on your profile and gently shape your Home and Flow. Choose none to keep them neutral.</p>
+        <div class="fav-count" aria-live="polite"><strong>{{favPick.count}}</strong> of 3 chosen<sc-if value="{{favPick.full}}" hint-placeholder-val="{{ false }}"><span class="fav-max"> · You can choose up to 3</span></sc-if></div>
+        <div class="fav-list" role="group" aria-label="Your Favorite Systems"><sc-for list="{{favPick.items}}" as="f" hint-placeholder-count="10"><button class="{{f.cls}}" aria-pressed="{{f.pressed}}" disabled="{{f.disabled}}" onClick="{{f.pick}}"><span class="sun fav-sun" aria-hidden="true"><svg class="sun-ic" viewBox="0 0 24 24"><path d="{{f.sym}}"></path></svg></span><span class="grow"><span class="h3" style="display: block">{{f.name}}</span><span class="meta">{{f.meaning}}</span></span><span class="fav-check" aria-hidden="true"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg></span></button></sc-for></div>
+        <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{favPick.cancel}}">Cancel</button><button class="btn btn-primary" onClick="{{favPick.save}}">Save</button></div>
+      </sc-if>
+      <sc-if value="{{dlg.visPick}}" hint-placeholder-val="{{ false }}">
+        <div class="stack-sm" role="radiogroup" aria-label="{{dlg.title}}"><sc-for list="{{visPick.items}}" as="v" hint-placeholder-count="4"><button class="{{v.cls}}" role="radio" aria-checked="{{v.checked}}" onClick="{{v.pick}}"><span class="radio"></span><span class="grow"><span style="display: block">{{v.label}}</span><span class="meta" style="font-weight: 500">{{v.help}}</span></span></button></sc-for></div>
+        <p class="help p">The same setting appears in Edit profile and in Settings → Privacy &amp; Safety.</p>
+        <div class="sheet-actions"><button class="btn btn-primary" onClick="{{visPick.done}}">Done</button></div>
+      </sc-if>
+      <sc-if value="{{dlg.reqPick}}" hint-placeholder-val="{{ false }}">
+        <div class="stack-sm" role="radiogroup" aria-label="{{dlg.title}}"><sc-for list="{{reqPick}}" as="v" hint-placeholder-count="3"><button class="{{v.cls}}" role="radio" aria-checked="{{v.checked}}" onClick="{{v.pick}}"><span class="radio"></span>{{v.label}}</button></sc-for></div>
+        <p class="help p">Unverified visitors and blocked people can never send you requests.</p>
+        <div class="sheet-actions"><button class="btn btn-primary" onClick="{{closeDialog}}">Done</button></div>
+      </sc-if>
+      <sc-if value="{{dlg.notifs}}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{nt.empty}}" hint-placeholder-val="{{ false }}"><div class="empty empty-sm"><span class="empty-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg></span><div class="h3">You’re all caught up</div><p class="meta p">New messages, requests, replies, Gravity and event reminders show up here.</p></div></sc-if>
+        <div class="nt-list"><sc-for list="{{nt.items}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span class="{{n.icCls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg></span><span class="grow"><span class="nt-kind">{{n.kind}}</span><span class="nt-text">{{n.text}}</span></span><sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}"><span class="unread-dot" aria-label="New"></span></sc-if></button></sc-for></div>
+        <p class="help p">Choose which notifications you get in Settings → Privacy &amp; Safety → Notifications. Simulated in this prototype.</p>
+        <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{nt.settings}}">Notification settings</button><button class="btn btn-primary" disabled="{{nt.noneUnread}}" onClick="{{nt.markAll}}">Mark all as read</button></div>
       </sc-if>
       <sc-if value="{{dlg.gtk}}" hint-placeholder-val="{{ false }}">
         <div class="gtk-sum"><span class="{{gtk.sysCls}}"></span><span class="grow"><span class="h3" style="display: block">{{gtk.title}}</span><span class="meta">{{gtk.line}}</span></span></div>
@@ -3142,9 +3215,18 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
 
       <sc-if value="{{dlg.profile}}" hint-placeholder-val="{{ false }}">
-        <label class="field"><span class="label">Display name</span><input class="input" value="{{pfName}}" onChange="{{onPfName}}"></label>
-        <label class="field"><span class="label">Bio</span><textarea class="textarea" style="min-height: 100px" value="{{pfBio}}" onChange="{{onPfBio}}"></textarea></label>
-        <div class="row row-between"><span class="small grow">Show profile photo</span><button class="{{mePhotoCls}}" aria-pressed="{{mePhotoPressed}}" aria-label="Show profile photo" onClick="{{toggleMePhoto}}"></button></div>
+        <div class="ep-photo"><span class="av av-xl av-9"><span class="av-fb" aria-hidden="true">{{me.ini}}</span><sc-if value="{{me.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{me.photo}}" alt="" loading="lazy" decoding="async" onError="{{me.photoErr}}"></sc-if></span><div class="grow"><div class="h3">Profile photo</div><div class="meta">Upload is simulated in this prototype.</div></div><button class="btn btn-sm btn-secondary" onClick="{{changePhoto}}">Change</button></div>
+        <label class="field"><span class="label">Name</span><input class="input" value="{{pfName}}" onChange="{{onPfName}}"></label>
+        <label class="field"><span class="label">Bio</span><textarea class="textarea" style="min-height: 90px" value="{{pfBio}}" onChange="{{onPfBio}}"></textarea></label>
+        <div class="field"><div class="row row-between"><span class="label">Your Favorite Systems</span><button class="btn btn-sm btn-ghost fav-edit" onClick="{{openFavSysFromEdit}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.edit}}"></path></svg>Select</button></div>
+          <div class="fav-row"><sc-for list="{{favChips}}" as="c" hint-placeholder-count="3"><span class="{{c.cls}}"><span class="sun fav-sun" aria-hidden="true"><svg class="sun-ic" viewBox="0 0 24 24"><path d="{{c.sym}}"></path></svg></span>{{c.name}}</span></sc-for><sc-if value="{{favNone}}" hint-placeholder-val="{{ false }}"><span class="meta">None chosen — Home and Flow stay neutral.</span></sc-if></div></div>
+        <div class="field"><span class="label">Location</span>
+          <div class="loc-row"><label class="grow"><span class="sr-only">General area</span><span class="loc-k">General Area</span><input class="input" value="{{pfArea}}" onChange="{{onPfArea}}" placeholder="e.g. Eastside"></label><button class="vis-btn" onClick="{{visEdit.area}}" aria-label="Who can see your general area: {{visLbl.area}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.area}}</span></button></div>
+          <div class="loc-row"><label class="grow"><span class="sr-only">State</span><span class="loc-k">State</span><input class="input" value="{{pfState}}" onChange="{{onPfState}}" placeholder="e.g. Oregon"></label><button class="vis-btn" onClick="{{visEdit.state}}" aria-label="Who can see your state: {{visLbl.state}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.state}}</span></button></div>
+          <span class="help">Never your street or home address.</span></div>
+        <div class="set-row ep-row"><div class="grow"><div class="h3">Photo visibility</div><div class="meta">People who can’t see it get a default avatar.</div></div><button class="vis-btn" onClick="{{visEdit.photo}}" aria-label="Who can see your photo: {{visLbl.photo}}"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.eye}}"></path></svg><span>{{visLbl.photo}}</span></button></div>
+        <div class="set-row ep-row"><div class="grow"><div class="h3">Show my communities</div><div class="meta">Hiding only removes them from your public profile. Memberships and member lists don’t change.</div></div><button class="{{commsVisCls}}" aria-pressed="{{commsVisPressed}}" aria-label="Show my communities on my profile" onClick="{{toggleCommsVis}}"></button></div>
+        <p class="help p">These visibility settings are shared with <button class="link" style="min-height: 0" onClick="{{goPrivacyFromEdit}}">Settings → Privacy &amp; Safety</button>.</p>
         <sc-if value="{{pfInvalid}}" hint-placeholder-val="{{ false }}"><p class="help p" style="color: var(--danger)">Display name can’t be empty.</p></sc-if>
         <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Cancel</button><button class="btn btn-primary" disabled="{{pfInvalid}}" onClick="{{saveProfile}}">Save</button></div>
       </sc-if>
@@ -3197,6 +3279,8 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 var IC = {
+  key:'M14 10a4 4 0 1 0-3.9 4.9L8 17v3h3v-2h2v-2l1.1-1.1A4 4 0 0 0 14 10zM15.5 8.5h.01',
+  exit:'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11', mail:'M4 6h16v12H4zM4 7l8 6 8-6', sun:'M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.3-1.4M17.7 6.3l1.4-1.4',
   lotus:'M12 4.2c2.4 2.7 2.4 7.4 0 10.8-2.4-3.4-2.4-8.1 0-10.8zM12 15c-.6-3.4-3.3-6-6.9-6.4-.1 3.8 2.9 6.4 6.9 6.4zM12 15c.6-3.4 3.3-6 6.9-6.4.1 3.8-2.9 6.4-6.9 6.4zM3 13.2c1.9 2.8 5.2 4.6 9 4.6s7.1-1.8 9-4.6M8 20.5h8',
   history:'M19.5 14.7A8 8 0 1 0 16 18.9M16 18.9l-2.9-.5M16 18.9l-1 2.6M12 12.7a.7.7 0 1 0 0-1.4.7.7 0 0 0 0 1.4z',
   heart:'M12 20.5s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4z',
@@ -3339,6 +3423,13 @@ var PEOPLE = {
   priya:{id:'priya', name:'Priya Raman', handle:'priya', ini:'PR', av:7, knack:'Host', sys:'connection', area:'Eastside', bio:'Hosts the Newcomers’ Table — dinners for people who just moved to the city.', interests:['connection','unity'], comms:['table','garden']},
   sam:{id:'sam', name:'Sam Whitfield', handle:'samw', ini:'SW', av:8, knack:'Writer', sys:'journey', area:null, bio:'Writes about slow travel, train windows and taking the long way round.', interests:['journey','presence'], comms:[]}
 };
+PEOPLE.sam.photoVis = 'friends'; PEOPLE.amara.commsHidden = true; PEOPLE.elias.photoVis = 'verified';
+var DEFAULT_AV = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#2B2742"/><circle cx="32" cy="25" r="11" fill="#8E88AE"/><path d="M11 60c2-12 11-19 21-19s19 7 21 19z" fill="#8E88AE"/></svg>');
+var VIS_OPTS = [{id:'me', label:'Only Me', help:'Hidden from everyone else'}, {id:'friends', label:'Friends Only', help:'Your accepted connections'}, {id:'verified', label:'Verified Users + Friends', help:'Verified and Trusted members, plus your friends'}, {id:'global', label:'Global', help:'Anyone on Lux Flow, including unverified visitors'}];
+var VIS_LABEL = {}; VIS_OPTS.forEach(function(v){ VIS_LABEL[v.id] = v.label; });
+var VIS_KEYS = {area:'General area', state:'State', photo:'Profile photo'};
+var REQ_OPTS = [{id:'verified', label:'Any verified member'}, {id:'fof', label:'Friends of friends'}, {id:'none', label:'No one for now'}];
+var BLOCK_REASONS = ['Unwanted contact', 'Spam', 'Harassment', 'Something else'];
 var PEOPLE_ORDER = ['amara','tomas','leilani','jun','noor','elias','priya','sam'];
 var KNACKS = ['Educator','Builder','Artist','Guide','Storyteller','Researcher','Host','Writer'];
 
@@ -3462,7 +3553,7 @@ var WAVE_QS = [
 function waveResult(ans){ var sc = {}; var order = []; ans.forEach(function(j, i){ var op = WAVE_QS[i] && WAVE_QS[i].opts[j]; if (!op) return; op.sys.forEach(function(x, k){ sc[x] = (sc[x] || 0) + (k === 0 ? 2 : 1); if (order.indexOf(x) < 0) order.push(x); }); }); return order.sort(function(a, b){ return (sc[b] - sc[a]) || (order.indexOf(a) - order.indexOf(b)); }).slice(0, 3); }
 var MUTE_OPTS = [{id:'1h', label:'1 hour', ms:36e5}, {id:'4h', label:'4 hours', ms:144e5}, {id:'8h', label:'8 hours', ms:288e5}, {id:'1d', label:'1 day', ms:864e5}, {id:'3d', label:'3 days', ms:2592e5}, {id:'1w', label:'1 week', ms:6048e5}, {id:'forever', label:'Until I turn it back on', ms:0}];
 function muteText(m){ if (!m) return ''; if (m === true) return 'Notifications muted'; if (m.id === 'forever') return 'Notifications muted until you turn them back on'; var o = MUTE_OPTS.filter(function(x){ return x.id === m.id; })[0]; if (!o) return 'Notifications muted'; var end = new Date((m.at || Date.now()) + o.ms); var sameDay = end.toDateString() === new Date().toDateString(); var t = end.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}); return 'Muted for ' + o.label + ' · until ' + (sameDay ? t : end.toLocaleDateString([], {weekday:'short'}) + ' ' + t); }
-var NO_PERSIST = ['convSearch','sparkDd','imgFail','adminRole','dialog','toast','drawer','menu','tray','amenu','convMenu','profMenu','loadingMore','flowLoaded','flowLoading','attachOpen','jMenu','sysLoading','jSysMenu','v'];
+var NO_PERSIST = ['pfArea','pfState','convSearch','sparkDd','imgFail','adminRole','dialog','toast','drawer','menu','tray','amenu','convMenu','profMenu','loadingMore','flowLoaded','flowLoading','attachOpen','jMenu','sysLoading','jSysMenu','v'];
 function loadState(){
   var base = initialState();
   try { var raw = window.localStorage.getItem(STORE_KEY); if (!raw) return base; var saved = JSON.parse(raw); if (!saved || saved.v !== 3) return base; NO_PERSIST.forEach(function(k){ delete saved[k]; }); Object.keys(saved).forEach(function(k){ var b = base[k], x = saved[k]; if (!(k in base) || (b !== null && typeof b === 'object' && (x === null || typeof x !== 'object' || Array.isArray(b) !== Array.isArray(x))) || (typeof b === 'boolean' && typeof x !== 'boolean') || (typeof b === 'string' && typeof x !== 'string')) delete saved[k]; }); var m = Object.assign(base, saved); m.firstVisit = false; return m; } catch (e) { return base; }
@@ -3488,16 +3579,16 @@ function initialState(){
     peopleQuery:'', peopleSys:'all', peopleKnack:'all',
     member:{garden:'joined', readers:'none', quiet:'none', oral:'none', table:'none', sketch:'none', budget:'none'},
     commQuery:'', commSys:'all', commTopic:null, openComm:null,
-    chats:chats, unread:{'g-garden':true, 'd-priya':true}, muted:{}, leftChats:{}, wave:{step:0, answers:[], result:null}, convSearch:null, openConv:null, chatTab:'recent', chatQuery:'', draft:'', attachOpen:false, attach:null, convMenu:false,
+    chats:chats, unread:{'g-garden':true, 'd-priya':true}, muted:{}, leftChats:{}, favSys:['wisdom','journey','connection'], vis:{area:'verified', state:'friends', photo:'global'}, loc:{state:'Oregon'}, commsVisible:true, notifRead:{}, account:{email:'rae.lindqvist@example.com'}, wave:{step:0, answers:[], result:null}, convSearch:null, openConv:null, chatTab:'recent', chatQuery:'', draft:'', attachOpen:false, attach:null, convMenu:false,
     create:{type:null, title:'', body:'', sys:null, tag:null, img:false, promptOn:false, prompt:'', aud:null, view:'write', x:{}}, createDone:null,
-    privacy:{area:true, areaName:'Eastside', discoverable:true, messages:'connections'},
+    privacy:{area:true, areaName:'Eastside', discoverable:true, messages:'connections', requests:'verified'},
     me:{name:'Rae Lindqvist', bio:'Learning to slow down. Reading, long walks, and the occasional book swap.'},
     imgFail:{}, dialog:null, toast:null, reportReason:null, reportNote:'', reports:0, editDraft:'', folderDraft:'', pfName:'', pfBio:'',
     v:3, ob:{}, firstVisit:true, obHidden:false, openSys:null, sysLoading:false, netFail:false, flowLoaded:false, flowLoading:false, newArrived:false,
     cmTab:'about', commPosts:{}, commDraft:'', convTs:{},
     journal:JOURNAL_SEED.map(function(e){ return Object.assign({}, e); }), jFolders:['Morning pages','Reading notes','Reflections'], jFolder:'all', jSys:'all', jSysMenu:false, jQuery:'', jView:'list', jOpen:null, jEditing:null, jDraft:{title:'', body:'', sys:null, folder:null}, jMenu:null, jMove:null,
     cal:CAL_SEED.map(function(e){ return Object.assign({}, e); }), calMonth:'2026-10', calSel:TODAY, reflDone:{}, reflSkip:{}, reflDrafts:{}, calWrite:null, reflDraft:'', calForm:null,
-    settings:{notif:{messages:true, requests:true, events:true, reflections:false}, reduceMotion:false, largeText:false, theme:'dark'}, signedOut:false, mePhoto:true,
+    settings:{notif:{messages:true, requests:true, replies:true, gravity:true, events:true}, reduceMotion:false, largeText:false, theme:'dark'}, signedOut:false, mePhoto:true,
     trust:{status:'none', path:'', why:'', decidedBy:null, note:''}, trustDraft:{path:'', why:'', ack:false, tried:false},
     adminRole:null, adminTab:'overview', reportsQ:REPORT_SEED.map(function(r){ return Object.assign({}, r); }), flags:FLAG_SEED.map(function(f){ return Object.assign({}, f); }), audit:AUDIT_SEED.slice(), userStanding:{}, adminNote:'', adminReason:null, reportInclude:true
   };
@@ -3734,6 +3825,64 @@ class Component extends DCLogic {
       retune:function(){ setW({step:1, answers:[]}); },
       openFlow:function(){ self.setState({screen:'flow', hist:[], flowSort:'foryou', flowSys:'all', batch:1}); },
       result:(wv.result || []).map(function(id){ return {name:SYSMAP[id].name, cls:'tag sys-' + id, dotCls:'dot dot-' + id}; })};
+
+    /* ---------- Profile, Settings & Notifications round (Nov 5) ---------- */
+    var favNow = (s.favSys || []).filter(function(x){ return !!SYSMAP[x]; });
+    o.favChips = favNow.map(function(x){ return {name:SYSMAP[x].name, sym:SYS_SYM[x], cls:'fav-chip sc-' + x}; }); o.favNone = favNow.length === 0;
+    o.openFavSys = function(){ self.setState({dialog:{kind:'favSys', title:'Your Favorite Systems', sel:(self.state.favSys || []).slice()}}); };
+    o.openFavSysFromEdit = function(){ self.setState({dialog:{kind:'favSys', title:'Your Favorite Systems', sel:(self.state.favSys || []).slice(), back:'profile'}}); };
+    var dd0 = s.dialog || {};
+    var backTo = function(){ if (dd0.back === 'profile') self.setState({dialog:{kind:'profile', title:'Edit profile'}}); else self.setState({dialog:null}); };
+    if (dd0.kind === 'favSys') { var fsel = dd0.sel || []; var full = fsel.length >= 3;
+      o.favPick = {count:String(fsel.length), full:full,
+        items:SYS.map(function(z){ var on = fsel.indexOf(z.id) >= 0; return {name:z.name, meaning:z.meaning, sym:SYS_SYM[z.id], pressed:on ? 'true' : 'false', disabled:!on && full, cls:'fav-opt sc-' + z.id + (on ? ' on' : '') + (!on && full ? ' off' : ''),
+          pick:function(){ var cur = ((self.state.dialog || {}).sel || []).slice(); var k = cur.indexOf(z.id); if (k >= 0) cur.splice(k, 1); else if (cur.length < 3) cur.push(z.id); self.setState({dialog:Object.assign({}, self.state.dialog, {sel:cur})}); }}; }),
+        cancel:backTo, save:function(){ var sel = (self.state.dialog || {}).sel || []; self.setState({favSys:SYS.map(function(z){ return z.id; }).filter(function(id){ return sel.indexOf(id) >= 0; })}); backTo(); self.toast(sel.length ? 'Favorite Systems saved' : 'No favorites — Home and Flow are neutral'); }};
+    } else o.favPick = {items:[]};
+    var vis = s.vis || {area:'verified', state:'friends', photo:'global'};
+    o.visLbl = {area:VIS_LABEL[vis.area], state:VIS_LABEL[vis.state], photo:VIS_LABEL[vis.photo]};
+    var openVis = function(key, back){ return function(){ self.setState({dialog:{kind:'visPick', title:'Who can see your ' + VIS_KEYS[key].toLowerCase() + '?', key:key, back:back || null}}); }; };
+    o.visEdit = {area:openVis('area', 'profile'), state:openVis('state', 'profile'), photo:openVis('photo', 'profile')};
+    o.visSet = {area:openVis('area'), state:openVis('state'), photo:openVis('photo')};
+    if (dd0.kind === 'visPick') { var vk = dd0.key;
+      o.visPick = {items:VIS_OPTS.map(function(v){ var on = vis[vk] === v.id; return {label:v.label, help:v.help, cls:'opt-row vis-opt' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ var nv = Object.assign({}, self.state.vis); nv[vk] = v.id; self.setState({vis:nv}); }}; }), done:backTo};
+    } else o.visPick = {items:[]};
+    o.commsVisCls = 'toggle' + (s.commsVisible !== false ? ' on' : ''); o.commsVisPressed = s.commsVisible !== false ? 'true' : 'false';
+    o.toggleCommsVis = function(){ var on = self.state.commsVisible === false; self.setState({commsVisible:on}); self.toast(on ? 'Your communities show on your profile' : 'Communities hidden from your public profile'); };
+    o.goPrivacyFromEdit = function(){ self.setState({dialog:null}); self.tab('privacy'); };
+    o.goSettings = function(){ self.tab('settings'); };
+    o.goPrivacyNotifs = function(){ self.tab('privacy'); setTimeout(function(){ var el = document.getElementById('lf-notifs'); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 120); };
+    o.changePhoto = function(){ self.toast('Photo upload is simulated in this prototype'); };
+    o.pfArea = s.pfArea === undefined ? s.privacy.areaName : s.pfArea; o.pfState = s.pfState === undefined ? ((s.loc || {}).state || '') : s.pfState;
+    o.onPfArea = function(e){ self.setState({pfArea:e.target.value.slice(0, 40)}); }; o.onPfState = function(e){ self.setState({pfState:e.target.value.slice(0, 40)}); };
+    o.locArea = (s.privacy.areaName || 'Not set'); o.locState = ((s.loc || {}).state || 'Not set');
+    o.reqLabel = (REQ_OPTS.filter(function(r){ return r.id === (s.privacy.requests || 'verified'); })[0] || REQ_OPTS[0]).label;
+    o.openReqPick = function(){ self.setState({dialog:{kind:'reqPick', title:'Who can send connection requests?'}}); };
+    o.reqPick = REQ_OPTS.map(function(r){ var on = (s.privacy.requests || 'verified') === r.id; return {label:r.label, cls:'opt-row' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ self.setState({privacy:Object.assign({}, self.state.privacy, {requests:r.id})}); }}; });
+    var blkN = Object.keys(s.rel).filter(function(k){ return s.rel[k] === 'blocked'; }).length;
+    o.privSummary = 'Requests: ' + o.reqLabel.toLowerCase() + ' · Messages: ' + (s.privacy.messages === 'verified' ? 'any verified member' : 'connections') + ' · Visibility · ' + blkN + ' blocked';
+    var nfs = s.settings.notif || {}; var onN = ['messages','requests','replies','gravity','events'].filter(function(k){ return nfs[k]; }).length;
+    o.notifSummary = onN + ' of 5 types on · messages, requests, replies, Gravity, event reminders';
+    o.trustLevel = s.trust.status === 'approved' ? 'Trusted' : (s.verified ? 'Verified' : 'Unverified');
+    o.trustSteps = ['Unverified','Verified','Trusted'].map(function(l){ return {label:l, cls:'trust-step' + (l === o.trustLevel ? ' on' : '')}; });
+    o.trustBtn = s.trust.status === 'none' || s.trust.status === 'declined' ? (s.verified ? 'Apply' : 'Learn more') : 'View';
+    o.accEmail = (s.account || {}).email || '—'; o.accChange = function(){ self.toast('Email and password changes are simulated in this prototype'); };
+    o.blockReasons = BLOCK_REASONS.map(function(r){ var on = dd0.reason === r; return {label:r, cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ self.setState({dialog:Object.assign({}, self.state.dialog, {reason:on ? null : r})}); }}; });
+    /* notifications: messages, connection requests, replies, Gravity, event reminders (RSVP'd only) */
+    var nItems = []; var rd = s.notifRead || {};
+    if (nfs.messages) Object.keys(s.unread || {}).forEach(function(cid){ var cm = CONVS.filter(function(c){ return c.id === cid; })[0]; if (!cm || (s.leftChats || {})[cid]) return; var nm = cm.kind === 'group' ? COMMMAP[cm.comm].name : PEOPLE[cm.person].name; nItems.push({id:'m-' + cid, kind:'Message', text:'New message ' + (cm.kind === 'group' ? 'in ' : 'from ') + nm, icon:IC.chat, go:function(){ self.setState({dialog:null}); self.openConvId(cid); }}); });
+    if (nfs.requests) Object.keys(s.rel).forEach(function(pid){ if (s.rel[pid] === 'incoming') nItems.push({id:'r-' + pid, kind:'Connection request', text:PEOPLE[pid].name + ' wants to connect', icon:IC.people, go:function(){ self.setState({dialog:null}); self.openPersonId(pid); }}); });
+    var findP = function(id){ return s.posts.filter(function(p){ return p.id === id; })[0]; };
+    if (nfs.replies && findP('p1')) nItems.push({id:'rep-1', kind:'Reply', text:'Amara replied in the discussion on “' + findP('p1').title + '”', icon:IC.reflect, go:function(){ self.setState({dialog:null}); self.openPostId('p1'); }});
+    if (nfs.gravity && findP('p8')) nItems.push({id:'grav-1', kind:'Gravity', text:'Your reflection on “' + findP('p8').title + '” received Gravity from 3 people', icon:IC.sparkle, go:function(){ self.setState({dialog:null}); self.openPostId('p8'); }});
+    if (nfs.events) s.posts.forEach(function(p){ if (p.type === 'event' && s.acts[p.id]) nItems.push({id:'ev-' + p.id, kind:'Event reminder', text:p.title + (p.when ? ' · ' + p.when : ''), icon:IC.calendar, go:function(){ self.setState({dialog:null}); self.openPostId(p.id); }}); });
+    var nUnread = nItems.filter(function(n){ return !rd[n.id]; }).length;
+    o.notifCount = nUnread > 9 ? '9+' : String(nUnread); o.notifHas = nUnread > 0;
+    o.notifAria = nUnread ? 'Notifications, ' + nUnread + ' new' + ' — ' + nUnread + (nUnread === 1 ? ' notification' : ' notifications') : 'Notifications, none new';
+    o.openNotifs = function(){ self.setState({dialog:{kind:'notifs', title:'Notifications'}, drawer:false}); };
+    o.nt = {empty:nItems.length === 0, noneUnread:nUnread === 0, settings:function(){ self.setState({dialog:null}); o.goPrivacyNotifs(); },
+      markAll:function(){ var r2 = Object.assign({}, self.state.notifRead); nItems.forEach(function(n){ r2[n.id] = true; }); self.setState({notifRead:r2}); },
+      items:nItems.map(function(n){ var un = !rd[n.id]; return {kind:n.kind, text:n.text, icon:n.icon, unread:un, cls:'nt-item' + (un ? ' unread' : ''), icCls:'nt-ic', go:function(){ var r2 = Object.assign({}, self.state.notifRead); r2[n.id] = true; self.setState({notifRead:r2}); n.go(); }}; })};
     o.openGtkInfo = function(){ self.setState({dialog:{kind:'gtkInfo', title:'Good to know before you publish'}}); };
     o.sysGuide = SYS.map(function(z){ var dd = s.dialog || {}; return {name:z.name, words:z.meaning || '', dotCls:'dot dot-' + z.id, ideas:SYS_CREATE[z.id] || [], cls:'sg-item sc-' + z.id + (dd.focus === z.id ? ' on' : '')}; });
     if (v.cr) {
@@ -3889,7 +4038,7 @@ class Component extends DCLogic {
     /* ---------- Settings ---------- */
     var st2 = s.settings; var nf = st2.notif;
     var nToggle = function(k, label, hint){ return {label:label, hint:hint, cls:'toggle' + (nf[k] ? ' on' : ''), pressed:nf[k] ? 'true' : 'false', toggle:function(){ var n2 = Object.assign({}, nf); n2[k] = !nf[k]; self.setState({settings:Object.assign({}, st2, {notif:n2})}); }}; };
-    o.setx = {notifs:[nToggle('messages', 'Messages', 'New direct and group messages'), nToggle('requests', 'Connection requests', 'When someone asks to connect'), nToggle('events', 'Community events', 'Reminders for events you’re going to'), nToggle('reflections', 'Discussion replies', 'Replies after you reflect on a post')],
+    o.setx = {notifs:[nToggle('messages', 'Chat messages', 'New direct and group messages'), nToggle('requests', 'Connection requests', 'When someone asks to connect'), nToggle('replies', 'Replies', 'Replies to your posts and reflections'), nToggle('gravity', 'Gravity activity', 'When your posts or reflections receive Gravity'), nToggle('events', 'Event reminders', 'Only for events you’ve RSVP’d to')],
       rmCls:'toggle' + (st2.reduceMotion ? ' on' : ''), rmPressed:st2.reduceMotion ? 'true' : 'false', toggleRM:function(){ self.setState({settings:Object.assign({}, st2, {reduceMotion:!st2.reduceMotion})}); },
       themeHint:st2.theme === 'light' ? 'Light — bright surfaces for daytime reading' : 'Dark — the default Lux Flow look', darkCls:st2.theme !== 'light' ? 'on' : '', lightCls:st2.theme === 'light' ? 'on' : '', darkOn:st2.theme !== 'light' ? 'true' : 'false', lightOn:st2.theme === 'light' ? 'true' : 'false',
       setDark:function(){ self.setState({settings:Object.assign({}, self.state.settings, {theme:'dark'})}); }, setLight:function(){ self.setState({settings:Object.assign({}, self.state.settings, {theme:'light'})}); },
@@ -3993,7 +4142,8 @@ class Component extends DCLogic {
       active:act.map(function(a){ return {label:a.label, hasDot:!!a.dot, dotCls:'dot dot-' + a.dot, aria:'Remove ' + a.label + ' filter', clear:a.clear}; })};
   }
   failImg(key){ if (!key) return; var n = this.state.imgFail[key] || 0; if (n >= 2) return; var f = Object.assign({}, this.state.imgFail); f[key] = n + 1; this.setState({imgFail:f}); } /* 1st failure: retry from local assets/images/; 2nd: show the designed fallback */
-  pic(key){ var self = this; var n = this.state.imgFail[key] || 0; var url = (key === 'rae' && this.state.mePhoto === false) ? '' : imgSrc(key, n); return {photo:url, hasPhoto:!!url && n < 2, photoErr:function(){ self.failImg(key); }}; }
+  pic(key){ var self = this; var pp = PEOPLE[key]; if (pp && pp.photoVis && !this.visOK(pp.photoVis, key)) return {photo:DEFAULT_AV, hasPhoto:true, photoErr:function(){}, hiddenPhoto:true}; var n = this.state.imgFail[key] || 0; var url = imgSrc(key, n); return {photo:url, hasPhoto:!!url && n < 2, photoErr:function(){ self.failImg(key); }}; }
+  visOK(level, pid){ var s = this.state; var conn = s.rel[pid] === 'connected'; if (level === 'global') return true; if (level === 'verified') return !!s.verified || conn; if (level === 'friends') return conn; return false; }
   media(key){ var self = this; var n = key ? (this.state.imgFail[key] || 0) : 0; var url = key ? imgSrc(key, n) : ''; var ok = !!url && n < 2; return {has:!!url, ok:ok, bad:!!url && !ok, src:url, alt:ALT[key] || '', err:function(){ self.failImg(key); }}; }
   dlgClose(){ this.setState({dialog:null, reportReason:null, reportNote:''}); }
 
@@ -4023,7 +4173,7 @@ class Component extends DCLogic {
     var goVerify = function(){ self.setState({dialog:null}); self.go('verify', {vStep:s.vStep === 'done' ? 'done' : (s.vStep === 'pending' ? 'pending' : (s.vStep === 'needs' ? 'needs' : 'intro'))}); };
 
     var sideMain = [navItem('home','Lux Flow Home', IC.home, goHome), navItem('flow','Flow', IC.flow, goFlow), navItem('chat','Chat', IC.chat, goChat, nb(unreadN)), navItem('people','People', IC.people, goPeople, nb(reqN, 'warn')), navItem('communities','Communities', IC.communities, goCommunities), navItem('archive','Archive', IC.bookmark, goArchive)];
-    var sideMore = [navItem('me','Profile', IC.user, goMe), navItem('journal','Journal', IC.journal, goMod('journal')), navItem('calendar','Calendar', IC.calendar, goMod('calendar')), navItem('settings','Settings', IC.settings, goMod('settings')), navItem('privacy','Safety & Privacy', IC.lock, function(){ self.tab('privacy'); })];
+    var sideMore = [navItem('me','Profile', IC.user, goMe), navItem('journal','Journal', IC.journal, goMod('journal')), navItem('calendar','Calendar', IC.calendar, goMod('calendar')), navItem('settings','Settings', IC.settings, goMod('settings')), navItem('privacy','Privacy & Safety', IC.lock, function(){ self.tab('privacy'); })];
     var dockL = [dockItem('chat','Chat', IC.chat, goChat, nb(unreadN)), dockItem('people','People', IC.people, goPeople, nb(reqN, 'warn'))];
     var dockR = [dockItem('communities','Communities', IC.communities, goCommunities), dockItem('archive','Archive', IC.bookmark, goArchive)];
 
@@ -4086,7 +4236,7 @@ class Component extends DCLogic {
     /* ---------- home ---------- */
     var points = SYS.map(function(sy, i){
       var on = s.sysSel === sy.id; var fp = FIG_PTS[s.settings.theme === 'light' ? 'light' : 'dark']; var y = (fp.y[i] / fp.h * 100).toFixed(2); /* illustration is cropped to 1024x1260: crown at the top of the head, throat below the chin, base at the crossed legs */
-      return {name:sy.name, meaning:sy.meaning, icon:sy.icon, on:on, pressed:on ? 'true' : 'false', cls:'pt sc-' + sy.id + ' pd' + i + (on ? ' on' : ''), sym:SYS_SYM[sy.id], words:sy.meaning.split(' · ').map(function(t){ return {t:t}; }), rowCls:'pt-row sc-' + sy.id + ' pd' + i + (i <= 3 ? ' pt-head' : '') + (i % 2 ? ' side-l' : ' side-r') + (on ? ' on' : '') + (sy.id === (s.sysSel || SYS[0].id) ? ' focus' : ''), info:function(){ self.setState({dialog:{kind:'sysInfo', title:sy.name, sys:sy.id}}); }, qAria:'What is ' + sy.name + '?', pos:'top: ' + y + '%', dotCls:'pt-dot dot-' + sy.id, chipCls:'chip' + (on ? ' on' : ''), chipDotCls:'dot dot-' + sy.id, labelCls:'pt-label' + (i % 2 ? ' left' : ''), aria:sy.name + ': ' + sy.meaning + (on ? ' (selected)' : ''), itemCls:'sys-item' + (on ? ' on' : ''), icCls:'sys-ic sys-' + sy.id, pick:function(){ self.setState({sysSel:on ? null : sy.id}); }};
+      return {name:sy.name, meaning:sy.meaning, icon:sy.icon, on:on, pressed:on ? 'true' : 'false', cls:'pt sc-' + sy.id + ' pd' + i + (on ? ' on' : ''), sym:SYS_SYM[sy.id], words:sy.meaning.split(' · ').map(function(t){ return {t:t}; }), rowCls:'pt-row sc-' + sy.id + ' pd' + i + ((s.favSys || []).indexOf(sy.id) >= 0 ? ' fav' : '') + (i <= 3 ? ' pt-head' : '') + (i % 2 ? ' side-l' : ' side-r') + (on ? ' on' : '') + (sy.id === (s.sysSel || SYS[0].id) ? ' focus' : ''), info:function(){ self.setState({dialog:{kind:'sysInfo', title:sy.name, sys:sy.id}}); }, qAria:'What is ' + sy.name + '?', pos:'top: ' + y + '%', dotCls:'pt-dot dot-' + sy.id, chipCls:'chip' + (on ? ' on' : ''), chipDotCls:'dot dot-' + sy.id, labelCls:'pt-label' + (i % 2 ? ' left' : ''), aria:sy.name + ': ' + sy.meaning + ((s.favSys || []).indexOf(sy.id) >= 0 ? ' · one of your favorites' : '') + (on ? ' (selected)' : ''), itemCls:'sys-item' + (on ? ' on' : ''), icCls:'sys-ic sys-' + sy.id, pick:function(){ self.setState({sysSel:on ? null : sy.id}); }};
     });
     var sel = null;
     if (s.sysSel) {
@@ -4114,6 +4264,7 @@ class Component extends DCLogic {
       return {name:p.name, first:p.name.split(' ')[0], handle:p.handle, ini:p.ini, knack:p.knack, bio:p.bio, sysName:SYSMAP[p.sys].name,
         avCls:'av av-' + p.av, avLgCls:'av av-lg av-' + p.av, dotCls:'dot dot-' + p.sys, ctxSysCls:'sysc-' + p.sys, aria:'Open ' + p.name + '’s profile',
         chips:p.interests.slice(0, 3).map(function(x){ return {name:SYSMAP[x].name, icon:SYSMAP[x].icon, cls:'tag sys-' + x}; }),
+        favDots:p.interests.slice(0, 3).map(function(x){ return 'dot dot-' + x; }), favNames:p.interests.slice(0, 3).map(function(x){ return SYSMAP[x].name; }).join(' · '),
         isNone:r === 'none', isPending:r === 'pending', isConnected:r === 'connected', isIncoming:r === 'incoming',
         withdrawAria:'Request sent to ' + p.name + '. Select to withdraw.',
         followLabel:f ? 'Following' : 'Follow', followCls:f ? 'btn btn-sm btn-tonal' : 'btn btn-sm btn-secondary', followPressed:f ? 'true' : 'false',
@@ -4128,32 +4279,34 @@ class Component extends DCLogic {
     var connIds = PEOPLE_ORDER.filter(function(id){ return s.rel[id] === 'connected'; });
 
     /* ---------- profile ---------- */
-    var prof;
+    var prof; var favs = (s.favSys || []).filter(function(x){ return !!SYSMAP[x]; });
     if (is.profile) {
       var pid = s.openPerson;
       if (pid && !PEOPLE[pid]) { prof = {missing:true, found:false, posts:[], comms:[], chips:[]}; }
       else if (!pid) {
         var myPosts = s.posts.filter(function(p){ return p.author === 'me'; }).map(function(p){ var d = decPost(p); return d; });
         var myComms = COMMS.filter(function(c){ return s.member[c.id] === 'joined'; });
-        prof = {other:false, mine:true, name:s.me.name, first:'You', handle:'rae', ini:meP.ini, photo:me.photo, hasPhoto:me.hasPhoto, photoErr:me.photoErr, avXlCls:'av av-xl av-9', hasKnack:false, knack:'', isVerified:s.verified, isUnverified:!s.verified, bio:s.me.bio, dotCls:'dot dot-wisdom', sysName:'Wisdom', hasArea:s.privacy.area, area:s.privacy.areaName,
+        prof = {other:false, mine:true, name:s.me.name, first:'You', handle:'rae', ini:meP.ini, photo:me.photo, hasPhoto:me.hasPhoto, photoErr:me.photoErr, avXlCls:'av av-xl av-9', hasKnack:false, knack:'', isVerified:s.verified, isUnverified:!s.verified, bio:s.me.bio, dotCls:'dot dot-wisdom', sysName:'Wisdom', hasArea:!!s.privacy.areaName, area:s.privacy.areaName + (s.loc && s.loc.state ? ', ' + s.loc.state : ''),
           countsLine:connIds.length + ' connections · ' + myComms.length + (myComms.length === 1 ? ' community' : ' communities'),
           chips:['wisdom','journey','connection'].map(function(x){ return {name:SYSMAP[x].name, icon:SYSMAP[x].icon, cls:'tag sys-' + x}; }),
           showContent:true, showActions:false, isBlocked:false, creationsTitle:'Your creations', creationsMeta:'Visible according to each post’s audience', posts:myPosts, noPosts:myPosts.length === 0, noPostsText:'You haven’t shared anything yet. Your posts will appear here.', hiddenNote:false,
           comms:myComms.map(function(c){ return {name:c.name, dotCls:'dot dot-' + c.sys, roleLine:'Member · ' + SYSMAP[c.sys].name, open:function(){ self.openComm(c.id); }}; }), noComms:myComms.length === 0};
-        prof.first = 'you'; prof.sysTitle = 'Systems you explore'; prof.found = true;
+        prof.first = 'you'; prof.sysTitle = 'Your Favorite Systems'; prof.found = true;
+        prof.chips = favs.map(function(x){ return {name:SYSMAP[x].name, sym:SYS_SYM[x], cls:'fav-chip sc-' + x}; }); prof.noFav = favs.length === 0; prof.showFav = true;
+        prof.commsTitle = 'My Communities'; prof.showComms = true; prof.commsOnlyMe = s.commsVisible === false;
       } else {
         var pp = PEOPLE[pid]; var dp = decPerson(pid); var r = s.rel[pid] || 'none'; var blocked = r === 'blocked';
         var all = s.posts.filter(function(p){ return p.author === pid; });
         var vis = all.filter(function(p){ return self.canSee(p); });
         var theirComms = COMMS.filter(function(c){ return pp.comms.indexOf(c.id) >= 0 && (c.access !== 'invite'); });
-        prof = Object.assign({}, dp, {other:true, mine:false, avXlCls:'av av-xl av-' + pp.av, hasKnack:true, isVerified:true, isUnverified:false, dotCls:'dot dot-' + pp.sys, sysName:SYSMAP[pp.sys].name, hasArea:!!pp.area && s.verified && !blocked, area:pp.area,
-          countsLine:theirComms.length + (theirComms.length === 1 ? ' community' : ' communities'),
-          chips:pp.interests.map(function(x){ return {name:SYSMAP[x].name, icon:SYSMAP[x].icon, cls:'tag sys-' + x}; }),
+        prof = Object.assign({}, dp, {other:true, mine:false, avXlCls:'av av-xl av-' + pp.av, hasKnack:true, isVerified:true, isUnverified:false, dotCls:'dot dot-' + pp.sys, sysName:SYSMAP[pp.sys].name, hasArea:!!pp.area && !blocked && self.visOK(pp.areaVis || 'verified', pid), area:pp.area,
+          countsLine:pp.commsHidden ? '' : theirComms.length + (theirComms.length === 1 ? ' community' : ' communities'),
+          chips:pp.interests.slice(0, 3).map(function(x){ return {name:SYSMAP[x].name, sym:SYS_SYM[x], cls:'fav-chip sc-' + x}; }),
           isBlocked:blocked, showActions:!blocked && s.verified, showContent:!blocked,
           relHelp:r === 'connected' ? 'Connected: you can message each other and see posts shared with All Friends.' : (r === 'pending' ? 'Waiting for ' + dp.first + ' to accept. You can withdraw anytime.' : (r === 'incoming' ? dp.first + ' asked to connect with you.' : 'Connect is mutual — it lets you message and see friends-only posts. Follow is one-way and shows public posts in Flow.')),
           creationsTitle:'Creations', creationsMeta:'Shown according to audience', posts:vis.map(function(p){ return decPost(p); }), noPosts:vis.length === 0, noPostsText:s.verified ? dp.first + ' hasn’t shared anything visible to you yet.' : 'Verify to see more of what ' + dp.first + ' shares.',
           hiddenNote:vis.length < all.length, hiddenText:'Some of ' + dp.first + '’s posts are shared only with their connections or a local audience.',
-          sysTitle:'Systems ' + dp.first + ' explores', comms:theirComms.map(function(c){ return {name:c.name, dotCls:'dot dot-' + c.sys, roleLine:(c.host === pid ? 'Host' : 'Member') + ' · ' + SYSMAP[c.sys].name, open:function(){ self.openComm(c.id); }}; }), noComms:theirComms.length === 0,
+          sysTitle:'Favorite Systems', showFav:true, noFav:false, commsTitle:'Communities', showComms:!pp.commsHidden, commsOnlyMe:false, comms:theirComms.map(function(c){ return {name:c.name, dotCls:'dot dot-' + c.sys, roleLine:(c.host === pid ? 'Host' : 'Member') + ' · ' + SYSMAP[c.sys].name, open:function(){ self.openComm(c.id); }}; }), noComms:theirComms.length === 0,
           menuOpen:s.profMenu, menuExp:s.profMenu ? 'true' : 'false', toggleMenu:function(){ self.setState({profMenu:!s.profMenu}); },
           block:function(){ self.setState({profMenu:false, dialog:{kind:'block', title:'Block ' + dp.first + '?', who:dp.first, target:pid}}); },
           unblock:function(){ self.setRel(pid, 'none', dp.first + ' unblocked'); },
@@ -4310,8 +4463,8 @@ class Component extends DCLogic {
         })};
       cv.searchCount = convHits === null ? '' : (convHits === 1 ? '1 match' : convHits + ' matches');
       if (!isG && pu) {
-        var theirs = pu.interests || [pu.sys]; var shared = ME_SYS.filter(function(x){ return theirs.indexOf(x) >= 0; });
-        var simPool = shared.length ? shared : [theirs[0], ME_SYS[0]]; var cgSel = s.sparkSys || 'similar';
+        var theirs = pu.interests || [pu.sys]; var mySys = (s.favSys && s.favSys.length) ? s.favSys : ME_SYS; var shared = mySys.filter(function(x){ return theirs.indexOf(x) >= 0; });
+        var simPool = shared.length ? shared : [theirs[0], mySys[0]]; var cgSel = s.sparkSys || 'similar';
         var pool = cgSel === 'similar' ? simPool : (cgSel === 'all' ? SYS.map(function(z){ return z.id; }) : [cgSel]);
         var mineSent = msgs.some(function(m){ return m.who === 'me'; });
         var sOpen = s.sparkFor === s.openConv ? s.sparkOpen : !mineSent;
@@ -4328,7 +4481,7 @@ class Component extends DCLogic {
           ddLabel:cgSel === 'similar' ? 'Similar Systems' : (cgSel === 'all' ? 'All Chakra Systems' : SYSMAP[cgSel].name),
           ddOpts:ddOrder.map(function(id){ var on = cgSel === id; var isSys = id !== 'all' && id !== 'similar'; return {label:id === 'similar' ? 'Similar Systems' + (shared.length ? ' · ' + shared.map(function(x){ return SYSMAP[x].name; }).join(', ') : '') : (id === 'all' ? 'All Chakra Systems' : SYSMAP[id].name), on:on, sel:on ? 'true' : 'false', cls:'cg-opt' + (isSys ? ' is-sys sc-' + id : ' cg-' + id) + (on ? ' on' : ''), pick:function(){ self.setState({sparkSys:id, sparkDd:false, sparkSeed:0, sparkQ:''}); }}; }),
           title:'Common Ground',
-          sub:shared.length ? 'You both explore ' + shared.map(function(x){ return SYSMAP[x].name; }).join(' and ') : first + ' explores ' + SYSMAP[theirs[0]].name + ' · you explore ' + SYSMAP[ME_SYS[0]].name,
+          sub:shared.length ? 'You both explore ' + shared.map(function(x){ return SYSMAP[x].name; }).join(' and ') : first + ' explores ' + SYSMAP[theirs[0]].name + ' · you explore ' + SYSMAP[mySys[0]].name,
           toggle:function(){ self.setState({sparkFor:s.openConv, sparkOpen:!sOpen}); },
           q:s.sparkQ || '', onQ:function(e){ self.setState({sparkQ:e.target.value.slice(0, 60)}); },
           shuffle:function(){ self.setState({sparkSeed:seed + 1, sparkQ:''}); },
@@ -4356,7 +4509,7 @@ class Component extends DCLogic {
 
     /* ---------- dialogs ---------- */
     var d = s.dialog || {};
-    var dlg = {any:!!s.dialog, title:d.title || '', body:d.body || '', who:d.who || '', gate:d.kind === 'gate', report:d.kind === 'report', block:d.kind === 'block', del:d.kind === 'del', leave:d.kind === 'leave', mute:d.kind === 'mute', gtk:d.kind === 'gtk', gtkInfo:d.kind === 'gtkInfo', sysGuide:d.kind === 'sysGuide', leaveChat:d.kind === 'leaveChat', edit:d.kind === 'edit', sys:d.kind === 'sys', history:d.kind === 'history', sysInfo:d.kind === 'sysInfo', sigInfo:d.kind === 'sigInfo', folder:d.kind === 'folder', profile:d.kind === 'profile', info:d.kind === 'info', discard:d.kind === 'discard', jDiscard:d.kind === 'jDiscard', jDel:d.kind === 'jDel', jExport:d.kind === 'jExport', jFolder:d.kind === 'jFolder', calAdd:d.kind === 'calAdd', calForm:d.kind === 'calForm', calRefl:d.kind === 'calRefl', reflLock:d.kind === 'reflLock', signOut:d.kind === 'signOut', reset:d.kind === 'reset', adminSignIn:d.kind === 'adminSignIn', adminAct:d.kind === 'adminAct', newMsg:d.kind === 'newMsg'};
+    var dlg = {any:!!s.dialog, title:d.title || '', body:d.body || '', who:d.who || '', gate:d.kind === 'gate', report:d.kind === 'report', block:d.kind === 'block', del:d.kind === 'del', leave:d.kind === 'leave', mute:d.kind === 'mute', favSys:d.kind === 'favSys', visPick:d.kind === 'visPick', reqPick:d.kind === 'reqPick', notifs:d.kind === 'notifs', gtk:d.kind === 'gtk', gtkInfo:d.kind === 'gtkInfo', sysGuide:d.kind === 'sysGuide', leaveChat:d.kind === 'leaveChat', edit:d.kind === 'edit', sys:d.kind === 'sys', history:d.kind === 'history', sysInfo:d.kind === 'sysInfo', sigInfo:d.kind === 'sigInfo', folder:d.kind === 'folder', profile:d.kind === 'profile', info:d.kind === 'info', discard:d.kind === 'discard', jDiscard:d.kind === 'jDiscard', jDel:d.kind === 'jDel', jExport:d.kind === 'jExport', jFolder:d.kind === 'jFolder', calAdd:d.kind === 'calAdd', calForm:d.kind === 'calForm', calRefl:d.kind === 'calRefl', reflLock:d.kind === 'reflLock', signOut:d.kind === 'signOut', reset:d.kind === 'reset', adminSignIn:d.kind === 'adminSignIn', adminAct:d.kind === 'adminAct', newMsg:d.kind === 'newMsg'};
     var editTarget = d.kind === 'edit' ? s.posts.filter(function(p){ return p.id === d.target; })[0] : null;
     var reasons = ['Harassment or threats', 'Spam or scam', 'Shares private information', 'Inappropriate content', 'Something else'];
 
@@ -4457,7 +4610,7 @@ class Component extends DCLogic {
 
       /* profile */
       prof:prof,
-      openEditProfile:function(){ self.setState({dialog:{kind:'profile', title:'Edit profile'}, pfName:s.me.name, pfBio:s.me.bio}); },
+      openEditProfile:function(){ self.setState({dialog:{kind:'profile', title:'Edit profile'}, pfName:s.me.name, pfBio:s.me.bio, pfArea:s.privacy.areaName, pfState:(s.loc || {}).state || ''}); },
       vStatusTitle:vStatusTitle, vStatusText:vStatusText, vCta:vCta,
 
       /* create */
@@ -4503,7 +4656,7 @@ class Component extends DCLogic {
       discToggleCls:'toggle' + (s.privacy.discoverable ? ' on' : ''), discPressed:s.privacy.discoverable ? 'true' : 'false', toggleDisc:function(){ self.setState({privacy:Object.assign({}, s.privacy, {discoverable:!s.privacy.discoverable})}); },
       msgConnCls:s.privacy.messages === 'connections' ? 'on' : '', msgVerCls:s.privacy.messages === 'verified' ? 'on' : '',
       msgConn:function(){ self.setState({privacy:Object.assign({}, s.privacy, {messages:'connections'})}); }, msgVer:function(){ self.setState({privacy:Object.assign({}, s.privacy, {messages:'verified'})}); },
-      blockedList:PEOPLE_ORDER.filter(function(id){ return s.rel[id] === 'blocked'; }).map(function(id){ var p = PEOPLE[id]; return {photo:self.pic(id).photo, hasPhoto:self.pic(id).hasPhoto, photoErr:self.pic(id).photoErr, name:p.name, ini:p.ini, avCls:'av av-sm av-' + p.av, unblock:function(){ self.setRel(id, 'none', p.name.split(' ')[0] + ' unblocked'); }}; }),
+      blockedList:PEOPLE_ORDER.filter(function(id){ return s.rel[id] === 'blocked'; }).map(function(id){ var p = PEOPLE[id]; return {photo:self.pic(id).photo, hasPhoto:self.pic(id).hasPhoto, photoErr:self.pic(id).photoErr, name:p.name, ini:p.ini, reason:(s.blockReasons || {})[id] ? 'Reason: ' + s.blockReasons[id] : 'Blocked until you unblock', avCls:'av av-sm av-' + p.av, unblock:function(){ self.setRel(id, 'none', p.name.split(' ')[0] + ' unblocked'); }}; }),
       noBlocked:!PEOPLE_ORDER.some(function(id){ return s.rel[id] === 'blocked'; }),
       reportsText:s.reports ? s.reports + (s.reports === 1 ? ' report' : ' reports') + ' sent. Status: waiting for a human reviewer (simulated). You’ll be told when there’s an outcome, without details that would expose anyone’s private information.' : 'You haven’t reported anything. When you do, its status appears here.',
 
@@ -4527,7 +4680,7 @@ class Component extends DCLogic {
         var urgent = s.reportReason === 'Harassment or threats' || s.reportReason === 'Shares private information';
         var nr = {id:'r' + (Date.now() % 1e8), priority:urgent ? 'urgent' : 'normal', kind:s.reportReason, target:tdesc, targetType:tt, targetId:tid, excerpt:tex, reporter:'You', at:'Today · just now', status:'open'};
         self.setState({dialog:null, reportReason:null, reportNote:'', reports:s.reports + 1, reportsQ:[nr].concat(s.reportsQ), reportInclude:true}); self.toast('Report sent to a human reviewer (simulated). Thank you.'); },
-      confirmBlock:function(){ var id = d.target; var r2 = Object.assign({}, s.rel); r2[id] = 'blocked'; var f2 = Object.assign({}, s.following); delete f2[id]; self.setState({rel:r2, following:f2, dialog:null}); self.toast(PEOPLE[id].name.split(' ')[0] + ' is blocked'); },
+      confirmBlock:function(){ var id = d.target; var r2 = Object.assign({}, s.rel); r2[id] = 'blocked'; var br = Object.assign({}, s.blockReasons || {}); br[id] = d.reason || null; self.setState({blockReasons:br}); var f2 = Object.assign({}, s.following); delete f2[id]; self.setState({rel:r2, following:f2, dialog:null}); self.toast(PEOPLE[id].name.split(' ')[0] + ' is blocked'); },
       confirmDelete:function(){ var id = d.target; var sv = Object.assign({}, s.saved); delete sv[id]; var leaving = s.screen === 'post'; self.setState({posts:s.posts.filter(function(p){ return p.id !== id; }), saved:sv, dialog:null, screen:leaving ? 'flow' : s.screen, hist:leaving ? [] : s.hist}); self.toast('Post deleted'); },
       muteOpts:MUTE_OPTS.map(function(o){ var on = (d.opt || '8h') === o.id; return {label:o.label, cls:'list-row mute-opt' + (on ? ' on' : ''), checked:on ? 'true' : 'false', pick:function(){ self.setState({dialog:Object.assign({}, d, {opt:o.id})}); }}; }),
       confirmMute:function(){ var o = MUTE_OPTS.filter(function(x){ return x.id === (d.opt || '8h'); })[0]; var mu = Object.assign({}, s.muted); mu[d.target] = {id:o.id, label:o.label, at:Date.now()}; self.setState({muted:mu, dialog:null}); self.toast(o.id === 'forever' ? 'Muted until you turn notifications back on' : 'Muted for ' + o.label.toLowerCase()); },
@@ -4549,7 +4702,7 @@ class Component extends DCLogic {
       folderDraft:s.folderDraft, onFolderDraft:function(e){ self.setState({folderDraft:e.target.value.slice(0, 40)}); }, folderDisabled:!s.folderDraft.trim() || s.folders.indexOf(s.folderDraft.trim()) >= 0,
       createFolder:function(){ var n = s.folderDraft.trim(); if (!n) return; self.setState({folders:s.folders.concat([n]), dialog:null, archFolder:n}); self.toast('Folder “' + n + '” created'); },
       pfName:s.pfName, pfBio:s.pfBio, onPfName:function(e){ self.setState({pfName:e.target.value.slice(0, 50)}); }, onPfBio:function(e){ self.setState({pfBio:e.target.value.slice(0, 300)}); }, pfInvalid:!s.pfName.trim(),
-      saveProfile:function(){ if (!s.pfName.trim()) return; self.setState({me:{name:s.pfName.trim(), bio:s.pfBio.trim()}, dialog:null}); self.toast('Profile updated'); }
+      saveProfile:function(){ if (!s.pfName.trim()) return; var st = self.state; var ar = st.pfArea === undefined ? st.privacy.areaName : st.pfArea.trim(); var sta = st.pfState === undefined ? (st.loc || {}).state : st.pfState.trim(); self.setState({me:{name:st.pfName.trim(), bio:st.pfBio.trim()}, privacy:Object.assign({}, st.privacy, {areaName:ar}), loc:Object.assign({}, st.loc, {state:sta}), pfArea:undefined, pfState:undefined, dialog:null}); self.toast('Profile updated'); }
     };
   }
 
@@ -4557,7 +4710,7 @@ class Component extends DCLogic {
     var self = this; var s = this.state;
     var ps = s.posts.filter(function(p){ return !s.hidden[p.id] && self.canSee(p) && p.audience !== 'private'; });
     if (s.flowSys !== 'all') ps = ps.filter(function(p){ return p.sys === s.flowSys; });
-    var interests = (s.wave && s.wave.result && s.wave.result.length) ? s.wave.result : ['wisdom','journey','connection'];
+    var interests = (s.wave && s.wave.result && s.wave.result.length) ? s.wave.result : (s.favSys || []);
     var score = function(p){ var sc = p.ts; if (interests.indexOf(p.sys) >= 0) sc += 20; if (s.following[p.author]) sc += 10; if (s.rel[p.author] === 'connected') sc += 8; return sc; };
     ps = ps.slice().sort(function(a, b){ return s.flowSort === 'latest' ? b.ts - a.ts : score(b) - score(a); });
     return ps;

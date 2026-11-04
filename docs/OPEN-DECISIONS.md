@@ -16,3 +16,5 @@
 14. **Conversation-based Common Ground questions** — proposed for a later phase (needs consent, on-device/opt-in processing and a privacy review).
 15. **Gravity credits** — proposed for a later phase after Phase 1 usage data; needs an economy design, anti-gaming rules and a ledger.
 16. **Community topics** — starter list per System; who can add topics later (admins only vs. hosts suggesting)?
+17. **Tune Your Wave vs. Tune Your Flow** — the Nov 5 designer notes put feed tuning in Phase 2 (“Tune Your Flow”), but Quinn asked for the Tune Your Wave Q&A on Home on Nov 4. It’s still in the prototype: keep it in Phase 1, or hide it until Phase 2?
+18. **Who can send connection requests** — proposed options: any verified member, friends of friends, no one for now.

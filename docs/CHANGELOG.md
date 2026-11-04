@@ -1,5 +1,15 @@
 # Change log
 
+## Profile, Settings & Notifications (Nov 5)
+- Profile: “Your Favorite Systems” (up to 3, pencil + Select) replaces “Systems you explore”; “Mostly in …” labels removed (profile and People cards). Trust & Verification and the Privacy button moved off the profile; the Verified badge stays. “My Communities” stays near the bottom. When it’s hidden, visitors see nothing and the owner sees “Only you can see this”.
+- Favorite Systems picker: all 10 in canonical order from Radiance. Choose 0 to 3; others disable at 3 with “You can choose up to 3”.
+- Hidden profile photos show a clean default avatar everywhere (People, Chat, Communities, replies). Demo: Sam (friends-only photo).
+- Edit profile order: photo, name, bio, favorite Systems, location (General Area + State, each with visibility), photo visibility, communities show/hide. Visibility options: Only Me, Friends Only, Verified Users + Friends, Global. They share one setting with Settings → Privacy & Safety.
+- Settings in four categories: Trust & Verification (status, Unverified / Verified / Trusted level, Trusted application), Privacy & Safety (requests, conversations, visibility, block list, notifications), Appearance (theme only; text size, motion and contrast follow the device), Account & Security (email, password, sign out, delete).
+- Block: instant and indefinite with an optional reason, shown in the block list with Unblock. Report keeps a required reason and an optional note. Both stay on profiles and in the chat ··· menu.
+- Notifications: count badge on the Lux Flow logo (1–9, then 9+), white on dark and black on light, with a screen-reader label. Tapping the logo opens the list: messages, connection requests, replies, Gravity and reminders for RSVP’d events. Each type has a toggle; there are no community-activity notifications.
+- Personalization: favorites are the starting signal for Flow’s relevance and get a subtle star and ring on the Home figure (same size, all tappable). No favorites means a neutral Home and Flow.
+
 ## Client round (Nov 4)
 - Home: "Today’s Flow" replaced by an optional **Tune your wave** — three short questions. The answers pick three Systems and Flow’s “For you” order leans toward them. Retune or skip anytime.
 - Home | Flow toggle without the “~”.
