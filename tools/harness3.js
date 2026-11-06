@@ -23,7 +23,7 @@ c.setState({netFail:true}); v=rv(); ok(v.sysError,'system error state'); c.setSt
 v.sysx.openFlow(); v=rv(); ok(c.state.screen==='flow' && v.flowReady && v.feed.every(p=>p.sysName==='Wisdom'),'system → flow filtered');
 // flow states & refresh
 c.setState({flowSys:'all'}); c.setState({netFail:true}); v=rv(); ok(v.flowError,'flow error'); c.setState({netFail:false}); v.retryFlow(); v=rv(); ok(v.flowReady && v.feed.length===5,'flow retry ok');
-v.refreshFlow(); v=rv(); ok(v.feed[0].title==='Ten minutes of doing nothing','refresh brings new post'); v.refreshFlow(); v=rv(); ok(v.feed.filter(p=>p.title==='Ten minutes of doing nothing').length===1,'second refresh adds nothing');
+c.setState({flowSort:'global'}); v=rv(); v.refreshFlow(); v=rv(); ok(v.feed[0].title==='Ten minutes of doing nothing','refresh brings new post'); v.refreshFlow(); v=rv(); ok(v.feed.filter(p=>p.title==='Ten minutes of doing nothing').length===1,'second refresh adds nothing');
 v.sortForYou(); v=rv(); ok(v.feed.length===5,'for you'); v.sortLatest(); v=rv();
 const p2=v.feed.find(p=>p.hasComm); ok(!!p2,'post with community link: '+(p2&&p2.commName));
 v.feed[1].openSys(); v=rv(); ok(c.state.screen==='system','post ctx → system'); v.back&&v.back(); v=rv();

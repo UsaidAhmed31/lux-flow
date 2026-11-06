@@ -18,3 +18,5 @@
 16. **Community topics** — starter list per System; who can add topics later (admins only vs. hosts suggesting)?
 17. **Tune Your Wave vs. Tune Your Flow** — the Nov 5 designer notes put feed tuning in Phase 2 (“Tune Your Flow”), but Quinn asked for the Tune Your Wave Q&A on Home on Nov 4. It’s still in the prototype: keep it in Phase 1, or hide it until Phase 2?
 18. **Who can send connection requests** — proposed options: any verified member, friends of friends, no one for now.
+19. **Gravity credits** — +2 / +4 / +8 Gravity for 1 / 2 / 3 credits, earning credits through participation, and credit-based feed behaviour are proposed for a later phase. They need a credit ledger, earning rules, anti-gaming limits and possibly financial / terms review.
+20. **Gravity counts** — currently shown on posts. Should counts be public, or only visible to the author, to keep it from becoming a popularity score?

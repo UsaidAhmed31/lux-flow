@@ -1,5 +1,15 @@
 # Change log
 
+## Client round (Nov 6)
+- Colours: Unity lighter yellow #F2C230 (dark text and symbols), Vitality darker #D9822B, Foundation darker #BD261C, Journey lighter #7A3F1E.
+- Ten Systems copy from theclapperproject.com. The System (?) opens with “What you’ll find here”, then expandable “Who it’s for”, “What you can create” and “About [System]” (welcome, core principle, chakra inspiration, north star). The System pages, “More about X” and the Create guide use the same copy.
+- Presence symbol redrawn: a full stick figure with the arms starting at the shoulders and crossed legs.
+- Common Ground: the (?) text now ends “Your messages will remain private.” The menu runs Similar Systems, the ten Systems, then All Systems at the bottom, and opens scrolled to the bottom.
+- Favorite people: Add to / Remove from Favorites (star) in the ··· menu on profiles and direct chats. A star shows by the name, and favorites lift that person’s posts in For You.
+- Profiles: “Shown according to audience” removed; the audience indicator is a filled, non-clickable pill.
+- Flow tabs: For You | Global | Local | Friends (Recent removed).
+- Gravity (Phase 1): +1 Gravity on posts with the atom symbol and a count. Verified members only; you can’t give it to your own post. For You mixes relevance (favorite Systems, favorite people, connections, Gravity) with a newer lower-Gravity post in every third slot.
+
 ## Profile, Settings & Notifications (Nov 5)
 - Profile: “Your Favorite Systems” (up to 3, pencil + Select) replaces “Systems you explore”; “Mostly in …” labels removed (profile and People cards). Trust & Verification and the Privacy button moved off the profile; the Verified badge stays. “My Communities” stays near the bottom. When it’s hidden, visitors see nothing and the owner sees “Only you can see this”.
 - Favorite Systems picker: all 10 in canonical order from Radiance. Choose 0 to 3; others disable at 3 with “You can choose up to 3”.
