@@ -1,5 +1,12 @@
 # Change log
 
+## Client round (Nov 10)
+- Favorites: a Favorites section in People (unstar and message from there) and stars beside favorite people in People, Connections and the chat list. Chat has its own star toggle to the right of Search chats that shows only favorite one-to-one conversations; group chats have no favorites in Phase 1.
+- Events: Save to Archive on community event cards (it doesn’t RSVP or join). The Save button on event posts works without an RSVP.
+- Post controls: Discuss · Gravity · Save on the first row, Reflect centred on its own row and green once a Reflection Signal is chosen. Discuss uses a two-bubble icon.
+- Banners: new mobile crops for all ten Systems from the client sheet (mobile banner shape now 2.2:1) and a new Journey desktop banner.
+- Confirmed as is: Common Ground order, +1 Gravity with visible counts, Your Wave questions on Home, “Shown according to audience” removed from all profiles.
+
 ## Client round (Nov 6)
 - Colours: Unity lighter yellow #F2C230 (dark text and symbols), Vitality darker #D9822B, Foundation darker #BD261C, Journey lighter #7A3F1E.
 - Ten Systems copy from theclapperproject.com. The System (?) opens with “What you’ll find here”, then expandable “Who it’s for”, “What you can create” and “About [System]” (welcome, core principle, chakra inspiration, north star). The System pages, “More about X” and the Create guide use the same copy.

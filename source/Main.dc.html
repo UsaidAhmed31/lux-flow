@@ -678,7 +678,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{background:r
 .sys-hero{gap:14px}
 .sys-hero .media{border-radius:var(--r-lg);aspect-ratio:auto;height:clamp(170px,22vw,280px)}
 /* System banners: client artwork, cropped to the central emblem */
-.sys-hero .media.sys-art{height:auto;aspect-ratio:1.6;box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 40%,transparent),0 24px 60px -30px var(--sc)}
+.sys-hero .media.sys-art{height:auto;aspect-ratio:2.2;box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 40%,transparent),0 24px 60px -30px var(--sc)}
 .sys-art img{object-position:50% 50%;object-fit:cover;width:100%;height:100%}
 .sys-art .art-d{display:none}
 @media (min-width:700px){ .sys-hero .media.sys-art{aspect-ratio:3.88} .sys-art .art-m{display:none} .sys-art .art-d{display:block} }
@@ -1487,6 +1487,28 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .grav-btn.on .ic{transform:rotate(30deg);filter:drop-shadow(0 0 6px rgba(160,140,255,.8))}
 .app.theme-light .grav-btn.on{color:var(--accent-ink)}
 .cg-menu{scroll-behavior:auto}
+
+/* ===== Client round Nov 10 ===== */
+.post-foot{flex-wrap:wrap;justify-content:space-between;row-gap:0}
+.post-foot > .foot-btn{flex:0 1 auto}
+.post-foot > .reflect-btn{order:9;flex:1 0 100%;justify-content:center;border-top:1px solid var(--line);border-radius:0 0 12px 12px;min-height:46px}
+.reflect-btn.reflected{color:#5BE37A;background:rgba(83,182,91,.10);box-shadow:inset 0 0 0 1.5px rgba(91,227,122,.85),0 0 18px -4px rgba(91,227,122,.7);border-radius:999px;border-top-color:transparent;margin:6px 4px 4px;flex-basis:calc(100% - 8px)}
+.reflect-btn.reflected .ic{filter:drop-shadow(0 0 6px rgba(91,227,122,.8))}
+.app.theme-light .reflect-btn.reflected{color:#1F8A3A;background:rgba(83,182,91,.12);box-shadow:inset 0 0 0 1.5px #3DAA55}
+.post-foot .txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fav-star-sm{width:14px;height:14px;margin-left:5px;vertical-align:-1px;fill:#F2C230;stroke:#F2C230;flex-shrink:0;display:inline-block}
+.section-head .h3 .fav-star-sm{margin:0 6px 0 0;width:16px;height:16px}
+.friend-name{display:inline-flex;align-items:center}
+.fav-p-main{text-align:left;min-width:0}
+.fav-toggle.on .ic{fill:#F2C230;stroke:#F2C230}
+.chat-search-row{display:flex;gap:8px;align-items:center}
+.chat-fav-btn{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ink-2);background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.chat-fav-btn.on{color:#2A1F00;background:#F2C230;box-shadow:0 0 14px -3px rgba(242,194,48,.8)}
+.chat-fav-btn.on .ic{fill:currentColor}
+.chat-fav-note{margin:-4px 0 0}
+.conv-name{display:flex;align-items:center;min-width:0}
+.chat-title .hero-q{flex-shrink:0;width:22px;height:22px}
+.chat-title .cl-switch{flex-shrink:1;min-width:0}
 </style>
 
 <aside class="side" aria-label="Primary">
@@ -1750,14 +1772,13 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <div class="status-line"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.clock}}"></path></svg>{{p.pendingText}}</div>
       </sc-if>
       <div class="post-foot">
-        <button class="{{p.reflectCls}}" onClick="{{p.toggleTray}}" aria-expanded="{{p.trayExp}}">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.reflect}}"></path></svg><span class="txt">{{p.reflectLabel}}</span>
-        </button>
-        <button class="foot-btn" onClick="{{p.open}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chat}}"></path></svg>Discuss</button>
-        <button class="{{p.gravCls}}" aria-pressed="{{p.gravPressed}}" aria-label="{{p.gravAria}}" onClick="{{p.toggleGrav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.atom}}"></path></svg><span class="txt">{{p.gravLabel}}</span></button>
-        <span class="foot-spacer"></span>
+        <button class="foot-btn" onClick="{{p.open}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.discuss}}"></path></svg>Discuss</button>
+        <button class="{{p.gravCls}}" aria-pressed="{{p.gravPressed}}" aria-label="{{p.gravAria}}" onClick="{{p.toggleGrav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.atom}}"></path></svg><span class="txt">Gravity {{p.gravLabel}}</span></button>
         <button class="{{p.saveCls}}" aria-pressed="{{p.savePressed}}" onClick="{{p.toggleSave}}">
           <svg class="{{p.saveIc}}" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bookmark}}"></path></svg><span>{{p.saveLabel}}</span>
+        </button>
+        <button class="{{p.reflectCls}}" onClick="{{p.toggleTray}}" aria-expanded="{{p.trayExp}}">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.reflect}}"></path></svg><span class="txt">{{p.reflectLabel}}</span>
         </button>
       </div>
       <sc-if value="{{p.trayOpen}}" hint-placeholder-val="{{ false }}">
@@ -2032,11 +2053,18 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
           </sc-for>
         </section>
       </sc-if>
+      <section class="section" aria-label="Favorites">
+        <div class="section-head"><h2 class="h3"><svg class="fav-star-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.star}}"></path></svg>Favorites</h2><span class="meta">{{favPeopleCount}}</span></div>
+        <sc-if value="{{hasFavPeople}}" hint-placeholder-val="{{ true }}">
+          <div class="card card-tight list"><sc-for list="{{favPeopleList}}" as="u" hint-placeholder-count="1"><div class="list-row"><button class="av-btn" onClick="{{u.open}}" aria-label="{{u.aria}}"><span class="{{u.avCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span></button><button class="grow fav-p-main" onClick="{{u.open}}"><span class="h3" style="display: block">{{u.name}}</span><span class="meta">{{u.knack}} · {{u.relLine}}</span></button><sc-if value="{{u.canMsg}}" hint-placeholder-val="{{ false }}"><button class="icon-btn" aria-label="Message {{u.first}}" onClick="{{u.message}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chat}}"></path></svg></button></sc-if><button class="icon-btn fav-toggle on" aria-pressed="true" aria-label="Remove {{u.first}} from Favorites" onClick="{{u.unfav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.star}}"></path></svg></button></div></sc-for></div>
+        </sc-if>
+        <sc-if value="{{noFavPeople}}" hint-placeholder-val="{{ false }}"><p class="meta p">No favorites yet. Star people from the ··· menu on their profile or in a chat to keep them close.</p></sc-if>
+      </section>
       <section class="section">
         <div class="section-head"><h2 class="h3">Your connections</h2><span class="meta">{{connectedCount}}</span></div>
         <div class="friends-row">
           <sc-for list="{{connections}}" as="u" hint-placeholder-count="3">
-            <button class="friend" onClick="{{u.open}}"><span class="{{u.avLgCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span>{{u.first}}</button>
+            <button class="friend" onClick="{{u.open}}"><span class="{{u.avLgCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><span class="friend-name">{{u.first}}<sc-if value="{{u.isFav}}" hint-placeholder-val="{{ false }}"><svg class="fav-star-sm" viewBox="0 0 24 24" role="img" aria-label="Favorite"><path d="{{ic.star}}"></path></svg></sc-if></span></button>
           </sc-for>
           <sc-if value="{{noConnections}}" hint-placeholder-val="{{ false }}"><p class="meta p">No connections yet.</p></sc-if>
         </div>
@@ -2052,7 +2080,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
           <div class="person-top">
             <button class="av-btn" onClick="{{u.open}}" aria-label="{{u.aria}}"><span class="{{u.avLgCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span></button>
             <div class="grow stack-xs">
-              <div class="row row-xs"><button class="link-strong" style="font-size: 16px" onClick="{{u.open}}">{{u.name}}</button><span class="vbadge"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg><span class="sr-only">Verified</span></span></div>
+              <div class="row row-xs"><button class="link-strong" style="font-size: 16px" onClick="{{u.open}}">{{u.name}}</button><sc-if value="{{u.isFav}}" hint-placeholder-val="{{ false }}"><svg class="fav-star-sm" viewBox="0 0 24 24" role="img" aria-label="Favorite"><path d="{{ic.star}}"></path></svg></sc-if><span class="vbadge"><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg><span class="sr-only">Verified</span></span></div>
               <div class="meta">{{u.knack}} · @{{u.handle}}</div>
             </div>
           </div>
@@ -2341,7 +2369,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
             <p class="post-body" style="white-space: pre-line">{{cr.pvBody}}</p>
             <sc-if value="{{cr.m.has}}" hint-placeholder-val="{{ false }}"><figure class="media media-16x9"><sc-if value="{{cr.m.ok}}" hint-placeholder-val="{{ true }}"><img src="{{cr.m.src}}" alt="{{cr.m.alt}}" loading="lazy" decoding="async" onError="{{cr.m.err}}"></sc-if><sc-if value="{{cr.m.bad}}" hint-placeholder-val="{{ false }}"><div class="media-fail"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.image}}"></path></svg><span>Image couldn’t load</span></div></sc-if></figure></sc-if>
             <sc-if value="{{cr.showPromptPv}}" hint-placeholder-val="{{ false }}"><div class="post-meta"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.reflect}}"></path></svg><span>Reflect to Discuss: {{cr.prompt}}</span></span></div></sc-if>
-            <div class="post-foot"><span class="foot-btn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.reflect}}"></path></svg>Reflect</span><span class="foot-btn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chat}}"></path></svg>Discuss</span></div>
+            <div class="post-foot"><span class="foot-btn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.reflect}}"></path></svg>Reflect</span><span class="foot-btn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.discuss}}"></path></svg>Discuss</span></div>
           </article>
           <sc-if value="{{cr.hasAud}}" hint-placeholder-val="{{ false }}"><div class="privacy-note"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{cr.pvAudIcon}}"></path></svg>{{cr.audSummary}}</div></sc-if>
         </div>
@@ -2435,7 +2463,8 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <div class="eyebrow">Upcoming</div>
         <div class="h3" style="font-size: 17px">{{cm.eventTitle}}</div>
         <div class="post-meta plain"><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.calendar}}"></path></svg>{{cm.eventWhen}}</span><span><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.near}}"></path></svg>{{cm.eventWhere}}</span></div>
-        <div><button class="btn btn-sm btn-tonal" onClick="{{cm.openEvent}}">View details</button></div>
+        <div class="row-wrap"><button class="btn btn-sm btn-tonal" onClick="{{cm.openEvent}}">View details</button><button class="{{cm.evSaveCls}}" aria-pressed="{{cm.evSavePressed}}" onClick="{{cm.evSave}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bookmark}}"></path></svg>{{cm.evSaveLabel}}</button></div>
+        <p class="help" style="margin: 0">Saving keeps it in your Archive — it doesn’t RSVP or join.</p>
       </section>
     </sc-if>
     <sc-if value="{{cmx.hasShared}}" hint-placeholder-val="{{ false }}">
@@ -2494,11 +2523,15 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     <div class="stack pane-head">
       <div class="row" style="justify-content: space-between"><div class="chat-title"><h1 class="sr-only">Chat</h1><nav class="hf-switch cl-switch" aria-label="Chat and Love"><span class="hfs on" aria-current="page"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chat}}"></path></svg>Chat</span><button class="hfs hfs-locked" aria-disabled="true" aria-label="Love — coming soon, locked until Phase 2" onClick="{{loveTease}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.heart}}"></path></svg>Love<svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg></button></nav><button class="hero-q" aria-label="About Love" onClick="{{loveTease}}">?</button></div><button class="btn btn-sm btn-secondary nm-btn" aria-label="New message" onClick="{{openNewMsg}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg><span class="nm-lbl">New message</span></button></div>
       <p class="meta small">Simulated messaging — nothing is sent anywhere; messages stay on this device.</p>
-      <label class="search" style="height: 44px">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg>
-        <span class="sr-only">Search chats</span>
-        <input value="{{chatQuery}}" onChange="{{onChatQuery}}" placeholder="Search chats">
-      </label>
+      <div class="chat-search-row">
+        <label class="search grow" style="height: 44px">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg>
+          <span class="sr-only">Search chats</span>
+          <input value="{{chatQuery}}" onChange="{{onChatQuery}}" placeholder="Search chats">
+        </label>
+        <button class="{{chatFavCls}}" aria-pressed="{{chatFavPressed}}" aria-label="Show only favorite conversations" title="Favorites only" onClick="{{toggleChatFav}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.star}}"></path></svg></button>
+      </div>
+      <sc-if value="{{chatFavOn}}" hint-placeholder-val="{{ false }}"><p class="meta small chat-fav-note">Showing favorite people only. Group chats don’t have favorites in Phase 1.</p></sc-if>
       <div class="seg" role="group" aria-label="Chat filter">
         <sc-for list="{{chatTabs}}" as="t" hint-placeholder-count="3"><button class="{{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
       </div>
@@ -2511,13 +2544,13 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <button class="{{c.cls}}" onClick="{{c.open}}">
           <span class="{{c.avCls}}"><span class="av-fb" aria-hidden="true">{{c.ini}}</span><sc-if value="{{c.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{c.photo}}" alt="" loading="lazy" decoding="async" onError="{{c.photoErr}}"></sc-if></span>
           <span class="grow" style="min-width: 0">
-            <span class="conv-name"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{c.name}}</span></span>
+            <span class="conv-name"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{c.name}}</span><sc-if value="{{c.isFav}}" hint-placeholder-val="{{ false }}"><svg class="fav-star-sm" viewBox="0 0 24 24" role="img" aria-label="Favorite"><path d="{{ic.star}}"></path></svg></sc-if></span>
             <span class="{{c.prevCls}}" style="display: block">{{c.preview}}</span>
           </span>
           <span class="conv-time">{{c.time}}<sc-if value="{{c.unread}}" hint-placeholder-val="{{ false }}"><span class="unread-dot" aria-label="Unread"></span></sc-if></span>
         </button>
       </sc-for>
-      <sc-if value="{{convsEmpty}}" hint-placeholder-val="{{ false }}"><p class="meta p list-empty">No conversations match.</p></sc-if>
+      <sc-if value="{{convsEmpty}}" hint-placeholder-val="{{ false }}"><p class="meta p list-empty">{{convsEmptyText}}</p></sc-if>
     </div>
   </div>
   <div class="{{paneConvoCls}}">
@@ -3250,6 +3283,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 var IC = {
+  discuss:'M3.5 10.5a6.5 6.5 0 0 1 6.5-6.5h1a6.5 6.5 0 0 1 0 13H9.4L5.5 19.6v-3.2a6.5 6.5 0 0 1-2-5.9zM15.6 8.6a6 6 0 0 1 4.9 9.1v3l-3.3-2.1a6 6 0 0 1-5.8-.6',
   atom:'M12 13.4a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8zM12 21c2.2 0 4-4 4-9s-1.8-9-4-9-4 4-4 9 1.8 9 4 9zM4.2 16.5c1.1 1.9 5.5 1.5 9.8-1s6.9-6 5.8-8-5.5-1.5-9.8 1-6.9 6-5.8 8zM4.2 7.5c-1.1 1.9 1.5 5.5 5.8 8s8.7 2.9 9.8 1-1.5-5.5-5.8-8-8.7-2.9-9.8-1z',
   key:'M14 10a4 4 0 1 0-3.9 4.9L8 17v3h3v-2h2v-2l1.1-1.1A4 4 0 0 0 14 10zM15.5 8.5h.01',
   exit:'M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l-5-5 5-5M5 12h11', mail:'M4 6h16v12H4zM4 7l8 6 8-6', sun:'M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.3-1.4M17.7 6.3l1.4-1.4',
@@ -3550,7 +3584,7 @@ var MODULES = {
 var DAY_LABEL = 'Wednesday, October 21';
 
 /* Curated photo set (Pexels License). Keys are stable; values are the canvas's uploaded asset urls. */
-var IMG = {"amara": "/_blob/87eb208616b27ff16e52684b7e11e18b", "tomas": "/_blob/eec73a73e4b33fdce0e5f9ae1ca242d3", "leilani": "/_blob/880c3835fccf11fff0c2dedbba18c8d4", "jun": "/_blob/e90dc75d5fb0e285551ec36efc3cf6df", "noor": "/_blob/5887c186d783c4dd9180ee6918c9e3b1", "elias": "/_blob/7391d9629b5e383061842e52124dcfb3", "priya": "/_blob/960a8016fa2b389955453f5865446217", "sam": "/_blob/2f6ef14f65741eec885b45497c56995e", "rae": "/_blob/136acd59aa01ff92559e8ab76bbf753c", "garden": "/_blob/65422ecfc7a096db5a5091f7fc67e17f", "garden2": "/_blob/433eb340af8b21c3067e0da88593a429", "painting": "/_blob/8c838867a8bcc8507824fb36cba0b9e9", "circle": "/_blob/e5d4296c790797787b22e2fe41d313dd", "dinner": "/_blob/f266a83eae9b7015c1023fed0e066257", "dinner2": "/_blob/c1eb054013edb0f0a53c5c1fa19f7f16", "path": "/_blob/a8c0f90607f81d10904369ff7a6afe43", "library": "/_blob/ebc29a8ebfcf633f2eb7f0b4dd51a0b4", "books": "/_blob/bc9c63c1e2402fc2ddafb12ad9bd7a0f", "oldphotos": "/_blob/0fe6954e9528fefae89420780fb57a4f", "sketch": "/_blob/28cf14666e4f0afb168464b55b5ae2f0", "budget": "/_blob/0876756d2ae748ef0c849555e63ed6ec", "team": "/_blob/02596aea4816499705a00e668163f436", "running": "/_blob/6cdcde854789430b311ed460e303a08f", "art": "/_blob/e5f38f935d537a123adf7799efb6acfc", "upload": "/_blob/36a8e862c6801a4640820138b92ddeb3", "figure": "/_blob/9d57804e3f1bcaecfbf959a68ed93dfe", "figureSm": "/_blob/6e21e7f737d8c7e68098637cd9ab21ce", "figureLight": "/_blob/80d37e724af9369eb6f12a23e5af5f45", "figureLightSm": "/_blob/2b7fa905e24bc8b067d971eefcefb0b9", "banner_wisdom": "/_blob/0f66257105d2672a3513957305a62b1c", "banner_wisdomSm": "/_blob/08dc08f543d544b3a5738794fc24daef", "banner_unity": "/_blob/83cb3ed421a58c80f56b4b91adda3177", "banner_unitySm": "/_blob/2ee6232e24b63718caaf61b9bf3b7205", "banner_foundation": "/_blob/ecb2600951ffd22b7cd876c7e4425093", "banner_foundationSm": "/_blob/3eff499954ade459825148d7244b0295", "banner_vitality": "/_blob/ef066a04762688239f5c391f84596cc8", "banner_vitalitySm": "/_blob/9726691523244df83ce330b721539553", "banner_journey": "/_blob/31a14ea64db702f96d4d6f83b87c52a6", "banner_journeySm": "/_blob/79b602f0f7eabcdde926f2604b469f10", "banner_remembrance": "/_blob/e9346e79aa140691705af5e2188c24e5", "banner_remembranceSm": "/_blob/dca9e0bcc5b1b91036291003e288e26a", "banner_connection": "/_blob/81ed9918ef6277ff77806d754c8510ca", "banner_connectionSm": "/_blob/89cebaf368db20d81ae34ae64bf2fb5c", "banner_presence": "/_blob/6a0fb1bcefa962bf0ccad90ad7470e28", "banner_presenceSm": "/_blob/70c73b1b9e09c11128cfe6daf90e4c34", "banner_purpose": "/_blob/8fbc6fce5d23570e8bf3f5aac322e1d2", "banner_purposeSm": "/_blob/e75f929d1c91ccbbcc0057a98d395a85", "banner_radiance": "/_blob/b8106ddb37a278e33adb36032a6eef8d", "banner_radianceSm": "/_blob/ff87658798e84f9ee83d11de577ed642"};
+var IMG = {"amara": "/_blob/87eb208616b27ff16e52684b7e11e18b", "tomas": "/_blob/eec73a73e4b33fdce0e5f9ae1ca242d3", "leilani": "/_blob/880c3835fccf11fff0c2dedbba18c8d4", "jun": "/_blob/e90dc75d5fb0e285551ec36efc3cf6df", "noor": "/_blob/5887c186d783c4dd9180ee6918c9e3b1", "elias": "/_blob/7391d9629b5e383061842e52124dcfb3", "priya": "/_blob/960a8016fa2b389955453f5865446217", "sam": "/_blob/2f6ef14f65741eec885b45497c56995e", "rae": "/_blob/136acd59aa01ff92559e8ab76bbf753c", "garden": "/_blob/65422ecfc7a096db5a5091f7fc67e17f", "garden2": "/_blob/433eb340af8b21c3067e0da88593a429", "painting": "/_blob/8c838867a8bcc8507824fb36cba0b9e9", "circle": "/_blob/e5d4296c790797787b22e2fe41d313dd", "dinner": "/_blob/f266a83eae9b7015c1023fed0e066257", "dinner2": "/_blob/c1eb054013edb0f0a53c5c1fa19f7f16", "path": "/_blob/a8c0f90607f81d10904369ff7a6afe43", "library": "/_blob/ebc29a8ebfcf633f2eb7f0b4dd51a0b4", "books": "/_blob/bc9c63c1e2402fc2ddafb12ad9bd7a0f", "oldphotos": "/_blob/0fe6954e9528fefae89420780fb57a4f", "sketch": "/_blob/28cf14666e4f0afb168464b55b5ae2f0", "budget": "/_blob/0876756d2ae748ef0c849555e63ed6ec", "team": "/_blob/02596aea4816499705a00e668163f436", "running": "/_blob/6cdcde854789430b311ed460e303a08f", "art": "/_blob/e5f38f935d537a123adf7799efb6acfc", "upload": "/_blob/36a8e862c6801a4640820138b92ddeb3", "figure": "/_blob/9d57804e3f1bcaecfbf959a68ed93dfe", "figureSm": "/_blob/6e21e7f737d8c7e68098637cd9ab21ce", "figureLight": "/_blob/80d37e724af9369eb6f12a23e5af5f45", "figureLightSm": "/_blob/2b7fa905e24bc8b067d971eefcefb0b9", "banner_wisdom": "/_blob/0f66257105d2672a3513957305a62b1c", "banner_wisdomSm": "/_blob/a78dc165e150b4bed9b2b7fb51e22583", "banner_unity": "/_blob/83cb3ed421a58c80f56b4b91adda3177", "banner_unitySm": "/_blob/349a29e0910505378dbdd6f0ab88dccb", "banner_foundation": "/_blob/ecb2600951ffd22b7cd876c7e4425093", "banner_foundationSm": "/_blob/4999c9a6d8ecaa73167f366156f7be8c", "banner_vitality": "/_blob/ef066a04762688239f5c391f84596cc8", "banner_vitalitySm": "/_blob/0a2e0a03620a9b5587899ed28a31372e", "banner_journey": "/_blob/952558ae5f0505e859c1b8ac600ddb2a", "banner_journeySm": "/_blob/2f7f1fec7f7ae196f4aa28681a33b8cc", "banner_remembrance": "/_blob/e9346e79aa140691705af5e2188c24e5", "banner_remembranceSm": "/_blob/3d4931f1cd9b013436ff7808658a8c48", "banner_connection": "/_blob/81ed9918ef6277ff77806d754c8510ca", "banner_connectionSm": "/_blob/83ed7fa176aeca98402f34f856953c3f", "banner_presence": "/_blob/6a0fb1bcefa962bf0ccad90ad7470e28", "banner_presenceSm": "/_blob/b1d7c6e17207597cfe3c42b5c67598da", "banner_purpose": "/_blob/8fbc6fce5d23570e8bf3f5aac322e1d2", "banner_purposeSm": "/_blob/7d0139ea497e9e1326d370b6a45e4693", "banner_radiance": "/_blob/b8106ddb37a278e33adb36032a6eef8d", "banner_radianceSm": "/_blob/dc4af7f165d989e9e3187029acd56971"};
 /* Same images as portable relative files (exported with the prototype under assets/images/). Used automatically when the hosted asset store isn't reachable, e.g. an exported HTML opened locally. */
 var IMG_LOCAL = {"amara": "assets/images/people/amara.jpg", "tomas": "assets/images/people/tomas.jpg", "leilani": "assets/images/people/leilani.jpg", "jun": "assets/images/people/jun.jpg", "noor": "assets/images/people/noor.jpg", "elias": "assets/images/people/elias.jpg", "priya": "assets/images/people/priya.jpg", "sam": "assets/images/people/sam.jpg", "rae": "assets/images/people/rae.jpg", "garden": "assets/images/scenes/garden.jpg", "garden2": "assets/images/scenes/garden2.jpg", "painting": "assets/images/scenes/painting.jpg", "circle": "assets/images/scenes/circle.jpg", "dinner": "assets/images/scenes/dinner.jpg", "dinner2": "assets/images/scenes/dinner2.jpg", "path": "assets/images/scenes/path.jpg", "library": "assets/images/scenes/library.jpg", "books": "assets/images/scenes/books.jpg", "oldphotos": "assets/images/scenes/oldphotos.jpg", "sketch": "assets/images/scenes/sketch.jpg", "budget": "assets/images/scenes/budget.jpg", "team": "assets/images/scenes/team.jpg", "running": "assets/images/scenes/running.jpg", "art": "assets/images/scenes/art.jpg", "upload": "assets/images/scenes/upload.jpg", "figure": "assets/images/illustrations/meditation-figure-v3-1024.webp", "figureSm": "assets/images/illustrations/meditation-figure-v3-640.webp", "figureLight": "assets/images/illustrations/meditation-figure-v3-light-1024.webp", "figureLightSm": "assets/images/illustrations/meditation-figure-v3-light-640.webp", "banner_wisdom": "assets/images/banners2/wisdom-wide.webp", "banner_wisdomSm": "assets/images/banners2/wisdom-mobile.webp", "banner_unity": "assets/images/banners2/unity-wide.webp", "banner_unitySm": "assets/images/banners2/unity-mobile.webp", "banner_foundation": "assets/images/banners2/foundation-wide.webp", "banner_foundationSm": "assets/images/banners2/foundation-mobile.webp", "banner_vitality": "assets/images/banners2/vitality-wide.webp", "banner_vitalitySm": "assets/images/banners2/vitality-mobile.webp", "banner_journey": "assets/images/banners2/journey-wide.webp", "banner_journeySm": "assets/images/banners2/journey-mobile.webp", "banner_remembrance": "assets/images/banners2/remembrance-wide.webp", "banner_remembranceSm": "assets/images/banners2/remembrance-mobile.webp", "banner_connection": "assets/images/banners2/connection-wide.webp", "banner_connectionSm": "assets/images/banners2/connection-mobile.webp", "banner_presence": "assets/images/banners2/presence-wide.webp", "banner_presenceSm": "assets/images/banners2/presence-mobile.webp", "banner_purpose": "assets/images/banners2/purpose-wide.webp", "banner_purposeSm": "assets/images/banners2/purpose-mobile.webp", "banner_radiance": "assets/images/banners2/radiance-wide.webp", "banner_radianceSm": "assets/images/banners2/radiance-mobile.webp"};
 function imgSrc(key, tries){ return tries === 1 ? (IMG_LOCAL[key] || '') : (IMG[key] || ''); }
@@ -4256,7 +4290,7 @@ class Component extends DCLogic {
         actLabel:acted ? '✓ ' + p.actDone : p.act, actCls:acted ? 'btn btn-ok' : 'btn btn-primary', actPressed:acted ? 'true' : 'false', actHint:p.actHint, act:function(){ self.doAct(p); },
         saved:saved, saveLabel:saved ? 'Saved' : 'Save', savePressed:saved ? 'true' : 'false', saveCls:'foot-btn' + (saved ? ' on' : ''), saveIc:'ic' + (saved ? ' ic-fill' : ''), saveBtnCls:saved ? 'btn btn-sm btn-tonal' : 'btn btn-sm btn-secondary',
         reflectLabel:sel.length ? sel.map(function(g){ return SIGMAP[g].label; }).join(' · ') : 'Reflect',
-        reflectCls:'foot-btn' + (sel.length ? ' on' : ''),
+        reflectCls:'foot-btn reflect-btn' + (sel.length ? ' on reflected' : ''),
         discussLabel:'Discuss',
         trayOpen:s.tray === p.id, trayExp:s.tray === p.id ? 'true' : 'false', menuOpen:s.menu === p.id, menuExp:s.menu === p.id ? 'true' : 'false',
         mine:mine, notMine:!mine, edited:!!p.edited, editedOn:p.editedOn || 'today',
@@ -4325,7 +4359,7 @@ class Component extends DCLogic {
       return {name:p.name, first:p.name.split(' ')[0], handle:p.handle, ini:p.ini, knack:p.knack, bio:p.bio, sysName:SYSMAP[p.sys].name,
         avCls:'av av-' + p.av, avLgCls:'av av-lg av-' + p.av, dotCls:'dot dot-' + p.sys, ctxSysCls:'sysc-' + p.sys, aria:'Open ' + p.name + '’s profile',
         chips:p.interests.slice(0, 3).map(function(x){ return {name:SYSMAP[x].name, icon:SYSMAP[x].icon, cls:'tag sys-' + x}; }),
-        favDots:p.interests.slice(0, 3).map(function(x){ return 'dot dot-' + x; }), favNames:p.interests.slice(0, 3).map(function(x){ return SYSMAP[x].name; }).join(' · '),
+        isFav:!!(s.favPeople || {})[id], favDots:p.interests.slice(0, 3).map(function(x){ return 'dot dot-' + x; }), favNames:p.interests.slice(0, 3).map(function(x){ return SYSMAP[x].name; }).join(' · '),
         isNone:r === 'none', isPending:r === 'pending', isConnected:r === 'connected', isIncoming:r === 'incoming',
         withdrawAria:'Request sent to ' + p.name + '. Select to withdraw.',
         followLabel:f ? 'Following' : 'Follow', followCls:f ? 'btn btn-sm btn-tonal' : 'btn btn-sm btn-secondary', followPressed:f ? 'true' : 'false',
@@ -4469,6 +4503,7 @@ class Component extends DCLogic {
         canRead:joined || (cc.access === 'open' && cc.threads.length > 0), cantRead:!(joined || (cc.access === 'open' && cc.threads.length > 0)),
         lockText:cc.access === 'invite' ? 'This community is invite only.' : 'Join to read and take part in discussions.',
         threads:cc.threads.map(function(t){ var u = PEOPLE[t.who]; return {photo:self.pic(t.who).photo, hasPhoto:self.pic(t.who).hasPhoto, photoErr:self.pic(t.who).photoErr, name:u.name, ini:u.ini, avCls:'av av-sm av-' + u.av, time:t.time, text:t.text}; }),
+        evSaveCls:'btn btn-sm ' + (cc.event && s.saved[cc.event.post] ? 'btn-secondary is-saved' : 'btn-ghost'), evSavePressed:cc.event && s.saved[cc.event.post] ? 'true' : 'false', evSaveLabel:cc.event && s.saved[cc.event.post] ? 'Saved' : 'Save to Archive', evSave:function(){ if (cc.event) self.toggleSave(cc.event.post); },
         hasEvent:!!cc.event, eventTitle:cc.event ? cc.event.title : '', eventWhen:cc.event ? cc.event.when : '', eventWhere:cc.event ? cc.event.where : '',
         openEvent:function(){ if (cc.event && self.canSee(s.posts.filter(function(p){ return p.id === cc.event.post; })[0] || {})) self.openPostId(cc.event.post); else self.gate('Verify to see local events', 'Local events are shown to verified members in the area.'); },
         openChat:function(){ self.go('convo', {openConv:cc.chat}); },
@@ -4490,8 +4525,8 @@ class Component extends DCLogic {
       else { var u = PEOPLE[m.person]; name = u.name; ini = u.ini; avCls = 'av av-' + u.av; }
       var prevTxt = last ? ((last.who === 'me' ? 'You: ' : (isGroup ? PEOPLE[last.who].name.split(' ')[0] + ': ' : '')) + (last.text || last.attach || 'Shared a post')) : 'No messages yet';
       var unread = !!s.unread[id];
-      var ph = self.pic(isGroup ? COMM_IMG[m.comm] : m.person); return {id:id, isGroup:isGroup, person:m.person, name:name, ini:ini, avCls:avCls, photo:ph.photo, hasPhoto:ph.hasPhoto, photoErr:ph.photoErr, preview:prevTxt, time:last ? last.time : '', unread:unread, prevCls:'conv-prev' + (unread ? ' unread' : ''), membersLabel:isGroup ? COMMMAP[m.comm].members + ' members' : '', cls:'conv' + (s.openConv === id && scr === 'convo' ? ' on' : ''), open:function(){ self.openConvId(id); }};
-    }).filter(function(c){ if (c.person && s.rel[c.person] === 'blocked' && s.openConv !== c.id) return false; if (s.chatTab === 'friends' && c.isGroup) return false; if (s.chatTab === 'groups' && !c.isGroup) return false; if (chq && c.name.toLowerCase().indexOf(chq) < 0 && c.preview.toLowerCase().indexOf(chq) < 0) return false; return true; });
+      var ph = self.pic(isGroup ? COMM_IMG[m.comm] : m.person); return {id:id, isGroup:isGroup, person:m.person, name:name, ini:ini, avCls:avCls, photo:ph.photo, hasPhoto:ph.hasPhoto, photoErr:ph.photoErr, preview:prevTxt, time:last ? last.time : '', unread:unread, prevCls:'conv-prev' + (unread ? ' unread' : ''), membersLabel:isGroup ? COMMMAP[m.comm].members + ' members' : '', isFav:!isGroup && !!(s.favPeople || {})[m.person], cls:'conv' + (s.openConv === id && scr === 'convo' ? ' on' : ''), open:function(){ self.openConvId(id); }};
+    }).filter(function(c){ if (c.person && s.rel[c.person] === 'blocked' && s.openConv !== c.id) return false; if (s.chatFav && !c.isFav) return false; if (s.chatTab === 'friends' && c.isGroup) return false; if (s.chatTab === 'groups' && !c.isGroup) return false; if (chq && c.name.toLowerCase().indexOf(chq) < 0 && c.preview.toLowerCase().indexOf(chq) < 0) return false; return true; });
     var cv = {}; var spark = {show:false};
     var hasConvo = scr === 'convo' && !!s.openConv;
     if (hasConvo) {
@@ -4668,7 +4703,8 @@ class Component extends DCLogic {
       peopleSysChips:[{id:'all', label:'All Systems'}].concat(SYS.map(function(x){ return {id:x.id, label:x.name}; })).map(function(c2){ var on = s.peopleSys === c2.id; return {label:c2.label, cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', hasDot:c2.id !== 'all', dotCls:'dot dot-' + c2.id, pick:function(){ self.setState({peopleSys:c2.id}); }}; }),
       knackChips:['all'].concat(KNACKS).map(function(k){ var on = s.peopleKnack === k; return {label:k === 'all' ? 'All' : k + 's', cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ self.setState({peopleKnack:k}); }}; }),
       peopleBrowsing:!peopleFiltering, peopleFiltering:peopleFiltering,
-      incoming:incomingIds.map(decPerson), connections:connIds.map(decPerson), noConnections:connIds.length === 0, connectedCount:connIds.length + ' connected',
+      favPeopleList:Object.keys(s.favPeople || {}).filter(function(id){ return PEOPLE[id] && s.rel[id] !== 'blocked'; }).sort(function(a, b){ return (s.favPeople[b] || 0) - (s.favPeople[a] || 0); }).map(function(id){ var dpp = decPerson(id); var ph = self.pic(id); var r0 = s.rel[id] || 'none'; return Object.assign({}, dpp, {photo:ph.photo, hasPhoto:ph.hasPhoto, photoErr:ph.photoErr, avCls:'av av-' + PEOPLE[id].av, relLine:r0 === 'connected' ? 'Connected' : (r0 === 'pending' ? 'Request sent' : (r0 === 'incoming' ? 'Wants to connect' : 'Not connected')), canMsg:r0 === 'connected', message:function(){ self.messagePerson ? self.messagePerson(id) : self.openPersonId(id); }, open:function(){ self.openPersonId(id); }, unfav:function(){ self.toggleFavPerson(id); }}); }),
+      incoming:incomingIds.map(decPerson), connections:connIds.map(decPerson), noConnections:connIds.length === 0, hasFavPeople:Object.keys(s.favPeople || {}).some(function(id){ return PEOPLE[id] && s.rel[id] !== 'blocked'; }), noFavPeople:!Object.keys(s.favPeople || {}).some(function(id){ return PEOPLE[id] && s.rel[id] !== 'blocked'; }), favPeopleCount:Object.keys(s.favPeople || {}).filter(function(id){ return PEOPLE[id] && s.rel[id] !== 'blocked'; }).length + ' starred', connectedCount:connIds.length + ' connected',
       discoverTitle:'People to discover', peopleList:peopleIds.map(decPerson), peopleEmpty:peopleIds.length === 0,
       resultsLabel:peopleIds.length + (peopleIds.length === 1 ? ' person' : ' people') + ' found',
       clearPeopleFilters:function(){ self.setState({peopleQuery:'', peopleSys:'all', peopleKnack:'all'}); },
@@ -4693,7 +4729,7 @@ class Component extends DCLogic {
       chatCls:'chat ' + (scr === 'convo' ? 'show-convo' : 'show-list'),
       chatQuery:s.chatQuery, onChatQuery:function(e){ self.setState({chatQuery:e.target.value}); },
       chatTabs:[['recent','Recent'],['friends','Friends'],['groups','Groups']].map(function(t){ return {label:t[1], cls:s.chatTab === t[0] ? 'on' : '', pick:function(){ self.setState({chatTab:t[0]}); }}; }),
-      paneConvoCls:'pane-convo' + (s.sparkDd && scr === 'convo' ? ' cg-blur' : ''), convs:convs, convsEmpty:convs.length === 0, noConvo:!hasConvo, hasConvo:hasConvo, cv:cv,
+      chatFavOn:!!s.chatFav, chatFavPressed:s.chatFav ? 'true' : 'false', chatFavCls:'chat-fav-btn' + (s.chatFav ? ' on' : ''), toggleChatFav:function(){ self.setState({chatFav:!s.chatFav}); }, paneConvoCls:'pane-convo' + (s.sparkDd && scr === 'convo' ? ' cg-blur' : ''), convs:convs, convsEmpty:convs.length === 0, convsEmptyText:s.chatFav ? 'No favorite conversations yet. Star someone from a chat’s ··· menu or their profile.' : 'No conversations match.', noConvo:!hasConvo, hasConvo:hasConvo, cv:cv,
       closeConvo:function(){ self.setState({screen:'chat', openConv:null, convMenu:false, convSearch:null, sparkDd:false}); },
       draft:s.draft, onDraft:function(e){ self.setState({draft:e.target.value.slice(0, 2000)}); }, onDraftKey:function(e){ if (e.key === 'Enter') { e.preventDefault(); sendFn(); } },
       cantSend:!s.draft.trim() && !s.attach, send:sendFn,

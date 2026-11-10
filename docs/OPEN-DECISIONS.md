@@ -20,3 +20,6 @@
 18. **Who can send connection requests** — proposed options: any verified member, friends of friends, no one for now.
 19. **Gravity credits** — +2 / +4 / +8 Gravity for 1 / 2 / 3 credits, earning credits through participation, and credit-based feed behaviour are proposed for a later phase. They need a credit ledger, earning rules, anti-gaming limits and possibly financial / terms review.
 20. **Gravity counts** — currently shown on posts. Should counts be public, or only visible to the author, to keep it from becoming a popularity score?
+21. **Journey desktop banner** — the supplied file is only 440 px wide, so it’s upscaled and slightly soft on large screens. A full-resolution export (about 1600 × 400) is needed.
+22. **Phase 2: Tune Your Wave “Advanced”** — more control over feed preferences (decided for Phase 2).
+23. **Gravity credits** — later phase (confirmed).
