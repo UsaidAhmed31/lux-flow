@@ -23,3 +23,5 @@
 21. **Journey desktop banner** — the supplied file is only 440 px wide, so it’s upscaled and slightly soft on large screens. A full-resolution export (about 1600 × 400) is needed.
 22. **Phase 2: Tune Your Wave “Advanced”** — more control over feed preferences (decided for Phase 2).
 23. **Gravity credits** — later phase (confirmed).
+24. **Drafts (real build)** — prototype keeps drafts on the device. In the real build drafts need a per-user store (title, body, type, System, audience, attached image) plus the unsaved-changes prompt; roughly 2–3 days, and drafts stay private to the author. Image attachments in drafts add storage cost. Please confirm it fits the milestone.
+

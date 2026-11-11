@@ -734,7 +734,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{background:r
 .page:not(.wide) > *{max-width:var(--page-max)}
 .page > * + *{margin-top:var(--section-gap)}
 .page > :is(.page-head,.home-head,.flow-head) + *{margin-top:var(--head-gap)}
-.page > :is(.search,.chip-row,.filter-bar,.filter-panel,.seg,.tabs) + :is(.search,.chip-row,.filter-bar,.filter-panel,.menu-wrap){margin-top:var(--group-gap)}
+.page > :is(.search,.chip-row,.hs,.filter-bar,.filter-panel,.seg,.tabs) + :is(.search,.chip-row,.hs,.filter-bar,.filter-panel,.menu-wrap){margin-top:var(--group-gap)}
 .page > .tabs + *{margin-top:var(--space-5)}
 .page > * + :is(.help,.note-line){margin-top:var(--group-gap)}
 .page > :is(.row,.row-wrap,.seg,.filter-bar,.publish-bar) + .help{margin-top:var(--space-2)}
@@ -831,7 +831,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .ob-flower{display:block;width:52px;flex-shrink:0}
 .home-flower{width:min(240px,70%);margin:0 auto var(--space-2)}
 .sys-flowerbar{display:flex;align-items:center;gap:var(--space-4)}
-.page > .sys-flowerbar + .chip-row{margin-top:var(--group-gap)}
+.page > .sys-flowerbar + :is(.chip-row,.hs){margin-top:var(--group-gap)}
 .sys-flower{display:block;width:88px;flex-shrink:0}
 .empty-flower{display:block;width:72px}
 .prof-flower{display:block;width:32px;flex-shrink:0}
@@ -1514,6 +1514,45 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .conv-name{display:flex;align-items:center;min-width:0}
 .chat-title .hero-q{flex-shrink:0;width:22px;height:22px}
 .chat-title .cl-switch{flex-shrink:1;min-width:0}
+
+/* ---- Client round (Nov 11): scroll arrows + snapping, Create toolbar, Drafts ---- */
+.hs{min-width:0;max-width:100%}
+.hs-nav{display:none;justify-content:flex-end;gap:6px;margin:0 0 -2px;height:28px}
+.hs[data-l="1"] .hs-nav,.hs[data-r="1"] .hs-nav{display:flex}
+.hs-btn{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--surface-3);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2),0 2px 6px -2px rgba(0,0,0,.5);position:relative;flex-shrink:0;transition:transform .12s,background .15s}
+.hs-btn::after{content:'';position:absolute;inset:-8px}
+.hs-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hs-btn:hover{background:var(--accent-soft);color:var(--accent-ink)}
+.hs-btn:active{transform:scale(.92)}
+.hs-prev{display:none}
+.hs-next{display:none}
+.hs[data-l="1"] .hs-prev,.hs[data-r="1"] .hs-next{display:inline-flex}
+.hs-edge{position:relative}
+.hs-edge .hs-nav{position:absolute;left:-4px;right:-4px;top:var(--hs-top,84px);height:0;margin:0;pointer-events:none;justify-content:space-between;z-index:3}
+.hs-edge .hs-btn{width:36px;height:36px;margin-top:-18px;pointer-events:auto;background:rgba(20,18,30,.82);backdrop-filter:blur(6px);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 4px 12px -2px rgba(0,0,0,.6)}
+.hs-edge .hs-prev{margin-right:auto}
+.hs-edge .hs-next{margin-left:auto}
+.app.theme-light .hs-edge .hs-btn{background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 4px 12px -2px rgba(40,30,90,.25)}
+.chip-row,.friends-row,.topic-row,.sig-scroll{scroll-snap-type:x mandatory;scroll-padding:0 4px}
+.chip-row > *,.friends-row > *,.topic-row > *,.sig-grid > *{scroll-snap-align:start}
+@media (prefers-reduced-motion:reduce){ .chip-row,.friends-row,.topic-row,.sig-scroll,.comm-carousel{scroll-behavior:auto} }
+.create-bar{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:10px;min-height:40px;padding:4px var(--page-x);margin:calc(-1 * var(--page-top)) calc(-1 * var(--page-x)) 0;background:var(--bg);border-bottom:1px solid var(--line);white-space:nowrap}
+.page > .create-bar + *{margin-top:var(--space-4)}
+.cb-type{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;min-width:0}
+.cb-sep{width:1px;height:16px;background:var(--line-2);flex-shrink:0}
+.cb-btn{min-height:32px;padding:0 6px;font-size:13.5px;font-weight:700;color:var(--accent-ink);border-radius:8px;flex-shrink:0}
+.cb-btn:hover{color:var(--ink)}
+.cb-save{color:var(--sun-hi,#F2C230)}
+.app.theme-light .cb-save{color:#9A5A00}
+.cb-btn:disabled{opacity:.45;cursor:not-allowed}
+@media (max-width:420px){ .cb-new{display:none} .create-bar{gap:8px} }
+.draft-list{display:flex;flex-direction:column;gap:10px}
+.draft-card{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.draft-card > .grow{flex:1 1 200px;min-width:0}
+.draft-card .draft-title{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.draft-acts{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-actions-3{justify-content:stretch}
+@media (max-width:520px){ .sheet-actions-3 .btn{flex:1 1 100%} }
 </style>
 
 <aside class="side" aria-label="Primary">
@@ -1719,11 +1758,11 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
   <sc-if value="{{flowFiltersOpen}}" hint-placeholder-val="{{ false }}">
     <div class="filter-panel">
       <div class="eyebrow">System</div>
-      <div class="chip-row" role="group" aria-label="Filter by System">
+      <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Filter by System">
         <sc-for list="{{flowChips}}" as="c" hint-placeholder-count="6">
           <button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button>
         </sc-for>
-      </div>
+      </div></div>
     </div>
   </sc-if>
 
@@ -1793,14 +1832,14 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
             <button class="btn btn-sm btn-ghost" onClick="{{p.toggleTray}}">Done</button>
           </div>
           <div class="sig-private"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span><strong>Private to you.</strong> Optional — no public counts.</span></div>
-          <div class="sig-scroll"><div class="sig-grid">
+          <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="sig-scroll"><div class="sig-grid">
             <sc-for list="{{p.signals}}" as="g" hint-placeholder-count="8">
               <button class="{{g.cls}}" aria-pressed="{{g.pressed}}" onClick="{{g.toggle}}" title="{{g.mean}}">
                 <svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{g.icon}}"></path></svg>{{g.label}}
                 <svg class="ic ic-sm chk" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg>
               </button>
             </sc-for>
-          </div></div>
+          </div></div></div>
           <p class="meta small" style="margin: 0">Tap again to undo · no signal ever lowers a post’s place in Flow.</p>
         </div>
       </sc-if>
@@ -1948,14 +1987,14 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
         <div class="sig-private"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.lock}}"></path></svg><span><strong>Private to you.</strong> No one else sees your signals — there are no public counts.</span></div>
         <p class="meta p">Signals describe your experience, not the post’s quality. Choose any that fit — tap again to undo.</p>
       </div>
-      <div class="sig-scroll"><div class="sig-grid">
+      <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="sig-scroll"><div class="sig-grid">
         <sc-for list="{{cur.signals}}" as="g" hint-placeholder-count="8">
           <button class="{{g.clsLg}}" aria-pressed="{{g.pressed}}" onClick="{{g.toggle}}">
             <span class="sig-top"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{g.icon}}"></path></svg>{{g.label}}<svg class="ic ic-sm chk" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg></span>
             <span class="sig-mean">{{g.mean}}</span>
           </button>
         </sc-for>
-      </div></div>
+      </div></div></div>
       <p class="meta small" style="margin: 0">Confused or Heavier never lower a post’s ranking.</p>
     </section>
 
@@ -1973,7 +2012,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 <div class="page wide">
   <div class="row hide-sm back-row"><button class="btn btn-ghost btn-back" onClick="{{back}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.back}}"></path></svg>Back</button></div>
   <div class="sys-flowerbar"><span class="sys-flower"><dc-import name="Flower" variant="emblem" highlight="{{sysFlowerHi}}" on-pick="{{sysFlowerPick}}" label="{{sysFlowerLabel}}"></dc-import></span><span class="stack-xs"><span class="eyebrow">The Ten Systems</span><span class="meta">Tap a petal or a name to switch System</span></span></div>
-  <div class="chip-row" role="group" aria-label="Choose a System"><sc-for list="{{sysChipsAll}}" as="c" hint-placeholder-count="10"><button class="{{c.cls}}" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}"><span class="{{c.dotCls}}"></span>{{c.label}}</button></sc-for></div>
+  <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Choose a System"><sc-for list="{{sysChipsAll}}" as="c" hint-placeholder-count="10"><button class="{{c.cls}}" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}"><span class="{{c.dotCls}}"></span>{{c.label}}</button></sc-for></div></div>
   <sc-if value="{{sysLoading}}" hint-placeholder-val="{{ false }}">
     <div class="stack" aria-busy="true" aria-label="Loading System"><div class="card skel" style="height: 220px"><span class="sk" style="width: 30%; height: 24px"></span><span class="sk" style="width: 60%"></span><span class="sk"></span></div><p class="meta p" style="text-align: center">Loading (simulated delay)…</p></div>
   </sc-if>
@@ -2043,7 +2082,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <button class="{{pf.btnCls}}" aria-expanded="{{pf.exp}}" onClick="{{pf.toggle}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.settings}}"></path></svg><span>{{pf.label}}</span></button>
       <sc-for list="{{pf.active}}" as="f" hint-placeholder-count="1"><button class="chip on" onClick="{{f.clear}}" aria-label="{{f.aria}}"><sc-if value="{{f.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{f.dotCls}}"></span></sc-if><span>{{f.label}}</span><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></sc-for>
     </div>
-    <sc-if value="{{pf.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="chip-row" role="group" aria-label="Filter people by System"><sc-for list="{{peopleSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div><div class="eyebrow">Knack</div><div class="chip-row" role="group" aria-label="Filter people by Knack"><sc-for list="{{knackChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}">{{c.label}}</button></sc-for></div></div></sc-if>
+    <sc-if value="{{pf.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Filter people by System"><sc-for list="{{peopleSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div></div><div class="eyebrow">Knack</div><div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Filter people by Knack"><sc-for list="{{knackChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}">{{c.label}}</button></sc-for></div></div></div></sc-if>
 
     <sc-if value="{{peopleBrowsing}}" hint-placeholder-val="{{ true }}">
       <sc-if value="{{hasIncoming}}" hint-placeholder-val="{{ false }}">
@@ -2067,12 +2106,12 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </section>
       <section class="section">
         <div class="section-head"><h2 class="h3">Your connections</h2><span class="meta">{{connectedCount}}</span></div>
-        <div class="friends-row">
+        <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="friends-row">
           <sc-for list="{{connections}}" as="u" hint-placeholder-count="3">
             <button class="friend" onClick="{{u.open}}"><span class="{{u.avLgCls}}"><span class="av-fb" aria-hidden="true">{{u.ini}}</span><sc-if value="{{u.hasPhoto}}" hint-placeholder-val="{{ false }}"><img class="av-img" src="{{u.photo}}" alt="" loading="lazy" decoding="async" onError="{{u.photoErr}}"></sc-if></span><span class="friend-name">{{u.first}}<sc-if value="{{u.isFav}}" hint-placeholder-val="{{ false }}"><svg class="fav-star-sm" viewBox="0 0 24 24" role="img" aria-label="Favorite"><path d="{{ic.star}}"></path></svg></sc-if></span></button>
           </sc-for>
           <sc-if value="{{noConnections}}" hint-placeholder-val="{{ false }}"><p class="meta p">No connections yet.</p></sc-if>
-        </div>
+        </div></div>
       </section>
       <div class="section-head"><h2 class="h3">{{discoverTitle}}</h2></div>
     </sc-if>
@@ -2230,7 +2269,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
   <sc-if value="{{cr.choosing}}" hint-placeholder-val="{{ true }}">
     <div class="page-head">
       <h1 class="h1">Create</h1>
-      <p class="lead">What would you like to share? Every creation belongs to a System and has an audience you choose.</p>
+      <p class="lead">What type of creation would you like to share? (Every creation belongs to one main Chakra System).</p>
     </div>
     <div class="type-grid">
       <sc-for list="{{cr.types}}" as="t" hint-placeholder-count="8">
@@ -2241,11 +2280,29 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-for>
     </div>
     <p class="help p">Events, Projects, Challenges and Needs ask for a few extra details, like dates and how people can take part. Dated ones appear in your Calendar.</p>
+    <section class="section drafts" aria-labelledby="drafts-h">
+      <div class="section-head"><h2 class="h3" id="drafts-h">Drafts</h2><span class="meta">{{cr.draftsMeta}}</span></div>
+      <sc-if value="{{cr.noDrafts}}" hint-placeholder-val="{{ false }}"><p class="help p">Nothing saved yet. Tap Save Draft while you create and unfinished work will wait for you here.</p></sc-if>
+      <div class="draft-list">
+        <sc-for list="{{cr.drafts}}" as="d" hint-placeholder-count="2">
+          <article class="draft-card">
+            <div class="grow stack-xs"><span class="h3 draft-title">{{d.title}}</span><span class="meta">{{d.meta}}</span></div>
+            <div class="draft-acts"><button class="btn btn-secondary btn-sm" onClick="{{d.open}}">Continue editing</button><button class="btn btn-ghost btn-sm" onClick="{{d.del}}">Discard</button></div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
   </sc-if>
 
   <sc-if value="{{cr.editing}}" hint-placeholder-val="{{ false }}">
+    <div class="create-bar" role="toolbar" aria-label="Creation actions">
+      <span class="cb-type"><span class="cb-new">New </span>{{cr.typeLabel}}</span>
+      <span class="cb-sep" aria-hidden="true"></span>
+      <button class="cb-btn" onClick="{{cr.changeType}}">Change Type</button>
+      <span class="cb-sep" aria-hidden="true"></span>
+      <button class="cb-btn cb-save" onClick="{{cr.saveDraft}}" disabled="{{cr.cantSave}}">Save Draft</button>
+    </div>
     <div class="page-head">
-      <div class="row row-wrap-x"><span class="eyebrow"><span>New {{cr.typeLabel}}</span></span><button class="link" onClick="{{cr.changeType}}">Change type</button></div>
       <h1 class="h1">{{cr.starter}}</h1>
     </div>
     <div class="create-grid">
@@ -2401,15 +2458,15 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <button class="{{cf.btnCls}}" aria-expanded="{{cf.exp}}" onClick="{{cf.toggle}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.settings}}"></path></svg><span>{{cf.label}}</span></button>
       <sc-for list="{{cf.active}}" as="f" hint-placeholder-count="1"><button class="chip on" onClick="{{f.clear}}" aria-label="{{f.aria}}"><sc-if value="{{f.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{f.dotCls}}"></span></sc-if><span>{{f.label}}</span><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></sc-for>
     </div>
-    <sc-if value="{{cf.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="chip-row" role="group" aria-label="Filter communities by System"><sc-for list="{{commSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div></div></sc-if>
+    <sc-if value="{{cf.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Filter communities by System"><sc-for list="{{commSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div></div></div></sc-if>
   <sc-if value="{{commTopicsShow}}" hint-placeholder-val="{{ false }}">
-    <div class="{{commTopicRowCls}}" role="group" aria-label="Topics in {{commTopicSys}} (optional)"><span class="topic-lead">Topics</span><sc-for list="{{commTopics}}" as="t" hint-placeholder-count="5"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}<sc-if value="{{t.hasN}}" hint-placeholder-val="{{ false }}"><span class="topic-n">{{t.n}}</span></sc-if></button></sc-for></div>
+    <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="{{commTopicRowCls}}" role="group" aria-label="Topics in {{commTopicSys}} (optional)"><span class="topic-lead">Topics</span><sc-for list="{{commTopics}}" as="t" hint-placeholder-count="5"><button class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">{{t.label}}<sc-if value="{{t.hasN}}" hint-placeholder-val="{{ false }}"><span class="topic-n">{{t.n}}</span></sc-if></button></sc-for></div></div>
   </sc-if>
   <sc-if value="{{notVerified}}" hint-placeholder-val="{{ false }}"><p class="note-line"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.shield}}"></path></svg><span>Browsing public communities. Joining needs a verified identity.</span><button class="link" style="min-height: 0" onClick="{{goVerify}}">Verify</button></p></sc-if>
   <sc-for list="{{commSections}}" as="sec" hint-placeholder-count="3">
     <section class="section">
       <div class="section-head"><h2 class="h3">{{sec.title}}</h2><span class="meta">{{sec.meta}}</span></div>
-      <div class="{{sec.gridCls}}">
+      <div class="{{sec.hsCls}}"><sc-if value="{{sec.isCarousel}}" hint-placeholder-val="{{ false }}"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div></sc-if><div class="{{sec.gridCls}}">
         <sc-for list="{{sec.items}}" as="c" hint-placeholder-count="3">
           <article class="comm tilt">
             <sc-if value="{{c.m.has}}" hint-placeholder-val="{{ false }}"><figure class="media media-16x9 comm-cover"><sc-if value="{{c.m.ok}}" hint-placeholder-val="{{ true }}"><img src="{{c.m.src}}" alt="{{c.m.alt}}" loading="lazy" decoding="async" onError="{{c.m.err}}"></sc-if><sc-if value="{{c.m.bad}}" hint-placeholder-val="{{ false }}"><div class="media-fail"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.image}}"></path></svg><span>Image couldn’t load</span></div></sc-if></figure></sc-if>
@@ -2425,7 +2482,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
             </div>
           </article>
         </sc-for>
-      </div>
+      </div></div>
     </section>
   </sc-for>
   <sc-if value="{{commEmpty}}" hint-placeholder-val="{{ false }}">
@@ -2668,16 +2725,16 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
   </label>
   <div class="stack-sm">
     <div class="eyebrow">Folders</div>
-    <div class="chip-row" role="group" aria-label="Folders">
+    <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Folders">
       <sc-for list="{{folderChips}}" as="c" hint-placeholder-count="3"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.folder}}"></path></svg>{{c.label}}</button></sc-for>
       <button class="chip" onClick="{{openNewFolder}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg>New folder</button>
-    </div>
+    </div></div>
   </div>
   <div class="filter-bar">
       <button class="{{af.btnCls}}" aria-expanded="{{af.exp}}" onClick="{{af.toggle}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.settings}}"></path></svg><span>{{af.label}}</span></button>
       <sc-for list="{{af.active}}" as="f" hint-placeholder-count="1"><button class="chip on" onClick="{{f.clear}}" aria-label="{{f.aria}}"><sc-if value="{{f.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{f.dotCls}}"></span></sc-if><span>{{f.label}}</span><svg class="ic ic-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.close}}"></path></svg></button></sc-for>
     </div>
-    <sc-if value="{{af.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="chip-row" role="group" aria-label="Filter Archive by System"><sc-for list="{{archSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div></div></sc-if>
+    <sc-if value="{{af.open}}" hint-placeholder-val="{{ false }}"><div class="filter-panel"><div class="eyebrow">System</div><div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Filter Archive by System"><sc-for list="{{archSysChips}}" as="c" hint-placeholder-count="6"><button class="{{c.cls}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}"><sc-if value="{{c.hasDot}}" hint-placeholder-val="{{ false }}"><span class="{{c.dotCls}}"></span></sc-if>{{c.label}}</button></sc-for></div></div></div></sc-if>
   <section class="section">
     <div class="section-head"><h2 class="h3">Recently saved</h2><span class="meta">{{archCountLabel}}</span></div>
     <sc-for list="{{archItems}}" as="it" hint-placeholder-count="3">
@@ -2788,7 +2845,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <p class="lead">A private space to write. Only you can see it — never other members, moderators or AI.</p>
     </div>
     <label class="search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.search}}"></path></svg><span class="sr-only">Search your Journal</span><input value="{{jx.query}}" onChange="{{jx.onQuery}}" placeholder="Search entries, Systems and folders"></label>
-    <div class="chip-row" role="group" aria-label="Folders"><sc-for list="{{jx.folders}}" as="f" hint-placeholder-count="4"><button class="{{f.cls}}" aria-pressed="{{f.pressed}}" onClick="{{f.pick}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.folder}}"></path></svg>{{f.label}}</button></sc-for><button class="chip" onClick="{{jx.newFolder}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg>New folder</button></div>
+    <div class="hs"><div class="hs-nav"><button class="hs-btn hs-prev" data-hs-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button><button class="hs-btn hs-next" data-hs-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button></div><div class="chip-row" role="group" aria-label="Folders"><sc-for list="{{jx.folders}}" as="f" hint-placeholder-count="4"><button class="{{f.cls}}" aria-pressed="{{f.pressed}}" onClick="{{f.pick}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.folder}}"></path></svg>{{f.label}}</button></sc-for><button class="chip" onClick="{{jx.newFolder}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.plus}}"></path></svg>New folder</button></div></div>
     <div class="menu-wrap" style="align-self: flex-start">
       <button class="filter-btn" aria-expanded="{{jx.sysMenuExp}}" onClick="{{jx.toggleSysMenu}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.settings}}"></path></svg><span>{{jx.sysLabel}}</span></button>
       <sc-if value="{{jx.sysMenu}}" hint-placeholder-val="{{ false }}"><div class="menu menu-left menu-scroll" role="menu"><sc-for list="{{jx.sysOpts}}" as="so" hint-placeholder-count="4"><button role="menuitem" onClick="{{so.pick}}"><span class="{{so.dotCls}}"></span>{{so.label}}</button></sc-for></div></sc-if>
@@ -3241,7 +3298,9 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
 
 
-      <sc-if value="{{dlg.discard}}" hint-placeholder-val="{{ false }}"><p class="p muted">Your title, text and choices for this draft will be cleared. This can’t be undone.</p><div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Keep editing</button><button class="btn btn-danger" onClick="{{confirmDiscard}}">Discard draft</button></div></sc-if>
+      <sc-if value="{{dlg.unsaved}}" hint-placeholder-val="{{ false }}"><p class="p muted">You have changes that aren’t saved yet. Save them as a draft to finish later, discard them, or go back to your creation.</p><div class="sheet-actions sheet-actions-3"><button class="btn btn-primary" onClick="{{unsavedSave}}">Save Draft</button><button class="btn btn-danger" onClick="{{unsavedDiscard}}">Discard</button><button class="btn btn-secondary" onClick="{{unsavedCancel}}">Cancel</button></div></sc-if>
+      <sc-if value="{{dlg.draftDel}}" hint-placeholder-val="{{ false }}"><p class="p muted">This saved draft will be removed from Drafts. This can’t be undone.</p><div class="sheet-actions"><button class="btn btn-secondary" onClick="{{closeDialog}}">Keep draft</button><button class="btn btn-danger" onClick="{{confirmDraftDel}}">Discard draft</button></div></sc-if>
+      <sc-if value="{{dlg.discard}}" hint-placeholder-val="{{ false }}"><p class="p muted">Your title, text and choices will be cleared, and any saved copy in Drafts is removed. This can’t be undone.</p><div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Keep editing</button><button class="btn btn-danger" onClick="{{confirmDiscard}}">Discard draft</button></div></sc-if>
       <sc-if value="{{dlg.jDiscard}}" hint-placeholder-val="{{ false }}"><p class="p muted">You have changes that aren’t saved.</p><div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Keep writing</button><button class="btn btn-danger" onClick="{{confirmJDiscard}}">Discard changes</button></div></sc-if>
       <sc-if value="{{dlg.jDel}}" hint-placeholder-val="{{ false }}"><p class="p muted">The entry will be removed from your Journal. You can undo for a few seconds afterwards.</p><div class="sheet-actions"><button class="btn btn-ghost" onClick="{{closeDialog}}">Cancel</button><button class="btn btn-danger" onClick="{{confirmJDel}}">Delete entry</button></div></sc-if>
       <sc-if value="{{dlg.jExport}}" hint-placeholder-val="{{ false }}"><p class="p muted">In the product this downloads a text file. In the prototype, here’s exactly what it would contain:</p><pre class="export-box">{{dlg.body}}</pre><div class="sheet-actions"><button class="btn btn-primary" onClick="{{closeDialog}}">Done</button></div></sc-if>
@@ -3367,7 +3426,7 @@ var STARTERS = {
 var STARTER_TAGS = {radiance:'fun play joy art creativity hobbies wonder music', purpose:'work career job team projects goals impact', presence:'calm mindfulness meditation peace intuition slow', wisdom:'learning books reading ideas school knowledge', connection:'friends friendship love family belonging kindness', unity:'community volunteering neighbours local action', vitality:'health energy food fitness outdoors sleep', foundation:'money home budget skills building security', journey:'travel trips places adventure languages culture', remembrance:'family history memories stories traditions past'};
 /* Ten Systems copy from theclapperproject.com (client site, Nov 2026) */
 var SYS_INFO = {
-  radiance:{welcome:'Lux Flow is a sanctuary for happiness. Radiance is the home of creativity, play, inspiration, and wonder. It reminds us that life is more than survival. We are meant to laugh, imagine, create, stay curious, notice beauty, and make room for the parts of life that simply feel good to experience.',
+  radiance:{welcome:'Radiance is a sanctuary for happiness. Radiance is the home of creativity, play, inspiration, and wonder. It reminds us that life is more than survival. We are meant to laugh, imagine, create, stay curious, notice beauty, and make room for the parts of life that simply feel good to experience.',
     principle:'Joy is worth cultivating.',
     find:'Play, wonder, creativity, art, music, humor, celebration, imagination, curiosity, and everyday experiences that help people feel more alive.',
     who:'Radiance is for anyone who wants to create, celebrate, inspire, or bring more joy into everyday life. Artists, musicians, performers, writers, comedians, educators, hosts, creators, community organizers, playful thinkers, and people simply rediscovering what makes them happy all have a place in Radiance.',
@@ -3375,7 +3434,7 @@ var SYS_INFO = {
     create:['Videos & uplifting clips', 'Art & visual creations', 'Music & performances', 'Memes & comedy', 'Creative prompts', 'Playful challenges', 'Celebration posts', 'Gratitude threads', 'Games & activities', 'Community events', 'Creative projects', 'Stories & joyful moments'],
     chakra:'Universal (1111) — balance, inner peace, harmony, and synchronicity.',
     north:'Life isn’t only meant to be lived. It’s meant to be enjoyed.'},
-  purpose:{welcome:'Lux Flow is the place for leadership. Purpose is a home for meaningful work, contribution, leadership, and impact. It helps people recognize what they can offer, discover where their abilities may be useful, and turn ideas into work that improves their own lives and the lives of others.',
+  purpose:{welcome:'Purpose is the place for leadership. Purpose is a home for meaningful work, contribution, leadership, and impact. It helps people recognize what they can offer, discover where their abilities may be useful, and turn ideas into work that improves their own lives and the lives of others.',
     principle:'Purpose is discovered through contribution.',
     find:'Meaningful work, leadership, careers, goals, teams, mentorship, collaboration, service, projects, opportunities, responsibility, and ways to create positive impact.',
     who:'Purpose is for anyone trying to turn their abilities, ideas, work, or vision into something meaningful. Leaders, workers, mentors, entrepreneurs, builders, organizers, volunteers, creators, teams, organizations, and people who are still discovering where they fit all have a place here.',
@@ -3383,7 +3442,7 @@ var SYS_INFO = {
     create:['Jobs & opportunities', 'Projects & long-term builds', 'Teams & organizations', 'Missions & initiatives', 'Leadership discussions', 'Career resources', 'Goal-setting challenges', 'Calls for collaborators', 'Volunteer opportunities', 'Skill-sharing opportunities', 'Community impact projects', 'Ideas for solving problems'],
     chakra:'Crown (999) — connection to the wider world, higher direction, and expansion of contribution.',
     north:'Turn what you have into something that matters.'},
-  presence:{welcome:'Lux Flow brings stillness and peace. Presence is the home of mindfulness, self-reflection, and intentional living. It creates room to notice thoughts, emotions, habits, and surroundings without immediately reacting to them. Presence begins with something simple: pay attention, pause, and respond with intention.',
+  presence:{welcome:'Presence brings stillness and peace. Presence is the home of mindfulness, self-reflection, and intentional living. It creates room to notice thoughts, emotions, habits, and surroundings without immediately reacting to them. Presence begins with something simple: pay attention, pause, and respond with intention.',
     principle:'Awareness is the beginning of lasting change.',
     find:'Mindfulness, meditation, self-awareness, emotional awareness, reflection, identity, resilience, gratitude, breathing practices, intentional living, inner peace, and learning to pause before reacting.',
     who:'Presence is for anyone interested in becoming more aware of themselves and the world around them. Meditators, educators, mentors, writers, facilitators, mindfulness practitioners, reflective creators, discussion leaders, and people simply learning to slow down, pay attention, and understand themselves all have a place here.',
@@ -3391,7 +3450,7 @@ var SYS_INFO = {
     create:['Personal reflections', 'Guided meditations', 'Mindfulness practices', 'Journal prompts', 'Emotional check-ins', 'Awareness challenges', 'Calm videos', 'Mindful movement', 'Gratitude practices', 'Self-discovery questions', 'Discussion circles', 'Meditation groups'],
     chakra:'Third Eye (888) — clearer perception, insight, intuition, and awareness.',
     north:'Notice what is happening. Choose what happens next.'},
-  wisdom:{welcome:'Lux Flow brings sage judgment. Wisdom is the home of learning, knowledge, curiosity, and understanding. We have access to more information than ever before, but access alone does not create wisdom. Wisdom helps people ask better questions, understand what they discover, and put useful knowledge into practice.',
+  wisdom:{welcome:'Wisdom brings sage judgment. Wisdom is the home of learning, knowledge, curiosity, and understanding. We have access to more information than ever before, but access alone does not create wisdom. Wisdom helps people ask better questions, understand what they discover, and put useful knowledge into practice.',
     principle:'Understanding is more valuable than memorization.',
     find:'Learning, critical thinking, communication, science, mathematics, philosophy, history, technology, research, books, practical skills, educational resources, thoughtful discussion, and lifelong curiosity.',
     who:'Wisdom is for anyone who has something to learn or something worth teaching. Educators, students, researchers, writers, scientists, historians, mentors, professionals, craftspeople, readers, experts, curious beginners, and people sharing knowledge gained through lived experience all have a place here.',
@@ -3399,7 +3458,7 @@ var SYS_INFO = {
     create:['Explainers & tidbits', 'Research posts', 'Questions & discussions', 'Book recommendations', 'Study guides', 'Learning challenges', 'Workshops & classes', 'Skill-sharing events', 'Reading groups', 'Experiments & demonstrations', 'Historical explorations', 'Knowledge resources'],
     chakra:'Throat (777) — communication, expression, learning from one another, and the pursuit of truth.',
     north:'Learn deeply. Understand clearly. Share what you know.'},
-  connection:{welcome:'Lux Flow brings inclusion. Connection is the home of relationships, belonging, trust, and compassion. Being surrounded by people does not always mean feeling connected. Connection helps us find one another while also learning the skills that allow friendships, families, partnerships, and communities to become healthier and more meaningful.',
+  connection:{welcome:'Connection brings inclusion. Connection is the home of relationships, belonging, trust, and compassion. Being surrounded by people does not always mean feeling connected. Connection helps us find one another while also learning the skills that allow friendships, families, partnerships, and communities to become healthier and more meaningful.',
     principle:'Strong relationships are built one conversation at a time.',
     find:'Friendship, family, communication, dating, emotional intelligence, trust, boundaries, belonging, inclusion, conflict resolution, kindness, mentorship, shared interests, social confidence, and healthy relationships.',
     who:'Connection is for anyone who wants to build, strengthen, understand, or support relationships. Friends, families, couples, mentors, counselors, coaches, facilitators, community hosts, support groups, social organizers, relationship educators, and people simply looking for friendship, trust, or belonging all have a place here.',
@@ -3407,7 +3466,7 @@ var SYS_INFO = {
     create:['Friendship opportunities', 'Social gatherings', 'Dating discussions', 'Relationship stories', 'Communication guides', 'Friendship challenges', 'Trust-building reflections', 'Boundary exercises', 'Conflict-resolution resources', 'Mentorship opportunities', 'Conversation prompts', 'Support circles'],
     chakra:'Heart (666) — love, compassion, openness, and inclusion.',
     north:'Create relationships where people can belong without losing themselves.'},
-  unity:{welcome:'Lux Flow encourages participation. Unity is the home of service, community involvement, and collective action. Communities work because people give, receive, organize, participate, and help one another. Unity makes it easier to discover where help is needed, where support already exists, and where each person can contribute.',
+  unity:{welcome:'Unity encourages participation. Unity is the home of service, community involvement, and collective action. Communities work because people give, receive, organize, participate, and help one another. Unity makes it easier to discover where help is needed, where support already exists, and where each person can contribute.',
     principle:'Communities grow stronger when people contribute together.',
     find:'Community service, volunteering, local events, collaboration, teamwork, mutual support, civic participation, neighborhood projects, community leadership, shared needs, group challenges, local missions, and opportunities to create positive change together.',
     who:'Unity is for anyone who wants to participate in something larger than themselves. Volunteers, neighbors, organizers, nonprofits, community leaders, educators, mentors, facilitators, clubs, teams, mutual-support networks, local organizations, and people simply looking for somewhere meaningful to participate all have a place here.',
@@ -3415,7 +3474,7 @@ var SYS_INFO = {
     create:['Community events', 'Volunteer opportunities', 'Community projects', 'Local missions', 'Calls for volunteers', 'Calls for help', 'Community needs', 'Mutual-support opportunities', 'Group challenges', 'Neighborhood projects', 'Skill-sharing opportunities', 'Community celebrations'],
     chakra:'Solar Plexus (555) — personal power, confidence, and agency expressed through participation and contribution.',
     north:'Give what you can. Ask for what you need. Build something better together.'},
-  vitality:{welcome:'Lux Flow brings liveliness. Vitality is the home of movement, nourishment, energy, and everyday wellbeing. Health develops through patterns—how we eat, move, rest, recover, and care for ourselves—and through learning practical skills that make healthier choices easier to sustain.',
+  vitality:{welcome:'Vitality brings liveliness. Vitality is the home of movement, nourishment, energy, and everyday wellbeing. Health develops through patterns—how we eat, move, rest, recover, and care for ourselves—and through learning practical skills that make healthier choices easier to sustain.',
     principle:'Small healthy habits create lasting vitality.',
     find:'Nutrition, cooking, movement, fitness, sleep, recovery, energy, healthy habits, preventative health, stress management, body care, food skills, routines, and long-term wellbeing.',
     who:'Vitality is for anyone interested in caring for the body and helping others live healthier lives. Home cooks, farmers, gardeners, fitness instructors, health educators, coaches, athletes, food creators, walking groups, wellness professionals, community organizers, and everyday people sharing practical habits all have a place here.',
@@ -3423,7 +3482,7 @@ var SYS_INFO = {
     create:['Recipes & meal ideas', 'Cooking tutorials', 'Grocery-shopping guides', 'Meal-planning resources', 'Community meals', 'Gardening projects', 'Walking groups', 'Movement prompts', 'Exercise challenges', 'Fitness events', 'Recovery practices', 'Wellness resources'],
     chakra:'Sacral (444) — energetic flow, pleasure, creativity, and embodied living.',
     north:'Care for the body that carries you through life.'},
-  foundation:{welcome:'Lux Flow builds stronger foundations. Foundation is the home of stability, resources, opportunity, and financial wellbeing. Life needs a base under it—food, shelter, transportation, income, infrastructure, and enough security to make choices beyond immediate survival and begin building toward something more.',
+  foundation:{welcome:'Foundation builds stronger foundations. Foundation is the home of stability, resources, opportunity, and financial wellbeing. Life needs a base under it—food, shelter, transportation, income, infrastructure, and enough security to make choices beyond immediate survival and begin building toward something more.',
     principle:'Strong foundations create lasting opportunities.',
     find:'Personal finance, budgeting, careers, entrepreneurship, work, housing, resources, financial literacy, planning, infrastructure, architecture, local businesses, opportunity, sustainability, community resources, and long-term stability.',
     who:'Foundation is for anyone helping people establish security, manage resources, or create practical opportunities. Workers, entrepreneurs, financial educators, career mentors, tradespeople, architects, builders, farmers, housing advocates, local businesses, planners, community organizations, and people sharing useful resources or practical knowledge all have a place here.',
@@ -3431,7 +3490,7 @@ var SYS_INFO = {
     create:['Job & career opportunities', 'Budgeting resources', 'Savings practices', 'Business ideas', 'Entrepreneurship projects', 'Housing resources', 'Resource directories', 'Transportation resources', 'Infrastructure projects', 'Neighborhood improvements', 'Professional mentorship', 'Practical how-to guides'],
     chakra:'Root (333) — stability, survival, support, security, and the foundations that allow growth to occur.',
     north:'Build enough stability to make possibility possible.'},
-  journey:{welcome:'Lux Flow brings you places. Journey is the home of movement, travel, exploration, and discovering what lies beyond the familiar. Sometimes the journey takes us across the world; sometimes it takes us across town or onto a nearby trail. Every new place, route, and experience can change our perspective.',
+  journey:{welcome:'Journey brings you places. Journey is the home of movement, travel, exploration, and discovering what lies beyond the familiar. Sometimes the journey takes us across the world; sometimes it takes us across town or onto a nearby trail. Every new place, route, and experience can change our perspective.',
     principle:'Every journey begins with a single step.',
     find:'Walking, running and biking groups, transportation, travel, exploration, navigation, outdoor adventures, local discovery, accessibility, mobility, routes, trip planning, shared adventures, and discovering where to go next.',
     who:'Journey is for anyone who wants to move, explore, discover, or help others get where they want to go. Travelers, walkers, runners, cyclists, hikers, local guides, transportation providers, accessibility advocates, outdoor groups, event organizers, adventurers, and people simply trying somewhere or something new all have a place here.',
@@ -3439,7 +3498,7 @@ var SYS_INFO = {
     create:['Walking groups', 'Running & biking groups', 'Hiking groups', 'Travel stories', 'Trip guides', 'Route guides', 'Transportation resources', 'Accessibility resources', 'Exploration prompts', 'Adventure challenges', 'Group trips', 'Local destination guides'],
     chakra:'Feet (222) — movement, grounding, direction, and the physical path that carries us from where we are toward where we want to go.',
     north:'Keep moving. There is always more to discover.'},
-  remembrance:{welcome:'Lux Flow remembers what came before. Remembrance is the home of memory, history, reflection, and legacy. It gives us a place to preserve the experiences that shaped us, understand difficult chapters, honor what matters, learn from the past, and decide what deserves to be carried forward.',
+  remembrance:{welcome:'Remembrance remembers what came before. Remembrance is the home of memory, history, reflection, and legacy. It gives us a place to preserve the experiences that shaped us, understand difficult chapters, honor what matters, learn from the past, and decide what deserves to be carried forward.',
     principle:'The past becomes wisdom when we learn from it.',
     find:'Personal history, world history, storytelling, reflection, shadow work, grief, recovery, resilience, remembrance, archives, traditions, cultural memory, family stories, lessons learned, legacy, and preserving what matters.',
     who:'Remembrance is for anyone with a story worth preserving, an experience worth understanding, or history worth sharing. Historians, storytellers, elders, archivists, educators, families, researchers, writers, documentarians, cultural organizations, recovery communities, and everyday people reflecting on what they have lived through all have a place here.',
@@ -3676,7 +3735,8 @@ function initialState(){
     member:{garden:'joined', readers:'none', quiet:'none', oral:'none', table:'none', sketch:'none', budget:'none'},
     commQuery:'', commSys:'all', commTopic:null, openComm:null,
     chats:chats, unread:{'g-garden':true, 'd-priya':true}, muted:{}, gravity:{}, leftChats:{}, favSys:['wisdom','journey','connection'], favPeople:{priya:1}, vis:{area:'verified', state:'friends', photo:'global'}, loc:{state:'Oregon'}, commsVisible:true, notifRead:{}, account:{email:'rae.lindqvist@example.com'}, wave:{step:0, answers:[], result:null}, convSearch:null, openConv:null, chatTab:'recent', chatQuery:'', draft:'', attachOpen:false, attach:null, convMenu:false,
-    create:{type:null, title:'', body:'', sys:null, tag:null, img:false, promptOn:false, prompt:'', aud:null, view:'write', x:{}}, createDone:null,
+    create:{type:null, title:'', body:'', sys:null, tag:null, img:false, promptOn:false, prompt:'', aud:null, view:'write', x:{}, draftId:null, savedSig:''}, createDone:null,
+    drafts:[{id:'dr-seed', type:'reflection', title:'What the morning walk taught me', body:'I started noticing how my pace changes when I stop checking the time…', sys:'presence', sys2:null, sys2On:false, tag:null, img:false, promptOn:false, prompt:'', aud:null, savedAt:Date.now() - 3 * 3600 * 1000}],
     privacy:{area:true, areaName:'Eastside', discoverable:true, messages:'connections', requests:'verified'},
     me:{name:'Rae Lindqvist', bio:'Learning to slow down. Reading, long walks, and the occasional book swap.'},
     imgFail:{}, dialog:null, toast:null, reportReason:null, reportNote:'', reports:0, editDraft:'', folderDraft:'', pfName:'', pfBio:'',
@@ -3690,12 +3750,23 @@ function initialState(){
   };
 }
 
+function crSig(c){ return JSON.stringify([c.type, c.title, c.body, c.sys, c.sys2, !!c.sys2On, c.tag, !!c.img, !!c.promptOn, c.prompt, c.aud]); }
+function crHasContent(c){ return !!((c.title || '').trim() || (c.body || '').trim() || (c.prompt || '').trim() || c.img || c.sys || c.tag || c.aud); }
+function agoText(ts){ var m = Math.max(0, Math.round((Date.now() - ts) / 60000)); if (m < 1) return 'just now'; if (m < 60) return m + ' min ago'; var h = Math.round(m / 60); if (h < 24) return h + (h === 1 ? ' hour ago' : ' hours ago'); var d = Math.round(h / 24); return d + (d === 1 ? ' day ago' : ' days ago'); }
+
 class Component extends DCLogic {
   constructor(a, b){ super(a, b); this.state = loadState(); this.scrollEl = null; this.msgsEl = null; }
-  componentDidMount(){ var s = this.state; if (s.screen === 'flow' && !s.flowLoaded) this.loadFlow(); if (s.screen === 'system' && s.openSys) this.openSystem(s.openSys); }
+  hsUpdate(){ if (typeof document === 'undefined') return; var ws = document.querySelectorAll('.hs'); for (var i = 0; i < ws.length; i++) { var w = ws[i]; var sc = w.querySelector('.chip-row,.sig-scroll,.friends-row,.comm-carousel,.topic-row'); if (!sc) continue; var max = sc.scrollWidth - sc.clientWidth; var l = sc.scrollLeft > 4 ? '1' : '0'; var r = sc.scrollLeft < max - 4 ? '1' : '0'; if (w.getAttribute('data-l') !== l) w.setAttribute('data-l', l); if (w.getAttribute('data-r') !== r) w.setAttribute('data-r', r); if (w.classList.contains('hs-edge')) { var cv = sc.querySelector('.comm-cover'); if (cv) { var cr0 = cv.getBoundingClientRect(); var wr = w.getBoundingClientRect(); if (cr0.height) w.style.setProperty('--hs-top', Math.round(cr0.top - wr.top + cr0.height / 2) + 'px'); } } } }
+  hsSoon(){ var self = this; if (typeof window === 'undefined') return; if (window.requestAnimationFrame) requestAnimationFrame(function(){ self.hsUpdate(); }); else setTimeout(function(){ self.hsUpdate(); }, 16); }
+  hsInit(){ var self = this; if (typeof document === 'undefined' || typeof window === 'undefined') return; if (window.__luxHs) { window.__luxHs.self = self; return; } window.__luxHs = {self:self}; var upd = function(){ var t = window.__luxHs.self; if (t) t.hsSoon(); };
+    document.addEventListener('scroll', function(e){ var t = e.target; if (t && t.matches && t.matches('.chip-row,.sig-scroll,.friends-row,.comm-carousel,.topic-row')) upd(); }, true);
+    window.addEventListener('resize', upd);
+    document.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('[data-hs-dir]') : null; if (!b) return; var w = b.closest('.hs'); if (!w) return; var sc = w.querySelector('.chip-row,.sig-scroll,.friends-row,.comm-carousel,.topic-row'); if (!sc) return; var dir = Number(b.getAttribute('data-hs-dir')); var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; sc.scrollBy({left:dir * Math.max(120, Math.round(sc.clientWidth * 0.8)), behavior:rm ? 'auto' : 'smooth'}); setTimeout(upd, 350); }, false);
+    setTimeout(upd, 120); setTimeout(upd, 700); }
+  componentDidMount(){ this.hsInit(); this.hsSoon(); var s = this.state; if (s.screen === 'flow' && !s.flowLoaded) this.loadFlow(); if (s.screen === 'system' && s.openSys) this.openSystem(s.openSys); }
   componentDidUpdate(prevProps, prevState){
     var s = this.state;
-    this.persistSoon();
+    this.persistSoon(); this.hsInit(); this.hsSoon();
     if (s.screen === 'flow' && !s.flowLoaded && !s.flowLoading) this.loadFlow();
     var navKey = ['screen', 'openPost', 'openPerson', 'openComm', 'openSys', 'flowSys', 'jView', 'adminTab'].map(function(k){ return String(s[k]); }).join('|');
     if (this.navKey !== undefined && this.navKey !== navKey) this.toTop(); /* every new page or post opens at the top (client feedback) — tracked locally because the runtime's prevState isn't a full snapshot */
@@ -3707,9 +3778,13 @@ class Component extends DCLogic {
 
   /* ---------- navigation ---------- */
   toTop(){ var self = this; var reset = function(){ var list = []; try { list = [].slice.call(document.querySelectorAll('.scroll')); } catch (e) {} if (self.scrollEl && list.indexOf(self.scrollEl) < 0) list.push(self.scrollEl); list.forEach(function(el){ el.scrollTop = 0; }); try { if (window.scrollY) window.scrollTo(0, 0); } catch (e) {} }; reset(); if (window.requestAnimationFrame) requestAnimationFrame(function(){ reset(); setTimeout(reset, 60); }); }
-  go(screen, extra){ var s = this.state; var hist = s.hist.concat([{screen:s.screen, openPost:s.openPost, openPerson:s.openPerson, openComm:s.openComm, openConv:s.openConv}]); this.setState(Object.assign({screen:screen, hist:hist, drawer:false, menu:null, tray:null, profMenu:false, convMenu:false, amenu:null}, extra || {})); }
-  tab(screen, extra){ this.setState(Object.assign({screen:screen, hist:[], drawer:false, menu:null, tray:null, profMenu:false, convMenu:false, amenu:null, attachOpen:false}, extra || {})); }
-  back(){ var h = this.state.hist.slice(); var prev = h.pop(); if (!prev) { this.tab('home'); return; } this.setState({screen:prev.screen, openPost:prev.openPost, openPerson:prev.openPerson, openComm:prev.openComm, openConv:prev.openConv, hist:h, menu:null, tray:null, profMenu:false, convMenu:false}); }
+  saveDraftNow(){ var s = this.state; var c = s.create; var id = c.draftId || ('dr' + Date.now()); var d = {id:id, type:c.type, title:c.title, body:c.body, sys:c.sys, sys2:c.sys2, sys2On:!!c.sys2On, tag:c.tag, img:!!c.img, promptOn:!!c.promptOn, prompt:c.prompt, aud:c.aud, savedAt:Date.now()}; var list = (s.drafts || []).filter(function(x){ return x.id !== id; }); list.push(d); this.setState({drafts:list, create:Object.assign({}, c, {draftId:id, savedSig:crSig(c)})}); }
+  createDirty(){ var c = this.state.create || {}; return this.state.screen === 'create' && !!c.type && crHasContent(c) && crSig(c) !== c.savedSig; }
+  guardLeave(fn){ if (this.skipGuard || !this.createDirty()) return false; this.pendingLeave = fn; this.setState({dialog:{kind:'unsaved', title:'Save this draft?'}}); return true; }
+  runPending(){ var fn = this.pendingLeave; this.pendingLeave = null; if (!fn) return; this.skipGuard = true; try { fn(); } finally { this.skipGuard = false; } }
+  go(screen, extra){ var self = this; if (screen !== 'create' && this.guardLeave(function(){ self.go(screen, extra); })) return; var s = this.state; var hist = s.hist.concat([{screen:s.screen, openPost:s.openPost, openPerson:s.openPerson, openComm:s.openComm, openConv:s.openConv}]); this.setState(Object.assign({screen:screen, hist:hist, drawer:false, menu:null, tray:null, profMenu:false, convMenu:false, amenu:null}, extra || {})); }
+  tab(screen, extra){ var self = this; if (screen !== 'create' && this.guardLeave(function(){ self.tab(screen, extra); })) return; this.setState(Object.assign({screen:screen, hist:[], drawer:false, menu:null, tray:null, profMenu:false, convMenu:false, amenu:null, attachOpen:false}, extra || {})); }
+  back(){ var self = this; if (this.guardLeave(function(){ self.back(); })) return; var h = this.state.hist.slice(); var prev = h.pop(); if (!prev) { this.tab('home'); return; } this.setState({screen:prev.screen, openPost:prev.openPost, openPerson:prev.openPerson, openComm:prev.openComm, openConv:prev.openConv, hist:h, menu:null, tray:null, profMenu:false, convMenu:false}); }
   toast(msg, undo){ var self = this; clearTimeout(this.tt); this.setState({toast:{msg:msg, undo:undo || null}}); this.tt = setTimeout(function(){ self.setState({toast:null}); }, 4200); }
   gate(title, body){ this.setState({dialog:{kind:'gate', title:title, body:body}, drawer:false, menu:null, tray:null}); }
   openPostId(id){ this.go('post', {openPost:id, reflectDraft:''}); this.markOb('read'); }
@@ -3895,7 +3970,7 @@ class Component extends DCLogic {
         if (t === 'project') Object.assign(np, {date:x.date, hhmm:'09:00', when:'Starts ' + fmtD(x.date), where:{local:'Local', remote:'Remote', hybrid:'Hybrid'}[x.loc || 'local'] + ' · Goal: ' + (x.goal || '').trim(), act:'Express interest', actDone:'Interest sent', actHint:'The organizer will follow up in Chat.'});
         if (t === 'challenge') Object.assign(np, {date:x.date, hhmm:'08:00', when:'Starts ' + fmtD(x.date) + (x.duration ? ' · ' + x.duration + ' days' : '') + ' · ' + {daily:'Daily', weekly:'Weekly', flexible:'Flexible'}[x.freq || 'daily'], where:'Goal: ' + (x.goal || '').trim(), act:'Join challenge', actDone:'Joined', actHint:'Progress is self-reported and private unless you share it.'});
         if (t === 'need') Object.assign(np, {when:x.needBy ? 'Needed by ' + fmtD(x.needBy) : 'Needed anytime', where:{local:'Local · general area only', remote:'Remote', anywhere:'Anywhere'}[x.where || 'local'], act:'Offer help', actDone:'You offered help', actHint:'The person who posted will see your offer.'});
-        self.setState({posts:[np].concat(s.posts), seq:s.seq + 1, createDone:id, create:initialState().create});
+        self.setState({posts:[np].concat(s.posts), seq:s.seq + 1, createDone:id, create:initialState().create, drafts:(s.drafts || []).filter(function(d0){ return d0.id !== c.draftId; })});
       };
     }
     if (v.cr && v.cr.editing) {
@@ -3966,12 +4041,12 @@ class Component extends DCLogic {
     o.blockReasons = BLOCK_REASONS.map(function(r){ var on = dd0.reason === r; return {label:r, cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ self.setState({dialog:Object.assign({}, self.state.dialog, {reason:on ? null : r})}); }}; });
     /* notifications: messages, connection requests, replies, Gravity, event reminders (RSVP'd only) */
     var nItems = []; var rd = s.notifRead || {};
-    if (nfs.messages) Object.keys(s.unread || {}).forEach(function(cid){ var cm = CONVS.filter(function(c){ return c.id === cid; })[0]; if (!cm || (s.leftChats || {})[cid]) return; var nm = cm.kind === 'group' ? COMMMAP[cm.comm].name : PEOPLE[cm.person].name; nItems.push({id:'m-' + cid, kind:'Message', text:'New message ' + (cm.kind === 'group' ? 'in ' : 'from ') + nm, icon:IC.chat, go:function(){ self.setState({dialog:null}); self.openConvId(cid); }}); });
-    if (nfs.requests) Object.keys(s.rel).forEach(function(pid){ if (s.rel[pid] === 'incoming') nItems.push({id:'r-' + pid, kind:'Connection request', text:PEOPLE[pid].name + ' wants to connect', icon:IC.people, go:function(){ self.setState({dialog:null}); self.openPersonId(pid); }}); });
+    if (nfs.messages) Object.keys(s.unread || {}).forEach(function(cid){ var cm = CONVS.filter(function(c){ return c.id === cid; })[0]; if (!cm || (s.leftChats || {})[cid]) return; var nm = cm.kind === 'group' ? COMMMAP[cm.comm].name : PEOPLE[cm.person].name; nItems.push({id:'m-' + cid, kind:(cm.kind === 'group' ? 'Group Message: ' : 'Message: ') + nm, text:cm.kind === 'group' ? 'New message in the group chat' : 'New message', icon:IC.chat, go:function(){ self.setState({dialog:null}); self.openConvId(cid); }}); });
+    if (nfs.requests) Object.keys(s.rel).forEach(function(pid){ if (s.rel[pid] === 'incoming') nItems.push({id:'r-' + pid, kind:'Connection: ' + PEOPLE[pid].name, text:'Wants to connect with you', icon:IC.people, go:function(){ self.setState({dialog:null}); self.openPersonId(pid); }}); });
     var findP = function(id){ return s.posts.filter(function(p){ return p.id === id; })[0]; };
-    if (nfs.replies && findP('p1')) nItems.push({id:'rep-1', kind:'Reply', text:'Amara replied in the discussion on “' + findP('p1').title + '”', icon:IC.reflect, go:function(){ self.setState({dialog:null}); self.openPostId('p1'); }});
-    if (nfs.gravity && findP('p8')) nItems.push({id:'grav-1', kind:'Gravity', text:'Your reflection on “' + findP('p8').title + '” received Gravity from 3 people', icon:IC.sparkle, go:function(){ self.setState({dialog:null}); self.openPostId('p8'); }});
-    if (nfs.events) s.posts.forEach(function(p){ if (p.type === 'event' && s.acts[p.id]) nItems.push({id:'ev-' + p.id, kind:'Event reminder', text:p.title + (p.when ? ' · ' + p.when : ''), icon:IC.calendar, go:function(){ self.setState({dialog:null}); self.openPostId(p.id); }}); });
+    if (nfs.replies && findP('p1')) nItems.push({id:'rep-1', kind:'Reply: Amara', text:'Replied in the discussion on “' + findP('p1').title + '”', icon:IC.reflect, go:function(){ self.setState({dialog:null}); self.openPostId('p1'); }});
+    if (nfs.gravity && findP('p8')) nItems.push({id:'grav-1', kind:'Gravity: 3 people', text:'Your reflection on “' + findP('p8').title + '” received Gravity', icon:IC.sparkle, go:function(){ self.setState({dialog:null}); self.openPostId('p8'); }});
+    if (nfs.events) s.posts.forEach(function(p){ if (p.type === 'event' && s.acts[p.id]) nItems.push({id:'ev-' + p.id, kind:'Event: ' + p.title, text:p.when ? 'Reminder · ' + p.when : 'Reminder', icon:IC.calendar, go:function(){ self.setState({dialog:null}); self.openPostId(p.id); }}); });
     var nUnread = nItems.filter(function(n){ return !rd[n.id]; }).length;
     o.notifCount = nUnread > 9 ? '9+' : String(nUnread); o.notifHas = nUnread > 0;
     o.notifAria = nUnread ? 'Notifications, ' + nUnread + ' new' + ' — ' + nUnread + (nUnread === 1 ? ' notification' : ' notifications') : 'Notifications, none new';
@@ -3985,7 +4060,11 @@ class Component extends DCLogic {
       v.cr.discard = function(){ var cc2 = self.state.create; var dirty = !!(cc2.title.trim() || cc2.body.trim() || cc2.prompt.trim() || cc2.img); if (dirty) self.setState({dialog:{kind:'discard', title:'Discard this draft?'}}); else self.setState({create:initialState().create}); };
       v.cr.openPublished = function(){ var id = s.createDone; self.setState({createDone:null}); self.openPostId(id); };
     }
-    o.confirmDiscard = function(){ self.setState({create:initialState().create, dialog:null}); self.toast('Draft discarded'); };
+    o.confirmDiscard = function(){ var did = (self.state.create || {}).draftId; self.setState({create:initialState().create, dialog:null, drafts:(self.state.drafts || []).filter(function(d0){ return d0.id !== did; })}); self.toast('Draft discarded'); };
+    o.confirmDraftDel = function(){ var id = (self.state.dialog || {}).id; self.setState({dialog:null, drafts:(self.state.drafts || []).filter(function(d0){ return d0.id !== id; })}); self.toast('Draft discarded'); };
+    o.unsavedSave = function(){ self.saveDraftNow(); self.setState({dialog:null}); self.toast('Draft saved — find it in Create › Drafts'); self.runPending(); };
+    o.unsavedDiscard = function(){ self.setState({create:initialState().create, dialog:null}); self.runPending(); };
+    o.unsavedCancel = function(){ self.pendingLeave = null; self.setState({dialog:null}); };
     o.draftNote = (c.title || c.body) ? 'Your draft is kept on this device while you move around the app.' : '';
 
     /* ---------- Chat extras ---------- */
@@ -4243,7 +4322,7 @@ class Component extends DCLogic {
   toggleFavPerson(pid){ var f = Object.assign({}, this.state.favPeople || {}); var on = !f[pid]; if (on) f[pid] = Date.now(); else delete f[pid]; this.setState({favPeople:f, profMenu:false, convMenu:false}); this.toast(on ? PEOPLE[pid].name.split(' ')[0] + ' added to your Favorites' : 'Removed from your Favorites'); }
   visOK(level, pid){ var s = this.state; var conn = s.rel[pid] === 'connected'; if (level === 'global') return true; if (level === 'verified') return !!s.verified || conn; if (level === 'friends') return conn; return false; }
   media(key){ var self = this; var n = key ? (this.state.imgFail[key] || 0) : 0; var url = key ? imgSrc(key, n) : ''; var ok = !!url && n < 2; return {has:!!url, ok:ok, bad:!!url && !ok, src:url, alt:ALT[key] || '', err:function(){ self.failImg(key); }}; }
-  dlgClose(){ this.setState({dialog:null, reportReason:null, reportNote:''}); }
+  dlgClose(){ this.pendingLeave = null; this.setState({dialog:null, reportReason:null, reportNote:''}); }
 
   renderVals(){ var v = this.baseVals(); return Object.assign(v, this.moreVals(v)); }
   baseVals(){
@@ -4427,7 +4506,14 @@ class Component extends DCLogic {
       done:!!s.createDone && s.verified, choosing:s.verified && !s.createDone && !c.type, editing:s.verified && !s.createDone && !!c.type,
       types:TYPES.map(function(t){ return {label:t.label, desc:t.desc, icon:t.icon, disabled:!t.ready, pick:function(){ setC({type:t.id, tag:null}); }}; }),
       typeLabel:ct ? ct.label : '', starter:ct ? ct.starter : '', titleLabel:ct ? ct.titleLabel : '', titlePh:ct ? ct.titlePh : '', bodyLabel:ct ? ct.bodyLabel : '', bodyPh:ct ? ct.bodyPh : '',
-      changeType:function(){ setC({type:null, tag:null}); },
+      changeType:function(){ var go2 = function(){ setC({type:null, tag:null}); }; if (self.guardLeave(go2)) return; go2(); },
+      cantSave:!crHasContent(c),
+      saveDraft:function(){ self.saveDraftNow(); self.toast('Draft saved — find it in Create › Drafts'); },
+      draftsMeta:(s.drafts || []).length ? (s.drafts || []).length + ((s.drafts || []).length === 1 ? ' saved' : ' saved') : '',
+      noDrafts:!(s.drafts || []).length,
+      drafts:(s.drafts || []).slice().sort(function(a, b){ return b.savedAt - a.savedAt; }).map(function(d){ var t = TYPEMAP[d.type]; return {title:(d.title || '').trim() || 'Untitled ' + (t ? t.label.toLowerCase() : 'creation'), meta:(t ? t.label : 'Creation') + (d.sys ? ' · ' + SYSMAP[d.sys].name : '') + ' · Saved ' + agoText(d.savedAt),
+        open:function(){ self.setState({create:Object.assign({}, initialState().create, {type:d.type, title:d.title, body:d.body, sys:d.sys, sys2:d.sys2, sys2On:!!d.sys2On, tag:d.tag, img:!!d.img, promptOn:!!d.promptOn, prompt:d.prompt, aud:d.aud, view:'write', draftId:d.id, savedSig:crSig(d)})}); },
+        del:function(){ self.setState({dialog:{kind:'draftDel', title:'Discard this draft?', id:d.id}}); }}; }),
       title:c.title, body:c.body, count:c.body.length.toLocaleString(), prompt:c.prompt,
       onTitle:function(e){ setC({title:e.target.value.slice(0, 140)}); }, onBody:function(e){ setC({body:e.target.value.slice(0, 5000)}); }, onPrompt:function(e){ setC({prompt:e.target.value.slice(0, 200)}); },
       sysChips:SYS.map(function(x){ var on = c.sys === x.id; return {label:x.name, cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', dotCls:'dot dot-' + x.id, pick:function(){ var patch = {sys:on ? null : x.id}; if (!on && c.sys2 === x.id) patch.sys2 = null; setC(patch); }}; }),
@@ -4455,7 +4541,7 @@ class Component extends DCLogic {
         if (!complete) return;
         var id = 'u' + s.seq;
         var np = {id:id, author:'me', type:c.type, sys:c.sys, sys2:c.sys2On && c.sys2 && c.sys2 !== c.sys ? c.sys2 : null, audience:c.aud, tag:c.tag, ts:100 + s.seq, time:'Just now', title:c.title.trim(), body:c.body.trim(), prompt:c.promptOn && c.prompt.trim() ? c.prompt.trim() : null, img:c.img ? 'upload' : null};
-        self.setState({posts:[np].concat(s.posts), seq:s.seq + 1, createDone:id, create:initialState().create});
+        self.setState({posts:[np].concat(s.posts), seq:s.seq + 1, createDone:id, create:initialState().create, drafts:(s.drafts || []).filter(function(d0){ return d0.id !== c.draftId; })});
       },
       doneTitle:'', doneText:'', viewCta:'View in Flow',
       viewPublished:function(){ self.setState({screen:'flow', hist:[], flowSys:'all', flowSort:'global', batch:1, createDone:null}); },
@@ -4613,7 +4699,7 @@ class Component extends DCLogic {
 
     /* ---------- dialogs ---------- */
     var d = s.dialog || {};
-    var dlg = {any:!!s.dialog, title:d.title || '', body:d.body || '', who:d.who || '', gate:d.kind === 'gate', report:d.kind === 'report', block:d.kind === 'block', del:d.kind === 'del', leave:d.kind === 'leave', mute:d.kind === 'mute', favSys:d.kind === 'favSys', visPick:d.kind === 'visPick', reqPick:d.kind === 'reqPick', notifs:d.kind === 'notifs', gtk:d.kind === 'gtk', gtkInfo:d.kind === 'gtkInfo', sysGuide:d.kind === 'sysGuide', leaveChat:d.kind === 'leaveChat', edit:d.kind === 'edit', sys:d.kind === 'sys', history:d.kind === 'history', sysInfo:d.kind === 'sysInfo', sigInfo:d.kind === 'sigInfo', folder:d.kind === 'folder', profile:d.kind === 'profile', info:d.kind === 'info', discard:d.kind === 'discard', jDiscard:d.kind === 'jDiscard', jDel:d.kind === 'jDel', jExport:d.kind === 'jExport', jFolder:d.kind === 'jFolder', calAdd:d.kind === 'calAdd', calForm:d.kind === 'calForm', calRefl:d.kind === 'calRefl', reflLock:d.kind === 'reflLock', signOut:d.kind === 'signOut', reset:d.kind === 'reset', adminSignIn:d.kind === 'adminSignIn', adminAct:d.kind === 'adminAct', newMsg:d.kind === 'newMsg'};
+    var dlg = {any:!!s.dialog, title:d.title || '', body:d.body || '', who:d.who || '', gate:d.kind === 'gate', report:d.kind === 'report', block:d.kind === 'block', del:d.kind === 'del', leave:d.kind === 'leave', mute:d.kind === 'mute', favSys:d.kind === 'favSys', visPick:d.kind === 'visPick', reqPick:d.kind === 'reqPick', notifs:d.kind === 'notifs', gtk:d.kind === 'gtk', gtkInfo:d.kind === 'gtkInfo', sysGuide:d.kind === 'sysGuide', leaveChat:d.kind === 'leaveChat', edit:d.kind === 'edit', sys:d.kind === 'sys', history:d.kind === 'history', sysInfo:d.kind === 'sysInfo', sigInfo:d.kind === 'sigInfo', folder:d.kind === 'folder', profile:d.kind === 'profile', info:d.kind === 'info', discard:d.kind === 'discard', unsaved:d.kind === 'unsaved', draftDel:d.kind === 'draftDel', jDiscard:d.kind === 'jDiscard', jDel:d.kind === 'jDel', jExport:d.kind === 'jExport', jFolder:d.kind === 'jFolder', calAdd:d.kind === 'calAdd', calForm:d.kind === 'calForm', calRefl:d.kind === 'calRefl', reflLock:d.kind === 'reflLock', signOut:d.kind === 'signOut', reset:d.kind === 'reset', adminSignIn:d.kind === 'adminSignIn', adminAct:d.kind === 'adminAct', newMsg:d.kind === 'newMsg'};
     var editTarget = d.kind === 'edit' ? s.posts.filter(function(p){ return p.id === d.target; })[0] : null;
     var reasons = ['Harassment or threats', 'Spam or scam', 'Shares private information', 'Inappropriate content', 'Something else'];
 
@@ -4727,7 +4813,7 @@ class Component extends DCLogic {
       commSysChips:[{id:'all', label:'All Systems'}].concat(SYS.map(function(x){ return {id:x.id, label:x.name}; })).map(function(c2){ var on = s.commSys === c2.id; return {label:c2.label, cls:'chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', hasDot:c2.id !== 'all', dotCls:'dot dot-' + c2.id, pick:function(){ self.setState({commSys:c2.id, commTopic:null}); }}; }),
       commTopicsShow:s.commSys !== 'all' && !!SYS_TOPICS[s.commSys], commTopicSys:s.commSys !== 'all' ? SYSMAP[s.commSys].name : '', commTopicRowCls:'topic-row sc-' + s.commSys,
       commTopics:(SYS_TOPICS[s.commSys] || []).map(function(t){ var on = s.commTopic === t; var n = COMMS.filter(function(cc){ return cc.sys === s.commSys && (COMM_TOPICS[cc.id] || []).indexOf(t) >= 0; }).length; return {label:t, n:n ? String(n) : '', hasN:n > 0, cls:'topic-chip' + (on ? ' on' : ''), pressed:on ? 'true' : 'false', pick:function(){ self.setState({commTopic:on ? null : t}); }}; }),
-      commSections:commSections, commEmpty:commSections.length === 0, clearCommFilters:function(){ self.setState({commQuery:'', commSys:'all', commTopic:null}); },
+      commSections:commSections.map(function(x){ return Object.assign(x, {isCarousel:x.gridCls === 'comm-carousel', hsCls:x.gridCls === 'comm-carousel' ? 'hs hs-edge' : 'hs-plain'}); }), commEmpty:commSections.length === 0, clearCommFilters:function(){ self.setState({commQuery:'', commSys:'all', commTopic:null}); },
       cm:cm,
 
       /* chat */

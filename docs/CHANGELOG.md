@@ -1,5 +1,11 @@
 # Change log
 
+## Client round (Nov 11)
+- **System descriptions:** each of the Ten Systems’ opening line now uses its own name instead of “Lux Flow” (e.g. “Radiance is a sanctuary for happiness.”); the rest is unchanged.
+- **Scroll arrows:** everywhere content scrolls sideways (System filter chips, Folders, topic row, connections, Reflection Signals, Local communities) there are small < > buttons above the row; at the far left only >, in the middle both, at the far right only <. Local communities use larger arrows centred on the picture edges. Rows also snap item by item (swipe, scroll or arrows) and the arrows hide when everything fits.
+- **Create:** new intro wording. A compact sticky toolbar under the top bar reads NEW REFLECTION | Change Type | Save Draft (“New” drops on narrow screens). New Drafts section at the bottom of Create (continue editing, discard). Leaving a form with unsaved changes asks Save Draft (yellow) / Discard (red) / Cancel. Publishing a draft removes it from Drafts.
+- **Notifications:** labels now read “Group Message: Alder Street Growers”, “Message: Priya Raman”, “Connection: Sam Whitfield”, with the same pattern for replies, Gravity and events.
+
 ## Client round (Nov 10)
 - Favorites: a Favorites section in People (unstar and message from there) and stars beside favorite people in People, Connections and the chat list. Chat has its own star toggle to the right of Search chats that shows only favorite one-to-one conversations; group chats have no favorites in Phase 1.
 - Events: Save to Archive on community event cards (it doesn’t RSVP or join). The Save button on event posts works without an RSVP.
