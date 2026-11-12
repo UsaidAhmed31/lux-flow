@@ -1097,8 +1097,9 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .hfs.on .ic{color:#fff}
 .hf-tilde{color:var(--ink-3);font-weight:700;padding:0 2px}
 .nbadge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;font-size:11px;font-weight:800;line-height:1;margin-left:auto}
-.nb-acc{background:var(--accent-hi);color:#fff}
+.nb-acc{background:#7A68FF;color:#fff}
 .nb-warn{background:#FFC93C;color:#2A1A00}
+.nb-soft{background:#D98CAB;color:#2A0A1A}
 .dock-n{position:absolute;top:4px;right:10px;margin:0;box-shadow:0 0 0 2px #14121E}
 .dock{position:relative;z-index:30}
 .dock-create-btn{position:relative;z-index:31}
@@ -1497,10 +1498,10 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .trust-step.on{color:#fff;background:linear-gradient(180deg,#8A79FF,#5A43EE);box-shadow:none}
 .set-help{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:center;padding:8px 0 24px;color:var(--ink-3);font-size:13px}
 .vis-opt{min-height:60px;align-items:center}
-/* notification badge on the logo: white on dark, black on light; count never relies on colour alone */
+/* notification count on the logo: muted pink for all other notifications; count never relies on colour alone */
 .brand-wrap{position:relative;display:inline-flex;flex-shrink:0}
-.notif-badge{position:absolute;top:-6px;right:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 11px/1 var(--display);background:#FFFFFF;color:#0B0A12;box-shadow:0 0 0 2px var(--bg),0 2px 6px rgba(0,0,0,.45);z-index:2;pointer-events:none}
-.app.theme-light .notif-badge{background:#0B0A12;color:#FFFFFF;box-shadow:0 0 0 2px #fff,0 2px 6px rgba(0,0,0,.25)}
+.notif-badge{position:absolute;top:-6px;right:-8px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 11px/1 var(--display);background:#D98CAB;color:#2A0A1A;box-shadow:0 0 0 2px var(--bg),0 2px 6px rgba(0,0,0,.45);z-index:2;pointer-events:none}
+.app.theme-light .notif-badge{background:#D98CAB;color:#2A0A1A;box-shadow:0 0 0 2px #fff,0 2px 6px rgba(0,0,0,.25)}
 .tb-brand{min-height:44px}
 .nt-list{display:flex;flex-direction:column;gap:6px}
 .nt-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:left;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
@@ -1605,6 +1606,10 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .draft-acts{display:flex;gap:8px;flex-wrap:wrap}
 .sheet-actions-3{justify-content:stretch}
 @media (max-width:520px){ .sheet-actions-3 .btn{flex:1 1 100%} }
+
+.unread-dot.ud-chat{background:#7A68FF}
+.unread-dot.ud-people{background:#FFC93C}
+.unread-dot.ud-other{background:#D98CAB}
 </style>
 
 <aside class="side" aria-label="Primary">
@@ -1777,7 +1782,6 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     <ol class="ob-steps">
       <sc-for list="{{obSteps}}" as="st" hint-placeholder-count="4"><li><button class="{{st.cls}}" onClick="{{st.go}}" aria-label="{{st.aria}}"><span class="ob-check"><sc-if value="{{st.done}}" hint-placeholder-val="{{ false }}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg></sc-if></span><span class="grow"><span class="h3" style="display: block">{{st.label}}</span><span class="meta">{{st.hint}}</span></span><svg class="ic ic-sm muted" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.chevron}}"></path></svg></button></li></sc-for>
     </ol>
-    <div class="ob-note"><span class="nbadge nb-acc" aria-hidden="true">2</span><span><strong>Chat</strong> badges count new messages only.</span><span class="nbadge nb-warn" aria-hidden="true">1</span><span><strong>People</strong> badges count connection requests only.</span></div>
     <sc-if value="{{obAllDone}}" hint-placeholder-val="{{ false }}"><div class="banner banner-ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.check}}"></path></svg><div class="small grow"><strong>You’ve tried the core of Lux Flow.</strong> Discover, understand, connect and take part — the rest is yours to explore at your own pace.</div></div></sc-if>
   </section>
   </sc-if>
@@ -3277,7 +3281,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
       <sc-if value="{{dlg.notifs}}" hint-placeholder-val="{{ false }}">
         <sc-if value="{{nt.empty}}" hint-placeholder-val="{{ false }}"><div class="empty empty-sm"><span class="empty-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg></span><div class="h3">You’re all caught up</div><p class="meta p">New messages, requests, replies, Gravity and event reminders show up here.</p></div></sc-if>
-        <div class="nt-list"><sc-for list="{{nt.items}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span class="{{n.icCls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg></span><span class="grow"><span class="nt-kind">{{n.kind}}</span><span class="nt-text">{{n.text}}</span></span><sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}"><span class="unread-dot" aria-label="New"></span></sc-if></button></sc-for></div>
+        <div class="nt-list"><sc-for list="{{nt.items}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span class="{{n.icCls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg></span><span class="grow"><span class="nt-kind">{{n.kind}}</span><span class="nt-text">{{n.text}}</span></span><sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}"><span class="{{n.dotCls}}" aria-label="New"></span></sc-if></button></sc-for></div>
         <p class="help p">Choose which notifications you get in Settings → Privacy &amp; Safety → Notifications. Simulated in this prototype.</p>
         <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{nt.settings}}">Notification settings</button><button class="btn btn-primary" disabled="{{nt.noneUnread}}" onClick="{{nt.markAll}}">Mark all as read</button></div>
       </sc-if>
@@ -4105,7 +4109,7 @@ class Component extends DCLogic {
     o.openNotifs = function(){ self.setState({dialog:{kind:'notifs', title:'Notifications'}, drawer:false}); };
     o.nt = {empty:nItems.length === 0, noneUnread:nUnread === 0, settings:function(){ self.setState({dialog:null}); o.goPrivacyNotifs(); },
       markAll:function(){ var r2 = Object.assign({}, self.state.notifRead); nItems.forEach(function(n){ r2[n.id] = true; }); self.setState({notifRead:r2}); },
-      items:nItems.map(function(n){ var un = !rd[n.id]; return {kind:n.kind, text:n.text, icon:n.icon, unread:un, cls:'nt-item' + (un ? ' unread' : ''), icCls:'nt-ic', go:function(){ var r2 = Object.assign({}, self.state.notifRead); r2[n.id] = true; self.setState({notifRead:r2}); n.go(); }}; })};
+      items:nItems.map(function(n){ var un = !rd[n.id]; return {kind:n.kind, text:n.text, icon:n.icon, unread:un, dotCls:'unread-dot ' + (/^(Group )?Message:/.test(n.kind) ? 'ud-chat' : (/^Connection:/.test(n.kind) ? 'ud-people' : 'ud-other')), cls:'nt-item' + (un ? ' unread' : ''), icCls:'nt-ic', go:function(){ var r2 = Object.assign({}, self.state.notifRead); r2[n.id] = true; self.setState({notifRead:r2}); n.go(); }}; })};
     o.openGtkInfo = function(){ self.setState({dialog:{kind:'gtkInfo', title:'Good to know before you publish'}}); };
     o.sysGuide = SYS.map(function(z){ var dd = s.dialog || {}; return {name:z.name, words:z.meaning || '', dotCls:'dot dot-' + z.id, ideas:SYS_CREATE[z.id] || [], cls:'sg-item sc-' + z.id + (dd.focus === z.id ? ' on' : '')}; });
     if (v.cr) {

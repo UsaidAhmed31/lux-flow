@@ -1,5 +1,10 @@
 # Change log
 
+## Client round (Nov 13)
+- Removed the Chat/People badge-count explainer box from Home.
+- Wording: “notifications” instead of “badges” for counts and dots (Verified/Trusted identity badges keep their name).
+- Notification colours: People (connection requests) yellow, Chat (messages and group messages) purple, all other notifications muted pink — on the dock counts, the logo count and the dots in the Notifications list.
+
 ## Client round (Nov 11)
 - **System descriptions:** each of the Ten Systems’ opening line now uses its own name instead of “Lux Flow” (e.g. “Radiance is a sanctuary for happiness.”); the rest is unchanged.
 - **Scroll arrows:** everywhere content scrolls sideways (System filter chips, Folders, topic row, connections, Reflection Signals, Local communities) there are small < > buttons above the row; at the far left only >, in the middle both, at the far right only <. Local communities use larger arrows centred on the picture edges. Rows also snap item by item (swipe, scroll or arrows) and the arrows hide when everything fits.
