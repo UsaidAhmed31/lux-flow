@@ -91,3 +91,6 @@
 - Reflection Signals: two rows of four that scroll together, prominent "Private to you" note, ? explainer.
 - Flower symbol: filled, dimensional petals; selected petal glows.
 - Dark / Light theme switch in Settings (dark by default).
+
+## Client round (Nov 24)
+- Home hero: top of the figure panel cropped to the edge of the energy flame; moon moved down and rotated 30° clockwise; helper line now “tap a center to explore.”

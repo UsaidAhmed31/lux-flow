@@ -847,7 +847,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 /* ===== Ten Systems stage (client feedback: luminous galaxy, glowing ? points, names always visible) ===== */
 .sc-radiance{--sc:#FFF0C2;--sc-ink:#8A6200}.sc-purpose{--sc:#FF6FB5;--sc-ink:#C2186B}.sc-presence{--sc:#AE82FF;--sc-ink:#6A3FE0}.sc-wisdom{--sc:#4FA8FF;--sc-ink:#1F6FD6}.sc-connection{--sc:#2FE39B;--sc-ink:#0B8A54}
 .sc-unity{--sc:#FFD43B;--sc-ink:#8F6C00}.sc-vitality{--sc:#FF8C2E;--sc-ink:#C2560C}.sc-foundation{--sc:#FF5050;--sc-ink:#C62828}.sc-journey{--sc:#E6A564;--sc-ink:#8A5A2B}.sc-remembrance{--sc:#C9CCEA;--sc-ink:#55587A}
-.fig-stage{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;padding:30px 8px 20px;
+.fig-stage{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;padding:4px 8px 20px;
   background:
     radial-gradient(36% 30% at 50% 46%,rgba(255,190,100,.36),transparent 70%),
     radial-gradient(40% 20% at 50% 6%,rgba(255,214,140,.30),transparent 72%),
@@ -868,8 +868,8 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
     radial-gradient(1.6px 1.6px at 90px 250px,rgba(255,214,140,.9),transparent);
   background-size:290px 280px;animation:lfTwinkle 4.8s ease-in-out infinite alternate}
 @keyframes lfTwinkle{from{opacity:.25}to{opacity:1}}
-.fig-stage .figure{z-index:1;width:100%;max-width:none;aspect-ratio:auto;height:min(480px,calc((100vw - 48px) * 1.5));animation:lfFloat 6.5s ease-in-out infinite}
-@media (min-width:960px){ .fig-stage .figure{height:600px} }
+.fig-stage .figure{margin-top:-36px;z-index:1;width:100%;max-width:none;aspect-ratio:auto;height:min(480px,calc((100vw - 48px) * 1.5));animation:lfFloat 6.5s ease-in-out infinite}
+@media (min-width:960px){ .fig-stage .figure{height:600px;margin-top:-46px} }
 /* the figure (with its suns) floats gently; turned off by Reduce motion */
 @keyframes lfFloat{0%,100%{transform:translateY(4px)}50%{transform:translateY(-8px)}}
 /* Each System: a little sun on the figure, its name + three words beside it, and a glowing ? for more */
@@ -933,7 +933,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .hf-prev{transform:scaleX(-1)}
 .pd1{--d:-.36s}.pd2{--d:-.72s}.pd3{--d:-1.08s}.pd4{--d:-1.44s}.pd5{--d:-1.8s}.pd6{--d:-2.16s}.pd7{--d:-2.52s}.pd8{--d:-2.88s}.pd9{--d:-3.24s}
 @media (max-width:360px){ .pt-lbl{font-size:10.5px} .hf-name{font-size:19px} }
-@media (min-width:960px){ .fig-stage{padding:36px 14px 16px} .pt{width:44px;height:44px} .sun{width:26px;height:26px} .hf-sun{width:16px;height:16px} .pt-lbl{font-size:13px} .side-r .pt-lbl{left:calc(50% + 32px)} .side-l .pt-lbl{right:calc(50% + 32px)} .side-r.on .pt-lbl{left:calc(50% + 44px)} .side-l.on .pt-lbl{right:calc(50% + 44px)} .pt-row.focus .pt-lbl{font-size:14.5px} .hf-name{font-size:24px} }
+@media (min-width:960px){ .fig-stage{padding:4px 14px 16px} .pt{width:44px;height:44px} .sun{width:26px;height:26px} .hf-sun{width:16px;height:16px} .pt-lbl{font-size:13px} .side-r .pt-lbl{left:calc(50% + 32px)} .side-l .pt-lbl{right:calc(50% + 32px)} .side-r.on .pt-lbl{left:calc(50% + 44px)} .side-l.on .pt-lbl{right:calc(50% + 44px)} .pt-row.focus .pt-lbl{font-size:14.5px} .hf-name{font-size:24px} }
 .sys-info-head{display:flex;align-items:center;gap:12px}
 .sys-info-sun{width:30px;height:30px;flex-shrink:0;animation:none}
 .sys-info-words{font-weight:700;color:var(--ink-2)}
@@ -1017,7 +1017,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .side-r.on .pt-lbl{left:calc(50% + 26px)}.side-l.on .pt-lbl{right:calc(50% + 26px)}
 .hf-sun{width:24px;height:24px}
 .sys-info-sun{width:34px;height:34px}
-.fig-moon{position:absolute;top:22px;right:24px;width:32px;height:32px;z-index:0;pointer-events:none;fill:#F6E3B4;filter:drop-shadow(0 0 8px rgba(255,226,160,.5))}
+.fig-moon{position:absolute;top:64px;right:26px;transform:rotate(30deg);width:32px;height:32px;z-index:0;pointer-events:none;fill:#F6E3B4;filter:drop-shadow(0 0 8px rgba(255,226,160,.5))}
 .fig-stage::before{background-image:
   radial-gradient(1.2px 1.2px at 12px 18px,#fff,transparent),radial-gradient(1px 1px at 64px 92px,rgba(255,255,255,.85),transparent),radial-gradient(1.4px 1.4px at 118px 40px,#fff,transparent),
   radial-gradient(1px 1px at 150px 132px,rgba(255,255,255,.75),transparent),radial-gradient(1px 1px at 34px 150px,rgba(255,255,255,.8),transparent),radial-gradient(1.6px 1.6px at 92px 170px,rgba(255,224,160,.95),transparent),
@@ -1029,7 +1029,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
   radial-gradient(1.2px 1.2px at 250px 150px,#fff,transparent),radial-gradient(1.6px 1.6px at 90px 250px,rgba(255,214,140,.9),transparent),radial-gradient(1.4px 1.4px at 230px 260px,#fff,transparent),
   radial-gradient(1.1px 1.1px at 20px 200px,#fff,transparent),radial-gradient(1.5px 1.5px at 120px 120px,rgba(255,235,190,.9),transparent);
   background-size:290px 280px;animation:lfTwinkle 6s ease-in-out infinite alternate}
-@media (min-width:960px){ .sun,.pt-head .sun{width:24px;height:24px} .side-r .pt-lbl{left:calc(50% + 26px)} .side-l .pt-lbl{right:calc(50% + 26px)} .side-r.on .pt-lbl{left:calc(50% + 34px)} .side-l.on .pt-lbl{right:calc(50% + 34px)} .fig-moon{width:40px;height:40px} }
+@media (min-width:960px){ .sun,.pt-head .sun{width:24px;height:24px} .side-r .pt-lbl{left:calc(50% + 26px)} .side-l .pt-lbl{right:calc(50% + 26px)} .side-r.on .pt-lbl{left:calc(50% + 34px)} .side-l.on .pt-lbl{right:calc(50% + 34px)} .fig-moon{width:34px;height:34px;top:10px;right:16px} }
 @media (prefers-reduced-motion: reduce){ .fig-img,.fig-stage .pt{animation:none} }
 
 /* ===== Nav round (client Nov 2) ===== */
@@ -1625,7 +1625,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       <div class="hero-top">
         <div class="stack-xs">
           <p class="motto">Flow as One — <em>Become the Sun.</em></p>
-          <p class="hero-sub">The Ten Systems — tap a sun to explore. <button class="hero-q" aria-label="About the Ten Systems" onClick="{{openSysHelp}}">?</button></p>
+          <p class="hero-sub">The Ten Systems — tap a center to explore. <button class="hero-q" aria-label="About the Ten Systems" onClick="{{openSysHelp}}">?</button></p>
         </div>
       </div>
       <div class="{{stageCls}}">
