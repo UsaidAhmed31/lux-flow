@@ -1449,7 +1449,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .nt-list{display:flex;flex-direction:column;gap:6px}
 .nt-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;text-align:left;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
 .nt-item.unread{box-shadow:inset 0 0 0 1px var(--accent-line);background:var(--accent-soft)}
-.nt-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent-ink);background:var(--surface)}
+.nt-ic{position:relative;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent-ink);background:var(--surface)}
 .nt-kind{display:block;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
 .nt-text{display:block;font-size:14px;font-weight:600;color:var(--ink)}
 /* favourites on the figure: a subtle star + soft ring, same size and tap target as the rest */
@@ -1553,6 +1553,9 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
 .unread-dot.ud-chat{background:#7A68FF}
 .unread-dot.ud-people{background:#FFC93C}
 .unread-dot.ud-other{background:#D98CAB}
+
+.nt-ic .unread-dot{position:absolute;top:-2px;right:-2px;width:12px;height:12px;box-shadow:0 0 0 2px var(--surface-2)}
+.nt-item.unread .nt-ic .unread-dot{box-shadow:0 0 0 2px var(--bg)}
 </style>
 
 <aside class="side" aria-label="Primary">
@@ -3224,7 +3227,7 @@ button.list-row:hover,.next-item:hover,.ob-step:hover,.j-open:hover{border-radiu
       </sc-if>
       <sc-if value="{{dlg.notifs}}" hint-placeholder-val="{{ false }}">
         <sc-if value="{{nt.empty}}" hint-placeholder-val="{{ false }}"><div class="empty empty-sm"><span class="empty-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.bell}}"></path></svg></span><div class="h3">You’re all caught up</div><p class="meta p">New messages, requests, replies, Gravity and event reminders show up here.</p></div></sc-if>
-        <div class="nt-list"><sc-for list="{{nt.items}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span class="{{n.icCls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg></span><span class="grow"><span class="nt-kind">{{n.kind}}</span><span class="nt-text">{{n.text}}</span></span><sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}"><span class="{{n.dotCls}}" aria-label="New"></span></sc-if></button></sc-for></div>
+        <div class="nt-list"><sc-for list="{{nt.items}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span class="{{n.icCls}}"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="{{n.icon}}"></path></svg><sc-if value="{{n.unread}}" hint-placeholder-val="{{ false }}"><span class="{{n.dotCls}}" aria-label="New"></span></sc-if></span><span class="grow"><span class="nt-kind">{{n.kind}}</span><span class="nt-text">{{n.text}}</span></span></button></sc-for></div>
         <p class="help p">Choose which notifications you get in Settings → Privacy &amp; Safety → Notifications. Simulated in this prototype.</p>
         <div class="sheet-actions"><button class="btn btn-ghost" onClick="{{nt.settings}}">Notification settings</button><button class="btn btn-primary" disabled="{{nt.noneUnread}}" onClick="{{nt.markAll}}">Mark all as read</button></div>
       </sc-if>

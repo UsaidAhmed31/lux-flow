@@ -94,3 +94,4 @@
 
 ## Client round (Nov 24)
 - Home hero: top of the figure panel cropped to the edge of the energy flame; moon moved down and rotated 30° clockwise; helper line now “tap a center to explore.”
+- Notifications list (Nov 25): the unread dot now sits on the top-right corner of each notification’s icon — yellow for People, purple for Chat, muted pink for everything else (events, replies, Gravity).
